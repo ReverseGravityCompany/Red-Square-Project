@@ -40,6 +40,11 @@ public class MenuSetting : MonoBehaviour
 
     private LevelManager theLevelmanager;
 
+    public Color NightColor, DayColor;
+    public Sprite DaySprite, NightSprite;
+    public Image daynightImage;
+    private Camera camera;
+
     private void Awake()
     {
         if (CurrentLevel > 100)
@@ -86,6 +91,12 @@ public class MenuSetting : MonoBehaviour
         NoteHelperButton.onClick.AddListener(NoteHelperButtonListener);
         NoteHelperPanel.GetComponent<Button>().onClick.AddListener(NoteHelperPanelListener);
         YoutubeObj = gameObject.transform.Find("Youtube").gameObject;
+        camera = Camera.main;
+        if(ShowHelper != null && Hand != null)
+        {
+            ShowHelper.SetActive(false);
+            Hand.SetActive(false);
+        }
         urlYoutube = "https://www.youtube.com/channel/UCgXs2PTiL19Rv1qOn1SI7XQ";
         if (PlayerPrefs.HasKey("FastRun"))
         {
@@ -95,8 +106,46 @@ public class MenuSetting : MonoBehaviour
                 PlayerPrefs.SetInt("FastRun", 0);
             }
         }
-        if (PlayerPrefs.HasKey("NoteHelperLevel4")) return;
-        else if (!PlayerPrefs.HasKey("NoteHelperLevel4") && SceneManager.GetActiveScene().buildIndex == 4)
+
+        if (!PlayerPrefs.HasKey("DayAndNight"))
+        {
+            daynightImage.sprite = NightSprite;
+            PlayerPrefs.SetInt("DayAndNight", 0);
+            camera.backgroundColor = NightColor;
+
+            LevelShowInLevel.color = DayColor;
+            Pause.gameObject.GetComponent<Image>().color = DayColor;
+            Home.gameObject.GetComponent<Image>().color = DayColor;
+            RestartLevel.gameObject.GetComponent<Image>().color = DayColor;
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("DayAndNight") == 1) // 1 Day, 0 Night
+            {
+                daynightImage.sprite = DaySprite;
+                camera.backgroundColor = DayColor;
+
+                LevelShowInLevel.color = NightColor;
+                Pause.gameObject.GetComponent<Image>().color = NightColor;
+                Home.gameObject.GetComponent<Image>().color = NightColor;
+                RestartLevel.gameObject.GetComponent<Image>().color = NightColor;
+            }
+            else if (PlayerPrefs.GetInt("DayAndNight") == 0) // 1 Day, 0 Night
+            {
+                daynightImage.sprite = NightSprite;
+                camera.backgroundColor = NightColor;
+
+                LevelShowInLevel.color = DayColor;
+                Pause.gameObject.GetComponent<Image>().color = DayColor;
+                Home.gameObject.GetComponent<Image>().color = DayColor;
+                RestartLevel.gameObject.GetComponent<Image>().color = DayColor;
+            }
+        }
+
+
+
+
+        if (SceneManager.GetActiveScene().buildIndex == 4 && !PlayerPrefs.HasKey("NoteHelperLevel4"))
         {
             PlayerPrefs.SetInt("NoteHelperLevel4", 0);
             ShowHelper.SetActive(true);
@@ -162,6 +211,7 @@ public class MenuSetting : MonoBehaviour
             LevelShowInLevel.gameObject.SetActive(true);
             MarkDif.SetActive(false);
             GiftObj.SetActive(false);
+            daynightImage.gameObject.SetActive(false);
             GameStarted = true;
             enemysystem.GenerateEnemy();
             GameObject.FindObjectOfType<squareSoliderCounte>().StartGenerateSolider();
@@ -207,10 +257,6 @@ public class MenuSetting : MonoBehaviour
         }
     }
 
-
-
-
-
     public void YoutubeJ()
     {
         YoutubemJoin(urlYoutube);
@@ -247,7 +293,6 @@ public class MenuSetting : MonoBehaviour
         }
     }
 
-
     public void PreviousLevel()
     {
         LevelChangeSound.Play();
@@ -267,17 +312,12 @@ public class MenuSetting : MonoBehaviour
 
     }
 
-
-
-
     public void ResetartLevel()
     {
         PauseSound.Play();
         PlayerPrefs.SetInt("FastRun", 1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
-
 
     public void Menu()
     {
@@ -288,7 +328,6 @@ public class MenuSetting : MonoBehaviour
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 
     public void PauseBut()
     {
@@ -301,6 +340,7 @@ public class MenuSetting : MonoBehaviour
             Home.SetActive(false);
             RestartLevel.SetActive(false);
             sound.gameObject.SetActive(false);
+            daynightImage.gameObject.SetActive(false);
         }
         else
         {
@@ -310,6 +350,7 @@ public class MenuSetting : MonoBehaviour
             Home.SetActive(true);
             RestartLevel.SetActive(true);
             sound.gameObject.SetActive(true);
+            daynightImage.gameObject.SetActive(true);
         }
     }
 
@@ -334,6 +375,30 @@ public class MenuSetting : MonoBehaviour
         NoteHelperPanel.SetActive(false);
     }
 
+    public void DayAndNight()
+    {
+        if (PlayerPrefs.GetInt("DayAndNight") == 1) // 1 Day, 0 Night
+        {
+            daynightImage.sprite = NightSprite;
+            PlayerPrefs.SetInt("DayAndNight", 0);
+            camera.backgroundColor = NightColor;
 
+            LevelShowInLevel.color = DayColor;
+            Pause.gameObject.GetComponent<Image>().color = DayColor;
+            Home.gameObject.GetComponent<Image>().color = DayColor;
+            RestartLevel.gameObject.GetComponent<Image>().color = DayColor;
+        }
+        else if (PlayerPrefs.GetInt("DayAndNight") == 0) // 1 Day, 0 Night
+        {
+            daynightImage.sprite = DaySprite;
+            PlayerPrefs.SetInt("DayAndNight", 1);
+            camera.backgroundColor = DayColor;
+
+            LevelShowInLevel.color = NightColor;
+            Pause.gameObject.GetComponent<Image>().color = NightColor;
+            Home.gameObject.GetComponent<Image>().color = NightColor;
+            RestartLevel.gameObject.GetComponent<Image>().color = NightColor;
+        }
+    }
 
 }
