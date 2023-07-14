@@ -16,42 +16,42 @@ public class ChangeColorEditor : MonoBehaviour
 #if UNITY_EDITOR
     private void Update()
     {
-        if(gameObject.GetComponent<Identity>().GetIden() == Identity.iden.None)
+        if(gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.None)
         {
             gameObject.GetComponent<Image>().color = thePlayer.NoneColor;
             gameObject.transform.Find("CountMortal").gameObject.GetComponent<Text>().color = thePlayer.NoneColorText;
         }
-        else if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.Blue)
+        else if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
         {
             gameObject.GetComponent<Image>().color = thePlayer.BlueColor;
             gameObject.transform.Find("CountMortal").gameObject.GetComponent<Text>().color = thePlayer.BlueColorText;
         }
-        else if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.Red)
+        else if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.Red)
         {
             gameObject.GetComponent<Image>().color = thePlayer.RedColor;
             gameObject.transform.Find("CountMortal").gameObject.GetComponent<Text>().color = thePlayer.RedColorText;
         }
-        else if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.Yellow)
+        else if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.Yellow)
         {
             gameObject.GetComponent<Image>().color = thePlayer.YellowColor;
             gameObject.transform.Find("CountMortal").gameObject.GetComponent<Text>().color = thePlayer.YellowColorText;
         }
-        else if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.Pink)
+        else if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.Pink)
         {
             gameObject.GetComponent<Image>().color = thePlayer.PinkColor;
             gameObject.transform.Find("CountMortal").gameObject.GetComponent<Text>().color = thePlayer.PinkColorText;
         }
-        else if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.Green)
+        else if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.Green)
         {
             gameObject.GetComponent<Image>().color = thePlayer.GreenColor;
             gameObject.transform.Find("CountMortal").gameObject.GetComponent<Text>().color = thePlayer.GreenColorText;
         }
-        else if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.Orange)
+        else if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.Orange)
         {
             gameObject.GetComponent<Image>().color = thePlayer.OrangeColor;
             gameObject.transform.Find("CountMortal").gameObject.GetComponent<Text>().color = thePlayer.OrangeColorText;
         }
-        else if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.LastColor)
+        else if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.LastColor)
         {
             gameObject.GetComponent<Image>().color = thePlayer.LastColor;
             gameObject.transform.Find("CountMortal").gameObject.GetComponent<Text>().color = thePlayer.LastColorText;

@@ -8,59 +8,60 @@ using CodeStage.AntiCheat.ObscuredTypes;
 
 public class LevelManager : MonoBehaviour
 {
-    public GameObject Win, Lose , Last , again , WinLast;
-    private AllMortal allMortal;
-    public ObscuredInt CurrentCoin;
+    #region Properties
+    public GameObject Win, Lose;
+    [HideInInspector] public ObscuredInt CurrentCoin;
     private ObscuredInt MaxCoin, MinCoin;
     public Text CoinText;
 
     int Unlocknextlevel;
     int CheckValueOfLevel;
-    public bool SkillsOn;
+    [HideInInspector] public bool SkillsState;
     public GameObject[] SkillsObject;
-    //[SerializeField] Animator animTimer;
-    //[SerializeField] float TimeForward;
 
     public int CoinWinning;
-    public Text CoinWiningShow;
+    public Text CoinWiningText;
     public Animator anim;
-    private bool runOneTime;
 
     public AudioSource NextMatchSound;
     public AudioSource WinSound;
     public AudioSource MoneySound;
-    private bool OnRun;
-    public float Offset;
-    public int CheckWin;
-    public int CheckLose;
-    GameObject[] AllMortalObjects;
-    public bool WinGame, LoseGame;
-    [HideInInspector]public bool CatchCoin;
-    private Skills skills;
 
-    private bool CoinIsGone = false;
-    
-   
+    private bool CoinRecive;
+    public float CoinPosX = -180f;
+    private int WinStatus;
+    private int LoseStatus;
+    Identity[] AllMortalObjects;
+    private bool WinGame, LoseGame;
+
+    private bool IsCoinTaken = false;
+
+    public static LevelManager _Instance { get; private set; }
+
+    #endregion
+
+    #region Functions
+
     private void Awake()
     {
+        if (_Instance != null && _Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _Instance = this;
+        }
+
+
         MaxCoin = 999999;
         MinCoin = 500;
         Unlocknextlevel = SceneManager.GetActiveScene().buildIndex + 1;
-        allMortal = FindObjectOfType<AllMortal>();
-        if(SceneManager.GetActiveScene().name == "Level 1"){
-            PlayerPrefs.SetInt("LearnEnd",1);
+        if (SceneManager.GetActiveScene().name == "Level 1")
+        {
+            PlayerPrefs.SetInt("LearnEnd", 1);
         }
     }
-
-    public void RewardGift(int RewardCount)
-    {
-        CurrentCoin = ObscuredPrefs.GetInt("MyCoin");
-        CurrentCoin += RewardCount;
-        Debug.Log(CurrentCoin);
-        ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
-        CoinText.text = CurrentCoin.ToString();
-    }
-
 
     private void Start()
     {
@@ -72,23 +73,19 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            ObscuredPrefs.SetInt("MyCoin",MinCoin);
+            ObscuredPrefs.SetInt("MyCoin", MinCoin);
             CurrentCoin = MinCoin;
             CoinText.text = CurrentCoin.ToString();
         }
 
 
 
-        AllMortalObjects = new GameObject[FindObjectsOfType<Identity>().Length];
+        AllMortalObjects = new Identity[FindObjectsOfType<Identity>().Length];
         for (int i = 0; i < AllMortalObjects.Length; i++)
         {
-            AllMortalObjects[i] = FindObjectsOfType<Identity>()[i].gameObject;
+            AllMortalObjects[i] = FindObjectsOfType<Identity>()[i];
         }
-
-        Offset = -180f;
-
     }
-
 
     private void Update()
     {
@@ -100,7 +97,7 @@ public class LevelManager : MonoBehaviour
             CoinText.text = CurrentCoin.ToString();
         }
 
-        if (!SkillsOn)
+        if (!SkillsState)
         {
             for (int i = 0; i < SkillsObject.Length; i++)
             {
@@ -116,75 +113,69 @@ public class LevelManager : MonoBehaviour
         }
 
 
-
-        if (CheckLose < AllMortalObjects.Length && CheckWin < AllMortalObjects.Length)
+        // CHECK WHAT ARE CURRENT STATE (WIN OR LOSE)
+        if (LoseStatus < AllMortalObjects.Length && WinStatus < AllMortalObjects.Length)
         {
-            foreach (GameObject go in AllMortalObjects)
+            foreach (Identity obj in AllMortalObjects)
             {
-                if (go.GetComponent<Identity>().GetIden() != Identity.iden.Red)
+                if (obj.GetIdentity() != Identity.iden.Red)
                 {
-                    CheckLose++;
-                    if (CheckLose >= AllMortalObjects.Length)
+                    LoseStatus++;
+                    if (LoseStatus >= AllMortalObjects.Length)
                         return;
                 }
                 else
                 {
-                    CheckLose = 0;
+                    LoseStatus = 0;
                 }
 
-                if (go.GetComponent<Identity>().GetIden() == Identity.iden.Red)
+                if (obj.GetIdentity() == Identity.iden.Red)
                 {
-                    CheckWin++;
-                    if (CheckWin >= AllMortalObjects.Length)
+                    WinStatus++;
+                    if (WinStatus >= AllMortalObjects.Length)
                         return;
                 }
-                else if (go.GetComponent<Identity>().GetIden() == Identity.iden.None)
+                else if (obj.GetIdentity() == Identity.iden.None)
                 {
-                    CheckWin++;
-                    if (CheckWin >= AllMortalObjects.Length)
+                    WinStatus++;
+                    if (WinStatus >= AllMortalObjects.Length)
                         return;
                 }
                 else
                 {
-                    CheckWin = 0;
+                    WinStatus = 0;
                 }
             }
         }
 
-
-
-
-
-
-        if (CheckLose >= AllMortalObjects.Length)
+        // IF WE LOSE
+        if (LoseStatus >= AllMortalObjects.Length)
         {
             LoseGame = true;
         }
-
         if (LoseGame)
         {
             Time.timeScale = 0f;
             Lose.SetActive(true);
-            SkillsOn = false;
+            SkillsState = false;
             for (int i = 0; i < SkillsObject.Length; i++)
             {
                 SkillsObject[i].gameObject.SetActive(false);
             }
-            CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(Offset, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
+            CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(CoinPosX, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
         }
 
 
-
-        if (CheckWin >= AllMortalObjects.Length)
+        // IF WE WIN
+        if (WinStatus >= AllMortalObjects.Length)
         {
             WinGame = true;
-            SkillsOn = false;
+            SkillsState = false;
             for (int i = 0; i < SkillsObject.Length; i++)
             {
                 SkillsObject[i].gameObject.SetActive(false);
             }
         }
-
         if (WinGame)
         {
             if (PlayerPrefs.HasKey("UnlockLevel"))
@@ -192,12 +183,13 @@ public class LevelManager : MonoBehaviour
                 if (PlayerPrefs.GetInt("UnlockLevel") == SceneManager.GetActiveScene().buildIndex)
                 {
                     anim.SetTrigger("WinCoin");
-                    CoinIsGone = true;
+                    IsCoinTaken = true;
                 }
             }
-            else{
+            else
+            {
                 anim.SetTrigger("WinCoin");
-                    CoinIsGone = true;
+                IsCoinTaken = true;
             }
             if (PlayerPrefs.HasKey("ValueOfLevels"))
             {
@@ -209,7 +201,7 @@ public class LevelManager : MonoBehaviour
             {
                 CheckValueOfLevel = check;
             }
-            if(CheckValueOfLevel >= 100)
+            if (CheckValueOfLevel >= 100)
             {
                 CheckValueOfLevel = 100;
             }
@@ -218,34 +210,35 @@ public class LevelManager : MonoBehaviour
             PlayerPrefs.SetInt("UnlockLevel", PlayerPrefs.GetInt("ValueOfLevels"));
 
             Time.timeScale = 0f;
-            if(SceneManager.GetActiveScene().buildIndex != 100)
+            if (SceneManager.GetActiveScene().buildIndex != 100)
             {
                 Win.SetActive(true);
             }
-            else if(SceneManager.GetActiveScene().buildIndex == 100 && !OnRun)
+            else if (SceneManager.GetActiveScene().buildIndex == 100 && !CoinRecive)
             {
-               CoinWinning = MaxCoin;
-               CurrentCoin += CoinWinning;
-               ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
-               StartCoroutine(CloseLast());
-               OnRun = true;
-               return;
+                //CoinWinning = MaxCoin;
+                CurrentCoin += CoinWinning;
+                ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+                //StartCoroutine(CloseLast());
+                CoinRecive = true;
+                return;
             }
-            
-            if (!OnRun)
+
+            if (!CoinRecive)
             {
-                 int b = CoinWinning < 100 ? CoinWinning - Random.Range(-3,5) : CoinWinning < 300 ? 
-        CoinWinning - Random.Range(-30,30) : CoinWinning < 1000 ? CoinWinning - Random.Range(-50,50) : CoinWinning > 1000 ? CoinWinning - Random.Range(-100,100) : CoinWinning;
-        CoinWinning = b;
-        WinSound.Play();
-        if(CoinIsGone){
-        CurrentCoin += CoinWinning;
-        ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
-        }
-                OnRun = true;
+                int b = CoinWinning < 100 ? CoinWinning - Random.Range(-3, 5) : CoinWinning < 300 ?
+       CoinWinning - Random.Range(-30, 30) : CoinWinning < 1000 ? CoinWinning - Random.Range(-50, 50) : CoinWinning > 1000 ? CoinWinning - Random.Range(-100, 100) : CoinWinning;
+                CoinWinning = b;
+                WinSound.Play();
+                if (IsCoinTaken)
+                {
+                    CurrentCoin += CoinWinning;
+                    ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+                }
+                CoinRecive = true;
             }
-            CoinWiningShow.text = CoinWinning.ToString();
-            CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(Offset, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
+            CoinWiningText.text = CoinWinning.ToString();
+            CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(CoinPosX, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
         }
     }
 
@@ -258,7 +251,7 @@ public class LevelManager : MonoBehaviour
     {
         DG.Tweening.DOTween.KillAll();
         PlayerPrefs.SetInt("FastRun", 1);
-        PlayerPrefs.SetInt("Restarted",1);
+        PlayerPrefs.SetInt("Restarted", 1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -267,21 +260,26 @@ public class LevelManager : MonoBehaviour
         DG.Tweening.DOTween.KillAll();
         if (SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1) != null)
         {
-           // PlayerPrefs.SetInt("FastRun", 1);
-
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
-    
-    private IEnumerator CloseLast()
+
+    public void RewardGift(int RewardCount)
     {
-        WinLast.gameObject.SetActive(true);
-        yield return new WaitForSecondsRealtime(4f);
-        Last.gameObject.SetActive(true);
-        WinLast.gameObject.SetActive(false);
-        yield return new WaitForSecondsRealtime(8f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        CurrentCoin = ObscuredPrefs.GetInt("MyCoin");
+        CurrentCoin += RewardCount;
+        Debug.Log(CurrentCoin);
+        ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+        CoinText.text = CurrentCoin.ToString();
     }
 
+    private void OnDestroy()
+    {
+        if (_Instance != null)
+        {
+            _Instance = null;
+        }
+    }
 
+    #endregion
 }

@@ -19,8 +19,8 @@ public class EnemySystem : MonoBehaviour
     private bool isFirstTimeAttack = true;
     private Player thePlayer;
 
-    public enum Difficault { Easy , Meduim , Hard}
-    public  Difficault dif;
+    public enum Difficault { Easy, Meduim, Hard }
+    public Difficault dif;
 
 
     private EnemySystem()
@@ -86,50 +86,64 @@ public class EnemySystem : MonoBehaviour
             StartCoroutine(AttackPurple());
     }
 
-    public void LookAtList(GameObject obj , Identity.iden type){
-        switch(type){
-        case Identity.iden.Blue:
-        for(int i = 0; i < blueSquare.Count;i++){
-            if(blueSquare[i] == obj){
-               blueSquare.Remove(obj);
-            }
-        }
-        break;
-        case Identity.iden.Yellow:
-        for(int i = 0; i < yellowSquare.Count;i++){
-            if(yellowSquare[i] == obj){
-               yellowSquare.Remove(obj);
-            }
-        }
-        break;
-        case Identity.iden.Pink:
-        for(int i = 0; i < pinkSquare.Count;i++){
-            if(pinkSquare[i] == obj){
-               pinkSquare.Remove(obj);
-            }
-        }
-        break;
-        case Identity.iden.Green:
-        for(int i = 0; i < greenSquare.Count;i++){
-            if(greenSquare[i] == obj){
-               greenSquare.Remove(obj);
-            }
-        }
-        break;
-        case Identity.iden.Orange:
-        for(int i = 0; i < OrangeSquare.Count;i++){
-            if(OrangeSquare[i] == obj){
-               OrangeSquare.Remove(obj);
-            }
-        }
-        break;
-        case Identity.iden.LastColor:
-        for(int i = 0; i < purpleSquare.Count;i++){
-            if(purpleSquare[i] == obj){
-               purpleSquare.Remove(obj);
-            }
-        }
-        break;
+    public void LookAtList(GameObject obj, Identity.iden type)
+    {
+        switch (type)
+        {
+            case Identity.iden.Blue:
+                for (int i = 0; i < blueSquare.Count; i++)
+                {
+                    if (blueSquare[i] == obj)
+                    {
+                        blueSquare.Remove(obj);
+                    }
+                }
+                break;
+            case Identity.iden.Yellow:
+                for (int i = 0; i < yellowSquare.Count; i++)
+                {
+                    if (yellowSquare[i] == obj)
+                    {
+                        yellowSquare.Remove(obj);
+                    }
+                }
+                break;
+            case Identity.iden.Pink:
+                for (int i = 0; i < pinkSquare.Count; i++)
+                {
+                    if (pinkSquare[i] == obj)
+                    {
+                        pinkSquare.Remove(obj);
+                    }
+                }
+                break;
+            case Identity.iden.Green:
+                for (int i = 0; i < greenSquare.Count; i++)
+                {
+                    if (greenSquare[i] == obj)
+                    {
+                        greenSquare.Remove(obj);
+                    }
+                }
+                break;
+            case Identity.iden.Orange:
+                for (int i = 0; i < OrangeSquare.Count; i++)
+                {
+                    if (OrangeSquare[i] == obj)
+                    {
+                        OrangeSquare.Remove(obj);
+                    }
+                }
+                break;
+            case Identity.iden.LastColor:
+                for (int i = 0; i < purpleSquare.Count; i++)
+                {
+                    if (purpleSquare[i] == obj)
+                    {
+                        purpleSquare.Remove(obj);
+                    }
+                }
+                break;
         }
 
     }
@@ -142,16 +156,16 @@ public class EnemySystem : MonoBehaviour
             yield return Timer;
             blueSquare.Clear();
             for (int i = 0; i < allsquare.Length; i++)
+            {
+                if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
                 {
-                    if (allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Blue)
-                    {
-                        blueSquare.Add(allsquare[i]);
-                    }
+                    blueSquare.Add(allsquare[i]);
                 }
-                if (blueSquare.Count == 0)
-                {
-                    break;
-                }
+            }
+            if (blueSquare.Count == 0)
+            {
+                break;
+            }
             // Start Choose & Attack
             bool isAttackDone = false;
             while (!isAttackDone)
@@ -160,7 +174,7 @@ public class EnemySystem : MonoBehaviour
                 blueSquare.Clear();
                 for (int i = 0; i < allsquare.Length; i++)
                 {
-                    if (allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Blue)
+                    if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
                     {
                         blueSquare.Add(allsquare[i]);
                     }
@@ -172,69 +186,73 @@ public class EnemySystem : MonoBehaviour
                 int randomBlue = Random.Range(0, blueSquare.Count);
                 if (Random.Range(0, 100) < 70)
                 {
-                    try{
-                    if (blueSquare[randomBlue].GetComponent<Identity>().GetIden() == Identity.iden.Blue)
+                    try
                     {
-                        List<GameObject> TypeOfAttack = blueSquare[randomBlue].GetComponent<StateMortal>().MyTypeOfAttack;
-                        for (int i = 0; i < TypeOfAttack.Count; i++)
+                        if (blueSquare[randomBlue].GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
                         {
-                            if (TypeOfAttack[i].GetComponent<Identity>().GetIden() == Identity.iden.Blue)
+                            List<GameObject> TypeOfAttack = blueSquare[randomBlue].GetComponent<StateMortal>().MyTypeOfAttack;
+                            for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
-                                int AttackDamage = blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount;
-                                int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
-                                if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
-                                {
-                                    AttackDamage = blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount;
-                                    blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                    TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
-                                    isAttackDone = true;
-                                }
-                            }
-                            if (TypeOfAttack[i].GetComponent<Identity>().GetIden() != Identity.iden.Blue)
-                            {
-                                if (blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
                                 {
                                     int AttackDamage = blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount;
-                                    blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                    TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
-                                    isAttackDone = true;
-                                    if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                    int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
+                                    if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
                                     {
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
-                                            Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
-                                        TypeOfAttack[i].GetComponent<Identity>().SetIden(Identity.iden.Blue);
-                                        thePlayer.RenederAllAgain(TypeOfAttack[i]);
-                                        TypeOfAttack[i].GetComponent<Image>().color = thePlayer.BlueColor;
-                                        TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.BlueColorText;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
-                                        if (thePlayer.MyRed != null)
-                                        {
-                                            thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
-                                        }
+                                        AttackDamage = blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount;
+                                        blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
                                         isAttackDone = true;
+                                    }
+                                }
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.Blue)
+                                {
+                                    if (blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                    {
+                                        int AttackDamage = blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount;
+                                        blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                                        isAttackDone = true;
+                                        if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                        {
+                                            TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
+                                            TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
+                                                Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
+                                            TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.Blue);
+                                            thePlayer.RenederAllAgain(TypeOfAttack[i]);
+                                            TypeOfAttack[i].GetComponent<Image>().color = thePlayer.BlueColor;
+                                            TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.BlueColorText;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
+                                            if (thePlayer.MyRed != null)
+                                            {
+                                                thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                            }
+                                            isAttackDone = true;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                    }catch(System.ArgumentOutOfRangeException){
+                    catch (System.ArgumentOutOfRangeException)
+                    {
 
                     }
                 }
-                if(dif == Difficault.Meduim)
+                if (dif == Difficault.Meduim)
                 {
-                    if(Random.Range(0,100) > 90)
+                    if (Random.Range(0, 100) > 90)
                     {
                         isAttackDone = false;
                     }
                 }
-                else if(dif == Difficault.Hard)
+                else if (dif == Difficault.Hard)
                 {
                     if (Random.Range(0, 100) > 80)
                     {
@@ -254,17 +272,17 @@ public class EnemySystem : MonoBehaviour
                 Timer = new WaitForSeconds(TimebettweenAttacks);
             yield return Timer;
             yellowSquare.Clear();
-                for (int i = 0; i < allsquare.Length; i++)
+            for (int i = 0; i < allsquare.Length; i++)
+            {
+                if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Yellow)
                 {
-                    if (allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Yellow)
-                    {
-                        yellowSquare.Add(allsquare[i]);
-                    }
+                    yellowSquare.Add(allsquare[i]);
                 }
-                if (yellowSquare.Count == 0)
-                {
-                    break;
-                }
+            }
+            if (yellowSquare.Count == 0)
+            {
+                break;
+            }
             // Start Choose & Attack
             bool isAttackDone = false;
             while (!isAttackDone)
@@ -273,7 +291,7 @@ public class EnemySystem : MonoBehaviour
                 yellowSquare.Clear();
                 for (int i = 0; i < allsquare.Length; i++)
                 {
-                    if (allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Yellow)
+                    if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Yellow)
                     {
                         yellowSquare.Add(allsquare[i]);
                     }
@@ -285,58 +303,62 @@ public class EnemySystem : MonoBehaviour
                 int randomsquare = Random.Range(0, yellowSquare.Count);
                 if (Random.Range(0, 100) < 70)
                 {
-                    try{
-                    if (yellowSquare[randomsquare].GetComponent<Identity>().GetIden() == Identity.iden.Yellow)
+                    try
                     {
-                        List<GameObject> TypeOfAttack = yellowSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
-                        for (int i = 0; i < TypeOfAttack.Count; i++)
+                        if (yellowSquare[randomsquare].GetComponent<Identity>().GetIdentity() == Identity.iden.Yellow)
                         {
-                            if (TypeOfAttack[i].GetComponent<Identity>().GetIden() == Identity.iden.Yellow)
+                            List<GameObject> TypeOfAttack = yellowSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
+                            for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Yellow)
+                                {
                                     int AttackDamage = yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                     int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
-                                if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
-                                {
-                                    AttackDamage = yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                    TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
-                                    isAttackDone = true;
-                                }
-                            }
-                            if (TypeOfAttack[i].GetComponent<Identity>().GetIden() != Identity.iden.Yellow)
-                            {
-                                if (yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
-                                {
-                                    int AttackDamage = yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                    TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
-                                    isAttackDone = true;
-                                    if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                    if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
                                     {
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
-                                            Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
-                                        TypeOfAttack[i].GetComponent<Identity>().SetIden(Identity.iden.Yellow);
-                                        thePlayer.RenederAllAgain(TypeOfAttack[i]);
-                                        TypeOfAttack[i].GetComponent<Image>().color = thePlayer.YellowColor;
-                                        TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.YellowColorText;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
-                                        if (thePlayer.MyRed != null)
-                                        {
-                                            thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
-                                        }
+                                        AttackDamage = yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                        yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
                                         isAttackDone = true;
+                                    }
+                                }
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.Yellow)
+                                {
+                                    if (yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                    {
+                                        int AttackDamage = yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                        yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                                        isAttackDone = true;
+                                        if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                        {
+                                            TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
+                                            TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
+                                            Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
+                                            TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.Yellow);
+                                            thePlayer.RenederAllAgain(TypeOfAttack[i]);
+                                            TypeOfAttack[i].GetComponent<Image>().color = thePlayer.YellowColor;
+                                            TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.YellowColorText;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
+                                            if (thePlayer.MyRed != null)
+                                            {
+                                                thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                            }
+                                            isAttackDone = true;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                    }catch(System.ArgumentOutOfRangeException){
+                    catch (System.ArgumentOutOfRangeException)
+                    {
 
                     }
                 }
@@ -369,17 +391,17 @@ public class EnemySystem : MonoBehaviour
                 Timer = new WaitForSeconds(TimebettweenAttacks);
             yield return Timer;
             pinkSquare.Clear();
-                for (int i = 0; i < allsquare.Length; i++)
+            for (int i = 0; i < allsquare.Length; i++)
+            {
+                if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Pink)
                 {
-                    if (allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Pink)
-                    {
-                        pinkSquare.Add(allsquare[i]);
-                    }
+                    pinkSquare.Add(allsquare[i]);
                 }
-                if (pinkSquare.Count == 0)
-                {
-                    break;
-                }
+            }
+            if (pinkSquare.Count == 0)
+            {
+                break;
+            }
             // Start Choose & Attack
             bool isAttackDone = false;
             while (!isAttackDone)
@@ -388,7 +410,7 @@ public class EnemySystem : MonoBehaviour
                 pinkSquare.Clear();
                 for (int i = 0; i < allsquare.Length; i++)
                 {
-                    if (allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Pink)
+                    if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Pink)
                     {
                         pinkSquare.Add(allsquare[i]);
                     }
@@ -400,58 +422,62 @@ public class EnemySystem : MonoBehaviour
                 int randomsquare = Random.Range(0, pinkSquare.Count);
                 if (Random.Range(0, 100) < 70)
                 {
-                    try{
-                    if (pinkSquare[randomsquare].GetComponent<Identity>().GetIden() == Identity.iden.Pink)
+                    try
                     {
-                        List<GameObject> TypeOfAttack = pinkSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
-                        for (int i = 0; i < TypeOfAttack.Count; i++)
+                        if (pinkSquare[randomsquare].GetComponent<Identity>().GetIdentity() == Identity.iden.Pink)
                         {
-                            if (TypeOfAttack[i].GetComponent<Identity>().GetIden() == Identity.iden.Pink)
+                            List<GameObject> TypeOfAttack = pinkSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
+                            for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Pink)
+                                {
                                     int AttackDamage = pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                     int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
-                                if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
-                                {
-                                    AttackDamage = pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                    TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
-                                    isAttackDone = true;
-                                }
-                            }
-                            if (TypeOfAttack[i].GetComponent<Identity>().GetIden() != Identity.iden.Pink)
-                            {
-                                if (pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
-                                {
-                                    int AttackDamage = pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                    TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
-                                    isAttackDone = true;
-                                    if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                    if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
                                     {
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
-                                            Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
-                                        TypeOfAttack[i].GetComponent<Identity>().SetIden(Identity.iden.Pink);
-                                        thePlayer.RenederAllAgain(TypeOfAttack[i]);
-                                        TypeOfAttack[i].GetComponent<Image>().color = thePlayer.PinkColor;
-                                        TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.PinkColorText;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
-                                        if (thePlayer.MyRed != null)
-                                        {
-                                            thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
-                                        }
+                                        AttackDamage = pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                        pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
                                         isAttackDone = true;
+                                    }
+                                }
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.Pink)
+                                {
+                                    if (pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                    {
+                                        int AttackDamage = pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                        pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                                        isAttackDone = true;
+                                        if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                        {
+                                            TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
+                                            TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
+                                                Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
+                                            TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.Pink);
+                                            thePlayer.RenederAllAgain(TypeOfAttack[i]);
+                                            TypeOfAttack[i].GetComponent<Image>().color = thePlayer.PinkColor;
+                                            TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.PinkColorText;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
+                                            if (thePlayer.MyRed != null)
+                                            {
+                                                thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                            }
+                                            isAttackDone = true;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                    }catch(System.ArgumentOutOfRangeException){
+                    catch (System.ArgumentOutOfRangeException)
+                    {
 
                     }
                 }
@@ -486,17 +512,17 @@ public class EnemySystem : MonoBehaviour
                 Timer = new WaitForSeconds(TimebettweenAttacks);
             yield return Timer;
             greenSquare.Clear();
-                for (int i = 0; i < allsquare.Length; i++)
+            for (int i = 0; i < allsquare.Length; i++)
+            {
+                if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Green)
                 {
-                    if (allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Green)
-                    {
-                        greenSquare.Add(allsquare[i]);
-                    }
+                    greenSquare.Add(allsquare[i]);
                 }
-                if (greenSquare.Count == 0)
-                {
-                    break;
-                }
+            }
+            if (greenSquare.Count == 0)
+            {
+                break;
+            }
             // Start Choose & Attack
             bool isAttackDone = false;
             while (!isAttackDone)
@@ -504,7 +530,7 @@ public class EnemySystem : MonoBehaviour
                 greenSquare.Clear();
                 for (int i = 0; i < allsquare.Length; i++)
                 {
-                    if (allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Green)
+                    if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Green)
                     {
                         greenSquare.Add(allsquare[i]);
                     }
@@ -516,58 +542,62 @@ public class EnemySystem : MonoBehaviour
                 int randomsquare = Random.Range(0, greenSquare.Count);
                 if (Random.Range(0, 100) < 70)
                 {
-                    try{
-                    if (greenSquare[randomsquare].GetComponent<Identity>().GetIden() == Identity.iden.Green)
+                    try
                     {
-                        List<GameObject> TypeOfAttack = greenSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
-                        for (int i = 0; i < TypeOfAttack.Count; i++)
+                        if (greenSquare[randomsquare].GetComponent<Identity>().GetIdentity() == Identity.iden.Green)
                         {
-                            if (TypeOfAttack[i].GetComponent<Identity>().GetIden() == Identity.iden.Green)
+                            List<GameObject> TypeOfAttack = greenSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
+                            for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
-                                int AttackDamage = greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
-                                if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
-                                {
-                                    AttackDamage = greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                    TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
-                                    isAttackDone = true;
-                                }
-                            }
-                            if (TypeOfAttack[i].GetComponent<Identity>().GetIden() != Identity.iden.Green)
-                            {
-                                if (greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Green)
                                 {
                                     int AttackDamage = greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                    TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
-                                    isAttackDone = true;
-                                    if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                    int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
+                                    if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
                                     {
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
-                                            Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
-                                        TypeOfAttack[i].GetComponent<Identity>().SetIden(Identity.iden.Green);
-                                        thePlayer.RenederAllAgain(TypeOfAttack[i]);
-                                        TypeOfAttack[i].GetComponent<Image>().color = thePlayer.GreenColor;
-                                        TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.GreenColorText;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
-                                        if (thePlayer.MyRed != null)
-                                        {
-                                            thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
-                                        }
+                                        AttackDamage = greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                        greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
                                         isAttackDone = true;
+                                    }
+                                }
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.Green)
+                                {
+                                    if (greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                    {
+                                        int AttackDamage = greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                        greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                                        isAttackDone = true;
+                                        if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                        {
+                                            TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
+                                            TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
+                                                Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
+                                            TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.Green);
+                                            thePlayer.RenederAllAgain(TypeOfAttack[i]);
+                                            TypeOfAttack[i].GetComponent<Image>().color = thePlayer.GreenColor;
+                                            TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.GreenColorText;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
+                                            if (thePlayer.MyRed != null)
+                                            {
+                                                thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                            }
+                                            isAttackDone = true;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                    }catch(System.ArgumentOutOfRangeException){
+                    catch (System.ArgumentOutOfRangeException)
+                    {
 
                     }
                 }
@@ -601,17 +631,17 @@ public class EnemySystem : MonoBehaviour
                 Timer = new WaitForSeconds(TimebettweenAttacks);
             yield return Timer;
             OrangeSquare.Clear();
-                for (int i = 0; i < allsquare.Length; i++)
+            for (int i = 0; i < allsquare.Length; i++)
+            {
+                if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Orange)
                 {
-                    if (allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Orange)
-                    {
-                        OrangeSquare.Add(allsquare[i]);
-                    }
+                    OrangeSquare.Add(allsquare[i]);
                 }
-                if (OrangeSquare.Count == 0)
-                {
-                    break;
-                }
+            }
+            if (OrangeSquare.Count == 0)
+            {
+                break;
+            }
             // Start Choose & Attack
             bool isAttackDone = false;
             while (!isAttackDone)
@@ -619,7 +649,7 @@ public class EnemySystem : MonoBehaviour
                 OrangeSquare.Clear();
                 for (int i = 0; i < allsquare.Length; i++)
                 {
-                    if (allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Orange)
+                    if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Orange)
                     {
                         OrangeSquare.Add(allsquare[i]);
                     }
@@ -631,174 +661,62 @@ public class EnemySystem : MonoBehaviour
                 int randomsquare = Random.Range(0, OrangeSquare.Count);
                 if (Random.Range(0, 100) < 70)
                 {
-                    try{
-                    if (OrangeSquare[randomsquare].GetComponent<Identity>().GetIden() == Identity.iden.Orange)
+                    try
                     {
-                        List<GameObject> TypeOfAttack = OrangeSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
-                        for (int i = 0; i < TypeOfAttack.Count; i++)
+                        if (OrangeSquare[randomsquare].GetComponent<Identity>().GetIdentity() == Identity.iden.Orange)
                         {
-                            if (TypeOfAttack[i].GetComponent<Identity>().GetIden() == Identity.iden.Orange)
+                            List<GameObject> TypeOfAttack = OrangeSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
+                            for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
-                                int AttackDamage = OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
-                                if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
-                                {
-                                    AttackDamage = OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                    TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
-                                    isAttackDone = true;
-                                }
-                            }
-                            if (TypeOfAttack[i].GetComponent<Identity>().GetIden() != Identity.iden.Orange)
-                            {
-                                if (OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Orange)
                                 {
                                     int AttackDamage = OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                    TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
-                                    isAttackDone = true;
-                                    if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                    int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
+                                    if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
                                     {
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
-                                            Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
-                                        TypeOfAttack[i].GetComponent<Identity>().SetIden(Identity.iden.Orange);
-                                        thePlayer.RenederAllAgain(TypeOfAttack[i]);
-                                        TypeOfAttack[i].GetComponent<Image>().color = thePlayer.OrangeColor;
-                                        TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.OrangeColorText;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
-                                        if (thePlayer.MyRed != null)
-                                        {
-                                            thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
-                                        }
+                                        AttackDamage = OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                        OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
                                         isAttackDone = true;
+                                    }
+                                }
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.Orange)
+                                {
+                                    if (OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                    {
+                                        int AttackDamage = OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                        OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                                        isAttackDone = true;
+                                        if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                        {
+                                            TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
+                                            TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
+                                                Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
+                                            TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.Orange);
+                                            thePlayer.RenederAllAgain(TypeOfAttack[i]);
+                                            TypeOfAttack[i].GetComponent<Image>().color = thePlayer.OrangeColor;
+                                            TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.OrangeColorText;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
+                                            if (thePlayer.MyRed != null)
+                                            {
+                                                thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                            }
+                                            isAttackDone = true;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                    }catch(System.ArgumentOutOfRangeException){
-
-                    }
-                }
-                if (dif == Difficault.Meduim)
-                {
-                    if (Random.Range(0, 100) > 80)
+                    catch (System.ArgumentOutOfRangeException)
                     {
-                        isAttackDone = false;
-                    }
-                }
-                else if (dif == Difficault.Hard)
-                {
-                    if (Random.Range(0, 100) > 50)
-                    {
-                        isAttackDone = false;
-                    }
-                }
-            }
-
-
-        }
-                    yield return null;
-    }
-
-    private IEnumerator AttackPurple()
-    {
-        while (true)
-        
-        {
-            isFirstTimeAttack = false;
-            if (!isFirstTimeAttack)
-                Timer = new WaitForSeconds(TimebettweenAttacks);
-            yield return Timer;
-            purpleSquare.Clear();
-                for (int i = 0; i < allsquare.Length; i++)
-                {
-                    if (allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.LastColor)
-                    {
-                        purpleSquare.Add(allsquare[i]);
-                    }
-                }
-                if (purpleSquare.Count == 0)
-                {
-                    break;
-                }
-            // Start Choose & Attack
-            bool isAttackDone = false;
-            while (!isAttackDone)
-            {
-                purpleSquare.Clear();
-                for (int i = 0; i < allsquare.Length; i++)
-                {
-                    if (allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.LastColor)
-                    {
-                        purpleSquare.Add(allsquare[i]);
-                    }
-                }
-                if (purpleSquare.Count == 0)
-                {
-                    break;
-                }
-                int randomsquare = Random.Range(0, purpleSquare.Count);
-                if (Random.Range(0, 100) < 70)
-                {
-                    try{
-                    if (purpleSquare[randomsquare].GetComponent<Identity>().GetIden() == Identity.iden.LastColor)
-                    {
-                        List<GameObject> TypeOfAttack = purpleSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
-                        for (int i = 0; i < TypeOfAttack.Count; i++)
-                        {
-                            if (TypeOfAttack[i].GetComponent<Identity>().GetIden() == Identity.iden.LastColor)
-                            {
-                                    int AttackDamage = purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                     int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
-                                if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
-                                {
-                                    AttackDamage = purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                    TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
-                                    isAttackDone = true;
-                                }
-                            }
-                            if (TypeOfAttack[i].GetComponent<Identity>().GetIden() != Identity.iden.LastColor)
-                            {
-                                if (purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
-                                {
-                                    int AttackDamage = purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                    TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
-                                    isAttackDone = true;
-                                    if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
-                                    {
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
-                                            Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
-                                        TypeOfAttack[i].GetComponent<Identity>().SetIden(Identity.iden.LastColor);
-                                        thePlayer.RenederAllAgain(TypeOfAttack[i]);
-                                        TypeOfAttack[i].GetComponent<Image>().color = thePlayer.LastColor;
-                                        TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.LastColorText;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
-                                        TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
-                                        if (thePlayer.MyRed != null)
-                                        {
-                                            thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
-                                        }
-                                        isAttackDone = true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    }catch(System.ArgumentOutOfRangeException){
 
                     }
                 }
@@ -822,5 +740,125 @@ public class EnemySystem : MonoBehaviour
         }
         yield return null;
     }
-                
+
+    private IEnumerator AttackPurple()
+    {
+        while (true)
+
+        {
+            isFirstTimeAttack = false;
+            if (!isFirstTimeAttack)
+                Timer = new WaitForSeconds(TimebettweenAttacks);
+            yield return Timer;
+            purpleSquare.Clear();
+            for (int i = 0; i < allsquare.Length; i++)
+            {
+                if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.LastColor)
+                {
+                    purpleSquare.Add(allsquare[i]);
+                }
+            }
+            if (purpleSquare.Count == 0)
+            {
+                break;
+            }
+            // Start Choose & Attack
+            bool isAttackDone = false;
+            while (!isAttackDone)
+            {
+                purpleSquare.Clear();
+                for (int i = 0; i < allsquare.Length; i++)
+                {
+                    if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.LastColor)
+                    {
+                        purpleSquare.Add(allsquare[i]);
+                    }
+                }
+                if (purpleSquare.Count == 0)
+                {
+                    break;
+                }
+                int randomsquare = Random.Range(0, purpleSquare.Count);
+                if (Random.Range(0, 100) < 70)
+                {
+                    try
+                    {
+                        if (purpleSquare[randomsquare].GetComponent<Identity>().GetIdentity() == Identity.iden.LastColor)
+                        {
+                            List<GameObject> TypeOfAttack = purpleSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
+                            for (int i = 0; i < TypeOfAttack.Count; i++)
+                            {
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.LastColor)
+                                {
+                                    int AttackDamage = purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                    int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
+                                    if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
+                                    {
+                                        AttackDamage = purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                        purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
+                                        isAttackDone = true;
+                                    }
+                                }
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.LastColor)
+                                {
+                                    if (purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                    {
+                                        TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
+                                        int AttackDamage = purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                        purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                                        isAttackDone = true;
+                                        if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                        {
+                                            TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
+                                                Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
+                                            TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.LastColor);
+                                            thePlayer.RenederAllAgain(TypeOfAttack[i]);
+                                            TypeOfAttack[i].GetComponent<Image>().color = thePlayer.LastColor;
+                                            TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.LastColorText;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
+                                            TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
+                                            if (thePlayer.MyRed != null)
+                                            {
+                                                thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                            }
+                                            isAttackDone = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (System.ArgumentOutOfRangeException)
+                    {
+
+                    }
+                }
+                if (dif == Difficault.Meduim)
+                {
+                    if (Random.Range(0, 100) > 80)
+                    {
+                        isAttackDone = false;
+                    }
+                }
+                else if (dif == Difficault.Hard)
+                {
+                    if (Random.Range(0, 100) > 50)
+                    {
+                        isAttackDone = false;
+                    }
+                }
+            }
+
+
+        }
+        yield return null;
+    }
+
 }

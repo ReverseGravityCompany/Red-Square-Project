@@ -5,14 +5,12 @@ using UnityEngine.UI;
 
 public class IncreaseMortal : MonoBehaviour
 {
-    public Text ShowMortal;
+    [HideInInspector] public Text ShowMortal;
     public int MaxSpace = 100;
     public int CurrentCount;
     public int AmountIncrease;
     public bool NoneAmount = false;
-    public bool isHaveAnySpace;
-
-
+    [HideInInspector] public bool isHaveAnySpace;
 
     private void Awake()
     {
@@ -22,7 +20,7 @@ public class IncreaseMortal : MonoBehaviour
 
     private void Start()
     {
-        if (NoneAmount && GetComponent<Identity>().GetIden() == Identity.iden.None)
+        if (NoneAmount && GetComponent<Identity>().GetIdentity() == Identity.iden.None)
         {
             AmountIncrease = 0;
         }

@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class TextHelperNote : MonoBehaviour
 {
-    public Text NoteHelper;
-    public Image TajobMask;
-    public Sprite SpRed, SpYellow, SpGreen;
-    public Color Red, Yellow, Green;
+    #region Properties
+    public Image StatesMask;
+    public Sprite SpRed, SpGreen;
+    public Color Red, Green;
 
+    #endregion
 
+    #region Functions
     public void GreenMark()
     {
-        TajobMask.sprite = SpGreen;
-        //NoteHelper.color = Green;
-        //NoteHelper.text = $"Activited";
-        TajobMask.gameObject.SetActive(true);
+        StatesMask.sprite = SpGreen;
+        StatesMask.gameObject.SetActive(true);
         StopAllCoroutines();
         StartCoroutine(NoteEnd());
     }
@@ -24,23 +24,16 @@ public class TextHelperNote : MonoBehaviour
 
     public void RedMark()
     {
-        TajobMask.sprite = SpRed;
-        //NoteHelper.color = Red;
-        //NoteHelper.text = $"Skill is Activited";
-        TajobMask.gameObject.SetActive(true);
+        StatesMask.sprite = SpRed;
+        StatesMask.gameObject.SetActive(true);
         StopAllCoroutines();
         StartCoroutine(NoteEnd());
     }
 
-
-
     private IEnumerator NoteEnd()
     {
         yield return new WaitForSeconds(2f);
-        TajobMask.gameObject.SetActive(false);
+        StatesMask.gameObject.SetActive(false);
     }
-
-
-
+    #endregion
 }
-//NoteHelper.text = $"<color=cyan> Note :</color><color=white> {TextHelper[rand]}</color>";

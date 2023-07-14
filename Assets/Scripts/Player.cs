@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
                 {
                     if (MyRed != obj)
                     {
-                        if (obj.GetComponent<Identity>().GetIden() == Identity.iden.Red)
+                        if (obj.GetComponent<Identity>().GetIdentity() == Identity.iden.Red)
                         {
                             AddRedToRed(obj);
                             return;
@@ -88,49 +88,49 @@ public class Player : MonoBehaviour
                 }
                 #endregion
                 #region red to none
-                if (obj.GetComponent<Identity>().GetIden() == Identity.iden.None)
+                if (obj.GetComponent<Identity>().GetIdentity() == Identity.iden.None)
                 {
                     RedToNone(obj);
                     return;
                 }
                 #endregion
                 #region red to blue
-                if (obj.GetComponent<Identity>().GetIden() == Identity.iden.Blue)
+                if (obj.GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
                 {
                     RedToBlue(obj);
                     return;
                 }
                 #endregion
                 #region red to Yellow
-                if (obj.GetComponent<Identity>().GetIden() == Identity.iden.Yellow)
+                if (obj.GetComponent<Identity>().GetIdentity() == Identity.iden.Yellow)
                 {
                     RedToYellow(obj);
                     return;
                 }
                 #endregion
                 #region red to Pink
-                if (obj.GetComponent<Identity>().GetIden() == Identity.iden.Pink)
+                if (obj.GetComponent<Identity>().GetIdentity() == Identity.iden.Pink)
                 {
                     RedToPink(obj);
                     return;
                 }
                 #endregion
                 #region red to Green
-                if (obj.GetComponent<Identity>().GetIden() == Identity.iden.Green)
+                if (obj.GetComponent<Identity>().GetIdentity() == Identity.iden.Green)
                 {
                     RedToGreen(obj);
                     return;
                 }
                 #endregion
                 #region red to Orange
-                if (obj.GetComponent<Identity>().GetIden() == Identity.iden.Orange)
+                if (obj.GetComponent<Identity>().GetIdentity() == Identity.iden.Orange)
                 {
                     RedToOrange(obj);
                     return;
                 }
                 #endregion
                 #region red to LastColor
-                if (obj.GetComponent<Identity>().GetIden() == Identity.iden.LastColor)
+                if (obj.GetComponent<Identity>().GetIdentity() == Identity.iden.LastColor)
                 {
                     RedToLastColor(obj);
                     return;
@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
                 #endregion
 
                 #region Red 
-                if (obj.GetComponent<Identity>().GetIden() == Identity.iden.Red)
+                if (obj.GetComponent<Identity>().GetIdentity() == Identity.iden.Red)
                 {
                     RedCheck(obj);
                     return;
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
                     MyRed.GetComponent<SquareClass>().CanPush = false;
                 }
                 PickUp = true;
-                theLevelManager.SkillsOn = false;
+                theLevelManager.SkillsState = false;
                 skills.allAttack = false;
                 skills.copacity = false;
                 skills.turbo = false;
@@ -194,7 +194,7 @@ public class Player : MonoBehaviour
                     MyRed.GetComponent<SquareClass>().CanPush = false;
                 }
                 PickUp = true;
-                theLevelManager.SkillsOn = false;
+                theLevelManager.SkillsState = false;
                 skills.allAttack = false;
                 skills.copacity = false;
                 skills.turbo = false;
@@ -219,12 +219,10 @@ public class Player : MonoBehaviour
     }
 
 
-
-
     #region RED
     private void RedCheck(GameObject obj)
     {
-        if (Identity.iden.Red == obj.GetComponent<Identity>().GetIden())
+        if (Identity.iden.Red == obj.GetComponent<Identity>().GetIdentity())
         {
             if (MyRed != null)
             {
@@ -239,8 +237,8 @@ public class Player : MonoBehaviour
                 MyRed.GetComponent<SquareClass>().CanAttack = true;
                 MyRed.GetComponent<Image>().color = RedColorPick;
                 MyRed.transform.Find("CountMortal").GetComponent<Text>().color = RedColorPickText;
-                theLevelManager.SkillsOn = true;
-                skills.ChoiceMortal = MyRed.GetComponent<SquareClass>();
+                theLevelManager.SkillsState = true;
+                skills.SelectedMortal = MyRed.GetComponent<SquareClass>();
                 #region [AllMorta]
                 GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];
                 for (int i = 0; i < ObjectsMortal.Length; i++)
@@ -264,8 +262,8 @@ public class Player : MonoBehaviour
                 PickUp = !PickUp;
                 MyRed.GetComponent<SquareClass>().CanPush = false;
                 MyRed.GetComponent<SquareClass>().CanAttack = false;
-                theLevelManager.SkillsOn = false;
-                if (MyRed != null && MyRed.GetComponent<Identity>().GetIden() == Identity.iden.Red)
+                theLevelManager.SkillsState = false;
+                if (MyRed != null && MyRed.GetComponent<Identity>().GetIdentity() == Identity.iden.Red)
                 {
                     MyRed.GetComponent<Image>().color = RedColor;
                     MyRed.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
@@ -302,7 +300,7 @@ public class Player : MonoBehaviour
             MyRed.GetComponent<SquareClass>().CanPush = false;
             MyRed.GetComponent<Image>().color = RedColor;
             MyRed.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
-            theLevelManager.SkillsOn = false;
+            theLevelManager.SkillsState = false;
             skills.allAttack = false;
             skills.copacity = false;
             skills.turbo = false;
@@ -329,7 +327,7 @@ public class Player : MonoBehaviour
         {
             PickUp = !PickUp;
             MyRed.GetComponent<SquareClass>().CanPush = false;
-            theLevelManager.SkillsOn = false;
+            theLevelManager.SkillsState = false;
             MyRed = null;
             #region [All Mortal]
             GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];
@@ -352,7 +350,7 @@ public class Player : MonoBehaviour
     #region RED TO NONE
     private void RedToNone(GameObject obj)
     {
-        if (Identity.iden.None == obj.GetComponent<Identity>().GetIden())
+        if (Identity.iden.None == obj.GetComponent<Identity>().GetIdentity())
         {
             if (MyRed != null && obj != null && MyRed.GetComponent<SquareClass>().CanPush && obj.GetComponent<SquareClass>().CanAttack)
             {
@@ -364,9 +362,10 @@ public class Player : MonoBehaviour
 
                     if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
                     {
+                        obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
                         obj.GetComponent<IncreaseMortal>().CurrentCount =
                             Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
-                        obj.GetComponent<Identity>().SetIden(Identity.iden.Red);
+                        obj.GetComponent<Identity>().SetIdentity(Identity.iden.Red);
                         obj.GetComponent<Image>().color = RedColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
                         obj.GetComponent<IncreaseMortal>().ValidateMortal();
@@ -376,7 +375,7 @@ public class Player : MonoBehaviour
                     MyRed.GetComponent<SquareClass>().CanPush = false;
                     MyRed.GetComponent<Image>().color = RedColor;
                     MyRed.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     skills.allAttack = false;
                     skills.copacity = false;
                     skills.turbo = false;
@@ -403,7 +402,7 @@ public class Player : MonoBehaviour
                 {
                     PickUp = !PickUp;
                     MyRed.GetComponent<SquareClass>().CanPush = false;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     MyRed = null;
                     #region [All Mortal]
                     GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];
@@ -430,7 +429,7 @@ public class Player : MonoBehaviour
     #region RED TO Blue
     private void RedToBlue(GameObject obj)
     {
-        if (Identity.iden.Blue == obj.GetComponent<Identity>().GetIden())
+        if (Identity.iden.Blue == obj.GetComponent<Identity>().GetIdentity())
         {
             if (MyRed != null && obj != null && MyRed.GetComponent<SquareClass>().CanPush && obj.GetComponent<SquareClass>().CanAttack)
             {
@@ -442,9 +441,10 @@ public class Player : MonoBehaviour
 
                     if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
                     {
+                        obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
                         obj.GetComponent<IncreaseMortal>().CurrentCount =
                             Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
-                        obj.GetComponent<Identity>().SetIden(Identity.iden.Red);
+                        obj.GetComponent<Identity>().SetIdentity(Identity.iden.Red);
                         enemySystem.LookAtList(obj,Identity.iden.Blue);
                         obj.GetComponent<Image>().color = RedColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
@@ -455,7 +455,7 @@ public class Player : MonoBehaviour
                     MyRed.GetComponent<SquareClass>().CanPush = false;
                     MyRed.GetComponent<Image>().color = RedColor;
                     MyRed.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     skills.allAttack = false;
                     skills.copacity = false;
                     skills.turbo = false;
@@ -482,7 +482,7 @@ public class Player : MonoBehaviour
                 {
                     PickUp = !PickUp;
                     MyRed.GetComponent<SquareClass>().CanPush = false;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     MyRed = null;
                     #region [All Mortal]
                     GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];
@@ -509,7 +509,7 @@ public class Player : MonoBehaviour
     #region RED TO Yellow
     private void RedToYellow(GameObject obj)
     {
-        if (Identity.iden.Yellow == obj.GetComponent<Identity>().GetIden())
+        if (Identity.iden.Yellow == obj.GetComponent<Identity>().GetIdentity())
         {
             if (MyRed != null && obj != null && MyRed.GetComponent<SquareClass>().CanPush && obj.GetComponent<SquareClass>().CanAttack)
             {
@@ -521,9 +521,10 @@ public class Player : MonoBehaviour
 
                     if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
                     {
+                        obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
                         obj.GetComponent<IncreaseMortal>().CurrentCount =
                             Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
-                        obj.GetComponent<Identity>().SetIden(Identity.iden.Red);
+                        obj.GetComponent<Identity>().SetIdentity(Identity.iden.Red);
                         enemySystem.LookAtList(obj,Identity.iden.Yellow);
                         obj.GetComponent<Image>().color = RedColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
@@ -534,7 +535,7 @@ public class Player : MonoBehaviour
                     MyRed.GetComponent<SquareClass>().CanPush = false;
                     MyRed.GetComponent<Image>().color = RedColor;
                     MyRed.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     skills.allAttack = false;
                     skills.copacity = false;
                     skills.turbo = false;
@@ -561,7 +562,7 @@ public class Player : MonoBehaviour
                 {
                     PickUp = !PickUp;
                     MyRed.GetComponent<SquareClass>().CanPush = false;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     MyRed = null;
                     #region [All Mortal]
                     GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];
@@ -588,7 +589,7 @@ public class Player : MonoBehaviour
     #region RED TO Pink
     private void RedToPink(GameObject obj)
     {
-        if (Identity.iden.Pink == obj.GetComponent<Identity>().GetIden())
+        if (Identity.iden.Pink == obj.GetComponent<Identity>().GetIdentity())
         {
             if (MyRed != null && obj != null && MyRed.GetComponent<SquareClass>().CanPush && obj.GetComponent<SquareClass>().CanAttack)
             {
@@ -600,9 +601,10 @@ public class Player : MonoBehaviour
 
                     if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
                     {
+                        obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
                         obj.GetComponent<IncreaseMortal>().CurrentCount =
                             Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
-                        obj.GetComponent<Identity>().SetIden(Identity.iden.Red);
+                        obj.GetComponent<Identity>().SetIdentity(Identity.iden.Red);
                         enemySystem.LookAtList(obj,Identity.iden.Pink);
                         obj.GetComponent<Image>().color = RedColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
@@ -613,7 +615,7 @@ public class Player : MonoBehaviour
                     MyRed.GetComponent<SquareClass>().CanPush = false;
                     MyRed.GetComponent<Image>().color = RedColor;
                     MyRed.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     skills.allAttack = false;
                     skills.copacity = false;
                     skills.turbo = false;
@@ -640,7 +642,7 @@ public class Player : MonoBehaviour
                 {
                     PickUp = !PickUp;
                     MyRed.GetComponent<SquareClass>().CanPush = false;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     MyRed = null;
                     #region [All Mortal]
                     GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];
@@ -667,7 +669,7 @@ public class Player : MonoBehaviour
     #region RED TO Green
     private void RedToGreen(GameObject obj)
     {
-        if (Identity.iden.Green == obj.GetComponent<Identity>().GetIden())
+        if (Identity.iden.Green == obj.GetComponent<Identity>().GetIdentity())
         {
             if (MyRed != null && obj != null && MyRed.GetComponent<SquareClass>().CanPush && obj.GetComponent<SquareClass>().CanAttack)
             {
@@ -679,9 +681,10 @@ public class Player : MonoBehaviour
 
                     if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
                     {
+                        obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
                         obj.GetComponent<IncreaseMortal>().CurrentCount =
                             Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
-                        obj.GetComponent<Identity>().SetIden(Identity.iden.Red);
+                        obj.GetComponent<Identity>().SetIdentity(Identity.iden.Red);
                         enemySystem.LookAtList(obj,Identity.iden.Green);
                         obj.GetComponent<Image>().color = RedColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
@@ -692,7 +695,7 @@ public class Player : MonoBehaviour
                     MyRed.GetComponent<SquareClass>().CanPush = false;
                     MyRed.GetComponent<Image>().color = RedColor;
                     MyRed.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     skills.allAttack = false;
                     skills.copacity = false;
                     skills.turbo = false;
@@ -719,7 +722,7 @@ public class Player : MonoBehaviour
                 {
                     PickUp = !PickUp;
                     MyRed.GetComponent<SquareClass>().CanPush = false;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     MyRed = null;
                     #region [All Mortal]
                     GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];
@@ -746,7 +749,7 @@ public class Player : MonoBehaviour
     #region RED TO Orange
     private void RedToOrange(GameObject obj)
     {
-        if (Identity.iden.Orange == obj.GetComponent<Identity>().GetIden())
+        if (Identity.iden.Orange == obj.GetComponent<Identity>().GetIdentity())
         {
             if (MyRed != null && obj != null && MyRed.GetComponent<SquareClass>().CanPush && obj.GetComponent<SquareClass>().CanAttack)
             {
@@ -758,9 +761,10 @@ public class Player : MonoBehaviour
 
                     if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
                     {
+                        obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
                         obj.GetComponent<IncreaseMortal>().CurrentCount =
                             Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
-                        obj.GetComponent<Identity>().SetIden(Identity.iden.Red);
+                        obj.GetComponent<Identity>().SetIdentity(Identity.iden.Red);
                         enemySystem.LookAtList(obj,Identity.iden.Orange);
                         obj.GetComponent<Image>().color = RedColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
@@ -771,7 +775,7 @@ public class Player : MonoBehaviour
                     MyRed.GetComponent<SquareClass>().CanPush = false;
                     MyRed.GetComponent<Image>().color = RedColor;
                     MyRed.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     skills.allAttack = false;
                     skills.copacity = false;
                     skills.turbo = false;
@@ -798,7 +802,7 @@ public class Player : MonoBehaviour
                 {
                     PickUp = !PickUp;
                     MyRed.GetComponent<SquareClass>().CanPush = false;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     MyRed = null;
                     #region [All Mortal]
                     GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];
@@ -825,7 +829,7 @@ public class Player : MonoBehaviour
     #region RED TO LastColor
     private void RedToLastColor(GameObject obj)
     {
-        if (Identity.iden.LastColor == obj.GetComponent<Identity>().GetIden())
+        if (Identity.iden.LastColor == obj.GetComponent<Identity>().GetIdentity())
         {
             if (MyRed != null && obj != null && MyRed.GetComponent<SquareClass>().CanPush && obj.GetComponent<SquareClass>().CanAttack)
             {
@@ -837,9 +841,10 @@ public class Player : MonoBehaviour
 
                     if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
                     {
+                        obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
                         obj.GetComponent<IncreaseMortal>().CurrentCount =
                             Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
-                        obj.GetComponent<Identity>().SetIden(Identity.iden.Red);
+                        obj.GetComponent<Identity>().SetIdentity(Identity.iden.Red);
                         enemySystem.LookAtList(obj,Identity.iden.LastColor);
                         obj.GetComponent<Image>().color = RedColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
@@ -850,7 +855,7 @@ public class Player : MonoBehaviour
                     MyRed.GetComponent<SquareClass>().CanPush = false;
                     MyRed.GetComponent<Image>().color = RedColor;
                     MyRed.transform.Find("CountMortal").GetComponent<Text>().color = RedColorText;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     skills.allAttack = false;
                     skills.copacity = false;
                     skills.turbo = false;
@@ -877,7 +882,7 @@ public class Player : MonoBehaviour
                 {
                     PickUp = !PickUp;
                     MyRed.GetComponent<SquareClass>().CanPush = false;
-                    theLevelManager.SkillsOn = false;
+                    theLevelManager.SkillsState = false;
                     MyRed = null;
                     #region [All Mortal]
                     GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];

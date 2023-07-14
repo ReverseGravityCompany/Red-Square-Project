@@ -773,7 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac204ecae2b6a0d4b865e88d8510b245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 0.1, y: 0.1, z: 1}
+  gridSize: {x: 0.5, y: 0.5, z: 1}
 --- !u!61 &103746718
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1377,32 +1377,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b4babeba2a4fb143aac6ac39a29a9d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 1936060956}
-  OffColor: {r: 0.8773585, g: 0.34349412, b: 0.34349412, a: 1}
-  OnColor: {r: 0.31764707, g: 0.65882355, b: 0.9529412, a: 1}
-  ButStart: {fileID: 45490436}
-  DereaseLevel: {fileID: 2006858094}
+  SoundSetting: {fileID: 0}
+  SoundSetting_OffColor: {r: 0, g: 0, b: 0, a: 0}
+  SoundSetting_OnColor: {r: 0, g: 0, b: 0, a: 0}
+  ButtonStart: {fileID: 0}
+  DecreaseLevel: {fileID: 0}
   IncreaseLevel: {fileID: 730161566}
-  ShowLevelGame: {fileID: 855958429}
+  LevelNameSelection: {fileID: 0}
   Pause: {fileID: 1430763221}
   Home: {fileID: 468462319}
   RestartLevel: {fileID: 713431698}
-  Pauseoff: {fileID: 21300000, guid: 66a8c20edd101804787087bb751ac799, type: 3}
+  PauseOff: {fileID: 0}
   PauseOn: {fileID: 21300000, guid: ef37c30eb90636c40b5f1f7233b0f4d1, type: 3}
-  urlYoutube: https://www.youtube.com/channel/UCgXs2PTiL19Rv1qOn1SI7XQ
-  LanPlayer: {fileID: 609946264}
-  SettingServerLevelName: OnlineGame
-  GiftObj: {fileID: 411633016}
-  CurrentLevel: 2
-  LevelShow: {fileID: 2137344676}
+  MarkDifficaulty: {fileID: 0}
+  CoverMenu: {fileID: 0}
+  NoteHelperPanel: {fileID: 0}
+  NoteHelperButton: {fileID: 0}
+  RewardButton: {fileID: 0}
+  LevelMenu_Text: {fileID: 0}
   LevelChangeSound: {fileID: 1958481089}
   PlaySound: {fileID: 911251293}
   PauseSound: {fileID: 9687253}
-  Started: 1
   TouchScreen: {fileID: 485062998}
   LevelShowInLevel: {fileID: 1776558754}
   GameStarted: 1
-  ShowHelper: {fileID: 0}
+  Helper_Menu: {fileID: 0}
   Hand: {fileID: 0}
   NightColor: {r: 0.105882354, g: 0.09019608, b: 0.11372549, a: 1}
   DayColor: {r: 0.8392157, g: 0.8392157, b: 0.8392157, a: 1}
@@ -6350,7 +6349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac204ecae2b6a0d4b865e88d8510b245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 0.1, y: 0.1, z: 1}
+  gridSize: {x: 0.5, y: 0.5, z: 1}
 --- !u!61 &1061291418
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7900,7 +7899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac204ecae2b6a0d4b865e88d8510b245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 0.1, y: 0.1, z: 1}
+  gridSize: {x: 0.5, y: 0.5, z: 1}
 --- !u!61 &1410156105
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8429,9 +8428,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Win: {fileID: 1209485907}
   Lose: {fileID: 387002466}
-  Last: {fileID: 0}
-  again: {fileID: 0}
-  WinLast: {fileID: 0}
   CurrentCoin:
     currentCryptoKey: 444444
     hiddenValue: 444444
@@ -8439,7 +8435,7 @@ MonoBehaviour:
     fakeValue: 0
     fakeValueActive: 0
   CoinText: {fileID: 560118264}
-  SkillsOn: 0
+  SkillsState: 0
   SkillsObject:
   - {fileID: 2080619893}
   - {fileID: 1026769856}
@@ -8448,17 +8444,12 @@ MonoBehaviour:
   - {fileID: 1972423010}
   - {fileID: 1050030304}
   CoinWinning: 25
-  CoinWiningShow: {fileID: 2094758789}
+  CoinWiningText: {fileID: 0}
   anim: {fileID: 307253110}
   NextMatchSound: {fileID: 911251293}
   WinSound: {fileID: 473573634}
   MoneySound: {fileID: 1322781044}
-  Offset: -180
-  CheckWin: 0
-  CheckLose: 0
-  WinGame: 0
-  LoseGame: 0
-  CatchCoin: 0
+  CoinPosX: -180
 --- !u!4 &1485008632
 Transform:
   m_ObjectHideFlags: 0
@@ -8498,12 +8489,9 @@ MonoBehaviour:
   AllAttackObj: {fileID: 2038136818}
   X2Obj: {fileID: 1972423010}
   MaxSpaceObj: {fileID: 1050030304}
-  ChoiceMortal: {fileID: 0}
-  InvisibaleColor: {r: 0, g: 0, b: 0, a: 0}
-  DontWork: 1
-  SoundSkillWork: {fileID: 324656049}
-  SoundSkillDidntWork: {fileID: 779803369}
-  Note: {fileID: 0}
+  SelectedMortal: {fileID: 0}
+  Correct_Sound: {fileID: 0}
+  Error_Sound: {fileID: 0}
 --- !u!114 &1485008634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8516,13 +8504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc438c31fea3adf4bae5031638cc9a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoteHelper: {fileID: 0}
-  TajobMask: {fileID: 1062305214}
+  StatesMask: {fileID: 0}
   SpRed: {fileID: 21300000, guid: 4919fa2e351cd4040b72e4a5d078f404, type: 3}
-  SpYellow: {fileID: 21300000, guid: 07c2079cf94ce71448ae89303de1b1c5, type: 3}
   SpGreen: {fileID: 21300000, guid: 0e6a5922786a8ef4c89038bcea8fef30, type: 3}
   Red: {r: 0.9607844, g: 0.59607846, b: 0.6156863, a: 1}
-  Yellow: {r: 0.8980393, g: 0.86274517, b: 0.29411766, a: 1}
   Green: {r: 0.23529413, g: 0.72156864, b: 0.47058827, a: 1}
 --- !u!1 &1487972709
 GameObject:
@@ -10154,7 +10139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac204ecae2b6a0d4b865e88d8510b245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 0.1, y: 0.1, z: 1}
+  gridSize: {x: 0.5, y: 0.5, z: 1}
 --- !u!61 &1803939872
 BoxCollider2D:
   m_ObjectHideFlags: 0

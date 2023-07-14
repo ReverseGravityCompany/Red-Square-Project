@@ -36,14 +36,14 @@ public class LevelManagerLearn : MonoBehaviour
 
     private void Update() {
         if(Learn1){
-            if(DESquare.GetComponent<Identity>().GetIden() == Identity.iden.Red){
+            if(DESquare.GetComponent<Identity>().GetIdentity() == Identity.iden.Red){
                 Task.color = ChangeTaskColor;
                 FadeNextbutton.SetActive(false);
                 FadeNextbutton.transform.parent.GetComponent<Button>().interactable = true;
             }
         }
         if(Learn2){
-            if(DESquare.GetComponent<Identity>().GetIden() == Identity.iden.Red){
+            if(DESquare.GetComponent<Identity>().GetIdentity() == Identity.iden.Red){
                 Task.color = ChangeTaskColor;
                 FadeNextbutton.SetActive(false);
                 FadeNextbutton.transform.parent.GetComponent<Button>().interactable = true;
@@ -51,7 +51,7 @@ public class LevelManagerLearn : MonoBehaviour
         }
 
         if(Learn3){
-            if(DESquare.GetComponent<Identity>().GetIden() == Identity.iden.Red){
+            if(DESquare.GetComponent<Identity>().GetIdentity() == Identity.iden.Red){
                 Task.color = ChangeTaskColor;
                 FadeNextbutton.SetActive(false);
                 FadeNextbutton.transform.parent.GetComponent<Button>().interactable = true;
@@ -59,7 +59,7 @@ public class LevelManagerLearn : MonoBehaviour
         }
 
         if(Learn4){
-            if(DESquare.GetComponent<Identity>().GetIden() == Identity.iden.Red){
+            if(DESquare.GetComponent<Identity>().GetIdentity() == Identity.iden.Red){
                 Task.color = ChangeTaskColor;
                 FadeNextbutton.SetActive(false);
                 FadeNextbutton.transform.parent.GetComponent<Button>().interactable = true;

@@ -10,6 +10,6 @@ public class Identity : MonoBehaviour
     [SerializeField] iden MyIden;
 
 
-    public iden GetIden() { return MyIden; }
-    public iden SetIden(iden newIden) { return MyIden = newIden; } 
+    public iden GetIdentity() { return MyIden; }
+    public iden SetIdentity(iden newIden) { return MyIden = newIden; } 
 }

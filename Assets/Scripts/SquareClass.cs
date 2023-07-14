@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class SquareClass : MonoBehaviour
 {
-    public bool CanPush = false;
-    public bool CanAttack = false;
+    #region Properties
+    [HideInInspector] public bool CanPush = false;
+    [HideInInspector] public bool CanAttack = false;
     private Player thePlayer;
 
-    public bool StopCouting;
-    public bool StopCounting2;
-    public bool StopCounting3;
+    [HideInInspector] public bool StopCouting;
+    [HideInInspector] public bool StopCounting2;
+    [HideInInspector] public bool StopCounting3;
 
-    public bool TurboMortal, CopacityMortal, RandomChangeMortal, AllAttackMortal, X2Mortal, MaxSpaceMortal;
+    [HideInInspector] public bool TurboMortal, CopacityMortal, RandomChangeMortal, AllAttackMortal, X2Mortal, MaxSpaceMortal;
     public Color WhiteLow;
     public Color InvisibaleColor;
 
@@ -21,21 +22,19 @@ public class SquareClass : MonoBehaviour
 
     [HideInInspector] public GameObject star1, star2, star3;
     [HideInInspector] public Color MyCountNumberColor;
-    public List<GameObject> stateMortal;
-    public bool StateWork;
+    [HideInInspector] public List<GameObject> stateMortal;
 
     public bool Learn;
+
+    #endregion
 
     private void Start()
     {
         thePlayer = FindObjectOfType<Player>();
-        if (StateWork)
+        stateMortal = gameObject.GetComponent<StateMortal>().MyTypeOfAttack;
+        for (int i = 0; i < stateMortal.Count; i++)
         {
-            stateMortal = gameObject.GetComponent<StateMortal>().MyTypeOfAttack;
-            for (int i = 0; i < stateMortal.Count; i++)
-            {
-                stateMortal[i] = gameObject.GetComponent<StateMortal>().MyTypeOfAttack[i];
-            }
+            stateMortal[i] = gameObject.GetComponent<StateMortal>().MyTypeOfAttack[i];
         }
 
         star1 = transform.Find("Star1").gameObject;
@@ -46,139 +45,137 @@ public class SquareClass : MonoBehaviour
 
     private void Update()
     {
-        if(!Learn){
-        if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.Red)
+        if (!Learn)
         {
-            MyCountNumberColor = thePlayer.RedColorText;
-        }
-        else if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.Blue)
-        {
-            MyCountNumberColor = thePlayer.BlueColorText;
-        }
-        else if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.Yellow)
-        {
-            MyCountNumberColor = thePlayer.YellowColorText;
-        }
-        else if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.Pink)
-        {
-            MyCountNumberColor = thePlayer.PinkColorText;
-        }
-        else if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.Green)
-        {
-            MyCountNumberColor = thePlayer.GreenColorText;
-        }
-        else if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.Orange)
-        {
-            MyCountNumberColor = thePlayer.OrangeColorText;
-        }
-        else if (gameObject.GetComponent<Identity>().GetIden() == Identity.iden.LastColor)
-        {
-            MyCountNumberColor = thePlayer.LastColorText;
-        }
-
-
-        //Skills
-        if (thePlayer.MyRed != null && gameObject == thePlayer.MyRed)
-        {
-
-            if (!TurboMortal)
+            if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.Red)
             {
-                Turbo.GetComponent<Image>().color = Color.white;
-                star1.SetActive(false);
-                gameObject.GetComponent<IncreaseMortal>().AmountIncrease = 1;
-                Turbo.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                MyCountNumberColor = thePlayer.RedColorText;
             }
-            else
+            else if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
             {
-                star1.GetComponent<Image>().color = MyCountNumberColor;
-                star1.SetActive(true);
-                Turbo.gameObject.GetComponent<Image>().color = WhiteLow;
-                Turbo.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
-
+                MyCountNumberColor = thePlayer.BlueColorText;
             }
-
-            if (!CopacityMortal)
+            else if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.Yellow)
             {
-                Copacity.GetComponent<Image>().color = Color.white;
-                star2.SetActive(false);
-                gameObject.GetComponent<IncreaseMortal>().MaxSpace = 100;
-                Copacity.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                MyCountNumberColor = thePlayer.YellowColorText;
             }
-            else
+            else if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.Pink)
             {
-                Copacity.GetComponent<Image>().color = WhiteLow;
-                star2.GetComponent<Image>().color = MyCountNumberColor;
-                star2.SetActive(true);
-                Copacity.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
-
+                MyCountNumberColor = thePlayer.PinkColorText;
             }
-
-            if (!RandomChangeMortal)
+            else if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.Green)
             {
-                RandomChange.GetComponent<Image>().color = Color.white;
-                RandomChange.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                MyCountNumberColor = thePlayer.GreenColorText;
             }
-            else
+            else if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.Orange)
             {
-                RandomChange.GetComponent<Image>().color = WhiteLow;
-                RandomChange.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
-
+                MyCountNumberColor = thePlayer.OrangeColorText;
+            }
+            else if (gameObject.GetComponent<Identity>().GetIdentity() == Identity.iden.LastColor)
+            {
+                MyCountNumberColor = thePlayer.LastColorText;
             }
 
 
-
-
-            if (!AllAttackMortal)
+            //Skills
+            if (thePlayer.MyRed != null && gameObject == thePlayer.MyRed)
             {
-                AllAttack.GetComponent<Image>().color = Color.white;
-                star3.SetActive(false);
-                if (StateWork)
+
+                if (!TurboMortal)
                 {
+                    Turbo.GetComponent<Image>().color = Color.white;
+                    star1.SetActive(false);
+                    gameObject.GetComponent<IncreaseMortal>().AmountIncrease = 1;
+                    Turbo.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                }
+                else
+                {
+                    star1.GetComponent<Image>().color = MyCountNumberColor;
+                    star1.SetActive(true);
+                    Turbo.gameObject.GetComponent<Image>().color = WhiteLow;
+                    Turbo.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
+
+                }
+
+                if (!CopacityMortal)
+                {
+                    Copacity.GetComponent<Image>().color = Color.white;
+                    star2.SetActive(false);
+                    gameObject.GetComponent<IncreaseMortal>().MaxSpace = 100;
+                    Copacity.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                }
+                else
+                {
+                    Copacity.GetComponent<Image>().color = WhiteLow;
+                    star2.GetComponent<Image>().color = MyCountNumberColor;
+                    star2.SetActive(true);
+                    Copacity.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
+
+                }
+
+                if (!RandomChangeMortal)
+                {
+                    RandomChange.GetComponent<Image>().color = Color.white;
+                    RandomChange.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                }
+                else
+                {
+                    RandomChange.GetComponent<Image>().color = WhiteLow;
+                    RandomChange.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
+
+                }
+
+
+
+
+                if (!AllAttackMortal)
+                {
+                    AllAttack.GetComponent<Image>().color = Color.white;
+                    star3.SetActive(false);
                     StateMortal sm = GetComponent<StateMortal>();
                     sm.MyTypeOfAttack = stateMortal;
                     for (int i = 0; i < sm.MyTypeOfAttack.Count; i++)
                     {
                         sm.MyTypeOfAttack[i] = stateMortal[i];
                     }
+                    AllAttack.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+
                 }
-                AllAttack.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                else
+                {
+                    star3.GetComponent<Image>().color = MyCountNumberColor;
+                    AllAttack.GetComponent<Image>().color = WhiteLow;
+                    star3.SetActive(true);
+                    AllAttack.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
-            }
-            else
-            {
-                star3.GetComponent<Image>().color = MyCountNumberColor;
-                AllAttack.GetComponent<Image>().color = WhiteLow;
-                star3.SetActive(true);
-                AllAttack.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
+                }
 
-            }
+                if (!X2Mortal)
+                {
+                    X2.GetComponent<Image>().color = Color.white;
+                    StopCounting2 = false;
+                    X2.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
 
-            if (!X2Mortal)
-            {
-                X2.GetComponent<Image>().color = Color.white;
-                StopCounting2 = false;
-                X2.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                }
+                else
+                {
+                    X2.GetComponent<Image>().color = WhiteLow;
+                    X2.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
-            }
-            else
-            {
-                X2.GetComponent<Image>().color = WhiteLow;
-                X2.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
+                }
 
-            }
-
-            if (!MaxSpaceMortal)
-            {
-                MaxSpace.GetComponent<Image>().color = Color.white;
-                MaxSpace.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
-            }
-            else
-            {
-                MaxSpace.GetComponent<Image>().color = WhiteLow;
-                MaxSpace.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
+                if (!MaxSpaceMortal)
+                {
+                    MaxSpace.GetComponent<Image>().color = Color.white;
+                    MaxSpace.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                }
+                else
+                {
+                    MaxSpace.GetComponent<Image>().color = WhiteLow;
+                    MaxSpace.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
+                }
             }
         }
-    }
     }
 
 
@@ -222,14 +219,11 @@ public class SquareClass : MonoBehaviour
         if (!AllAttackMortal)
         {
             star3.SetActive(false);
-            if (StateWork)
+            StateMortal sm = GetComponent<StateMortal>();
+            sm.MyTypeOfAttack = stateMortal;
+            for (int i = 0; i < sm.MyTypeOfAttack.Count; i++)
             {
-                StateMortal sm = GetComponent<StateMortal>();
-                sm.MyTypeOfAttack = stateMortal;
-                for (int i = 0; i < sm.MyTypeOfAttack.Count; i++)
-                {
-                    sm.MyTypeOfAttack[i] = stateMortal[i];
-                }
+                sm.MyTypeOfAttack[i] = stateMortal[i];
             }
 
         }

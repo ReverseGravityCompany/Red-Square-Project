@@ -5,8 +5,7 @@ using UnityEngine;
 public class squareSoliderCounte : MonoBehaviour
 {
     private WaitForSeconds timer;
-    [SerializeField]
-    private IncreaseMortal[] sqaurs;
+    [SerializeField] private IncreaseMortal[] sqaurs;
 
     private void Start()
     {

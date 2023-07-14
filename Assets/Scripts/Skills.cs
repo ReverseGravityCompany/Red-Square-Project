@@ -5,17 +5,18 @@ using UnityEngine.UI;
 using CodeStage.AntiCheat.ObscuredTypes;
 public class Skills : MonoBehaviour
 {
-    public bool turbo, copacity, randomChange, allAttack , X2 , MaxSpace;
+    #region Properties
+    [HideInInspector] public bool turbo, copacity, randomChange, allAttack , X2 , MaxSpace;
     public GameObject TurboObj, CopacityObj, RandomChangeObj, AllAttackObj, X2Obj, MaxSpaceObj;
-    public SquareClass ChoiceMortal;
+    [HideInInspector] public SquareClass SelectedMortal;
+
+    public AudioSource Correct_Sound;
+    public AudioSource Error_Sound;
+
+    private TextHelperNote Note;
     private LevelManager theLevelmanager;
-    public Color InvisibaleColor;
-    public bool DontWork;
 
-    public AudioSource SoundSkillWork;
-    public AudioSource SoundSkillDidntWork;
-
-    public TextHelperNote Note;
+    #endregion
 
     private void Start()
     {
@@ -23,6 +24,7 @@ public class Skills : MonoBehaviour
         Note = FindObjectOfType<TextHelperNote>();
     }
 
+    #region Abilities Functions
     public void Turbo()
     {
         if(Time.timeScale == 0)
@@ -30,29 +32,29 @@ public class Skills : MonoBehaviour
             return;
         }
 
-        if(ChoiceMortal != null && ChoiceMortal.TurboMortal == false)
+        if(SelectedMortal != null && SelectedMortal.TurboMortal == false)
         {
             if(ObscuredPrefs.GetInt("MyCoin") >= 100)
             {
-                SoundSkillWork.Play();
+                Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 100;
                 ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
                 turbo = true;
-                ChoiceMortal.TurboMortal = true;
-                TurboObj.GetComponent<Image>().color = ChoiceMortal.WhiteLow;
-                ChoiceMortal.star1.GetComponent<Image>().color = ChoiceMortal.MyCountNumberColor;
-                ChoiceMortal.star1.SetActive(true);
-                ChoiceMortal.GetComponent<IncreaseMortal>().AmountIncrease = 2;
+                SelectedMortal.TurboMortal = true;
+                TurboObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
+                SelectedMortal.star1.GetComponent<Image>().color = SelectedMortal.MyCountNumberColor;
+                SelectedMortal.star1.SetActive(true);
+                SelectedMortal.GetComponent<IncreaseMortal>().AmountIncrease = 2;
                 Note.GreenMark();
                 TurboObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
             }
             else
             {
-                SoundSkillDidntWork.Play();
+                Error_Sound.Play();
                 Note.RedMark();
             }
         }
-        else if (ChoiceMortal.TurboMortal)
+        else if (SelectedMortal.TurboMortal)
         {
             Note.RedMark();
         }
@@ -65,30 +67,30 @@ public class Skills : MonoBehaviour
         {
             return;
         }
-        if (ChoiceMortal != null && ChoiceMortal.CopacityMortal == false)
+        if (SelectedMortal != null && SelectedMortal.CopacityMortal == false)
         {
             if (ObscuredPrefs.GetInt("MyCoin") >= 400)
             {
-                SoundSkillWork.Play();
+                Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 400;
                 ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
                 copacity = true;
-                ChoiceMortal.CopacityMortal = true;
-                CopacityObj.GetComponent<Image>().color = ChoiceMortal.WhiteLow;
-                ChoiceMortal.star2.GetComponent<Image>().color = ChoiceMortal.MyCountNumberColor;
-                ChoiceMortal.star2.SetActive(true);
-                ChoiceMortal.GetComponent<IncreaseMortal>().MaxSpace = 200;
+                SelectedMortal.CopacityMortal = true;
+                CopacityObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
+                SelectedMortal.star2.GetComponent<Image>().color = SelectedMortal.MyCountNumberColor;
+                SelectedMortal.star2.SetActive(true);
+                SelectedMortal.GetComponent<IncreaseMortal>().MaxSpace = 200;
                 Note.GreenMark();
                 CopacityObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
             }
             else
             {
-                SoundSkillDidntWork.Play();
+                Error_Sound.Play();
                 Note.RedMark();
             }
         }
-        else if (ChoiceMortal.CopacityMortal)
+        else if (SelectedMortal.CopacityMortal)
         {
             Note.RedMark();
         }
@@ -100,21 +102,21 @@ public class Skills : MonoBehaviour
         {
             return;
         }
-        if (ChoiceMortal != null && ChoiceMortal.RandomChangeMortal == false)
+        if (SelectedMortal != null && SelectedMortal.RandomChangeMortal == false)
         {
             if (ObscuredPrefs.GetInt("MyCoin") >= 30)
             {
-                SoundSkillWork.Play();
+                Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 30;
                 ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
                 randomChange = true;
-                ChoiceMortal.RandomChangeMortal = true;
-                RandomChangeObj.GetComponent<Image>().color = ChoiceMortal.WhiteLow;
+                SelectedMortal.RandomChangeMortal = true;
+                RandomChangeObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
 
-                ChoiceMortal.GetComponent<IncreaseMortal>().CurrentCount += Random.value < 0.5f ? -10 : 10;
-                if (ChoiceMortal.GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                SelectedMortal.GetComponent<IncreaseMortal>().CurrentCount += Random.value < 0.5f ? -10 : 10;
+                if (SelectedMortal.GetComponent<IncreaseMortal>().CurrentCount <= 0)
                 {
-                    ChoiceMortal.GetComponent<IncreaseMortal>().CurrentCount = 0;
+                    SelectedMortal.GetComponent<IncreaseMortal>().CurrentCount = 0;
                 }
                 Note.GreenMark();
                 RandomChangeObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
@@ -122,11 +124,11 @@ public class Skills : MonoBehaviour
             }
             else
             {
-                SoundSkillDidntWork.Play();
+                Error_Sound.Play();
                 Note.RedMark();
             }
         }
-        else if (ChoiceMortal.RandomChangeMortal)
+        else if (SelectedMortal.RandomChangeMortal)
         {
             Note.RedMark();
         }
@@ -137,35 +139,35 @@ public class Skills : MonoBehaviour
         {
             return;
         }
-        if (ChoiceMortal != null && ChoiceMortal.AllAttackMortal == false && !DontWork)
+        if (SelectedMortal != null && SelectedMortal.AllAttackMortal == false)
         {
             if (ObscuredPrefs.GetInt("MyCoin") >= 200)
             {
-                SoundSkillWork.Play();
+                Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 200;
                 ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
                 allAttack = true;
-                ChoiceMortal.AllAttackMortal = true;
-                ChoiceMortal.star3.GetComponent<Image>().color = ChoiceMortal.MyCountNumberColor;
-                AllAttackObj.GetComponent<Image>().color = ChoiceMortal.WhiteLow;
-                ChoiceMortal.star3.SetActive(true);
-                ChoiceMortal.GetComponent<StateMortal>().MyTypeOfAttack.Clear();
+                SelectedMortal.AllAttackMortal = true;
+                SelectedMortal.star3.GetComponent<Image>().color = SelectedMortal.MyCountNumberColor;
+                AllAttackObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
+                SelectedMortal.star3.SetActive(true);
+                SelectedMortal.GetComponent<StateMortal>().MyTypeOfAttack.Clear();
                 for (int i = 0; i < GameObject.FindObjectsOfType<SquareClass>().Length; i++)
                 {
-                    ChoiceMortal.GetComponent<StateMortal>().MyTypeOfAttack.Add(GameObject.FindObjectsOfType<SquareClass>()[i].gameObject);
+                    SelectedMortal.GetComponent<StateMortal>().MyTypeOfAttack.Add(GameObject.FindObjectsOfType<SquareClass>()[i].gameObject);
                 }
-                ChoiceMortal.CheckCanWhoAttack();
+                SelectedMortal.CheckCanWhoAttack();
                 Note.GreenMark();
                 AllAttackObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
             }
             else
             {
-                SoundSkillDidntWork.Play();
+                Error_Sound.Play();
                 Note.RedMark();
             }
         }
-        else if (ChoiceMortal.AllAttackMortal)
+        else if (SelectedMortal.AllAttackMortal)
         {
             Note.RedMark();
         }
@@ -178,28 +180,28 @@ public class Skills : MonoBehaviour
         {
             return;
         }
-        if (ChoiceMortal != null && ChoiceMortal.X2Mortal == false)
+        if (SelectedMortal != null && SelectedMortal.X2Mortal == false)
         {
             if (ObscuredPrefs.GetInt("MyCoin") >= 1000)
             {
-                SoundSkillWork.Play();
+                Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 1000;
                 ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
                 X2 = true;
-                ChoiceMortal.X2Mortal = true;
-                X2Obj.GetComponent<Image>().color = ChoiceMortal.WhiteLow;
-                ChoiceMortal.GetComponent<IncreaseMortal>().CurrentCount *= 2;
+                SelectedMortal.X2Mortal = true;
+                X2Obj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
+                SelectedMortal.GetComponent<IncreaseMortal>().CurrentCount *= 2;
                 Note.GreenMark();
                 X2Obj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
             }
             else
             {
-                SoundSkillDidntWork.Play();
+                Error_Sound.Play();
                 Note.RedMark();
             }
         }
-        else if (ChoiceMortal.X2Mortal)
+        else if (SelectedMortal.X2Mortal)
         {
             Note.RedMark();
         }
@@ -211,32 +213,33 @@ public class Skills : MonoBehaviour
         {
             return;
         }
-        if (ChoiceMortal != null && ChoiceMortal.MaxSpaceMortal == false)
+        if (SelectedMortal != null && SelectedMortal.MaxSpaceMortal == false)
         {
             if (ObscuredPrefs.GetInt("MyCoin") >= 2500)
             {
-                SoundSkillWork.Play();
+                Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 2500;
                 ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
                 MaxSpace = true;
-                ChoiceMortal.MaxSpaceMortal = true;
-                MaxSpaceObj.GetComponent<Image>().color = ChoiceMortal.WhiteLow;
-                if (ChoiceMortal.GetComponent<IncreaseMortal>().CurrentCount <= ChoiceMortal.GetComponent<IncreaseMortal>().MaxSpace)
-                    ChoiceMortal.GetComponent<IncreaseMortal>().CurrentCount = ChoiceMortal.GetComponent<IncreaseMortal>().MaxSpace;
+                SelectedMortal.MaxSpaceMortal = true;
+                MaxSpaceObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
+                if (SelectedMortal.GetComponent<IncreaseMortal>().CurrentCount <= SelectedMortal.GetComponent<IncreaseMortal>().MaxSpace)
+                    SelectedMortal.GetComponent<IncreaseMortal>().CurrentCount = SelectedMortal.GetComponent<IncreaseMortal>().MaxSpace;
 
                 Note.GreenMark();
                 MaxSpaceObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
             }
             else
             {
-                SoundSkillDidntWork.Play();
+                Error_Sound.Play();
                 Note.RedMark();
             }
         }
-        else if (ChoiceMortal.MaxSpaceMortal)
+        else if (SelectedMortal.MaxSpaceMortal)
         {
             Note.RedMark();
         }
     }
 
+    #endregion
 }

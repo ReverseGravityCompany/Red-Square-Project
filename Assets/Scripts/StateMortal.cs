@@ -75,9 +75,6 @@ public class StateMortal : MonoBehaviour
 
     }
 
-
-
-
     public void HideTypeOfAttack()
     {
         for (int i = 0; i < MyTypeOfAttack.Count; i++)
@@ -92,5 +89,30 @@ public class StateMortal : MonoBehaviour
         }
     }
 
+    public void ResetTypeOfAttackData()
+    {
+        float extraHeightText = 0.2f;
+        MyTypeOfAttack.Clear();
+        RaycastHit2D raycastHitDown = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x, boxCollider2d.bounds.center.y - boxCollider2d.bounds.extents.y - 0.1f, boxCollider2d.bounds.center.z), Vector2.down, boxCollider2d.bounds.extents.y + extraHeightText, SquareLayer);
+        RaycastHit2D raycastHitUp = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x, boxCollider2d.bounds.center.y + boxCollider2d.bounds.extents.y + 0.1f, boxCollider2d.bounds.center.z), Vector2.up, boxCollider2d.bounds.extents.y + extraHeightText, SquareLayer);
+        RaycastHit2D raycastHitRight = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x + boxCollider2d.bounds.extents.x + 0.1f, boxCollider2d.bounds.center.y, boxCollider2d.bounds.center.z), Vector2.right, boxCollider2d.bounds.extents.x + extraHeightText, SquareLayer);
+        RaycastHit2D raycastHitLeft = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x - boxCollider2d.bounds.extents.x - 0.1f, boxCollider2d.bounds.center.y, boxCollider2d.bounds.center.z), Vector2.left, boxCollider2d.bounds.extents.x + extraHeightText, SquareLayer);
+        if (raycastHitDown.collider != null)
+        {
+            MyTypeOfAttack.Add(raycastHitDown.collider.gameObject);
+        }
+        if (raycastHitUp.collider != null)
+        {
+            MyTypeOfAttack.Add(raycastHitUp.collider.gameObject);
+        }
+        if (raycastHitRight.collider != null)
+        {
+            MyTypeOfAttack.Add(raycastHitRight.collider.gameObject);
+        }
+        if (raycastHitLeft.collider != null)
+        {
+            MyTypeOfAttack.Add(raycastHitLeft.collider.gameObject);
+        }
+    }
 
 }

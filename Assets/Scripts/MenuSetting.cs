@@ -3,101 +3,96 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using CodeStage.AntiCheat.ObscuredTypes;
 
-[ExecuteInEditMode]
 public class MenuSetting : MonoBehaviour
 {
-    [SerializeField] Image sound;
-    [SerializeField] Color OffColor, OnColor;
-    [SerializeField] GameObject ButStart, DereaseLevel, IncreaseLevel, ShowLevelGame;
+    #region Properties
+    [SerializeField] Image SoundSetting;
+    [SerializeField] Color SoundSetting_OffColor, SoundSetting_OnColor;
+    [SerializeField] GameObject ButtonStart, DecreaseLevel, IncreaseLevel, LevelNameSelection;
     [SerializeField] GameObject Pause, Home, RestartLevel;
-    [SerializeField] Sprite Pauseoff, PauseOn;
-    [SerializeField] string urlYoutube;
-    private GameObject MarkDif;
-    public GameObject LanPlayer;
-    public string SettingServerLevelName;
-    private GameObject Tire;
-    private GameObject NoteHelperPanel;
-    private Button NoteHelperButton;
-    public GameObject GiftObj;
-    private GameObject YoutubeObj;
-    private EnemySystem enemysystem;
+    [SerializeField] Sprite PauseOff, PauseOn;
 
-    public int CurrentLevel;
-    [SerializeField] Text LevelShow;
+    [Space(20)]
+    [SerializeField] GameObject MarkDifficaulty;
+    [SerializeField] GameObject CoverMenu;
+    [SerializeField] GameObject NoteHelperPanel;
+    [SerializeField] Button NoteHelperButton;
+    public GameObject RewardButton;
+    private EnemySystem enemySystem;
 
-    public AudioSource LevelChangeSound, PlaySound, PauseSound;
-    public bool Started = false;
-    private bool PauseCheck;
+    private int CurrentLevel;
+    [SerializeField] Text LevelMenu_Text;
 
+    [Header("Sounds")]
+    public AudioSource LevelChangeSound;
+    public AudioSource PlaySound;
+    public AudioSource PauseSound;
+
+    [Space(15)]
     public GameObject TouchScreen;
-
     public Text LevelShowInLevel;
-    public bool GameStarted = false;
+    [HideInInspector] public bool GameStarted = false;
 
-    public GameObject ShowHelper, Hand;
+    // Level 4 Helper
+    public GameObject Helper_Menu, Hand;
 
-    private LevelManager theLevelmanager;
-
+    // Light/Dark Mode
     public Color NightColor, DayColor;
     public Sprite DaySprite, NightSprite;
     public Image daynightImage;
     private Camera camera;
 
+    private bool PauseStatus;
+    private int frameCount;
+
+
+    #endregion
+
+    #region Functions
     private void Awake()
     {
         if (CurrentLevel > 100)
         {
             CurrentLevel = 100;
         }
-        StartCoroutine("ShowTextMultiplayer");
-        LanPlayer.transform.GetChild(0).gameObject.SetActive(false);
-        Tire = transform.GetChild(0).gameObject;
         if (PlayerPrefs.HasKey("MyLevel"))
         {
             CurrentLevel = PlayerPrefs.GetInt("MyLevel");
-            LevelShow.text = CurrentLevel.ToString();
+            LevelMenu_Text.text = CurrentLevel.ToString();
         }
         else
         {
             CurrentLevel = 1;
-            LevelShow.text = CurrentLevel.ToString();
+            LevelMenu_Text.text = CurrentLevel.ToString();
         }
 
         if (PlayerPrefs.HasKey("SaveSound"))
         {
             if (PlayerPrefs.GetInt("SaveSound") == 0)
             {
-                sound.color = OffColor;
+                SoundSetting.color = SoundSetting_OffColor;
                 AudioListener.pause = true;
                 AudioListener.volume = 0;
             }
             else if (PlayerPrefs.GetInt("SaveSound") == 1)
             {
-                sound.color = OnColor;
+                SoundSetting.color = SoundSetting_OnColor;
                 AudioListener.pause = false;
                 AudioListener.volume = 1;
             }
         }
-        theLevelmanager = FindObjectOfType<LevelManager>();
     }
 
     private void Start()
     {
-        enemysystem = FindObjectOfType<EnemySystem>();
-        NoteHelperPanel = gameObject.transform.Find("NoteHelperPanel").gameObject;
-        NoteHelperButton = gameObject.transform.Find("NoteHelperButton").GetComponent<Button>();
-        NoteHelperButton.onClick.AddListener(NoteHelperButtonListener);
-        NoteHelperPanel.GetComponent<Button>().onClick.AddListener(NoteHelperPanelListener);
-        YoutubeObj = gameObject.transform.Find("Youtube").gameObject;
+        enemySystem = FindObjectOfType<EnemySystem>();
         camera = Camera.main;
-        if(ShowHelper != null && Hand != null)
+        if (Helper_Menu != null && Hand != null)
         {
-            ShowHelper.SetActive(false);
+            Helper_Menu.SetActive(false);
             Hand.SetActive(false);
         }
-        urlYoutube = "https://www.youtube.com/channel/UCgXs2PTiL19Rv1qOn1SI7XQ";
         if (PlayerPrefs.HasKey("FastRun"))
         {
             if (PlayerPrefs.GetInt("FastRun") == 1)
@@ -106,7 +101,6 @@ public class MenuSetting : MonoBehaviour
                 PlayerPrefs.SetInt("FastRun", 0);
             }
         }
-
         if (!PlayerPrefs.HasKey("DayAndNight"))
         {
             daynightImage.sprite = NightSprite;
@@ -143,46 +137,31 @@ public class MenuSetting : MonoBehaviour
         }
 
 
-
-
         if (SceneManager.GetActiveScene().buildIndex == 4 && !PlayerPrefs.HasKey("NoteHelperLevel4"))
         {
             PlayerPrefs.SetInt("NoteHelperLevel4", 0);
-            ShowHelper.SetActive(true);
+            Helper_Menu.SetActive(true);
             Hand.SetActive(true);
         }
         if (CurrentLevel != SceneManager.GetActiveScene().buildIndex)
         {
             CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-            LevelShow.text = CurrentLevel.ToString();
+            LevelMenu_Text.text = CurrentLevel.ToString();
         }
-    }
-
-    private IEnumerator ShowTextMultiplayer()
-    {
-        yield return new WaitForSecondsRealtime(0.5f);
-        if (Random.Range(0, 100) > 80)
-        {
-            LanPlayer.transform.GetChild(0).gameObject.SetActive(true);
-            yield return new WaitForSecondsRealtime(15f);
-            LanPlayer.transform.GetChild(0).gameObject.SetActive(false);
-            yield return new WaitForSecondsRealtime(Random.Range(10, 20));
-        }
-        yield return StartCoroutine(ShowTextMultiplayer());
-    }
-
-    public void MultiplayerButton()
-    {
-        PlaySound.Play();
-        SceneManager.LoadScene(SettingServerLevelName);
     }
 
     private void Update()
     {
-        if (CurrentLevel != SceneManager.GetActiveScene().buildIndex)
+        // Use These Code Every 10 Frames
+        frameCount++;
+        if (frameCount % 10 == 0)
         {
-            CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-            LevelShow.text = CurrentLevel.ToString();
+            if (CurrentLevel != SceneManager.GetActiveScene().buildIndex)
+            {
+                CurrentLevel = SceneManager.GetActiveScene().buildIndex;
+                LevelMenu_Text.text = CurrentLevel.ToString();
+            }
+            frameCount = 0;
         }
     }
 
@@ -192,49 +171,39 @@ public class MenuSetting : MonoBehaviour
         {
             CurrentLevel = 100;
         }
+
+
         if (CurrentLevel <= 100)
         {
-            MarkDif = gameObject.transform.Find("MarkDiffculty").gameObject;
             PlaySound.Play();
-            Started = true;
-            LanPlayer.SetActive(false);
-            YoutubeObj.SetActive(false);
-            sound.gameObject.SetActive(false);
-            ButStart.SetActive(false);
-            LevelShow.gameObject.SetActive(false);
-            DereaseLevel.gameObject.SetActive(false);
+            SoundSetting.gameObject.SetActive(false);
+            ButtonStart.SetActive(false);
+            LevelMenu_Text.gameObject.SetActive(false);
+            DecreaseLevel.gameObject.SetActive(false);
             IncreaseLevel.SetActive(false);
             Pause.SetActive(true);
-            ShowLevelGame.SetActive(false);
+            LevelNameSelection.SetActive(false);
             Time.timeScale = 1f;
             TouchScreen.SetActive(true);
             LevelShowInLevel.gameObject.SetActive(true);
-            MarkDif.SetActive(false);
-            GiftObj.SetActive(false);
+            MarkDifficaulty.SetActive(false);
+            RewardButton.SetActive(false);
             daynightImage.gameObject.SetActive(false);
             GameStarted = true;
-            enemysystem.GenerateEnemy();
+            enemySystem.GenerateEnemy();
             GameObject.FindObjectOfType<squareSoliderCounte>().StartGenerateSolider();
-            Tire.SetActive(false);
-            if (NoteHelperButton != null && NoteHelperPanel != null)
-            {
-                NoteHelperButton.gameObject.SetActive(false);
-                NoteHelperPanel.gameObject.SetActive(false);
-            }
-            else
-            {
-                NoteHelperPanel = gameObject.transform.Find("NoteHelperPanel").gameObject;
-                NoteHelperButton = gameObject.transform.Find("NoteHelperButton").GetComponent<Button>();
-                NoteHelperButton.gameObject.SetActive(false);
-                NoteHelperPanel.gameObject.SetActive(false);
-            }
+            CoverMenu.SetActive(false);
+            NoteHelperButton.gameObject.SetActive(false);
+            NoteHelperPanel.gameObject.SetActive(false);
+
 
 
             if (CurrentLevel != SceneManager.GetActiveScene().buildIndex)
             {
                 CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-                LevelShow.text = CurrentLevel.ToString();
+                LevelMenu_Text.text = CurrentLevel.ToString();
             }
+
         }
     }
 
@@ -243,27 +212,18 @@ public class MenuSetting : MonoBehaviour
         LevelChangeSound.Play();
         if (AudioListener.pause == true && AudioListener.volume == 0)
         {
-            sound.color = OnColor;
+            SoundSetting.color = SoundSetting_OnColor;
             AudioListener.pause = false;
             AudioListener.volume = 1;
             PlayerPrefs.SetInt("SaveSound", 1);
         }
         else if (AudioListener.pause != true && AudioListener.volume == 1)
         {
-            sound.color = OffColor;
+            SoundSetting.color = SoundSetting_OffColor;
             AudioListener.pause = true;
             AudioListener.volume = 0;
             PlayerPrefs.SetInt("SaveSound", 0);
         }
-    }
-
-    public void YoutubeJ()
-    {
-        YoutubemJoin(urlYoutube);
-    }
-    void YoutubemJoin(string url)
-    {
-        Application.OpenURL(url);
     }
 
     public void NextLevelBtn()
@@ -274,7 +234,7 @@ public class MenuSetting : MonoBehaviour
             if (CurrentLevel >= 100)
             {
                 CurrentLevel = 100;
-                LevelShow.text = CurrentLevel.ToString();
+                LevelMenu_Text.text = CurrentLevel.ToString();
                 return;
             }
             CurrentLevel += 1;
@@ -282,13 +242,13 @@ public class MenuSetting : MonoBehaviour
             if (CurrentLevel <= PlayerPrefs.GetInt("UnlockLevel"))
             {
                 PlayerPrefs.SetInt("MyLevel", CurrentLevel);
-                LevelShow.text = CurrentLevel.ToString();
+                LevelMenu_Text.text = CurrentLevel.ToString();
                 SceneManager.LoadScene(CurrentLevel);
             }
             else
             {
                 CurrentLevel = CheckLevel;
-                LevelShow.text = CurrentLevel.ToString();
+                LevelMenu_Text.text = CurrentLevel.ToString();
             }
         }
     }
@@ -301,22 +261,15 @@ public class MenuSetting : MonoBehaviour
             if (CurrentLevel == 1)
             {
                 CurrentLevel = 1;
-                LevelShow.text = CurrentLevel.ToString();
+                LevelMenu_Text.text = CurrentLevel.ToString();
                 return;
             }
             CurrentLevel -= 1;
             PlayerPrefs.SetInt("MyLevel", CurrentLevel);
-            LevelShow.text = CurrentLevel.ToString();
+            LevelMenu_Text.text = CurrentLevel.ToString();
             SceneManager.LoadScene(CurrentLevel);
         }
 
-    }
-
-    public void ResetartLevel()
-    {
-        PauseSound.Play();
-        PlayerPrefs.SetInt("FastRun", 1);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Menu()
@@ -332,31 +285,33 @@ public class MenuSetting : MonoBehaviour
     public void PauseBut()
     {
         PauseSound.Play();
-        if (PauseCheck)
+        if (PauseStatus)
         {
             Time.timeScale = 1f;
-            PauseCheck = false;
-            Pause.GetComponent<Image>().sprite = Pauseoff;
+            PauseStatus = false;
+            Pause.GetComponent<Image>().sprite = PauseOff;
             Home.SetActive(false);
             RestartLevel.SetActive(false);
-            sound.gameObject.SetActive(false);
+            SoundSetting.gameObject.SetActive(false);
             daynightImage.gameObject.SetActive(false);
         }
         else
         {
             Time.timeScale = 0f;
-            PauseCheck = true;
+            PauseStatus = true;
             Pause.GetComponent<Image>().sprite = PauseOn;
             Home.SetActive(true);
             RestartLevel.SetActive(true);
-            sound.gameObject.SetActive(true);
+            SoundSetting.gameObject.SetActive(true);
             daynightImage.gameObject.SetActive(true);
         }
     }
 
-    public void RunAddCoin()
+    public void ResetartLevel()
     {
-        GameObject.FindObjectOfType<LevelManager>().AddCoin();
+        PauseSound.Play();
+        PlayerPrefs.SetInt("FastRun", 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void NoteHelperButtonListener()
@@ -364,7 +319,7 @@ public class MenuSetting : MonoBehaviour
         LevelChangeSound.Play();
         if (SceneManager.GetActiveScene().buildIndex == 4)
         {
-            ShowHelper.SetActive(false);
+            Helper_Menu.SetActive(false);
             Hand.SetActive(false);
         }
         NoteHelperPanel.SetActive(true);
@@ -377,6 +332,7 @@ public class MenuSetting : MonoBehaviour
 
     public void DayAndNight()
     {
+        LevelChangeSound.Play();
         if (PlayerPrefs.GetInt("DayAndNight") == 1) // 1 Day, 0 Night
         {
             daynightImage.sprite = NightSprite;
@@ -401,4 +357,12 @@ public class MenuSetting : MonoBehaviour
         }
     }
 
+    #region Animation Events
+    public void RunAddCoinAnimationEvent()
+    {
+        LevelManager._Instance.AddCoin();
+    }
+    #endregion
+
+    #endregion
 }
