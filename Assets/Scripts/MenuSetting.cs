@@ -23,6 +23,7 @@ public class MenuSetting : MonoBehaviour
 
     private int CurrentLevel;
     [SerializeField] Text LevelMenu_Text;
+    [SerializeField] Text LevelGame_Text;
 
     [Header("Sounds")]
     public AudioSource LevelChangeSound;
@@ -59,12 +60,16 @@ public class MenuSetting : MonoBehaviour
         if (PlayerPrefs.HasKey("MyLevel"))
         {
             CurrentLevel = PlayerPrefs.GetInt("MyLevel");
-            LevelMenu_Text.text = CurrentLevel.ToString();
+            LevelMenu_Text.text = "Level " + CurrentLevel.ToString();
+            LevelGame_Text.text = "Level " + CurrentLevel.ToString();
+            LevelNameSelection.GetComponent<Text>().text = CurrentLevel.ToString();
         }
         else
         {
             CurrentLevel = 1;
-            LevelMenu_Text.text = CurrentLevel.ToString();
+            LevelMenu_Text.text = "Level " + CurrentLevel.ToString();
+            LevelGame_Text.text = "Level " + CurrentLevel.ToString();
+            LevelNameSelection.GetComponent<Text>().text = CurrentLevel.ToString();
         }
 
         if (PlayerPrefs.HasKey("SaveSound"))
@@ -142,27 +147,22 @@ public class MenuSetting : MonoBehaviour
             PlayerPrefs.SetInt("NoteHelperLevel4", 0);
             Helper_Menu.SetActive(true);
             Hand.SetActive(true);
-        }
-        if (CurrentLevel != SceneManager.GetActiveScene().buildIndex)
-        {
-            CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-            LevelMenu_Text.text = CurrentLevel.ToString();
-        }
+        }      
     }
 
     private void Update()
     {
         // Use These Code Every 10 Frames
-        frameCount++;
-        if (frameCount % 10 == 0)
-        {
-            if (CurrentLevel != SceneManager.GetActiveScene().buildIndex)
-            {
-                CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-                LevelMenu_Text.text = CurrentLevel.ToString();
-            }
-            frameCount = 0;
-        }
+        //frameCount++;
+        //if (frameCount % 10 == 0)
+        //{
+        //    if (CurrentLevel != SceneManager.GetActiveScene().buildIndex)
+        //    {
+        //        CurrentLevel = SceneManager.GetActiveScene().buildIndex;
+        //        LevelMenu_Text.text = CurrentLevel.ToString();
+        //    }
+        //    frameCount = 0;
+        //}
     }
 
     public void StartGame()
@@ -191,19 +191,10 @@ public class MenuSetting : MonoBehaviour
             daynightImage.gameObject.SetActive(false);
             GameStarted = true;
             enemySystem.GenerateEnemy();
-            GameObject.FindObjectOfType<squareSoliderCounte>().StartGenerateSolider();
+            GameObject.FindObjectOfType<SquareSoliderCount>().StartGenerateSolider();
             CoverMenu.SetActive(false);
             NoteHelperButton.gameObject.SetActive(false);
             NoteHelperPanel.gameObject.SetActive(false);
-
-
-
-            if (CurrentLevel != SceneManager.GetActiveScene().buildIndex)
-            {
-                CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-                LevelMenu_Text.text = CurrentLevel.ToString();
-            }
-
         }
     }
 
@@ -234,7 +225,7 @@ public class MenuSetting : MonoBehaviour
             if (CurrentLevel >= 100)
             {
                 CurrentLevel = 100;
-                LevelMenu_Text.text = CurrentLevel.ToString();
+                LevelMenu_Text.text = "Level " + CurrentLevel.ToString();
                 return;
             }
             CurrentLevel += 1;
@@ -242,13 +233,11 @@ public class MenuSetting : MonoBehaviour
             if (CurrentLevel <= PlayerPrefs.GetInt("UnlockLevel"))
             {
                 PlayerPrefs.SetInt("MyLevel", CurrentLevel);
-                LevelMenu_Text.text = CurrentLevel.ToString();
-                SceneManager.LoadScene(CurrentLevel);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             else
             {
                 CurrentLevel = CheckLevel;
-                LevelMenu_Text.text = CurrentLevel.ToString();
             }
         }
     }
@@ -261,13 +250,12 @@ public class MenuSetting : MonoBehaviour
             if (CurrentLevel == 1)
             {
                 CurrentLevel = 1;
-                LevelMenu_Text.text = CurrentLevel.ToString();
+                LevelMenu_Text.text = "Level " + CurrentLevel.ToString();
                 return;
             }
             CurrentLevel -= 1;
             PlayerPrefs.SetInt("MyLevel", CurrentLevel);
-            LevelMenu_Text.text = CurrentLevel.ToString();
-            SceneManager.LoadScene(CurrentLevel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
     }
@@ -275,10 +263,11 @@ public class MenuSetting : MonoBehaviour
     public void Menu()
     {
         PauseSound.Play();
-        if (Random.Range(0, 100) < 40)
-        {
-            FindObjectOfType<InitialazeAdsMonitize>().ShowAd();
-        }
+        //if (Random.Range(0, 100) < 40)
+        //{
+        //    FindObjectOfType<InitialazeAdsMonitize>().ShowAd();
+        //}
+        PlayerPrefs.SetInt("MyLevel", CurrentLevel);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -311,6 +300,7 @@ public class MenuSetting : MonoBehaviour
     {
         PauseSound.Play();
         PlayerPrefs.SetInt("FastRun", 1);
+        PlayerPrefs.SetInt("MyLevel", CurrentLevel);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

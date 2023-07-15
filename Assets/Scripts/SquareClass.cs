@@ -78,7 +78,7 @@ public class SquareClass : MonoBehaviour
 
 
             //Skills
-            if (thePlayer.MyRed != null && gameObject == thePlayer.MyRed)
+            if (thePlayer.MyBlue != null && gameObject == thePlayer.MyBlue)
             {
 
                 if (!TurboMortal)
@@ -189,7 +189,7 @@ public class SquareClass : MonoBehaviour
 
         for (int i = 0; i < ObjectsMortal.Length; i++)
         {
-            if (thePlayer.MyRed != null && ObjectsMortal[i] == thePlayer.MyRed)
+            if (thePlayer.MyBlue != null && ObjectsMortal[i] == thePlayer.MyBlue)
             {
                 ObjectsMortal[i].GetComponent<StateMortal>().ShowTypeOfAttack();
                 ObjectsMortal[i].GetComponent<StateMortal>().WhoCantAttack(ObjectsMortal, gameObject);

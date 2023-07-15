@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class EnemySystem : MonoBehaviour
 {
-    [SerializeField] private bool Blue, Yellow, Pink, Green, Orange, Purple;
+    [SerializeField] private bool Red, Yellow, Pink, Green, Orange, Purple;
     private GameObject[] allsquare;
-    private List<GameObject> blueSquare;
+    private List<GameObject> RedSquare;
     private List<GameObject> yellowSquare;
     private List<GameObject> pinkSquare;
     private List<GameObject> greenSquare;
@@ -20,12 +20,12 @@ public class EnemySystem : MonoBehaviour
     private Player thePlayer;
 
     public enum Difficault { Easy, Meduim, Hard }
-    public Difficault dif;
+    public Difficault Difficaulty;
 
 
     private EnemySystem()
     {
-        blueSquare = new List<GameObject>();
+        RedSquare = new List<GameObject>();
         yellowSquare = new List<GameObject>();
         pinkSquare = new List<GameObject>();
         greenSquare = new List<GameObject>();
@@ -41,30 +41,6 @@ public class EnemySystem : MonoBehaviour
         for (int i = 0; i < allsquare.Length; i++)
         {
             allsquare[i] = GameObject.FindGameObjectsWithTag("square")[i].gameObject;
-            //if(Blue && allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Blue)
-            //{
-            //    blueSquare.Add(allsquare[i]);
-            //}
-            //if (Yellow && allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Yellow)
-            //{
-            //    yellowSquare.Add(allsquare[i]);
-            //}
-            //if (Pink && allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Pink)
-            //{
-            //    pinkSquare.Add(allsquare[i]);
-            //}
-            //if (Green && allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Green)
-            //{
-            //    greenSquare.Add(allsquare[i]);
-            //}
-            //if (Orange && allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.Orange)
-            //{
-            //    OrangeSquare.Add(allsquare[i]);
-            //}
-            //if (Purple && allsquare[i].GetComponent<Identity>().GetIden() == Identity.iden.LastColor)
-            //{
-            //    purpleSquare.Add(allsquare[i]);
-            //}
         }
 
         Timer = new WaitForSeconds(TimebettweenAttacks + TimeForFirstTime);
@@ -72,8 +48,8 @@ public class EnemySystem : MonoBehaviour
 
     public void GenerateEnemy()
     {
-        if (Blue)
-            StartCoroutine(AttackBlue());
+        if (Red)
+            StartCoroutine(AttackRed());
         if (Yellow)
             StartCoroutine(AttackYellow());
         if (Pink)
@@ -90,12 +66,12 @@ public class EnemySystem : MonoBehaviour
     {
         switch (type)
         {
-            case Identity.iden.Blue:
-                for (int i = 0; i < blueSquare.Count; i++)
+            case Identity.iden.Red:
+                for (int i = 0; i < RedSquare.Count; i++)
                 {
-                    if (blueSquare[i] == obj)
+                    if (RedSquare[i] == obj)
                     {
-                        blueSquare.Remove(obj);
+                        RedSquare.Remove(obj);
                     }
                 }
                 break;
@@ -147,22 +123,22 @@ public class EnemySystem : MonoBehaviour
         }
 
     }
-    private IEnumerator AttackBlue()
+    private IEnumerator AttackRed()
     {
         while (true)
         {
             if (!isFirstTimeAttack)
                 Timer = new WaitForSeconds(TimebettweenAttacks);
             yield return Timer;
-            blueSquare.Clear();
+            RedSquare.Clear();
             for (int i = 0; i < allsquare.Length; i++)
             {
-                if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
+                if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Red)
                 {
-                    blueSquare.Add(allsquare[i]);
+                    RedSquare.Add(allsquare[i]);
                 }
             }
-            if (blueSquare.Count == 0)
+            if (RedSquare.Count == 0)
             {
                 break;
             }
@@ -171,57 +147,67 @@ public class EnemySystem : MonoBehaviour
             while (!isAttackDone)
             {
                 isFirstTimeAttack = false;
-                blueSquare.Clear();
+                RedSquare.Clear();
                 for (int i = 0; i < allsquare.Length; i++)
                 {
-                    if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
+                    if (allsquare[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Red)
                     {
-                        blueSquare.Add(allsquare[i]);
+                        RedSquare.Add(allsquare[i]);
                     }
                 }
-                if (blueSquare.Count == 0)
+                if (RedSquare.Count == 0)
                 {
                     break;
                 }
-                int randomBlue = Random.Range(0, blueSquare.Count);
+                int randomRed = Random.Range(0, RedSquare.Count);
                 if (Random.Range(0, 100) < 70)
                 {
                     try
                     {
-                        if (blueSquare[randomBlue].GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
+                        if (RedSquare[randomRed].GetComponent<Identity>().GetIdentity() == Identity.iden.Red)
                         {
-                            List<GameObject> TypeOfAttack = blueSquare[randomBlue].GetComponent<StateMortal>().MyTypeOfAttack;
+                            List<GameObject> TypeOfAttack = RedSquare[randomRed].GetComponent<StateMortal>().MyTypeOfAttack;
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
-                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
+                                if (isAttackDone) continue;
+
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Red && Random.Range(0, 100) < 10)
                                 {
-                                    int AttackDamage = blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount;
+                                    int AttackDamage = RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount;
                                     int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
-                                    if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
+                                    if ((AttackDamage += CountOfattacking) < 1000)
                                     {
-                                        AttackDamage = blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount;
-                                        blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        AttackDamage = RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount;
+                                        RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
+                                        // Line Effect
+                                        RedSquare[randomRed].GetComponent<StateMortal>()
+                                            .LineConnections(TypeOfAttack[i].gameObject, RedSquare[randomRed].transform.position, thePlayer.RedColor);
+
                                         isAttackDone = true;
                                     }
                                 }
-                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.Blue)
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.Red)
                                 {
-                                    if (blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                    if (RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
                                     {
-                                        int AttackDamage = blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount;
-                                        blueSquare[randomBlue].GetComponent<IncreaseMortal>().CurrentCount = 0;
+                                        int AttackDamage = RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount;
+                                        RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                                        // Line Effect
+                                        RedSquare[randomRed].GetComponent<StateMortal>()
+                                            .LineConnections(TypeOfAttack[i].gameObject, RedSquare[randomRed].transform.position, thePlayer.RedColor);
+
                                         isAttackDone = true;
                                         if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
                                         {
                                             TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
                                             TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
                                                 Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
-                                            TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.Blue);
+                                            TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.Red);
                                             thePlayer.RenederAllAgain(TypeOfAttack[i]);
-                                            TypeOfAttack[i].GetComponent<Image>().color = thePlayer.BlueColor;
-                                            TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.BlueColorText;
+                                            TypeOfAttack[i].GetComponent<Image>().color = thePlayer.RedColor;
+                                            TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.RedColorText;
                                             TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
@@ -229,9 +215,9 @@ public class EnemySystem : MonoBehaviour
                                             TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
-                                            if (thePlayer.MyRed != null)
+                                            if (thePlayer.MyBlue != null)
                                             {
-                                                thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                                thePlayer.MyBlue.GetComponent<SquareClass>().CheckCanWhoAttack();
                                             }
                                             isAttackDone = true;
                                         }
@@ -245,14 +231,14 @@ public class EnemySystem : MonoBehaviour
 
                     }
                 }
-                if (dif == Difficault.Meduim)
+                if (Difficaulty == Difficault.Meduim)
                 {
                     if (Random.Range(0, 100) > 90)
                     {
                         isAttackDone = false;
                     }
                 }
-                else if (dif == Difficault.Hard)
+                else if (Difficaulty == Difficault.Hard)
                 {
                     if (Random.Range(0, 100) > 80)
                     {
@@ -310,15 +296,21 @@ public class EnemySystem : MonoBehaviour
                             List<GameObject> TypeOfAttack = yellowSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
-                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Yellow)
+                                if (isAttackDone) continue;
+
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Yellow && Random.Range(0, 100) < 10)
                                 {
                                     int AttackDamage = yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                     int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
-                                    if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
+                                    if ((AttackDamage += CountOfattacking) < 1000)
                                     {
                                         AttackDamage = yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                         yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
+
+                                        yellowSquare[randomsquare].GetComponent<StateMortal>()
+                                            .LineConnections(TypeOfAttack[i].gameObject, yellowSquare[randomsquare].transform.position, thePlayer.YellowColor);
+
                                         isAttackDone = true;
                                     }
                                 }
@@ -329,6 +321,10 @@ public class EnemySystem : MonoBehaviour
                                         int AttackDamage = yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                         yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+
+                                        yellowSquare[randomsquare].GetComponent<StateMortal>()
+                                            .LineConnections(TypeOfAttack[i].gameObject, yellowSquare[randomsquare].transform.position, thePlayer.YellowColor);
+
                                         isAttackDone = true;
                                         if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
                                         {
@@ -346,9 +342,9 @@ public class EnemySystem : MonoBehaviour
                                             TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
-                                            if (thePlayer.MyRed != null)
+                                            if (thePlayer.MyBlue != null)
                                             {
-                                                thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                                thePlayer.MyBlue.GetComponent<SquareClass>().CheckCanWhoAttack();
                                             }
                                             isAttackDone = true;
                                         }
@@ -362,14 +358,14 @@ public class EnemySystem : MonoBehaviour
 
                     }
                 }
-                if (dif == Difficault.Meduim)
+                if (Difficaulty == Difficault.Meduim)
                 {
                     if (Random.Range(0, 100) > 70)
                     {
                         isAttackDone = false;
                     }
                 }
-                else if (dif == Difficault.Hard)
+                else if (Difficaulty == Difficault.Hard)
                 {
                     if (Random.Range(0, 100) > 60)
                     {
@@ -429,15 +425,21 @@ public class EnemySystem : MonoBehaviour
                             List<GameObject> TypeOfAttack = pinkSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
-                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Pink)
+                                if (isAttackDone) continue;
+
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Pink && Random.Range(0, 100) < 10)
                                 {
                                     int AttackDamage = pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                     int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
-                                    if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
+                                    if ((AttackDamage += CountOfattacking) < 1000)
                                     {
                                         AttackDamage = pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                         pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
+
+                                        pinkSquare[randomsquare].GetComponent<StateMortal>()
+                                            .LineConnections(TypeOfAttack[i].gameObject, pinkSquare[randomsquare].transform.position, thePlayer.PinkColor);
+
                                         isAttackDone = true;
                                     }
                                 }
@@ -448,6 +450,10 @@ public class EnemySystem : MonoBehaviour
                                         int AttackDamage = pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                         pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+
+                                        pinkSquare[randomsquare].GetComponent<StateMortal>()
+                                            .LineConnections(TypeOfAttack[i].gameObject, pinkSquare[randomsquare].transform.position, thePlayer.PinkColor);
+
                                         isAttackDone = true;
                                         if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
                                         {
@@ -465,9 +471,9 @@ public class EnemySystem : MonoBehaviour
                                             TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
-                                            if (thePlayer.MyRed != null)
+                                            if (thePlayer.MyBlue != null)
                                             {
-                                                thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                                thePlayer.MyBlue.GetComponent<SquareClass>().CheckCanWhoAttack();
                                             }
                                             isAttackDone = true;
                                         }
@@ -481,14 +487,14 @@ public class EnemySystem : MonoBehaviour
 
                     }
                 }
-                if (dif == Difficault.Meduim)
+                if (Difficaulty == Difficault.Meduim)
                 {
                     if (Random.Range(0, 100) > 80)
                     {
                         isAttackDone = false;
                     }
                 }
-                else if (dif == Difficault.Hard)
+                else if (Difficaulty == Difficault.Hard)
                 {
                     if (Random.Range(0, 100) > 70)
                     {
@@ -549,15 +555,21 @@ public class EnemySystem : MonoBehaviour
                             List<GameObject> TypeOfAttack = greenSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
-                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Green)
+                                if (isAttackDone) continue;
+
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Green && Random.Range(0, 100) < 10)
                                 {
                                     int AttackDamage = greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                     int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
-                                    if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
+                                    if ((AttackDamage += CountOfattacking) < 1000)
                                     {
                                         AttackDamage = greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                         greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
+
+                                        greenSquare[randomsquare].GetComponent<StateMortal>()
+                                            .LineConnections(TypeOfAttack[i].gameObject, greenSquare[randomsquare].transform.position, thePlayer.GreenColor);
+
                                         isAttackDone = true;
                                     }
                                 }
@@ -568,6 +580,11 @@ public class EnemySystem : MonoBehaviour
                                         int AttackDamage = greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                         greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+
+                                        greenSquare[randomsquare].GetComponent<StateMortal>()
+                                            .LineConnections(TypeOfAttack[i].gameObject, greenSquare[randomsquare].transform.position, thePlayer.GreenColor);
+
+
                                         isAttackDone = true;
                                         if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
                                         {
@@ -585,9 +602,9 @@ public class EnemySystem : MonoBehaviour
                                             TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
-                                            if (thePlayer.MyRed != null)
+                                            if (thePlayer.MyBlue != null)
                                             {
-                                                thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                                thePlayer.MyBlue.GetComponent<SquareClass>().CheckCanWhoAttack();
                                             }
                                             isAttackDone = true;
                                         }
@@ -601,14 +618,14 @@ public class EnemySystem : MonoBehaviour
 
                     }
                 }
-                if (dif == Difficault.Meduim)
+                if (Difficaulty == Difficault.Meduim)
                 {
                     if (Random.Range(0, 100) > 80)
                     {
                         isAttackDone = false;
                     }
                 }
-                else if (dif == Difficault.Hard)
+                else if (Difficaulty == Difficault.Hard)
                 {
                     if (Random.Range(0, 100) > 50)
                     {
@@ -668,15 +685,21 @@ public class EnemySystem : MonoBehaviour
                             List<GameObject> TypeOfAttack = OrangeSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
-                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Orange)
+                                if (isAttackDone) continue;
+ 
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Orange && Random.Range(0, 100) < 10)
                                 {
                                     int AttackDamage = OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                     int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
-                                    if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
+                                    if ((AttackDamage += CountOfattacking) < 1000)
                                     {
                                         AttackDamage = OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                         OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
+
+                                        OrangeSquare[randomsquare].GetComponent<StateMortal>()
+                                            .LineConnections(TypeOfAttack[i].gameObject, OrangeSquare[randomsquare].transform.position, thePlayer.OrangeColor);
+
                                         isAttackDone = true;
                                     }
                                 }
@@ -687,6 +710,10 @@ public class EnemySystem : MonoBehaviour
                                         int AttackDamage = OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                         OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+
+                                        OrangeSquare[randomsquare].GetComponent<StateMortal>()
+                                            .LineConnections(TypeOfAttack[i].gameObject, OrangeSquare[randomsquare].transform.position, thePlayer.OrangeColor);
+
                                         isAttackDone = true;
                                         if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
                                         {
@@ -704,9 +731,9 @@ public class EnemySystem : MonoBehaviour
                                             TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
-                                            if (thePlayer.MyRed != null)
+                                            if (thePlayer.MyBlue != null)
                                             {
-                                                thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                                thePlayer.MyBlue.GetComponent<SquareClass>().CheckCanWhoAttack();
                                             }
                                             isAttackDone = true;
                                         }
@@ -720,14 +747,14 @@ public class EnemySystem : MonoBehaviour
 
                     }
                 }
-                if (dif == Difficault.Meduim)
+                if (Difficaulty == Difficault.Meduim)
                 {
                     if (Random.Range(0, 100) > 80)
                     {
                         isAttackDone = false;
                     }
                 }
-                else if (dif == Difficault.Hard)
+                else if (Difficaulty == Difficault.Hard)
                 {
                     if (Random.Range(0, 100) > 50)
                     {
@@ -788,15 +815,21 @@ public class EnemySystem : MonoBehaviour
                             List<GameObject> TypeOfAttack = purpleSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
-                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.LastColor)
+                                if (isAttackDone) continue;
+
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.LastColor && Random.Range(0, 100) < 10)
                                 {
                                     int AttackDamage = purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                     int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
-                                    if (Random.Range(0, 100) < 10 && (AttackDamage += CountOfattacking) < 1000)
+                                    if ((AttackDamage += CountOfattacking) < 1000)
                                     {
                                         AttackDamage = purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                         purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
+
+                                        purpleSquare[randomsquare].GetComponent<StateMortal>()
+                                            .LineConnections(TypeOfAttack[i].gameObject, purpleSquare[randomsquare].transform.position, thePlayer.LastColor);
+
                                         isAttackDone = true;
                                     }
                                 }
@@ -808,6 +841,10 @@ public class EnemySystem : MonoBehaviour
                                         int AttackDamage = purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
                                         purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+
+                                        purpleSquare[randomsquare].GetComponent<StateMortal>()
+                                            .LineConnections(TypeOfAttack[i].gameObject, purpleSquare[randomsquare].transform.position, thePlayer.LastColor);
+
                                         isAttackDone = true;
                                         if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
                                         {
@@ -824,9 +861,9 @@ public class EnemySystem : MonoBehaviour
                                             TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
                                             TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
-                                            if (thePlayer.MyRed != null)
+                                            if (thePlayer.MyBlue != null)
                                             {
-                                                thePlayer.MyRed.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                                thePlayer.MyBlue.GetComponent<SquareClass>().CheckCanWhoAttack();
                                             }
                                             isAttackDone = true;
                                         }
@@ -840,14 +877,14 @@ public class EnemySystem : MonoBehaviour
 
                     }
                 }
-                if (dif == Difficault.Meduim)
+                if (Difficaulty == Difficault.Meduim)
                 {
                     if (Random.Range(0, 100) > 80)
                     {
                         isAttackDone = false;
                     }
                 }
-                else if (dif == Difficault.Hard)
+                else if (Difficaulty == Difficault.Hard)
                 {
                     if (Random.Range(0, 100) > 50)
                     {

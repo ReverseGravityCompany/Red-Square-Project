@@ -29,8 +29,8 @@ public class LevelManagerLearn : MonoBehaviour
 
     private void Awake() {
         Time.timeScale = 1;
-        if(FindObjectOfType<squareSoliderCounte>()){
-            FindObjectOfType<squareSoliderCounte>().StartGenerateSolider();
+        if(FindObjectOfType<SquareSoliderCount>()){
+            FindObjectOfType<SquareSoliderCount>().StartGenerateSolider();
         }
     }
 

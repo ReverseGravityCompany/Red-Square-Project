@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class squareSoliderCounte : MonoBehaviour
+public class SquareSoliderCount : MonoBehaviour
 {
     private WaitForSeconds timer;
     [SerializeField] private IncreaseMortal[] sqaurs;

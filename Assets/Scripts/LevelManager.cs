@@ -34,9 +34,15 @@ public class LevelManager : MonoBehaviour
     Identity[] AllMortalObjects;
     private bool WinGame, LoseGame;
 
+    private bool WinningRewardTaken;
+
     private bool IsCoinTaken = false;
 
     public static LevelManager _Instance { get; private set; }
+
+
+    public GameObject[] HandCraftedLevels;
+    public int CurrentLevel;
 
     #endregion
 
@@ -56,11 +62,28 @@ public class LevelManager : MonoBehaviour
 
         MaxCoin = 999999;
         MinCoin = 500;
-        Unlocknextlevel = SceneManager.GetActiveScene().buildIndex + 1;
-        if (SceneManager.GetActiveScene().name == "Level 1")
+
+        int level = 1;
+
+        if (PlayerPrefs.HasKey("MyLevel"))
         {
-            PlayerPrefs.SetInt("LearnEnd", 1);
+            level = PlayerPrefs.GetInt("MyLevel");
+            for (int i = 0; i < HandCraftedLevels.Length; i++)
+            {
+                HandCraftedLevels[i].SetActive(false);
+            }
+
+            HandCraftedLevels[level - 1].SetActive(true);
+            CurrentLevel = level;
         }
+        else
+        {
+            PlayerPrefs.SetInt("MyLevel", level);
+            PlayerPrefs.SetInt("LearnEnd", level);
+            CurrentLevel = level;
+        }
+
+        Unlocknextlevel = PlayerPrefs.GetInt("MyLevel") + 1;
     }
 
     private void Start()
@@ -118,7 +141,7 @@ public class LevelManager : MonoBehaviour
         {
             foreach (Identity obj in AllMortalObjects)
             {
-                if (obj.GetIdentity() != Identity.iden.Red)
+                if (obj.GetIdentity() != Identity.iden.Blue)
                 {
                     LoseStatus++;
                     if (LoseStatus >= AllMortalObjects.Length)
@@ -129,7 +152,7 @@ public class LevelManager : MonoBehaviour
                     LoseStatus = 0;
                 }
 
-                if (obj.GetIdentity() == Identity.iden.Red)
+                if (obj.GetIdentity() == Identity.iden.Blue)
                 {
                     WinStatus++;
                     if (WinStatus >= AllMortalObjects.Length)
@@ -167,7 +190,7 @@ public class LevelManager : MonoBehaviour
 
 
         // IF WE WIN
-        if (WinStatus >= AllMortalObjects.Length)
+        if (WinStatus >= AllMortalObjects.Length && !WinningRewardTaken)
         {
             WinGame = true;
             SkillsState = false;
@@ -176,11 +199,11 @@ public class LevelManager : MonoBehaviour
                 SkillsObject[i].gameObject.SetActive(false);
             }
         }
-        if (WinGame)
+        if (WinGame && !WinningRewardTaken)
         {
             if (PlayerPrefs.HasKey("UnlockLevel"))
             {
-                if (PlayerPrefs.GetInt("UnlockLevel") == SceneManager.GetActiveScene().buildIndex)
+                if (PlayerPrefs.GetInt("UnlockLevel") == CurrentLevel)
                 {
                     anim.SetTrigger("WinCoin");
                     IsCoinTaken = true;
@@ -196,7 +219,7 @@ public class LevelManager : MonoBehaviour
                 CheckValueOfLevel = PlayerPrefs.GetInt("ValueOfLevels");
             }
             int check = CheckValueOfLevel;
-            CheckValueOfLevel = SceneManager.GetActiveScene().buildIndex + 1;
+            CheckValueOfLevel = 1 + CurrentLevel;
             if (check >= CheckValueOfLevel)
             {
                 CheckValueOfLevel = check;
@@ -210,19 +233,7 @@ public class LevelManager : MonoBehaviour
             PlayerPrefs.SetInt("UnlockLevel", PlayerPrefs.GetInt("ValueOfLevels"));
 
             Time.timeScale = 0f;
-            if (SceneManager.GetActiveScene().buildIndex != 100)
-            {
-                Win.SetActive(true);
-            }
-            else if (SceneManager.GetActiveScene().buildIndex == 100 && !CoinRecive)
-            {
-                //CoinWinning = MaxCoin;
-                CurrentCoin += CoinWinning;
-                ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
-                //StartCoroutine(CloseLast());
-                CoinRecive = true;
-                return;
-            }
+            Win.SetActive(true);
 
             if (!CoinRecive)
             {
@@ -239,6 +250,7 @@ public class LevelManager : MonoBehaviour
             }
             CoinWiningText.text = CoinWinning.ToString();
             CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(CoinPosX, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
+            WinningRewardTaken = true;
         }
     }
 
@@ -251,17 +263,14 @@ public class LevelManager : MonoBehaviour
     {
         DG.Tweening.DOTween.KillAll();
         PlayerPrefs.SetInt("FastRun", 1);
-        PlayerPrefs.SetInt("Restarted", 1);
+        PlayerPrefs.SetInt("MyLevel", CurrentLevel);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void NextLevel()
     {
         DG.Tweening.DOTween.KillAll();
-        if (SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1) != null)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void RewardGift(int RewardCount)
