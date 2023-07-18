@@ -192,11 +192,24 @@ public class EnemySystem : MonoBehaviour
                                     if (RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
                                     {
                                         int AttackDamage = RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount;
+
+                                        IncreaseMortal objData = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+
+                                        int maxDamage = AttackDamage;
+                                        if (AttackDamage > objData.CurrentCount)
+                                        {
+                                            maxDamage = objData.CurrentCount;
+                                        }
+
+                                        int objBurnValue = objData.CurrentCount + maxDamage;
+
                                         RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
                                         // Line Effect
                                         RedSquare[randomRed].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, RedSquare[randomRed].transform.position, thePlayer.RedColor);
+
+                                        RedSquare[randomRed].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject, thePlayer.RedColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
 
                                         isAttackDone = true;
                                         if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
@@ -319,11 +332,25 @@ public class EnemySystem : MonoBehaviour
                                     if (yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
                                     {
                                         int AttackDamage = yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+
+                                        IncreaseMortal objData = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+
+                                        int maxDamage = AttackDamage;
+                                        if (AttackDamage > objData.CurrentCount)
+                                        {
+                                            maxDamage = objData.CurrentCount;
+                                        }
+
+                                        int objBurnValue = objData.CurrentCount + maxDamage;
+
+
                                         yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
 
                                         yellowSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, yellowSquare[randomsquare].transform.position, thePlayer.YellowColor);
+
+                                        yellowSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject, thePlayer.YellowColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
 
                                         isAttackDone = true;
                                         if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
@@ -448,11 +475,25 @@ public class EnemySystem : MonoBehaviour
                                     if (pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
                                     {
                                         int AttackDamage = pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+
+                                        IncreaseMortal objData = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+
+                                        int maxDamage = AttackDamage;
+                                        if (AttackDamage > objData.CurrentCount)
+                                        {
+                                            maxDamage = objData.CurrentCount;
+                                        }
+
+                                        int objBurnValue = objData.CurrentCount + maxDamage;
+
                                         pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
 
                                         pinkSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, pinkSquare[randomsquare].transform.position, thePlayer.PinkColor);
+
+                                        pinkSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject,
+                                            thePlayer.PinkColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
 
                                         isAttackDone = true;
                                         if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
@@ -578,11 +619,25 @@ public class EnemySystem : MonoBehaviour
                                     if (greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
                                     {
                                         int AttackDamage = greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+
+                                        IncreaseMortal objData = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+
+                                        int maxDamage = AttackDamage;
+                                        if (AttackDamage > objData.CurrentCount)
+                                        {
+                                            maxDamage = objData.CurrentCount;
+                                        }
+
+                                        int objBurnValue = objData.CurrentCount + maxDamage;
+
                                         greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
 
                                         greenSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, greenSquare[randomsquare].transform.position, thePlayer.GreenColor);
+
+                                        greenSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject,
+                                            thePlayer.GreenColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
 
 
                                         isAttackDone = true;
@@ -708,11 +763,25 @@ public class EnemySystem : MonoBehaviour
                                     if (OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
                                     {
                                         int AttackDamage = OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+
+                                        IncreaseMortal objData = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+
+                                        int maxDamage = AttackDamage;
+                                        if (AttackDamage > objData.CurrentCount)
+                                        {
+                                            maxDamage = objData.CurrentCount;
+                                        }
+
+                                        int objBurnValue = objData.CurrentCount + maxDamage;
+
                                         OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
 
                                         OrangeSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, OrangeSquare[randomsquare].transform.position, thePlayer.OrangeColor);
+
+                                        OrangeSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject,
+                                            thePlayer.OrangeColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
 
                                         isAttackDone = true;
                                         if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
@@ -837,17 +906,31 @@ public class EnemySystem : MonoBehaviour
                                 {
                                     if (purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
                                     {
-                                        TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
                                         int AttackDamage = purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+
+                                        IncreaseMortal objData = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+
+                                        int maxDamage = AttackDamage;
+                                        if (AttackDamage > objData.CurrentCount)
+                                        {
+                                            maxDamage = objData.CurrentCount;
+                                        }
+
+                                        int objBurnValue = objData.CurrentCount + maxDamage;
+
                                         purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
                                         TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
 
                                         purpleSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, purpleSquare[randomsquare].transform.position, thePlayer.LastColor);
 
+                                        purpleSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject,
+                                            thePlayer.LastColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
+
                                         isAttackDone = true;
                                         if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
                                         {
+                                            TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
                                             TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
                                                 Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
                                             TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.LastColor);

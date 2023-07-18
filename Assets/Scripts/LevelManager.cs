@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using CodeStage.AntiCheat.ObscuredTypes;
+using UnityEngine.Audio;
 
 public class LevelManager : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class LevelManager : MonoBehaviour
     public AudioSource NextMatchSound;
     public AudioSource WinSound;
     public AudioSource MoneySound;
+    public AudioSource LoseSound;
+    public AudioMixer Game_AudioMixer;
+
 
     private bool CoinRecive;
     public float CoinPosX = -180f;
@@ -43,6 +47,7 @@ public class LevelManager : MonoBehaviour
 
     public GameObject[] HandCraftedLevels;
     public int CurrentLevel;
+
 
     #endregion
 
@@ -176,9 +181,11 @@ public class LevelManager : MonoBehaviour
         {
             LoseGame = true;
         }
-        if (LoseGame)
+        if (LoseGame && !Lose.activeSelf)
         {
-            Time.timeScale = 0f;
+            LoseSound.Play();
+            Game_AudioMixer.DOSetFloat("Lowpass_Music", 650, 1.8f).SetEase(Ease.Linear).SetUpdate(true);
+            Time.timeScale = 0.5f;
             Lose.SetActive(true);
             SkillsState = false;
             for (int i = 0; i < SkillsObject.Length; i++)
@@ -201,6 +208,7 @@ public class LevelManager : MonoBehaviour
         }
         if (WinGame && !WinningRewardTaken)
         {
+            Game_AudioMixer.DOSetFloat("Lowpass_Music", 650, 1.55f).SetEase(Ease.Linear).SetUpdate(true);
             if (PlayerPrefs.HasKey("UnlockLevel"))
             {
                 if (PlayerPrefs.GetInt("UnlockLevel") == CurrentLevel)
@@ -232,7 +240,7 @@ public class LevelManager : MonoBehaviour
             PlayerPrefs.SetInt("MyLevel", Unlocknextlevel);
             PlayerPrefs.SetInt("UnlockLevel", PlayerPrefs.GetInt("ValueOfLevels"));
 
-            Time.timeScale = 0f;
+            Time.timeScale = 0.5f;
             Win.SetActive(true);
 
             if (!CoinRecive)

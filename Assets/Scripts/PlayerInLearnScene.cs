@@ -34,7 +34,7 @@ public class PlayerInLearnScene : MonoBehaviour
     private void Start()
     {
         allMortal = FindObjectOfType<AllMortal>();
-        CamMove = FindObjectOfType<CameraMovement>();
+        CamMove = CameraMovement._Instance;
         theLevelManager = FindObjectOfType<LevelManager>();
         skills = FindObjectOfType<Skills>();
         enemySystem = FindObjectOfType<EnemySystem>();

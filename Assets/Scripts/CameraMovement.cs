@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CnControls;
+using EZCameraShake;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -13,7 +14,24 @@ public class CameraMovement : MonoBehaviour
 
     public bool isCameraMoveingWaitToClickOver;
 
-    private void Start() {
+    public bool isDragging;
+
+    public static CameraMovement _Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (_Instance != null && _Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _Instance = this;
+        }
+    }
+
+    private void Start()
+    {
         Speed = 4;
     }
 
@@ -39,22 +57,24 @@ public class CameraMovement : MonoBehaviour
 
             zoom(difference * 0.01f);
 
-
-            
         }
 
-       Vector3 Move = new Vector3(MoveX, MoveY , 0f);
+        Vector3 Move = new Vector3(MoveX, MoveY, 0f);
 
-
-        Camera.main.transform.Translate(Move);
+        if (!isDragging)
+            Camera.main.transform.Translate(Move);
 
         if (MoveX == 0 && MoveY == 0)
             isCameraMoving = false;
-        else{
-            isCameraMoving = true;
-            isCameraMoveingWaitToClickOver = true;
+        else
+        {
+            if (!isDragging)
+            {
+                isCameraMoving = true;
+                isCameraMoveingWaitToClickOver = true;
+            }
         }
-         
+
 
 
 
@@ -66,5 +86,29 @@ public class CameraMovement : MonoBehaviour
     {
         Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - increment, zoomOutMin, zoomOutMax);
     }
+
+
+    public void Shake(float magnitude, float roughness, float fadeInTime, float fadeOutTime)
+    {
+        CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime, fadeOutTime);
+    }
+
+
+    //public IEnumerator Shake(float duration, float magnitude)
+    //{
+    //    Vector3 orignalPosition = transform.position;
+    //    float elapsed = 0f;
+
+    //    while (elapsed < duration)
+    //    {
+    //        float x = Random.Range(-1f, 1f) * magnitude;
+    //        float y = Random.Range(-1f, 1f) * magnitude;
+
+    //        transform.position = new Vector3(x, y, -10f);
+    //        elapsed += Time.deltaTime;
+    //        yield return 0;
+    //    }
+    //    transform.position = orignalPosition;
+    //}
 }
 

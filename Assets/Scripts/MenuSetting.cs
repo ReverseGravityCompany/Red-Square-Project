@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using DG.Tweening;
 
 public class MenuSetting : MonoBehaviour
 {
@@ -53,6 +55,7 @@ public class MenuSetting : MonoBehaviour
     #region Functions
     private void Awake()
     {
+        
         if (CurrentLevel > 100)
         {
             CurrentLevel = 100;
@@ -91,6 +94,7 @@ public class MenuSetting : MonoBehaviour
 
     private void Start()
     {
+        LevelManager._Instance.Game_AudioMixer.DOSetFloat("Lowpass_Music", 1000, 0.5f).SetUpdate(true);
         enemySystem = FindObjectOfType<EnemySystem>();
         camera = Camera.main;
         if (Helper_Menu != null && Hand != null)
@@ -147,7 +151,7 @@ public class MenuSetting : MonoBehaviour
             PlayerPrefs.SetInt("NoteHelperLevel4", 0);
             Helper_Menu.SetActive(true);
             Hand.SetActive(true);
-        }      
+        }
     }
 
     private void Update()
@@ -175,6 +179,7 @@ public class MenuSetting : MonoBehaviour
 
         if (CurrentLevel <= 100)
         {
+            LevelManager._Instance.Game_AudioMixer.DOSetFloat("Lowpass_Music", 5000, 1.65f).SetUpdate(true);
             PlaySound.Play();
             SoundSetting.gameObject.SetActive(false);
             ButtonStart.SetActive(false);

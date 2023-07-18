@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEditor.Rendering.LookDev;
 
 public class Player : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class Player : MonoBehaviour
     public GameObject[] AllSkilles;
     private MenuSetting menuSetting;
     public CameraMovement CamMove;
-    public AudioSource ClickMortalSound;
+    public AudioSource SelectMortalSound,AttackNoneColorSound, AttackRedColorSound;
     private LevelManager theLevelManager;
     private Skills skills;
 
@@ -34,11 +35,14 @@ public class Player : MonoBehaviour
 
     private EnemySystem enemySystem;
 
+    private GameObject SelectedObject;
+    private bool CanUseDrag;
+
     private void Start()
     {
         allMortal = FindObjectOfType<AllMortal>();
         menuSetting = FindObjectOfType<MenuSetting>();
-        CamMove = FindObjectOfType<CameraMovement>();
+        CamMove = CameraMovement._Instance;
         theLevelManager = FindObjectOfType<LevelManager>();
         skills = FindObjectOfType<Skills>();
         enemySystem = FindObjectOfType<EnemySystem>();
@@ -50,8 +54,32 @@ public class Player : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.zero);
         RaycastHit2D hit2 = Physics2D.Raycast(Input.mousePosition, Vector3.zero);
 
-        if(Input.GetMouseButtonDown(0)){
+        if (Input.GetMouseButtonDown(0))
+        {
             CamMove.isCameraMoveingWaitToClickOver = false;
+
+            if(hit.collider != null)
+            {
+                GameObject draggingObj = hit.collider.gameObject;
+                if (draggingObj.GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
+                {
+                    SelectedObject = draggingObj;
+                    CanUseDrag = true;
+                    CamMove.isDragging = true;
+                }
+                else
+                {
+                    SelectedObject = null;
+                    CanUseDrag = false;
+                    CamMove.isDragging = false;
+                }
+            }
+            else
+            {
+                SelectedObject = null;
+                CanUseDrag = false;
+                CamMove.isDragging = false;
+            }
         }
 
 
@@ -60,23 +88,59 @@ public class Player : MonoBehaviour
             //print(hit.collider);
             if (hit.collider != null && !BlueStop && hit2.collider == null && !CamMove.isCameraMoving && !CamMove.isCameraMoveingWaitToClickOver)
             {
+                
                 GameObject obj = hit.collider.gameObject;
+
                 BlueStop = true;
-                ClickMortalSound.Play();
+
+                if (CanUseDrag && !MyBlue)
+                {
+                    if (SelectedObject != obj)
+                    {
+                        MyBlue = SelectedObject;
+                        PickUp = !PickUp;
+                        MyBlue.GetComponent<SquareClass>().CanPush = true;
+                        MyBlue.GetComponent<SquareClass>().CanAttack = true;
+                        MyBlue.transform.Find("CountMortal").GetComponent<Text>().color = BlueColorPickText;
+                        MyBlue.transform.DOScale(0.85f, 0.3f).SetEase(Ease.Linear).From();
+
+                        #region [AllMorta]
+                        GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];
+                        for (int i = 0; i < ObjectsMortal.Length; i++)
+                        {
+                            ObjectsMortal[i] = FindObjectsOfType<Identity>()[i].gameObject;
+                        }
+
+                        for (int i = 0; i < ObjectsMortal.Length; i++)
+                        {
+                            if (ObjectsMortal[i] == MyBlue)
+                            {
+                                ObjectsMortal[i].GetComponent<StateMortal>().ShowTypeOfAttack();
+                                ObjectsMortal[i].GetComponent<StateMortal>().WhoCantAttack(ObjectsMortal, MyBlue);
+                            }
+                        }
+                        #endregion
+
+                    }
+                }
 
                 if (MyBlue != null)
                 {
                     if (MyBlue != obj)
                     {
-                        List<GameObject> stateRed = MyBlue.GetComponent<StateMortal>().CantAttack;
-                        for(int i = 0 ; i < stateRed.Count;i++){
-                            if(stateRed[i] == obj){
+                        List<GameObject> stateBlue = MyBlue.GetComponent<StateMortal>().CantAttack;
+                        for (int i = 0; i < stateBlue.Count; i++)
+                        {
+                            if (stateBlue[i] == obj)
+                            {
                                 BlueStop = false;
                                 return;
                             }
                         }
                     }
                 }
+
+                
 
                 #region Blue to Blue
                 if (MyBlue != null)
@@ -184,7 +248,7 @@ public class Player : MonoBehaviour
 
     public void RenederAllAgain(GameObject obj)
     {
-        if(!Object.ReferenceEquals(MyBlue,null))
+        if (!Object.ReferenceEquals(MyBlue, null))
         {
             if (Object.ReferenceEquals(MyBlue, obj))
             {
@@ -225,6 +289,7 @@ public class Player : MonoBehaviour
     {
         if (Identity.iden.Blue == obj.GetComponent<Identity>().GetIdentity())
         {
+            SelectMortalSound.Play();
             if (MyBlue != null)
             {
                 MyBlue.GetComponent<Image>().color = BlueColor;
@@ -242,8 +307,6 @@ public class Player : MonoBehaviour
                 skills.SelectedMortal = MyBlue.GetComponent<SquareClass>();
 
                 MyBlue.transform.DOScale(0.85f, 0.3f).SetEase(Ease.Linear).From();
-
-                print(MyBlue.transform.position);
 
                 #region [AllMorta]
                 GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];
@@ -295,14 +358,14 @@ public class Player : MonoBehaviour
 
     #region BLUE TO BLUE
     private void AddBlueToBlue(GameObject obj)
-    {
-        
+    {       
         if (MyBlue != null && obj != null && MyBlue.GetComponent<SquareClass>().CanPush && obj.GetComponent<SquareClass>().CanAttack)
         {
             int AttackDamage = MyBlue.GetComponent<IncreaseMortal>().CurrentCount;
             MyBlue.GetComponent<IncreaseMortal>().CurrentCount = 0;
             obj.GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
             PickUp = !PickUp;
+            SelectMortalSound.Play();
             MyBlue.GetComponent<SquareClass>().CanPush = false;
             MyBlue.GetComponent<Image>().color = BlueColor;
             MyBlue.transform.Find("CountMortal").GetComponent<Text>().color = BlueColorText;
@@ -314,6 +377,8 @@ public class Player : MonoBehaviour
             skills.X2 = false;
             skills.MaxSpace = false;
 
+
+            CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
             MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
 
             MyBlue = null;
@@ -361,23 +426,38 @@ public class Player : MonoBehaviour
     {
         if (Identity.iden.None == obj.GetComponent<Identity>().GetIdentity())
         {
-            if (MyBlue != null && obj != null && MyBlue.GetComponent<SquareClass>().CanPush && obj.GetComponent<SquareClass>().CanAttack)
+            if (MyBlue != null && obj != null && MyBlue.GetComponent<SquareClass>().CanPush && MyBlue.GetComponent<SquareClass>().CanAttack)
             {
                 if (MyBlue.GetComponent<IncreaseMortal>().CurrentCount > 0)
                 {
                     int AttackDamage = MyBlue.GetComponent<IncreaseMortal>().CurrentCount;
                     MyBlue.GetComponent<IncreaseMortal>().CurrentCount = 0;
-                    obj.GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                    IncreaseMortal objData = obj.GetComponent<IncreaseMortal>();
 
-                    if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                    int maxDamage = 0;
+                    if (AttackDamage > objData.CurrentCount)
+                    {
+                        maxDamage = objData.CurrentCount;
+                    }
+                    else
+                        maxDamage = AttackDamage;
+
+                    int objBurnValue = objData.CurrentCount + maxDamage;
+                    objData.CurrentCount -= AttackDamage;
+
+                    MyBlue.GetComponent<StateMortal>().ArmyBurning(obj, BlueColor, NoneColor, objBurnValue / 2);
+                    MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
+
+
+                    if (objData.CurrentCount <= 0)
                     {
                         obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
-                        obj.GetComponent<IncreaseMortal>().CurrentCount =
-                            Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
+                        objData.CurrentCount =
+                            Mathf.Abs(objData.CurrentCount);
                         obj.GetComponent<Identity>().SetIdentity(Identity.iden.Blue);
                         obj.GetComponent<Image>().color = BlueColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = BlueColorText;
-                        obj.GetComponent<IncreaseMortal>().ValidateMortal();
+                        objData.ValidateMortal();
                     }
 
                     PickUp = !PickUp;
@@ -392,6 +472,8 @@ public class Player : MonoBehaviour
                     skills.X2 = false;
                     skills.MaxSpace = false;
 
+                    AttackNoneColorSound.Play();
+                    CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
                     MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
 
                     MyBlue = null;
@@ -432,6 +514,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
+            SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;
@@ -443,24 +526,34 @@ public class Player : MonoBehaviour
     {
         if (Identity.iden.Red == obj.GetComponent<Identity>().GetIdentity())
         {
-            if (MyBlue != null && obj != null && MyBlue.GetComponent<SquareClass>().CanPush && obj.GetComponent<SquareClass>().CanAttack)
+            if (MyBlue != null && obj != null && MyBlue.GetComponent<SquareClass>().CanPush && MyBlue.GetComponent<SquareClass>().CanAttack)
             {
                 if (MyBlue.GetComponent<IncreaseMortal>().CurrentCount > 0)
                 {
                     int AttackDamage = MyBlue.GetComponent<IncreaseMortal>().CurrentCount;
                     MyBlue.GetComponent<IncreaseMortal>().CurrentCount = 0;
-                    obj.GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
 
-                    if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                    IncreaseMortal objData = obj.GetComponent<IncreaseMortal>();
+
+                    int maxDamage = AttackDamage;
+                    if (AttackDamage > objData.CurrentCount)
+                    {
+                        maxDamage = objData.CurrentCount;
+                    }
+
+                    int objBurnValue = objData.CurrentCount + maxDamage;
+                    objData.CurrentCount -= AttackDamage;
+
+                    if (objData.CurrentCount <= 0)
                     {
                         obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
-                        obj.GetComponent<IncreaseMortal>().CurrentCount =
-                            Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
+                        objData.CurrentCount =
+                            Mathf.Abs(objData.CurrentCount);
                         obj.GetComponent<Identity>().SetIdentity(Identity.iden.Blue);
-                        enemySystem.LookAtList(obj,Identity.iden.Red);
+                        enemySystem.LookAtList(obj, Identity.iden.Red);
                         obj.GetComponent<Image>().color = BlueColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = BlueColorText;
-                        obj.GetComponent<IncreaseMortal>().ValidateMortal();
+                        objData.ValidateMortal();
                     }
 
                     PickUp = !PickUp;
@@ -475,6 +568,10 @@ public class Player : MonoBehaviour
                     skills.X2 = false;
                     skills.MaxSpace = false;
 
+                    AttackRedColorSound.Play();
+                    CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
+
+                    MyBlue.GetComponent<StateMortal>().ArmyBurning(obj, BlueColor, RedColor, objBurnValue / 2);
                     MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
 
                     MyBlue = null;
@@ -515,6 +612,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
+            SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;
@@ -532,18 +630,30 @@ public class Player : MonoBehaviour
                 {
                     int AttackDamage = MyBlue.GetComponent<IncreaseMortal>().CurrentCount;
                     MyBlue.GetComponent<IncreaseMortal>().CurrentCount = 0;
-                    obj.GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
 
-                    if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                    IncreaseMortal objData = obj.GetComponent<IncreaseMortal>();
+
+                    int maxDamage = 0;
+                    if (AttackDamage > objData.CurrentCount)
+                    {
+                        maxDamage = objData.CurrentCount;
+                    }
+                    else
+                        maxDamage = AttackDamage;
+
+                    int objBurnValue = objData.CurrentCount + maxDamage;
+                    objData.CurrentCount -= AttackDamage;
+
+                    if (objData.CurrentCount <= 0)
                     {
                         obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
-                        obj.GetComponent<IncreaseMortal>().CurrentCount =
-                            Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
+                        objData.CurrentCount =
+                            Mathf.Abs(objData.CurrentCount);
                         obj.GetComponent<Identity>().SetIdentity(Identity.iden.Blue);
-                        enemySystem.LookAtList(obj,Identity.iden.Yellow);
+                        enemySystem.LookAtList(obj, Identity.iden.Yellow);
                         obj.GetComponent<Image>().color = BlueColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = BlueColorText;
-                        obj.GetComponent<IncreaseMortal>().ValidateMortal();
+                        objData.ValidateMortal();
                     }
 
                     PickUp = !PickUp;
@@ -558,6 +668,9 @@ public class Player : MonoBehaviour
                     skills.X2 = false;
                     skills.MaxSpace = false;
 
+                    CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
+
+                    MyBlue.GetComponent<StateMortal>().ArmyBurning(obj, BlueColor, YellowColor, objBurnValue / 2);
                     MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
 
                     MyBlue = null;
@@ -598,6 +711,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
+            SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;
@@ -615,18 +729,28 @@ public class Player : MonoBehaviour
                 {
                     int AttackDamage = MyBlue.GetComponent<IncreaseMortal>().CurrentCount;
                     MyBlue.GetComponent<IncreaseMortal>().CurrentCount = 0;
-                    obj.GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
 
-                    if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                    IncreaseMortal objData = obj.GetComponent<IncreaseMortal>();
+
+                    int maxDamage = AttackDamage;
+                    if (AttackDamage > objData.CurrentCount)
+                    {
+                        maxDamage = objData.CurrentCount;
+                    }
+
+                    int objBurnValue = objData.CurrentCount + maxDamage;
+                    objData.CurrentCount -= AttackDamage;
+
+                    if (objData.CurrentCount <= 0)
                     {
                         obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
-                        obj.GetComponent<IncreaseMortal>().CurrentCount =
-                            Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
+                        objData.CurrentCount =
+                            Mathf.Abs(objData.CurrentCount);
                         obj.GetComponent<Identity>().SetIdentity(Identity.iden.Blue);
-                        enemySystem.LookAtList(obj,Identity.iden.Pink);
+                        enemySystem.LookAtList(obj, Identity.iden.Pink);
                         obj.GetComponent<Image>().color = BlueColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = BlueColorText;
-                        obj.GetComponent<IncreaseMortal>().ValidateMortal();
+                        objData.ValidateMortal();
                     }
 
                     PickUp = !PickUp;
@@ -641,6 +765,10 @@ public class Player : MonoBehaviour
                     skills.X2 = false;
                     skills.MaxSpace = false;
 
+
+                    CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
+
+                    MyBlue.GetComponent<StateMortal>().ArmyBurning(obj, BlueColor, PinkColor, objBurnValue / 2);
                     MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
 
                     MyBlue = null;
@@ -681,6 +809,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
+            SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;
@@ -698,18 +827,29 @@ public class Player : MonoBehaviour
                 {
                     int AttackDamage = MyBlue.GetComponent<IncreaseMortal>().CurrentCount;
                     MyBlue.GetComponent<IncreaseMortal>().CurrentCount = 0;
-                    obj.GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
 
-                    if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                    IncreaseMortal objData = obj.GetComponent<IncreaseMortal>();
+
+                    int maxDamage = AttackDamage;
+                    if (AttackDamage > objData.CurrentCount)
+                    {
+                        maxDamage = objData.CurrentCount;
+                    }
+
+                    int objBurnValue = objData.CurrentCount + maxDamage;
+
+                    objData.CurrentCount -= AttackDamage;
+
+                    if (objData.CurrentCount <= 0)
                     {
                         obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
-                        obj.GetComponent<IncreaseMortal>().CurrentCount =
-                            Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
+                        objData.CurrentCount =
+                            Mathf.Abs(objData.CurrentCount);
                         obj.GetComponent<Identity>().SetIdentity(Identity.iden.Blue);
-                        enemySystem.LookAtList(obj,Identity.iden.Green);
+                        enemySystem.LookAtList(obj, Identity.iden.Green);
                         obj.GetComponent<Image>().color = BlueColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = BlueColorText;
-                        obj.GetComponent<IncreaseMortal>().ValidateMortal();
+                        objData.ValidateMortal();
                     }
 
                     PickUp = !PickUp;
@@ -724,6 +864,9 @@ public class Player : MonoBehaviour
                     skills.X2 = false;
                     skills.MaxSpace = false;
 
+                    CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
+
+                    MyBlue.GetComponent<StateMortal>().ArmyBurning(obj, BlueColor, GreenColor, objBurnValue / 2);
                     MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
 
                     MyBlue = null;
@@ -764,6 +907,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
+            SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;
@@ -781,18 +925,28 @@ public class Player : MonoBehaviour
                 {
                     int AttackDamage = MyBlue.GetComponent<IncreaseMortal>().CurrentCount;
                     MyBlue.GetComponent<IncreaseMortal>().CurrentCount = 0;
-                    obj.GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
 
-                    if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                    IncreaseMortal objData = obj.GetComponent<IncreaseMortal>();
+
+                    int maxDamage = AttackDamage;
+                    if (AttackDamage > objData.CurrentCount)
+                    {
+                        maxDamage = objData.CurrentCount;
+                    }
+
+                    int objBurnValue = objData.CurrentCount + maxDamage;
+                    objData.CurrentCount -= AttackDamage;
+
+                    if (objData.CurrentCount <= 0)
                     {
                         obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
-                        obj.GetComponent<IncreaseMortal>().CurrentCount =
-                            Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
+                        objData.CurrentCount =
+                            Mathf.Abs(objData.CurrentCount);
                         obj.GetComponent<Identity>().SetIdentity(Identity.iden.Blue);
-                        enemySystem.LookAtList(obj,Identity.iden.Orange);
+                        enemySystem.LookAtList(obj, Identity.iden.Orange);
                         obj.GetComponent<Image>().color = BlueColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = BlueColorText;
-                        obj.GetComponent<IncreaseMortal>().ValidateMortal();
+                        objData.ValidateMortal();
                     }
 
                     PickUp = !PickUp;
@@ -807,6 +961,9 @@ public class Player : MonoBehaviour
                     skills.X2 = false;
                     skills.MaxSpace = false;
 
+                    CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
+
+                    MyBlue.GetComponent<StateMortal>().ArmyBurning(obj, BlueColor, OrangeColor, objBurnValue / 2);
                     MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
 
                     MyBlue = null;
@@ -847,6 +1004,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
+            SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;
@@ -864,18 +1022,29 @@ public class Player : MonoBehaviour
                 {
                     int AttackDamage = MyBlue.GetComponent<IncreaseMortal>().CurrentCount;
                     MyBlue.GetComponent<IncreaseMortal>().CurrentCount = 0;
-                    obj.GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
 
-                    if (obj.GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                    IncreaseMortal objData = obj.GetComponent<IncreaseMortal>();
+
+                    int maxDamage = AttackDamage;
+                    if (AttackDamage > objData.CurrentCount)
+                    {
+                        maxDamage = objData.CurrentCount;
+                    }
+
+                    int objBurnValue = objData.CurrentCount + maxDamage;
+
+                    objData.CurrentCount -= AttackDamage;
+
+                    if (objData.CurrentCount <= 0)
                     {
                         obj.GetComponent<StateMortal>().ResetTypeOfAttackData();
-                        obj.GetComponent<IncreaseMortal>().CurrentCount =
-                            Mathf.Abs(obj.GetComponent<IncreaseMortal>().CurrentCount);
+                        objData.CurrentCount =
+                            Mathf.Abs(objData.CurrentCount);
                         obj.GetComponent<Identity>().SetIdentity(Identity.iden.Blue);
-                        enemySystem.LookAtList(obj,Identity.iden.LastColor);
+                        enemySystem.LookAtList(obj, Identity.iden.LastColor);
                         obj.GetComponent<Image>().color = BlueColor;
                         obj.transform.Find("CountMortal").GetComponent<Text>().color = BlueColorText;
-                        obj.GetComponent<IncreaseMortal>().ValidateMortal();
+                        objData.ValidateMortal();
                     }
 
                     PickUp = !PickUp;
@@ -890,6 +1059,10 @@ public class Player : MonoBehaviour
                     skills.X2 = false;
                     skills.MaxSpace = false;
 
+
+                    CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
+
+                    MyBlue.GetComponent<StateMortal>().ArmyBurning(obj, BlueColor, LastColor, objBurnValue / 2);
                     MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
 
                     MyBlue = null;
@@ -930,6 +1103,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
+            SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;

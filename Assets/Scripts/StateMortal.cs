@@ -120,7 +120,7 @@ public class StateMortal : MonoBehaviour
         }
     }
 
-    public void LineConnections(GameObject targetMortal, Vector3 pos , Color LineColor)
+    public void LineConnections(GameObject targetMortal, Vector3 pos, Color LineColor)
     {
         foreach (var obj in FixedAttackTypes)
         {
@@ -150,7 +150,25 @@ public class StateMortal : MonoBehaviour
         }
     }
 
+    public void ArmyBurning(GameObject targetMortal, Color mainColor, Color targetColor , int burstCount)
+    {
+        ParticleSystem ArmyParticle = ObjectPooler._Instance.SpawnFromPool("ArmyParticle",
+            targetMortal.transform.position, new Vector3(0, 0, 0)).GetComponent<ParticleSystem>();
 
+        ParticleSystem.MainModule ArmyMain = ArmyParticle.main;
+        ArmyMain.startColor = new ParticleSystem.MinMaxGradient(mainColor, targetColor);
+
+        ParticleSystem.EmissionModule ArmyEmmision = ArmyParticle.emission;
+        ParticleSystem.Burst burst = new ParticleSystem.Burst();
+        burst.count = burstCount;
+        burst.time = 0;
+        burst.cycleCount = 1;
+        burst.probability = 1;
+        ArmyEmmision.SetBurst(0, burst);
+
+        ArmyParticle.Play();
+
+    }
 
 
     // private void Update() {
