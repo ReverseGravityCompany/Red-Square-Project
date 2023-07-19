@@ -43,7 +43,8 @@ public class Loading : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Learn1");
+            //SceneManager.LoadScene("Learn1");
+            SceneManager.LoadScene(HandCraftedLevelName);
         }
     }
 }

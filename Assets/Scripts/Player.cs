@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using UnityEditor.Rendering.LookDev;
 
 public class Player : MonoBehaviour
 {
@@ -24,9 +23,9 @@ public class Player : MonoBehaviour
     public bool PickUp = true;
     [HideInInspector]
     public AllMortal allMortal;
-    public GameObject[] AllSkilles;
+    //public GameObject[] AllSkilles;
     private MenuSetting menuSetting;
-    public CameraMovement CamMove;
+    [HideInInspector] public CameraMovement CamMove;
     public AudioSource SelectMortalSound,AttackNoneColorSound, AttackRedColorSound;
     private LevelManager theLevelManager;
     private Skills skills;
