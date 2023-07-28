@@ -7,14 +7,19 @@ using EZCameraShake;
 public class CameraMovement : MonoBehaviour
 {
     public float Speed = 5;
-    public bool isCameraMoving = false;
+    [HideInInspector] public bool isCameraMoving = false;
 
     public float zoomOutMin = 3;
     public float zoomOutMax = 8;
 
-    public bool isCameraMoveingWaitToClickOver;
+    [HideInInspector] public bool isCameraMoveingWaitToClickOver;
 
-    public bool isDragging;
+    [HideInInspector] public bool isDragging;
+
+    [HideInInspector] public Vector2 Target;
+    public float TargetOffset;
+    public float CameraLerpSpeed;
+    [HideInInspector] public bool Focusing;
 
     public static CameraMovement _Instance { get; private set; }
 
@@ -65,21 +70,36 @@ public class CameraMovement : MonoBehaviour
             Camera.main.transform.Translate(Move);
 
         if (MoveX == 0 && MoveY == 0)
+        {
             isCameraMoving = false;
+        }
         else
         {
             if (!isDragging)
             {
+                Focusing = false;
+                Target = Vector2.zero;
                 isCameraMoving = true;
                 isCameraMoveingWaitToClickOver = true;
             }
         }
 
+        if (Focusing && !isCameraMoving)
+        {
+            if (Vector2.Distance(transform.position, Target) > 0.1f)
+            {
+                transform.position = Vector2.Lerp(transform.position, Target, CameraLerpSpeed * Time.deltaTime);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
+            }
+            else
+            {
+                Focusing = false;
+                Target = Vector2.zero;
+            }
 
-
+        }
 
         zoom(Input.GetAxis("Mouse ScrollWheel"));
-
     }
 
     void zoom(float increment)

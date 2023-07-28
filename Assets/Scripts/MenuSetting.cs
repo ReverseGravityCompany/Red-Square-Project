@@ -16,7 +16,7 @@ public class MenuSetting : MonoBehaviour
     [SerializeField] Sprite PauseOff, PauseOn;
 
     [Space(20)]
-    [SerializeField] GameObject MarkDifficaulty;
+    [SerializeField] Image MarkDifficaulty;
     [SerializeField] GameObject CoverMenu;
     [SerializeField] GameObject NoteHelperPanel;
     [SerializeField] Button NoteHelperButton;
@@ -49,20 +49,19 @@ public class MenuSetting : MonoBehaviour
     private bool PauseStatus;
     private int frameCount;
 
+    public Sprite EasyImage, NormalImage, HardImage;
+
 
     #endregion
 
     #region Functions
     private void Awake()
     {
-        
-        if (CurrentLevel > 100)
-        {
-            CurrentLevel = 100;
-        }
+        GameStarted = false;
         if (PlayerPrefs.HasKey("MyLevel"))
         {
             CurrentLevel = PlayerPrefs.GetInt("MyLevel");
+
             LevelMenu_Text.text = "Level " + CurrentLevel.ToString();
             LevelGame_Text.text = "Level " + CurrentLevel.ToString();
             LevelNameSelection.GetComponent<Text>().text = CurrentLevel.ToString();
@@ -94,14 +93,33 @@ public class MenuSetting : MonoBehaviour
 
     private void Start()
     {
+        GameStarted = false;
+        if (!PlayerPrefs.HasKey("NotesRemainder") && CurrentLevel == 4)
+        {
+            PlayerPrefs.SetInt("NotesRemainder", 1);
+            Hand.SetActive(true);
+            Helper_Menu.SetActive(true);
+        }
+
         LevelManager._Instance.Game_AudioMixer.DOSetFloat("Lowpass_Music", 1000, 0.5f).SetUpdate(true);
         enemySystem = FindObjectOfType<EnemySystem>();
         camera = Camera.main;
-        if (Helper_Menu != null && Hand != null)
+
+
+        if (enemySystem.Difficaulty == EnemySystem.Difficault.Easy)
         {
-            Helper_Menu.SetActive(false);
-            Hand.SetActive(false);
+            MarkDifficaulty.sprite = EasyImage;
         }
+        else if (enemySystem.Difficaulty == EnemySystem.Difficault.Meduim)
+        {
+            MarkDifficaulty.sprite = NormalImage;
+        }
+        else if (enemySystem.Difficaulty == EnemySystem.Difficault.Hard)
+        {
+            MarkDifficaulty.sprite = HardImage;
+        }
+
+
         if (PlayerPrefs.HasKey("FastRun"))
         {
             if (PlayerPrefs.GetInt("FastRun") == 1)
@@ -144,63 +162,31 @@ public class MenuSetting : MonoBehaviour
                 RestartLevel.gameObject.GetComponent<Image>().color = DayColor;
             }
         }
-
-
-        if (SceneManager.GetActiveScene().buildIndex == 4 && !PlayerPrefs.HasKey("NoteHelperLevel4"))
-        {
-            PlayerPrefs.SetInt("NoteHelperLevel4", 0);
-            Helper_Menu.SetActive(true);
-            Hand.SetActive(true);
-        }
-    }
-
-    private void Update()
-    {
-        // Use These Code Every 10 Frames
-        //frameCount++;
-        //if (frameCount % 10 == 0)
-        //{
-        //    if (CurrentLevel != SceneManager.GetActiveScene().buildIndex)
-        //    {
-        //        CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-        //        LevelMenu_Text.text = CurrentLevel.ToString();
-        //    }
-        //    frameCount = 0;
-        //}
     }
 
     public void StartGame()
     {
-        if (CurrentLevel >= 100)
-        {
-            CurrentLevel = 100;
-        }
-
-
-        if (CurrentLevel <= 100)
-        {
-            LevelManager._Instance.Game_AudioMixer.DOSetFloat("Lowpass_Music", 5000, 1.65f).SetUpdate(true);
-            PlaySound.Play();
-            SoundSetting.gameObject.SetActive(false);
-            ButtonStart.SetActive(false);
-            LevelMenu_Text.gameObject.SetActive(false);
-            DecreaseLevel.gameObject.SetActive(false);
-            IncreaseLevel.SetActive(false);
-            Pause.SetActive(true);
-            LevelNameSelection.SetActive(false);
-            Time.timeScale = 1f;
-            TouchScreen.SetActive(true);
-            LevelShowInLevel.gameObject.SetActive(true);
-            MarkDifficaulty.SetActive(false);
-            RewardButton.SetActive(false);
-            daynightImage.gameObject.SetActive(false);
-            GameStarted = true;
-            enemySystem.GenerateEnemy();
-            GameObject.FindObjectOfType<SquareSoliderCount>().StartGenerateSolider();
-            CoverMenu.SetActive(false);
-            NoteHelperButton.gameObject.SetActive(false);
-            NoteHelperPanel.gameObject.SetActive(false);
-        }
+        LevelManager._Instance.Game_AudioMixer.DOSetFloat("Lowpass_Music", 5000, 1.65f).SetUpdate(true);
+        PlaySound.Play();
+        SoundSetting.gameObject.SetActive(false);
+        ButtonStart.SetActive(false);
+        LevelMenu_Text.gameObject.SetActive(false);
+        DecreaseLevel.gameObject.SetActive(false);
+        IncreaseLevel.SetActive(false);
+        Pause.SetActive(true);
+        LevelNameSelection.SetActive(false);
+        Time.timeScale = 1f;
+        TouchScreen.SetActive(true);
+        LevelShowInLevel.gameObject.SetActive(true);
+        MarkDifficaulty.gameObject.SetActive(false);
+        RewardButton.SetActive(false);
+        daynightImage.gameObject.SetActive(false);
+        GameStarted = true;
+        enemySystem.GenerateEnemy();
+        GameObject.FindObjectOfType<SquareSoliderCount>().StartGenerateSolider();
+        CoverMenu.SetActive(false);
+        NoteHelperButton.gameObject.SetActive(false);
+        NoteHelperPanel.gameObject.SetActive(false);
     }
 
     public void SoundChecking()
@@ -304,6 +290,7 @@ public class MenuSetting : MonoBehaviour
     public void ResetartLevel()
     {
         PauseSound.Play();
+
         PlayerPrefs.SetInt("FastRun", 1);
         PlayerPrefs.SetInt("MyLevel", CurrentLevel);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -312,7 +299,7 @@ public class MenuSetting : MonoBehaviour
     public void NoteHelperButtonListener()
     {
         LevelChangeSound.Play();
-        if (SceneManager.GetActiveScene().buildIndex == 4)
+        if (CurrentLevel == 4)
         {
             Helper_Menu.SetActive(false);
             Hand.SetActive(false);

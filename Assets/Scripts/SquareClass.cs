@@ -18,7 +18,7 @@ public class SquareClass : MonoBehaviour
     public Color WhiteLow;
     public Color InvisibaleColor;
 
-    public GameObject Turbo, Copacity, RandomChange, AllAttack, X2, MaxSpace;
+    private Skills skills;
 
     [HideInInspector] public GameObject star1, star2, star3;
     [HideInInspector] public Color MyCountNumberColor;
@@ -40,6 +40,8 @@ public class SquareClass : MonoBehaviour
         star1 = transform.Find("Star1").gameObject;
         star2 = transform.Find("Star2").gameObject;
         star3 = transform.Find("Star3").gameObject;
+
+        skills = Skills._Instance;
     }
 
 
@@ -83,45 +85,45 @@ public class SquareClass : MonoBehaviour
 
                 if (!TurboMortal)
                 {
-                    Turbo.GetComponent<Image>().color = Color.white;
+                    skills.TurboObj.GetComponent<Image>().color = Color.white;
                     star1.SetActive(false);
                     gameObject.GetComponent<IncreaseMortal>().AmountIncrease = 1;
-                    Turbo.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                    skills.TurboObj.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
                 }
                 else
                 {
                     star1.GetComponent<Image>().color = MyCountNumberColor;
                     star1.SetActive(true);
-                    Turbo.gameObject.GetComponent<Image>().color = WhiteLow;
-                    Turbo.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
+                    skills.TurboObj.gameObject.GetComponent<Image>().color = WhiteLow;
+                    skills.TurboObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
                 }
 
                 if (!CopacityMortal)
                 {
-                    Copacity.GetComponent<Image>().color = Color.white;
+                    skills.CopacityObj.GetComponent<Image>().color = Color.white;
                     star2.SetActive(false);
                     gameObject.GetComponent<IncreaseMortal>().MaxSpace = 100;
-                    Copacity.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                    skills.CopacityObj.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
                 }
                 else
                 {
-                    Copacity.GetComponent<Image>().color = WhiteLow;
+                    skills.CopacityObj.GetComponent<Image>().color = WhiteLow;
                     star2.GetComponent<Image>().color = MyCountNumberColor;
                     star2.SetActive(true);
-                    Copacity.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
+                    skills.CopacityObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
                 }
 
                 if (!RandomChangeMortal)
                 {
-                    RandomChange.GetComponent<Image>().color = Color.white;
-                    RandomChange.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                    skills.RandomChangeObj.GetComponent<Image>().color = Color.white;
+                    skills.RandomChangeObj.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
                 }
                 else
                 {
-                    RandomChange.GetComponent<Image>().color = WhiteLow;
-                    RandomChange.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
+                    skills.RandomChangeObj.GetComponent<Image>().color = WhiteLow;
+                    skills.RandomChangeObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
                 }
 
@@ -130,7 +132,7 @@ public class SquareClass : MonoBehaviour
 
                 if (!AllAttackMortal)
                 {
-                    AllAttack.GetComponent<Image>().color = Color.white;
+                    skills.AllAttackObj.GetComponent<Image>().color = Color.white;
                     star3.SetActive(false);
                     StateMortal sm = GetComponent<StateMortal>();
                     sm.MyTypeOfAttack = stateMortal;
@@ -138,41 +140,41 @@ public class SquareClass : MonoBehaviour
                     {
                         sm.MyTypeOfAttack[i] = stateMortal[i];
                     }
-                    AllAttack.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                    skills.AllAttackObj.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
 
                 }
                 else
                 {
                     star3.GetComponent<Image>().color = MyCountNumberColor;
-                    AllAttack.GetComponent<Image>().color = WhiteLow;
+                    skills.AllAttackObj.GetComponent<Image>().color = WhiteLow;
                     star3.SetActive(true);
-                    AllAttack.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
+                    skills.AllAttackObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
                 }
 
                 if (!X2Mortal)
                 {
-                    X2.GetComponent<Image>().color = Color.white;
+                    skills.X2Obj.GetComponent<Image>().color = Color.white;
                     StopCounting2 = false;
-                    X2.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                    skills.X2Obj.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
 
                 }
                 else
                 {
-                    X2.GetComponent<Image>().color = WhiteLow;
-                    X2.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
+                    skills.X2Obj.GetComponent<Image>().color = WhiteLow;
+                    skills.X2Obj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
                 }
 
                 if (!MaxSpaceMortal)
                 {
-                    MaxSpace.GetComponent<Image>().color = Color.white;
-                    MaxSpace.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
+                    skills.MaxSpaceObj.GetComponent<Image>().color = Color.white;
+                    skills.MaxSpaceObj.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
                 }
                 else
                 {
-                    MaxSpace.GetComponent<Image>().color = WhiteLow;
-                    MaxSpace.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
+                    skills.MaxSpaceObj.GetComponent<Image>().color = WhiteLow;
+                    skills.MaxSpaceObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
                 }
             }
         }

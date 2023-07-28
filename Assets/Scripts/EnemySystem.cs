@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EnemySystem : MonoBehaviour
 {
-    [SerializeField] private bool Red, Yellow, Pink, Green, Orange, Purple;
+    [SerializeField] public bool Red, Yellow, Pink, Green, Orange, Purple;
     private GameObject[] allsquare;
     private List<GameObject> RedSquare;
     private List<GameObject> yellowSquare;

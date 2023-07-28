@@ -18,7 +18,6 @@ public class SquareSoliderCount : MonoBehaviour
 
     public void StartGenerateSolider()
     {
-
         timer = new WaitForSeconds(1);
         StartCoroutine(GeneratingSolider());
     }
@@ -28,7 +27,8 @@ public class SquareSoliderCount : MonoBehaviour
         for (int i = 0; i < sqaurs.Length; i++)
         {
             sqaurs[i].ShowMortal.text = sqaurs[i].CurrentCount.ToString();
-            if(sqaurs[i].CurrentCount >= 1000){
+            if (sqaurs[i].CurrentCount >= 1000)
+            {
                 sqaurs[i].CurrentCount = 1000;
             }
             if (sqaurs[i].CurrentCount >= sqaurs[i].MaxSpace)

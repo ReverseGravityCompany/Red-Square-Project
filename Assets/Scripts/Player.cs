@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Image = UnityEngine.UI.Image;
+using static UnityEngine.GraphicsBuffer;
 
 public class Player : MonoBehaviour
 {
@@ -21,12 +23,9 @@ public class Player : MonoBehaviour
     public bool CanPush = false;
     public GameObject MyBlue;
     public bool PickUp = true;
-    [HideInInspector]
-    public AllMortal allMortal;
-    //public GameObject[] AllSkilles;
     private MenuSetting menuSetting;
     [HideInInspector] public CameraMovement CamMove;
-    public AudioSource SelectMortalSound,AttackNoneColorSound, AttackRedColorSound;
+    
     private LevelManager theLevelManager;
     private Skills skills;
 
@@ -39,7 +38,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        allMortal = FindObjectOfType<AllMortal>();
         menuSetting = FindObjectOfType<MenuSetting>();
         CamMove = CameraMovement._Instance;
         theLevelManager = FindObjectOfType<LevelManager>();
@@ -59,6 +57,9 @@ public class Player : MonoBehaviour
 
             if(hit.collider != null)
             {
+                CamMove.Focusing = false;
+                CamMove.Target = Vector2.zero;
+
                 GameObject draggingObj = hit.collider.gameObject;
                 if (draggingObj.GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
                 {
@@ -82,9 +83,8 @@ public class Player : MonoBehaviour
         }
 
 
-        if (Input.GetMouseButtonUp(0) && menuSetting.GameStarted && Time.timeScale > 0)
+        if ((Input.GetMouseButtonUp(0) && theLevelManager.LearningLevels) || Input.GetMouseButtonUp(0) && menuSetting.GameStarted && Time.timeScale > 0)
         {
-            //print(hit.collider);
             if (hit.collider != null && !BlueStop && hit2.collider == null && !CamMove.isCameraMoving && !CamMove.isCameraMoveingWaitToClickOver)
             {
                 
@@ -228,6 +228,11 @@ public class Player : MonoBehaviour
                 skills.randomChange = false;
                 skills.X2 = false;
                 skills.MaxSpace = false;
+
+                SelectedObject = null;
+                CanUseDrag = false;
+                CamMove.isDragging = false;
+
                 GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];
                 for (int i = 0; i < ObjectsMortal.Length; i++)
                 {
@@ -288,7 +293,7 @@ public class Player : MonoBehaviour
     {
         if (Identity.iden.Blue == obj.GetComponent<Identity>().GetIdentity())
         {
-            SelectMortalSound.Play();
+            theLevelManager.SelectMortalSound.Play();
             if (MyBlue != null)
             {
                 MyBlue.GetComponent<Image>().color = BlueColor;
@@ -306,6 +311,12 @@ public class Player : MonoBehaviour
                 skills.SelectedMortal = MyBlue.GetComponent<SquareClass>();
 
                 MyBlue.transform.DOScale(0.85f, 0.3f).SetEase(Ease.Linear).From();
+
+                if (Vector2.Distance(CamMove.transform.position, MyBlue.transform.position) > CamMove.TargetOffset)
+                {
+                    CamMove.Focusing = true;
+                    CamMove.Target = MyBlue.transform.position;
+                }
 
                 #region [AllMorta]
                 GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];
@@ -364,7 +375,7 @@ public class Player : MonoBehaviour
             MyBlue.GetComponent<IncreaseMortal>().CurrentCount = 0;
             obj.GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
             PickUp = !PickUp;
-            SelectMortalSound.Play();
+            theLevelManager.SelectMortalSound.Play();
             MyBlue.GetComponent<SquareClass>().CanPush = false;
             MyBlue.GetComponent<Image>().color = BlueColor;
             MyBlue.transform.Find("CountMortal").GetComponent<Text>().color = BlueColorText;
@@ -471,8 +482,8 @@ public class Player : MonoBehaviour
                     skills.X2 = false;
                     skills.MaxSpace = false;
 
-                    AttackNoneColorSound.Play();
-                    CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
+                    theLevelManager.AttackNoneColorSound.Play();
+                    CameraMovement._Instance.Shake(0.12f, 0.24f, 0.08f, 0.25f);
                     MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
 
                     MyBlue = null;
@@ -513,7 +524,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
-            SelectMortalSound.Play();
+            theLevelManager.SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;
@@ -567,7 +578,7 @@ public class Player : MonoBehaviour
                     skills.X2 = false;
                     skills.MaxSpace = false;
 
-                    AttackRedColorSound.Play();
+                    theLevelManager.AttackRedColorSound.Play();
                     CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
 
                     MyBlue.GetComponent<StateMortal>().ArmyBurning(obj, BlueColor, RedColor, objBurnValue / 2);
@@ -611,7 +622,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
-            SelectMortalSound.Play();
+            theLevelManager.SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;
@@ -667,7 +678,8 @@ public class Player : MonoBehaviour
                     skills.X2 = false;
                     skills.MaxSpace = false;
 
-                    CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
+                    theLevelManager.AttackYellowColorSound.Play();
+                    CameraMovement._Instance.Shake(0.16f, 0.26f, 0.08f, 0.25f);
 
                     MyBlue.GetComponent<StateMortal>().ArmyBurning(obj, BlueColor, YellowColor, objBurnValue / 2);
                     MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
@@ -710,7 +722,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
-            SelectMortalSound.Play();
+            theLevelManager.SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;
@@ -765,7 +777,8 @@ public class Player : MonoBehaviour
                     skills.MaxSpace = false;
 
 
-                    CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
+                    theLevelManager.AttackSound.Play();
+                    CameraMovement._Instance.Shake(0.16f, 0.26f, 0.08f, 0.25f);
 
                     MyBlue.GetComponent<StateMortal>().ArmyBurning(obj, BlueColor, PinkColor, objBurnValue / 2);
                     MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
@@ -808,7 +821,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
-            SelectMortalSound.Play();
+            theLevelManager.SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;
@@ -863,7 +876,8 @@ public class Player : MonoBehaviour
                     skills.X2 = false;
                     skills.MaxSpace = false;
 
-                    CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
+                    theLevelManager.AttackSound.Play();
+                    CameraMovement._Instance.Shake(0.17f, 0.27f, 0.08f, 0.25f);
 
                     MyBlue.GetComponent<StateMortal>().ArmyBurning(obj, BlueColor, GreenColor, objBurnValue / 2);
                     MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
@@ -906,7 +920,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
-            SelectMortalSound.Play();
+            theLevelManager.SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;
@@ -960,7 +974,8 @@ public class Player : MonoBehaviour
                     skills.X2 = false;
                     skills.MaxSpace = false;
 
-                    CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
+                    theLevelManager.AttackYellowColorSound.Play();
+                    CameraMovement._Instance.Shake(0.18f, 0.28f, 0.08f, 0.25f);
 
                     MyBlue.GetComponent<StateMortal>().ArmyBurning(obj, BlueColor, OrangeColor, objBurnValue / 2);
                     MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
@@ -1003,7 +1018,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
-            SelectMortalSound.Play();
+            theLevelManager.SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;
@@ -1058,8 +1073,8 @@ public class Player : MonoBehaviour
                     skills.X2 = false;
                     skills.MaxSpace = false;
 
-
-                    CameraMovement._Instance.Shake(0.15f, 0.25f, 0.08f, 0.25f);
+                    theLevelManager.AttackSound.Play();
+                    CameraMovement._Instance.Shake(0.18f, 0.28f, 0.08f, 0.25f);
 
                     MyBlue.GetComponent<StateMortal>().ArmyBurning(obj, BlueColor, LastColor, objBurnValue / 2);
                     MyBlue.GetComponent<StateMortal>().LineConnections(obj, MyBlue.transform.position, BlueColor);
@@ -1102,7 +1117,7 @@ public class Player : MonoBehaviour
                     return;
                 }
             }
-            SelectMortalSound.Play();
+            theLevelManager.SelectMortalSound.Play();
             BlueStop = false;
         }
         BlueStop = false;

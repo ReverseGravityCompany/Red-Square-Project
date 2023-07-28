@@ -26,25 +26,6 @@ public class Loading : MonoBehaviour
 
     private void NextScene()
     {
-        if (PlayerPrefs.HasKey("LearnEnd"))
-        {
-            int Level;
-
-            if (PlayerPrefs.HasKey("MyLevel"))
-            {
-                Level = PlayerPrefs.GetInt("MyLevel");
-                if (Level <= 100)
-                {
-                    SceneManager.LoadScene(HandCraftedLevelName);
-                }
-            }
-            else
-                SceneManager.LoadScene(HandCraftedLevelName);
-        }
-        else
-        {
-            //SceneManager.LoadScene("Learn1");
-            SceneManager.LoadScene(HandCraftedLevelName);
-        }
+        SceneManager.LoadScene(HandCraftedLevelName);
     }
 }

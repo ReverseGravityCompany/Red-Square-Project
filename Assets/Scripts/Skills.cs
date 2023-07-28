@@ -16,6 +16,21 @@ public class Skills : MonoBehaviour
     private TextHelperNote Note;
     private LevelManager theLevelmanager;
 
+    public static Skills _Instance { get;private set; }
+
+    private void Awake()
+    {
+        if (_Instance != null && _Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _Instance = this;
+        }
+    }
+
+
     #endregion
 
     private void Start()

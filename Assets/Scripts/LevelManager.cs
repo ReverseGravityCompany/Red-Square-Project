@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour
     public AudioSource WinSound;
     public AudioSource MoneySound;
     public AudioSource LoseSound;
+    public AudioSource SelectMortalSound, AttackNoneColorSound, AttackRedColorSound, AttackYellowColorSound, AttackSound;
     public AudioMixer Game_AudioMixer;
 
 
@@ -36,7 +37,7 @@ public class LevelManager : MonoBehaviour
     private int WinStatus;
     private int LoseStatus;
     Identity[] AllMortalObjects;
-    private bool WinGame, LoseGame;
+    public bool WinGame, LoseGame;
 
     private bool WinningRewardTaken;
 
@@ -46,8 +47,17 @@ public class LevelManager : MonoBehaviour
 
 
     public GameObject[] HandCraftedLevels;
-    public int CurrentLevel;
+    public GameObject LevelsParent;
+    [HideInInspector] public int CurrentLevel;
 
+    [HideInInspector] public bool isGeneratingLevel;
+
+    [Header("Learning Properties")]
+    public GameObject[] TutorialsLevels;
+    public GameObject[] TutorialsCanvas;
+    public bool LearningLevels;
+    public GameObject UI_Canvas;
+    private TutorialTask tutorialTask;
 
     #endregion
 
@@ -55,6 +65,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 0; 
         if (_Instance != null && _Instance != this)
         {
             Destroy(this);
@@ -64,27 +75,53 @@ public class LevelManager : MonoBehaviour
             _Instance = this;
         }
 
+        LearningLevels = false;
+
+        
+        if (!PlayerPrefs.HasKey("MyLevel"))
+        {
+            LearningLevels = true;
+            UI_Canvas.gameObject.SetActive(false);
+            if (PlayerPrefs.HasKey("LearnProcess"))
+            {
+                int LearnProcess = PlayerPrefs.GetInt("LearnProcess");
+                Instantiate(TutorialsLevels[LearnProcess - 1].gameObject,LevelsParent.transform , false);
+                Instantiate(TutorialsCanvas[LearnProcess - 1].gameObject);
+
+                GameObject.FindObjectOfType<SquareSoliderCount>().StartGenerateSolider();
+                tutorialTask = FindObjectOfType<TutorialTask>();
+            }
+            else
+            {
+                Instantiate(TutorialsLevels[0].gameObject, LevelsParent.transform , false);
+                Instantiate(TutorialsCanvas[0].gameObject);
+
+                GameObject.FindObjectOfType<SquareSoliderCount>().StartGenerateSolider();
+                tutorialTask = FindObjectOfType<TutorialTask>();
+                PlayerPrefs.SetInt("LearnProcess", 1);
+            }
+            Time.timeScale = 1;
+            return;
+        }
+
 
         MaxCoin = 999999;
         MinCoin = 500;
 
         int level = 1;
 
+
         if (PlayerPrefs.HasKey("MyLevel"))
         {
             level = PlayerPrefs.GetInt("MyLevel");
-            for (int i = 0; i < HandCraftedLevels.Length; i++)
-            {
-                HandCraftedLevels[i].SetActive(false);
-            }
 
-            HandCraftedLevels[level - 1].SetActive(true);
+            GameObject obj = Instantiate(HandCraftedLevels[level - 1].gameObject, LevelsParent.transform,false);
             CurrentLevel = level;
         }
         else
         {
             PlayerPrefs.SetInt("MyLevel", level);
-            PlayerPrefs.SetInt("LearnEnd", level);
+
             CurrentLevel = level;
         }
 
@@ -107,7 +144,6 @@ public class LevelManager : MonoBehaviour
         }
 
 
-
         AllMortalObjects = new Identity[FindObjectsOfType<Identity>().Length];
         for (int i = 0; i < AllMortalObjects.Length; i++)
         {
@@ -117,148 +153,220 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        CoinText.text = CurrentCoin.ToString();
-        if (ObscuredPrefs.GetInt("MyCoin") >= MaxCoin)
+        if (!LearningLevels)
         {
-            CurrentCoin = MaxCoin;
-            ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
             CoinText.text = CurrentCoin.ToString();
-        }
-
-        if (!SkillsState)
-        {
-            for (int i = 0; i < SkillsObject.Length; i++)
+            if (ObscuredPrefs.GetInt("MyCoin") >= MaxCoin)
             {
-                SkillsObject[i].SetActive(false);
+                CurrentCoin = MaxCoin;
+                ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+                CoinText.text = CurrentCoin.ToString();
             }
-        }
-        else
-        {
-            for (int i = 0; i < SkillsObject.Length; i++)
+
+            if (!SkillsState)
             {
-                SkillsObject[i].SetActive(true);
-            }
-        }
-
-
-        // CHECK WHAT ARE CURRENT STATE (WIN OR LOSE)
-        if (LoseStatus < AllMortalObjects.Length && WinStatus < AllMortalObjects.Length)
-        {
-            foreach (Identity obj in AllMortalObjects)
-            {
-                if (obj.GetIdentity() != Identity.iden.Blue)
+                for (int i = 0; i < SkillsObject.Length; i++)
                 {
-                    LoseStatus++;
-                    if (LoseStatus >= AllMortalObjects.Length)
-                        return;
-                }
-                else
-                {
-                    LoseStatus = 0;
-                }
-
-                if (obj.GetIdentity() == Identity.iden.Blue)
-                {
-                    WinStatus++;
-                    if (WinStatus >= AllMortalObjects.Length)
-                        return;
-                }
-                else if (obj.GetIdentity() == Identity.iden.None)
-                {
-                    WinStatus++;
-                    if (WinStatus >= AllMortalObjects.Length)
-                        return;
-                }
-                else
-                {
-                    WinStatus = 0;
-                }
-            }
-        }
-
-        // IF WE LOSE
-        if (LoseStatus >= AllMortalObjects.Length)
-        {
-            LoseGame = true;
-        }
-        if (LoseGame && !Lose.activeSelf)
-        {
-            LoseSound.Play();
-            Game_AudioMixer.DOSetFloat("Lowpass_Music", 650, 1.8f).SetEase(Ease.Linear).SetUpdate(true);
-            Time.timeScale = 0.5f;
-            Lose.SetActive(true);
-            SkillsState = false;
-            for (int i = 0; i < SkillsObject.Length; i++)
-            {
-                SkillsObject[i].gameObject.SetActive(false);
-            }
-            CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(CoinPosX, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
-        }
-
-
-        // IF WE WIN
-        if (WinStatus >= AllMortalObjects.Length && !WinningRewardTaken)
-        {
-            WinGame = true;
-            SkillsState = false;
-            for (int i = 0; i < SkillsObject.Length; i++)
-            {
-                SkillsObject[i].gameObject.SetActive(false);
-            }
-        }
-        if (WinGame && !WinningRewardTaken)
-        {
-            Game_AudioMixer.DOSetFloat("Lowpass_Music", 650, 1.55f).SetEase(Ease.Linear).SetUpdate(true);
-            if (PlayerPrefs.HasKey("UnlockLevel"))
-            {
-                if (PlayerPrefs.GetInt("UnlockLevel") == CurrentLevel)
-                {
-                    anim.SetTrigger("WinCoin");
-                    IsCoinTaken = true;
+                    SkillsObject[i].SetActive(false);
                 }
             }
             else
             {
-                anim.SetTrigger("WinCoin");
-                IsCoinTaken = true;
-            }
-            if (PlayerPrefs.HasKey("ValueOfLevels"))
-            {
-                CheckValueOfLevel = PlayerPrefs.GetInt("ValueOfLevels");
-            }
-            int check = CheckValueOfLevel;
-            CheckValueOfLevel = 1 + CurrentLevel;
-            if (check >= CheckValueOfLevel)
-            {
-                CheckValueOfLevel = check;
-            }
-            if (CheckValueOfLevel >= 100)
-            {
-                CheckValueOfLevel = 100;
-            }
-            PlayerPrefs.SetInt("ValueOfLevels", CheckValueOfLevel);
-            PlayerPrefs.SetInt("MyLevel", Unlocknextlevel);
-            PlayerPrefs.SetInt("UnlockLevel", PlayerPrefs.GetInt("ValueOfLevels"));
-
-            Time.timeScale = 0.5f;
-            Win.SetActive(true);
-
-            if (!CoinRecive)
-            {
-                int b = CoinWinning < 100 ? CoinWinning - Random.Range(-3, 5) : CoinWinning < 300 ?
-       CoinWinning - Random.Range(-30, 30) : CoinWinning < 1000 ? CoinWinning - Random.Range(-50, 50) : CoinWinning > 1000 ? CoinWinning - Random.Range(-100, 100) : CoinWinning;
-                CoinWinning = b;
-                WinSound.Play();
-                if (IsCoinTaken)
+                for (int i = 0; i < SkillsObject.Length; i++)
                 {
-                    CurrentCoin += CoinWinning;
-                    ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+                    SkillsObject[i].SetActive(true);
                 }
-                CoinRecive = true;
             }
-            CoinWiningText.text = CoinWinning.ToString();
-            CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(CoinPosX, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
-            WinningRewardTaken = true;
+
+
+            // CHECK WHAT ARE CURRENT STATE (WIN OR LOSE)
+            if (LoseStatus < AllMortalObjects.Length && WinStatus < AllMortalObjects.Length)
+            {
+                foreach (Identity obj in AllMortalObjects)
+                {
+                    if (obj.GetIdentity() != Identity.iden.Blue)
+                    {
+                        LoseStatus++;
+                        if (LoseStatus >= AllMortalObjects.Length)
+                            return;
+                    }
+                    else
+                    {
+                        LoseStatus = 0;
+                    }
+
+                    if (obj.GetIdentity() == Identity.iden.Blue)
+                    {
+                        WinStatus++;
+                        if (WinStatus >= AllMortalObjects.Length)
+                            return;
+                    }
+                    else if (obj.GetIdentity() == Identity.iden.None)
+                    {
+                        WinStatus++;
+                        if (WinStatus >= AllMortalObjects.Length)
+                            return;
+                    }
+                    else
+                    {
+                        WinStatus = 0;
+                    }
+                }
+            }
+
+            // IF WE LOSE
+            if (LoseStatus >= AllMortalObjects.Length)
+            {
+                LoseGame = true;
+            }
+            if (LoseGame && !Lose.activeSelf)
+            {
+                LoseSound.Play();
+                Game_AudioMixer.DOSetFloat("Lowpass_Music", 650, 1.8f).SetEase(Ease.Linear).SetUpdate(true);
+                Time.timeScale = 0.5f;
+                Lose.SetActive(true);
+                SkillsState = false;
+                for (int i = 0; i < SkillsObject.Length; i++)
+                {
+                    SkillsObject[i].gameObject.SetActive(false);
+                }
+                CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(CoinPosX, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
+            }
+
+
+            // IF WE WIN
+            if (WinStatus >= AllMortalObjects.Length && !WinningRewardTaken)
+            {
+                WinGame = true;
+                SkillsState = false;
+                FindObjectOfType<MenuSetting>().GameStarted = false;
+                for (int i = 0; i < SkillsObject.Length; i++)
+                {
+                    SkillsObject[i].gameObject.SetActive(false);
+                }
+            }
+            if (WinGame && !WinningRewardTaken)
+            {
+                Game_AudioMixer.DOSetFloat("Lowpass_Music", 650, 1.55f).SetEase(Ease.Linear).SetUpdate(true);
+                if (PlayerPrefs.HasKey("UnlockLevel"))
+                {
+                    if (PlayerPrefs.GetInt("UnlockLevel") == CurrentLevel)
+                    {
+                        anim.SetTrigger("WinCoin");
+                        IsCoinTaken = true;
+                    }
+                }
+                else
+                {
+                    anim.SetTrigger("WinCoin");
+                    IsCoinTaken = true;
+                }
+                if (PlayerPrefs.HasKey("ValueOfLevels"))
+                {
+                    CheckValueOfLevel = PlayerPrefs.GetInt("ValueOfLevels");
+                }
+                int check = CheckValueOfLevel;
+                CheckValueOfLevel = 1 + CurrentLevel;
+                if (check >= CheckValueOfLevel)
+                {
+                    CheckValueOfLevel = check;
+                }
+                if (CheckValueOfLevel >= 100)
+                {
+                    CheckValueOfLevel = 100;
+                    Unlocknextlevel = CheckValueOfLevel;
+                }
+                PlayerPrefs.SetInt("ValueOfLevels", CheckValueOfLevel);
+                PlayerPrefs.SetInt("MyLevel", Unlocknextlevel);
+                PlayerPrefs.SetInt("UnlockLevel", PlayerPrefs.GetInt("ValueOfLevels"));
+
+                Time.timeScale = 0.5f;
+                Win.SetActive(true);
+                WinSound.Play();
+
+                if (!CoinRecive)
+                {
+                    int b = CoinWinning < 100 ? CoinWinning - Random.Range(-3, 5) : CoinWinning < 300 ?
+           CoinWinning - Random.Range(-30, 30) : CoinWinning < 1000 ? CoinWinning - Random.Range(-50, 50) : CoinWinning > 1000 ? CoinWinning - Random.Range(-100, 100) : CoinWinning;
+                    CoinWinning = b;
+
+                    if (IsCoinTaken)
+                    {
+                        CurrentCoin += CoinWinning;
+                        ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+                    }
+                    CoinRecive = true;
+                }
+                CoinWiningText.text = CoinWinning.ToString();
+                CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(CoinPosX, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
+                WinningRewardTaken = true;
+            }
+        }
+        else
+        {
+            if (LoseStatus < AllMortalObjects.Length && WinStatus < AllMortalObjects.Length)
+            {
+                foreach (Identity obj in AllMortalObjects)
+                {
+                    if (obj.GetIdentity() != Identity.iden.Blue)
+                    {
+                        LoseStatus++;
+                        if (LoseStatus >= AllMortalObjects.Length)
+                            return;
+                    }
+                    else
+                    {
+                        LoseStatus = 0;
+                    }
+
+                    if (obj.GetIdentity() == Identity.iden.Blue)
+                    {
+                        WinStatus++;
+                        if (WinStatus >= AllMortalObjects.Length)
+                            return;
+                    }
+                    else if (obj.GetIdentity() == Identity.iden.None)
+                    {
+                        WinStatus++;
+                        if (WinStatus >= AllMortalObjects.Length)
+                            return;
+                    }
+                    else
+                    {
+                        WinStatus = 0;
+                    }
+                }
+            }
+
+
+            if (WinStatus >= AllMortalObjects.Length && !WinningRewardTaken)
+            {
+                WinGame = true;
+            }
+            if (WinGame && !WinningRewardTaken)
+            {
+                WinningRewardTaken = true;
+
+                if (PlayerPrefs.HasKey("LearnProcess"))
+                {
+                    int LearnProcess = PlayerPrefs.GetInt("LearnProcess");
+                    LearnProcess += 1;
+                    PlayerPrefs.SetInt("LearnProcess", LearnProcess);
+
+                    if (LearnProcess == TutorialsLevels.Length + 1)
+                    {
+                        PlayerPrefs.SetInt("MyLevel", 1);
+                    }
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("LearnProcess", 2);
+                }
+
+                Time.timeScale = 0.5f;
+                tutorialTask.LessonSuccesful();
+                WinSound.Play();
+            }
         }
     }
 
@@ -270,6 +378,7 @@ public class LevelManager : MonoBehaviour
     public void ResetartLevel()
     {
         DG.Tweening.DOTween.KillAll();
+
         PlayerPrefs.SetInt("FastRun", 1);
         PlayerPrefs.SetInt("MyLevel", CurrentLevel);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -296,6 +405,15 @@ public class LevelManager : MonoBehaviour
         {
             _Instance = null;
         }
+    }
+
+    public void GiftDemo()
+    {
+        CurrentCoin = ObscuredPrefs.GetInt("MyCoin");
+        CurrentCoin += 2000;
+        Debug.Log(CurrentCoin);
+        ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+        CoinText.text = CurrentCoin.ToString();
     }
 
     #endregion
