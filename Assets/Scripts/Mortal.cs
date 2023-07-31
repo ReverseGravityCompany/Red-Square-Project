@@ -677,7 +677,7 @@ public class Mortal : StrategyMortal
     // //                        if (ObjectsMortal[i] == ImTouched)
     // //                        {
     // //                            ObjectsMortal[i].GetComponent<StateMortal>().ShowTypeOfAttack();
-    // //                            ObjectsMortal[i].GetComponent<StateMortal>().WhoCantAttack(ObjectsMortal, gameObject);
+    // //                            ObjectsMortal[i].GetComponent<StateMortal>().Attack_N(ObjectsMortal, gameObject);
     // //                        }
     // //                    }
     // //                }
@@ -730,7 +730,7 @@ public class Mortal : StrategyMortal
 
 
 
-    // public void CheckCanWhoAttack()
+    // public void Check_Attack_N()
     // {
     //     if (!allMortal.TwoAndTwo)
     //     {
@@ -745,7 +745,7 @@ public class Mortal : StrategyMortal
     //             if (thePlayer.MyRed != null && ObjectsMortal[i] == thePlayer.MyRed)
     //             {
     //                 ObjectsMortal[i].GetComponent<StateMortal>().ShowTypeOfAttack();
-    //                 ObjectsMortal[i].GetComponent<StateMortal>().WhoCantAttack(ObjectsMortal, gameObject);
+    //                 ObjectsMortal[i].GetComponent<StateMortal>().Attack_N(ObjectsMortal, gameObject);
     //             }
     //         }
     //     }
@@ -1092,7 +1092,7 @@ public class Mortal : StrategyMortal
     //                     if (ObjectsMortal[i] == gameObject)
     //                     {
     //                         ObjectsMortal[i].GetComponent<StateMortal>().ShowTypeOfAttack();
-    //                         ObjectsMortal[i].GetComponent<StateMortal>().WhoCantAttack(ObjectsMortal, gameObject);
+    //                         ObjectsMortal[i].GetComponent<StateMortal>().Attack_N(ObjectsMortal, gameObject);
     //                     }
     //                 }
     //             }

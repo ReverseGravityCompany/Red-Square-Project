@@ -123,6 +123,7 @@ public class EnemySystem : MonoBehaviour
         }
 
     }
+
     private IEnumerator AttackRed()
     {
         while (true)
@@ -170,71 +171,78 @@ public class EnemySystem : MonoBehaviour
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
                                 if (isAttackDone) continue;
+                                if (TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack) continue;
 
-                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Red && Random.Range(0, 100) < 10)
+                                IncreaseMortal tempTypeOfAttackIncreaseMortal = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+                                IncreaseMortal tempRedSquareIncreaseMortal = RedSquare[randomRed].GetComponent<IncreaseMortal>();
+
+
+                                #region Add Enemy Square To Itself
+                                if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Red && Random.Range(0, 100) < 15)
                                 {
-                                    int AttackDamage = RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount;
-                                    int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
+                                    TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = true;
+                                    int AttackDamage = tempRedSquareIncreaseMortal.CurrentCount;
+                                    int CountOfattacking = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                     if ((AttackDamage += CountOfattacking) < 1000)
                                     {
-                                        AttackDamage = RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount;
-                                        RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
+                                        AttackDamage = tempRedSquareIncreaseMortal.CurrentCount;
+                                        tempRedSquareIncreaseMortal.CurrentCount = 0;
+                                        tempTypeOfAttackIncreaseMortal.CurrentCount += AttackDamage;
                                         // Line Effect
                                         RedSquare[randomRed].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, RedSquare[randomRed].transform.position, thePlayer.RedColor);
 
                                         isAttackDone = true;
                                     }
+                                    TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = false;
                                 }
+                                #endregion
+                                #region Attack To Others
                                 if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.Red)
                                 {
-                                    if (RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                    if (tempRedSquareIncreaseMortal.CurrentCount > tempTypeOfAttackIncreaseMortal.CurrentCount || Random.Range(0, 100) < 40)
                                     {
-                                        int AttackDamage = RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount;
+                                        TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = true;
 
-                                        IncreaseMortal objData = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+                                        int AttackDamage = tempRedSquareIncreaseMortal.CurrentCount;
 
                                         int maxDamage = AttackDamage;
-                                        if (AttackDamage > objData.CurrentCount)
+                                        if (AttackDamage > tempTypeOfAttackIncreaseMortal.CurrentCount)
                                         {
-                                            maxDamage = objData.CurrentCount;
+                                            maxDamage = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                         }
 
-                                        int objBurnValue = objData.CurrentCount + maxDamage;
+                                        int objBurnValue = maxDamage;
 
-                                        RedSquare[randomRed].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                                        tempRedSquareIncreaseMortal.CurrentCount = 0;
+                                        tempTypeOfAttackIncreaseMortal.CurrentCount -= AttackDamage;
                                         // Line Effect
                                         RedSquare[randomRed].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, RedSquare[randomRed].transform.position, thePlayer.RedColor);
 
-                                        RedSquare[randomRed].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject, thePlayer.RedColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
+                                        if (objBurnValue > 12)
+                                            RedSquare[randomRed].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject, thePlayer.RedColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
 
                                         isAttackDone = true;
-                                        if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                        if (tempTypeOfAttackIncreaseMortal.CurrentCount <= 0)
                                         {
                                             TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
-                                            TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
-                                                Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
+                                            tempTypeOfAttackIncreaseMortal.CurrentCount =
+                                                Mathf.Abs(tempTypeOfAttackIncreaseMortal.CurrentCount);
                                             TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.Red);
                                             thePlayer.RenederAllAgain(TypeOfAttack[i]);
                                             TypeOfAttack[i].GetComponent<Image>().color = thePlayer.RedColor;
                                             TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.RedColorText;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
+                                            TypeOfAttack[i].GetComponent<SquareClass>().ResetAllSkills();
                                             if (thePlayer.MyBlue != null)
                                             {
-                                                thePlayer.MyBlue.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                                thePlayer.MyBlueSquareClass.Check_Attack_N();
                                             }
                                             isAttackDone = true;
                                         }
+                                        TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = false;
                                     }
+                                    #endregion
                                 }
                             }
                         }
@@ -244,6 +252,9 @@ public class EnemySystem : MonoBehaviour
 
                     }
                 }
+                else
+                    isAttackDone = true;
+
                 if (Difficaulty == Difficault.Meduim)
                 {
                     if (Random.Range(0, 100) > 90)
@@ -310,71 +321,71 @@ public class EnemySystem : MonoBehaviour
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
                                 if (isAttackDone) continue;
+                                if (TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack) continue;
+
+                                IncreaseMortal tempTypeOfAttackIncreaseMortal = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+                                IncreaseMortal tempSquareIncreaseMortal = yellowSquare[randomsquare].GetComponent<IncreaseMortal>();
 
                                 if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Yellow && Random.Range(0, 100) < 10)
                                 {
-                                    int AttackDamage = yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
+                                    TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = true;
+                                    int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
+                                    int CountOfattacking = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                     if ((AttackDamage += CountOfattacking) < 1000)
                                     {
-                                        AttackDamage = yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                        yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
+                                        AttackDamage = tempSquareIncreaseMortal.CurrentCount;
+                                        tempSquareIncreaseMortal.CurrentCount = 0;
+                                        tempTypeOfAttackIncreaseMortal.CurrentCount += AttackDamage;
 
                                         yellowSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, yellowSquare[randomsquare].transform.position, thePlayer.YellowColor);
 
                                         isAttackDone = true;
                                     }
+                                    TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = false;
                                 }
                                 if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.Yellow)
                                 {
-                                    if (yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                    if (tempSquareIncreaseMortal.CurrentCount > tempTypeOfAttackIncreaseMortal.CurrentCount || Random.Range(0, 100) < 40)
                                     {
-                                        int AttackDamage = yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-
-                                        IncreaseMortal objData = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+                                        TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = true;
+                                        int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
 
                                         int maxDamage = AttackDamage;
-                                        if (AttackDamage > objData.CurrentCount)
+                                        if (AttackDamage > tempTypeOfAttackIncreaseMortal.CurrentCount)
                                         {
-                                            maxDamage = objData.CurrentCount;
+                                            maxDamage = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                         }
 
-                                        int objBurnValue = objData.CurrentCount + maxDamage;
+                                        int objBurnValue = maxDamage;
 
-
-                                        yellowSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                                        tempSquareIncreaseMortal.CurrentCount = 0;
+                                        tempTypeOfAttackIncreaseMortal.CurrentCount -= AttackDamage;
 
                                         yellowSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, yellowSquare[randomsquare].transform.position, thePlayer.YellowColor);
 
-                                        yellowSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject, thePlayer.YellowColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
+                                        if (objBurnValue > 12)
+                                            yellowSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject, thePlayer.YellowColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
 
                                         isAttackDone = true;
-                                        if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                        if (tempTypeOfAttackIncreaseMortal.CurrentCount <= 0)
                                         {
                                             TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
-                                            TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
-                                            Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
+                                            tempTypeOfAttackIncreaseMortal.CurrentCount =
+                                            Mathf.Abs(tempTypeOfAttackIncreaseMortal.CurrentCount);
                                             TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.Yellow);
                                             thePlayer.RenederAllAgain(TypeOfAttack[i]);
                                             TypeOfAttack[i].GetComponent<Image>().color = thePlayer.YellowColor;
                                             TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.YellowColorText;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
+                                            TypeOfAttack[i].GetComponent<SquareClass>().ResetAllSkills();
                                             if (thePlayer.MyBlue != null)
                                             {
-                                                thePlayer.MyBlue.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                                thePlayer.MyBlueSquareClass.Check_Attack_N();
                                             }
                                             isAttackDone = true;
                                         }
+                                        TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = false;
                                     }
                                 }
                             }
@@ -385,6 +396,9 @@ public class EnemySystem : MonoBehaviour
 
                     }
                 }
+                else
+                    isAttackDone = true;
+
                 if (Difficaulty == Difficault.Meduim)
                 {
                     if (Random.Range(0, 100) > 70)
@@ -453,71 +467,72 @@ public class EnemySystem : MonoBehaviour
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
                                 if (isAttackDone) continue;
+                                if (TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack) continue;
+
+                                IncreaseMortal tempTypeOfAttackIncreaseMortal = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+                                IncreaseMortal tempSquareIncreaseMortal = pinkSquare[randomsquare].GetComponent<IncreaseMortal>();
 
                                 if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Pink && Random.Range(0, 100) < 10)
                                 {
-                                    int AttackDamage = pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
+                                    TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = true;
+                                    int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
+                                    int CountOfattacking = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                     if ((AttackDamage += CountOfattacking) < 1000)
                                     {
-                                        AttackDamage = pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                        pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
+                                        AttackDamage = tempSquareIncreaseMortal.CurrentCount;
+                                        tempSquareIncreaseMortal.CurrentCount = 0;
+                                        tempTypeOfAttackIncreaseMortal.CurrentCount += AttackDamage;
 
                                         pinkSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, pinkSquare[randomsquare].transform.position, thePlayer.PinkColor);
 
                                         isAttackDone = true;
                                     }
+                                    TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = false;
                                 }
                                 if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.Pink)
                                 {
-                                    if (pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                    if (tempSquareIncreaseMortal.CurrentCount > tempTypeOfAttackIncreaseMortal.CurrentCount || Random.Range(0, 100) < 40)
                                     {
-                                        int AttackDamage = pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-
-                                        IncreaseMortal objData = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+                                        TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = true;
+                                        int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
 
                                         int maxDamage = AttackDamage;
-                                        if (AttackDamage > objData.CurrentCount)
+                                        if (AttackDamage > tempTypeOfAttackIncreaseMortal.CurrentCount)
                                         {
-                                            maxDamage = objData.CurrentCount;
+                                            maxDamage = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                         }
 
-                                        int objBurnValue = objData.CurrentCount + maxDamage;
+                                        int objBurnValue = maxDamage;
 
-                                        pinkSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                                        tempSquareIncreaseMortal.CurrentCount = 0;
+                                        tempTypeOfAttackIncreaseMortal.CurrentCount -= AttackDamage;
 
                                         pinkSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, pinkSquare[randomsquare].transform.position, thePlayer.PinkColor);
 
-                                        pinkSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject,
+                                        if (objBurnValue > 12)
+                                            pinkSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject,
                                             thePlayer.PinkColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
 
                                         isAttackDone = true;
-                                        if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                        if (tempSquareIncreaseMortal.CurrentCount <= 0)
                                         {
                                             TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
-                                            TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
-                                                Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
+                                            tempSquareIncreaseMortal.CurrentCount =
+                                                Mathf.Abs(tempSquareIncreaseMortal.CurrentCount);
                                             TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.Pink);
                                             thePlayer.RenederAllAgain(TypeOfAttack[i]);
                                             TypeOfAttack[i].GetComponent<Image>().color = thePlayer.PinkColor;
                                             TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.PinkColorText;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
+                                            TypeOfAttack[i].GetComponent<SquareClass>().ResetAllSkills();
                                             if (thePlayer.MyBlue != null)
                                             {
-                                                thePlayer.MyBlue.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                                thePlayer.MyBlueSquareClass.Check_Attack_N();
                                             }
                                             isAttackDone = true;
                                         }
+                                        TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = false;
                                     }
                                 }
                             }
@@ -528,6 +543,9 @@ public class EnemySystem : MonoBehaviour
 
                     }
                 }
+                else
+                    isAttackDone = true;
+
                 if (Difficaulty == Difficault.Meduim)
                 {
                     if (Random.Range(0, 100) > 80)
@@ -597,72 +615,75 @@ public class EnemySystem : MonoBehaviour
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
                                 if (isAttackDone) continue;
+                                if (TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack) continue;
+
+                                IncreaseMortal tempTypeOfAttackIncreaseMortal = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+                                IncreaseMortal tempSquareIncreaseMortal = greenSquare[randomsquare].GetComponent<IncreaseMortal>();
 
                                 if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Green && Random.Range(0, 100) < 10)
                                 {
-                                    int AttackDamage = greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
+                                    TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = true;
+
+                                    int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
+                                    int CountOfattacking = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                     if ((AttackDamage += CountOfattacking) < 1000)
                                     {
-                                        AttackDamage = greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                        greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
+                                        AttackDamage = tempSquareIncreaseMortal.CurrentCount;
+                                        tempSquareIncreaseMortal.CurrentCount = 0;
+                                        tempTypeOfAttackIncreaseMortal.CurrentCount += AttackDamage;
 
                                         greenSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, greenSquare[randomsquare].transform.position, thePlayer.GreenColor);
 
                                         isAttackDone = true;
                                     }
+                                    TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = false;
                                 }
                                 if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.Green)
                                 {
                                     if (greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
                                     {
-                                        int AttackDamage = greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                        TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = true;
 
-                                        IncreaseMortal objData = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+                                        int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
 
                                         int maxDamage = AttackDamage;
-                                        if (AttackDamage > objData.CurrentCount)
+                                        if (AttackDamage > tempTypeOfAttackIncreaseMortal.CurrentCount)
                                         {
-                                            maxDamage = objData.CurrentCount;
+                                            maxDamage = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                         }
 
-                                        int objBurnValue = objData.CurrentCount + maxDamage;
+                                        int objBurnValue = maxDamage;
 
-                                        greenSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                                        tempSquareIncreaseMortal.CurrentCount = 0;
+                                        tempTypeOfAttackIncreaseMortal.CurrentCount -= AttackDamage;
 
                                         greenSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, greenSquare[randomsquare].transform.position, thePlayer.GreenColor);
 
-                                        greenSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject,
+                                        if (objBurnValue > 12)
+                                            greenSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject,
                                             thePlayer.GreenColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
 
 
                                         isAttackDone = true;
-                                        if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                        if (tempTypeOfAttackIncreaseMortal.CurrentCount <= 0)
                                         {
                                             TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
-                                            TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
-                                                Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
+                                            tempTypeOfAttackIncreaseMortal.CurrentCount =
+                                                Mathf.Abs(tempTypeOfAttackIncreaseMortal.CurrentCount);
                                             TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.Green);
                                             thePlayer.RenederAllAgain(TypeOfAttack[i]);
                                             TypeOfAttack[i].GetComponent<Image>().color = thePlayer.GreenColor;
                                             TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.GreenColorText;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
+                                            TypeOfAttack[i].GetComponent<SquareClass>().ResetAllSkills();
                                             if (thePlayer.MyBlue != null)
                                             {
-                                                thePlayer.MyBlue.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                                thePlayer.MyBlueSquareClass.Check_Attack_N();
                                             }
                                             isAttackDone = true;
                                         }
+                                        TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = false;
                                     }
                                 }
                             }
@@ -673,6 +694,10 @@ public class EnemySystem : MonoBehaviour
 
                     }
                 }
+                else
+                    isAttackDone = true;
+
+
                 if (Difficaulty == Difficault.Meduim)
                 {
                     if (Random.Range(0, 100) > 80)
@@ -741,71 +766,74 @@ public class EnemySystem : MonoBehaviour
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
                                 if (isAttackDone) continue;
- 
+                                if (TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack) continue;
+
+                                IncreaseMortal tempTypeOfAttackIncreaseMortal = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+                                IncreaseMortal tempSquareIncreaseMortal = OrangeSquare[randomsquare].GetComponent<IncreaseMortal>();
+
                                 if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.Orange && Random.Range(0, 100) < 10)
                                 {
-                                    int AttackDamage = OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
+                                    TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = true;
+
+                                    int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
+                                    int CountOfattacking = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                     if ((AttackDamage += CountOfattacking) < 1000)
                                     {
-                                        AttackDamage = OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                        OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
+                                        AttackDamage = tempSquareIncreaseMortal.CurrentCount;
+                                        tempSquareIncreaseMortal.CurrentCount = 0;
+                                        tempTypeOfAttackIncreaseMortal.CurrentCount += AttackDamage;
 
                                         OrangeSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, OrangeSquare[randomsquare].transform.position, thePlayer.OrangeColor);
 
                                         isAttackDone = true;
                                     }
+                                    TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = false;
                                 }
                                 if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.Orange)
                                 {
                                     if (OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
                                     {
-                                        int AttackDamage = OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                        TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = true;
 
-                                        IncreaseMortal objData = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+                                        int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
 
                                         int maxDamage = AttackDamage;
-                                        if (AttackDamage > objData.CurrentCount)
+                                        if (AttackDamage > tempTypeOfAttackIncreaseMortal.CurrentCount)
                                         {
-                                            maxDamage = objData.CurrentCount;
+                                            maxDamage = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                         }
 
-                                        int objBurnValue = objData.CurrentCount + maxDamage;
+                                        int objBurnValue = maxDamage;
 
-                                        OrangeSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                                        tempSquareIncreaseMortal.CurrentCount = 0;
+                                        tempTypeOfAttackIncreaseMortal.CurrentCount -= AttackDamage;
 
                                         OrangeSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, OrangeSquare[randomsquare].transform.position, thePlayer.OrangeColor);
 
-                                        OrangeSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject,
+                                        if (objBurnValue > 12)
+                                            OrangeSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject,
                                             thePlayer.OrangeColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
 
                                         isAttackDone = true;
-                                        if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                        if (tempTypeOfAttackIncreaseMortal.CurrentCount <= 0)
                                         {
                                             TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
-                                            TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
-                                                Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
+                                            tempTypeOfAttackIncreaseMortal.CurrentCount =
+                                                Mathf.Abs(tempTypeOfAttackIncreaseMortal.CurrentCount);
                                             TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.Orange);
                                             thePlayer.RenederAllAgain(TypeOfAttack[i]);
                                             TypeOfAttack[i].GetComponent<Image>().color = thePlayer.OrangeColor;
                                             TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.OrangeColorText;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
+                                            TypeOfAttack[i].GetComponent<SquareClass>().ResetAllSkills();
                                             if (thePlayer.MyBlue != null)
                                             {
-                                                thePlayer.MyBlue.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                                thePlayer.MyBlueSquareClass.Check_Attack_N();
                                             }
                                             isAttackDone = true;
                                         }
+                                        TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = false;
                                     }
                                 }
                             }
@@ -816,6 +844,9 @@ public class EnemySystem : MonoBehaviour
 
                     }
                 }
+                else
+                    isAttackDone = true;
+
                 if (Difficaulty == Difficault.Meduim)
                 {
                     if (Random.Range(0, 100) > 80)
@@ -831,8 +862,6 @@ public class EnemySystem : MonoBehaviour
                     }
                 }
             }
-
-
         }
         yield return null;
     }
@@ -884,72 +913,74 @@ public class EnemySystem : MonoBehaviour
                             List<GameObject> TypeOfAttack = purpleSquare[randomsquare].GetComponent<StateMortal>().MyTypeOfAttack;
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
-                                if (isAttackDone) continue;
+                                if (isAttackDone || TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack) continue;
+
+                                IncreaseMortal tempTypeOfAttackIncreaseMortal = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+                                IncreaseMortal tempSquareIncreaseMortal = purpleSquare[randomsquare].GetComponent<IncreaseMortal>();
 
                                 if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() == Identity.iden.LastColor && Random.Range(0, 100) < 10)
                                 {
-                                    int AttackDamage = purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                    int CountOfattacking = TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount;
+                                    TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = true;
+
+                                    int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
+                                    int CountOfattacking = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                     if ((AttackDamage += CountOfattacking) < 1000)
                                     {
-                                        AttackDamage = purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
-                                        purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount += AttackDamage;
+                                        AttackDamage = tempSquareIncreaseMortal.CurrentCount;
+                                        tempSquareIncreaseMortal.CurrentCount = 0;
+                                        tempTypeOfAttackIncreaseMortal.CurrentCount += AttackDamage;
 
                                         purpleSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, purpleSquare[randomsquare].transform.position, thePlayer.LastColor);
 
                                         isAttackDone = true;
                                     }
+                                    TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = false;
                                 }
                                 if (TypeOfAttack[i].GetComponent<Identity>().GetIdentity() != Identity.iden.LastColor)
                                 {
-                                    if (purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount > TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount || Random.Range(0, 100) < 40)
+                                    if (tempSquareIncreaseMortal.CurrentCount > tempTypeOfAttackIncreaseMortal.CurrentCount || Random.Range(0, 100) < 40)
                                     {
-                                        int AttackDamage = purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount;
+                                        TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = true;
 
-                                        IncreaseMortal objData = TypeOfAttack[i].GetComponent<IncreaseMortal>();
+                                        int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
 
                                         int maxDamage = AttackDamage;
-                                        if (AttackDamage > objData.CurrentCount)
+                                        if (AttackDamage > tempTypeOfAttackIncreaseMortal.CurrentCount)
                                         {
-                                            maxDamage = objData.CurrentCount;
+                                            maxDamage = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                         }
 
-                                        int objBurnValue = objData.CurrentCount + maxDamage;
+                                        int objBurnValue = maxDamage;
 
-                                        purpleSquare[randomsquare].GetComponent<IncreaseMortal>().CurrentCount = 0;
-                                        TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount -= AttackDamage;
+                                        tempSquareIncreaseMortal.CurrentCount = 0;
+                                        tempTypeOfAttackIncreaseMortal.CurrentCount -= AttackDamage;
 
                                         purpleSquare[randomsquare].GetComponent<StateMortal>()
                                             .LineConnections(TypeOfAttack[i].gameObject, purpleSquare[randomsquare].transform.position, thePlayer.LastColor);
 
-                                        purpleSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject,
+                                        if (objBurnValue > 12)
+                                            purpleSquare[randomsquare].GetComponent<StateMortal>().ArmyBurning(TypeOfAttack[i].gameObject,
                                             thePlayer.LastColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
 
                                         isAttackDone = true;
-                                        if (TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount <= 0)
+                                        if (tempTypeOfAttackIncreaseMortal.CurrentCount <= 0)
                                         {
                                             TypeOfAttack[i].GetComponent<StateMortal>().ResetTypeOfAttackData();
-                                            TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount =
-                                                Mathf.Abs(TypeOfAttack[i].GetComponent<IncreaseMortal>().CurrentCount);
+                                            tempTypeOfAttackIncreaseMortal.CurrentCount =
+                                                Mathf.Abs(tempTypeOfAttackIncreaseMortal.CurrentCount);
                                             TypeOfAttack[i].GetComponent<Identity>().SetIdentity(Identity.iden.LastColor);
                                             thePlayer.RenederAllAgain(TypeOfAttack[i]);
                                             TypeOfAttack[i].GetComponent<Image>().color = thePlayer.LastColor;
                                             TypeOfAttack[i].transform.Find("CountMortal").GetComponent<Text>().color = thePlayer.LastColorText;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().TurboMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().CopacityMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().RandomChangeMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().AllAttackMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().X2Mortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().MaxSpaceMortal = false;
-                                            TypeOfAttack[i].GetComponent<SquareClass>().CheckAllSkills();
+                                            TypeOfAttack[i].GetComponent<SquareClass>().ResetAllSkills();
                                             if (thePlayer.MyBlue != null)
                                             {
-                                                thePlayer.MyBlue.GetComponent<SquareClass>().CheckCanWhoAttack();
+                                                thePlayer.MyBlueSquareClass.Check_Attack_N();
                                             }
                                             isAttackDone = true;
                                         }
+                                        TypeOfAttack[i].GetComponent<SquareClass>().isUnderAttack = false;
                                     }
                                 }
                             }
@@ -960,6 +991,9 @@ public class EnemySystem : MonoBehaviour
 
                     }
                 }
+                else
+                    isAttackDone = true;
+
                 if (Difficaulty == Difficault.Meduim)
                 {
                     if (Random.Range(0, 100) > 80)
@@ -975,10 +1009,7 @@ public class EnemySystem : MonoBehaviour
                     }
                 }
             }
-
-
         }
         yield return null;
     }
-
 }

@@ -5,12 +5,19 @@ using UnityEngine;
 public class StateMortal : MonoBehaviour
 {
     public List<GameObject> MyTypeOfAttack;
-    public List<GameObject> CantAttack;
+    public List<GameObject> N_Attack_list;
     private BoxCollider2D boxCollider2d;
     [SerializeField] LayerMask SquareLayer;
 
 
     public Dictionary<GameObject, string> FixedAttackTypes;
+
+    ObjectPooler objectPooler;
+
+    RaycastHit2D raycastHitDown;
+    RaycastHit2D raycastHitUp;
+    RaycastHit2D raycastHitRight;
+    RaycastHit2D raycastHitLeft;
 
 
     private void Awake()
@@ -19,10 +26,10 @@ public class StateMortal : MonoBehaviour
         FixedAttackTypes = new Dictionary<GameObject, string>();
         float extraHeightText = 0.2f;
         MyTypeOfAttack.Clear();
-        RaycastHit2D raycastHitDown = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x, boxCollider2d.bounds.center.y - boxCollider2d.bounds.extents.y - 0.1f, boxCollider2d.bounds.center.z), Vector2.down, boxCollider2d.bounds.extents.y + extraHeightText, SquareLayer);
-        RaycastHit2D raycastHitUp = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x, boxCollider2d.bounds.center.y + boxCollider2d.bounds.extents.y + 0.1f, boxCollider2d.bounds.center.z), Vector2.up, boxCollider2d.bounds.extents.y + extraHeightText, SquareLayer);
-        RaycastHit2D raycastHitRight = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x + boxCollider2d.bounds.extents.x + 0.1f, boxCollider2d.bounds.center.y, boxCollider2d.bounds.center.z), Vector2.right, boxCollider2d.bounds.extents.x + extraHeightText, SquareLayer);
-        RaycastHit2D raycastHitLeft = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x - boxCollider2d.bounds.extents.x - 0.1f, boxCollider2d.bounds.center.y, boxCollider2d.bounds.center.z), Vector2.left, boxCollider2d.bounds.extents.x + extraHeightText, SquareLayer);
+        raycastHitDown = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x, boxCollider2d.bounds.center.y - boxCollider2d.bounds.extents.y - 0.1f, boxCollider2d.bounds.center.z), Vector2.down, boxCollider2d.bounds.extents.y + extraHeightText, SquareLayer);
+        raycastHitUp = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x, boxCollider2d.bounds.center.y + boxCollider2d.bounds.extents.y + 0.1f, boxCollider2d.bounds.center.z), Vector2.up, boxCollider2d.bounds.extents.y + extraHeightText, SquareLayer);
+        raycastHitRight = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x + boxCollider2d.bounds.extents.x + 0.1f, boxCollider2d.bounds.center.y, boxCollider2d.bounds.center.z), Vector2.right, boxCollider2d.bounds.extents.x + extraHeightText, SquareLayer);
+        raycastHitLeft = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x - boxCollider2d.bounds.extents.x - 0.1f, boxCollider2d.bounds.center.y, boxCollider2d.bounds.center.z), Vector2.left, boxCollider2d.bounds.extents.x + extraHeightText, SquareLayer);
         if (raycastHitDown.collider != null)
         {
             MyTypeOfAttack.Add(raycastHitDown.collider.gameObject);
@@ -46,6 +53,11 @@ public class StateMortal : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        objectPooler = ObjectPooler._Instance;
+    }
+
     public void ShowTypeOfAttack()
     {
         for (int i = 0; i < MyTypeOfAttack.Count; i++)
@@ -55,29 +67,27 @@ public class StateMortal : MonoBehaviour
         }
     }
 
-    public void WhoCantAttack(GameObject[] AllMortal, GameObject OwnGameObject)
+    public void Attack_N(GameObject[] AllMortal, GameObject OwnGameObject)
     {
-        CantAttack.Clear();
+        N_Attack_list.Clear();
 
         foreach (GameObject g in AllMortal)
         {
-            CantAttack.Add(g);
+            N_Attack_list.Add(g);
         }
 
         foreach (GameObject m in MyTypeOfAttack)
         {
-            CantAttack.Remove(m);
+            N_Attack_list.Remove(m);
             m.transform.Find("Fx").gameObject.SetActive(false);
         }
 
-        CantAttack.Remove(OwnGameObject);
+        N_Attack_list.Remove(OwnGameObject);
 
-        foreach (GameObject g in CantAttack)
+        foreach (GameObject g in N_Attack_list)
         {
             g.transform.Find("Fx").gameObject.SetActive(true);
         }
-
-
     }
 
     public void HideTypeOfAttack()
@@ -88,7 +98,7 @@ public class StateMortal : MonoBehaviour
             MyTypeOfAttack[i].GetComponent<SquareClass>().CanAttack = false;
         }
 
-        foreach (GameObject g in CantAttack)
+        foreach (GameObject g in N_Attack_list)
         {
             g.transform.Find("Fx").gameObject.SetActive(false);
         }
@@ -98,10 +108,10 @@ public class StateMortal : MonoBehaviour
     {
         float extraHeightText = 0.2f;
         MyTypeOfAttack.Clear();
-        RaycastHit2D raycastHitDown = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x, boxCollider2d.bounds.center.y - boxCollider2d.bounds.extents.y - 0.1f, boxCollider2d.bounds.center.z), Vector2.down, boxCollider2d.bounds.extents.y + extraHeightText, SquareLayer);
-        RaycastHit2D raycastHitUp = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x, boxCollider2d.bounds.center.y + boxCollider2d.bounds.extents.y + 0.1f, boxCollider2d.bounds.center.z), Vector2.up, boxCollider2d.bounds.extents.y + extraHeightText, SquareLayer);
-        RaycastHit2D raycastHitRight = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x + boxCollider2d.bounds.extents.x + 0.1f, boxCollider2d.bounds.center.y, boxCollider2d.bounds.center.z), Vector2.right, boxCollider2d.bounds.extents.x + extraHeightText, SquareLayer);
-        RaycastHit2D raycastHitLeft = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x - boxCollider2d.bounds.extents.x - 0.1f, boxCollider2d.bounds.center.y, boxCollider2d.bounds.center.z), Vector2.left, boxCollider2d.bounds.extents.x + extraHeightText, SquareLayer);
+        raycastHitDown = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x, boxCollider2d.bounds.center.y - boxCollider2d.bounds.extents.y - 0.1f, boxCollider2d.bounds.center.z), Vector2.down, boxCollider2d.bounds.extents.y + extraHeightText, SquareLayer);
+        raycastHitUp = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x, boxCollider2d.bounds.center.y + boxCollider2d.bounds.extents.y + 0.1f, boxCollider2d.bounds.center.z), Vector2.up, boxCollider2d.bounds.extents.y + extraHeightText, SquareLayer);
+        raycastHitRight = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x + boxCollider2d.bounds.extents.x + 0.1f, boxCollider2d.bounds.center.y, boxCollider2d.bounds.center.z), Vector2.right, boxCollider2d.bounds.extents.x + extraHeightText, SquareLayer);
+        raycastHitLeft = Physics2D.Raycast(new Vector3(boxCollider2d.bounds.center.x - boxCollider2d.bounds.extents.x - 0.1f, boxCollider2d.bounds.center.y, boxCollider2d.bounds.center.z), Vector2.left, boxCollider2d.bounds.extents.x + extraHeightText, SquareLayer);
         if (raycastHitDown.collider != null)
         {
             MyTypeOfAttack.Add(raycastHitDown.collider.gameObject);
@@ -128,31 +138,31 @@ public class StateMortal : MonoBehaviour
             {
                 if (obj.Value == "DOWN")
                 {
-                    GameObject Line = ObjectPooler._Instance.SpawnFromPool("LineConnection", pos + new Vector3(0, -0.5f, 0), new Vector3(0, 0, 0));
+                    GameObject Line = objectPooler.SpawnFromPool("LineConnection", pos + new Vector3(0, -0.5f, 0), new Vector3(0, 0, 0));
                     Line.GetComponent<SpriteRenderer>().color = LineColor;
                 }
                 else if (obj.Value == "UP")
                 {
-                    GameObject Line = ObjectPooler._Instance.SpawnFromPool("LineConnection", pos + new Vector3(0, +0.5f, 0), new Vector3(0, 0, 0));
+                    GameObject Line = objectPooler.SpawnFromPool("LineConnection", pos + new Vector3(0, +0.5f, 0), new Vector3(0, 0, 0));
                     Line.GetComponent<SpriteRenderer>().color = LineColor;
                 }
                 else if (obj.Value == "RIGHT")
                 {
-                    GameObject Line = ObjectPooler._Instance.SpawnFromPool("LineConnection", pos + new Vector3(+0.5f, 0, 0), new Vector3(0, 0, 90));
+                    GameObject Line = objectPooler.SpawnFromPool("LineConnection", pos + new Vector3(+0.5f, 0, 0), new Vector3(0, 0, 90));
                     Line.GetComponent<SpriteRenderer>().color = LineColor;
                 }
                 else if (obj.Value == "LEFT")
                 {
-                    GameObject Line = ObjectPooler._Instance.SpawnFromPool("LineConnection", pos + new Vector3(-0.5f, 0, 0), new Vector3(0, 0, 90));
+                    GameObject Line = objectPooler.SpawnFromPool("LineConnection", pos + new Vector3(-0.5f, 0, 0), new Vector3(0, 0, 90));
                     Line.GetComponent<SpriteRenderer>().color = LineColor;
                 }
             }
         }
     }
 
-    public void ArmyBurning(GameObject targetMortal, Color mainColor, Color targetColor , int burstCount)
+    public void ArmyBurning(GameObject targetMortal, Color mainColor, Color targetColor, int burstCount)
     {
-        ParticleSystem ArmyParticle = ObjectPooler._Instance.SpawnFromPool("ArmyParticle",
+        ParticleSystem ArmyParticle = objectPooler.SpawnFromPool("ArmyParticle",
             targetMortal.transform.position, new Vector3(0, 0, 0)).GetComponent<ParticleSystem>();
 
         ParticleSystem.MainModule ArmyMain = ArmyParticle.main;
@@ -169,15 +179,4 @@ public class StateMortal : MonoBehaviour
         ArmyParticle.Play();
 
     }
-
-
-    // private void Update() {
-
-    //             Debug.DrawRay(new Vector3(boxCollider2d.bounds.center.x,boxCollider2d.bounds.center.y - boxCollider2d.bounds.extents.y - 0.1f,boxCollider2d.bounds.center.z),Vector2.down * (boxCollider2d.bounds.extents.y + 0.2f),Color.yellow);
-    //             Debug.DrawRay(new Vector3(boxCollider2d.bounds.center.x,boxCollider2d.bounds.center.y + boxCollider2d.bounds.extents.y + 0.1f,boxCollider2d.bounds.center.z),Vector2.up * (boxCollider2d.bounds.extents.y + 0.2f),Color.yellow);
-    //             Debug.DrawRay(new Vector3(boxCollider2d.bounds.center.x + boxCollider2d.bounds.extents.x + 0.1f,boxCollider2d.bounds.center.y,boxCollider2d.bounds.center.z),Vector2.right * (boxCollider2d.bounds.extents.x + 0.2f),Color.yellow);
-    //             Debug.DrawRay(new Vector3(boxCollider2d.bounds.center.x - boxCollider2d.bounds.extents.x - 0.1f,boxCollider2d.bounds.center.y,boxCollider2d.bounds.center.z),Vector2.left * (boxCollider2d.bounds.extents.x + 0.2f),Color.yellow);
-    // }
-
-
 }

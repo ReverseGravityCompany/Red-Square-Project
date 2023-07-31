@@ -554,7 +554,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndTwo");
   //                          }
@@ -710,7 +710,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndTwo");
   //                          }
@@ -864,7 +864,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndTwo");
   //                          }
@@ -1018,7 +1018,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndTwo");
   //                          }
@@ -1174,7 +1174,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndTwo");
   //                          }
@@ -1330,7 +1330,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndTwo");
   //                          }
@@ -1505,7 +1505,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThree");
   //                          }
@@ -1547,7 +1547,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThree");
   //                          }
@@ -1589,7 +1589,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThree");
   //                          }
@@ -1631,7 +1631,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThree");
   //                          }
@@ -1673,7 +1673,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThree");
 
@@ -1716,7 +1716,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThree");
   //                          }
@@ -1758,7 +1758,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThree");
   //                          }
@@ -1817,7 +1817,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThreeYellow");
   //                          }
@@ -1859,7 +1859,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThreeYellow");
   //                          }
@@ -1901,7 +1901,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThreeYellow");
   //                          }
@@ -1943,7 +1943,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThreeYellow");
   //                          }
@@ -1985,7 +1985,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThreeYellow");
   //                          }
@@ -2027,7 +2027,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThreeYellow");
   //                          }
@@ -2069,7 +2069,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackThreeAndThreeYellow");
   //                          }
@@ -2132,7 +2132,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThree");
   //                          }
@@ -2174,7 +2174,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThree");
   //                          }
@@ -2216,7 +2216,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThree");
   //                          }
@@ -2258,7 +2258,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThree");
   //                          }
@@ -2300,7 +2300,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThree");
   //                          }
@@ -2342,7 +2342,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThree");
   //                          }
@@ -2384,7 +2384,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThree");
   //                          }
@@ -2426,7 +2426,7 @@ public class EnemyAttack : MonoBehaviour
   //                              JeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThree");
   //                          }
@@ -2468,7 +2468,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThree");
   //                          }
@@ -2529,7 +2529,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThreeYellow");
   //                          }
@@ -2571,7 +2571,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThreeYellow");
   //                          }
@@ -2613,7 +2613,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThreeYellow");
   //                          }
@@ -2655,7 +2655,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThreeYellow");
   //                          }
@@ -2697,7 +2697,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThreeYellow");
   //                          }
@@ -2739,7 +2739,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThreeYellow");
   //                          }
@@ -2781,7 +2781,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThreeYellow");
   //                          }
@@ -2823,7 +2823,7 @@ public class EnemyAttack : MonoBehaviour
   //                              JeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThreeYellow");
   //                          }
@@ -2865,7 +2865,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFourAndThreeYellow");
   //                          }
@@ -2933,7 +2933,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -2975,7 +2975,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -3017,7 +3017,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -3059,7 +3059,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -3101,7 +3101,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -3143,7 +3143,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -3185,7 +3185,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -3227,7 +3227,7 @@ public class EnemyAttack : MonoBehaviour
   //                              JeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -3269,7 +3269,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -3311,7 +3311,7 @@ public class EnemyAttack : MonoBehaviour
   //                              OeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -3353,7 +3353,7 @@ public class EnemyAttack : MonoBehaviour
   //                              LeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -3395,7 +3395,7 @@ public class EnemyAttack : MonoBehaviour
   //                              WeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -3437,7 +3437,7 @@ public class EnemyAttack : MonoBehaviour
   //                              HeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -3479,7 +3479,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThree");
   //                          }
@@ -3545,7 +3545,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -3587,7 +3587,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -3629,7 +3629,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -3671,7 +3671,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -3713,7 +3713,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -3755,7 +3755,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -3797,7 +3797,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -3839,7 +3839,7 @@ public class EnemyAttack : MonoBehaviour
   //                              JeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -3881,7 +3881,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -3923,7 +3923,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -3965,7 +3965,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -4007,7 +4007,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -4049,7 +4049,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -4091,7 +4091,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreeYellow");
   //                          }
@@ -4157,7 +4157,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreePink");
   //                          }
@@ -4199,7 +4199,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreePink");
   //                          }
@@ -4241,7 +4241,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreePink");
   //                          }
@@ -4283,7 +4283,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreePink");
   //                          }
@@ -4325,7 +4325,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreePink");
   //                          }
@@ -4367,7 +4367,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 70f)
   //                                  yield return StartCoroutine("StartAttackFiveAndThreePink");
@@ -4410,7 +4410,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 70f)
   //                                  yield return StartCoroutine("StartAttackFiveAndThreePink");
@@ -4453,7 +4453,7 @@ public class EnemyAttack : MonoBehaviour
   //                              JeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 70f)
   //                                  yield return StartCoroutine("StartAttackFiveAndThreePink");
@@ -4496,7 +4496,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 70f)
   //                                  yield return StartCoroutine("StartAttackFiveAndThreePink");
@@ -4539,7 +4539,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 70f)
   //                                  yield return StartCoroutine("StartAttackFiveAndThreePink");
@@ -4582,7 +4582,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreePink");
   //                          }
@@ -4624,7 +4624,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 70f)
   //                                  yield return StartCoroutine("StartAttackFiveAndThreePink");
@@ -4667,7 +4667,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 70f)
   //                                  yield return StartCoroutine("StartAttackFiveAndThreePink");
@@ -4710,7 +4710,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              yield return StartCoroutine("StartAttackFiveAndThreePink");
   //                          }
@@ -4784,7 +4784,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -4827,7 +4827,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -4870,7 +4870,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -4913,7 +4913,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -4956,7 +4956,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -4999,7 +4999,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5042,7 +5042,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5085,7 +5085,7 @@ public class EnemyAttack : MonoBehaviour
   //                              JeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5128,7 +5128,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5171,7 +5171,7 @@ public class EnemyAttack : MonoBehaviour
   //                              OeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5214,7 +5214,7 @@ public class EnemyAttack : MonoBehaviour
   //                              LeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5257,7 +5257,7 @@ public class EnemyAttack : MonoBehaviour
   //                              WeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5300,7 +5300,7 @@ public class EnemyAttack : MonoBehaviour
   //                              HeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5343,7 +5343,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5386,7 +5386,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5429,7 +5429,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5472,7 +5472,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5515,7 +5515,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5558,7 +5558,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5601,7 +5601,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSix");
@@ -5674,7 +5674,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -5717,7 +5717,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -5760,7 +5760,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -5803,7 +5803,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -5846,7 +5846,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -5889,7 +5889,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -5932,7 +5932,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -5975,7 +5975,7 @@ public class EnemyAttack : MonoBehaviour
   //                              JeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -6018,7 +6018,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -6061,7 +6061,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -6104,7 +6104,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -6147,7 +6147,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -6190,7 +6190,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -6233,7 +6233,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -6276,7 +6276,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -6319,7 +6319,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -6362,7 +6362,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -6405,7 +6405,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -6448,7 +6448,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -6491,7 +6491,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixYellow");
@@ -6564,7 +6564,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -6607,7 +6607,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
 
   //                              if (Random.Range(0, 100) > 20f)
@@ -6651,7 +6651,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -6694,7 +6694,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -6737,7 +6737,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -6780,7 +6780,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -6823,7 +6823,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -6866,7 +6866,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -6909,7 +6909,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -6952,7 +6952,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -6995,7 +6995,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -7038,7 +7038,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -7081,7 +7081,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 20)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -7124,7 +7124,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -7167,7 +7167,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 20)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -7210,7 +7210,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 20f)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -7253,7 +7253,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 20)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -7296,7 +7296,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 20)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -7339,7 +7339,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 20)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -7382,7 +7382,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 20)
   //                                  yield return StartCoroutine("StartAttackSixAndSixPink");
@@ -7505,7 +7505,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -7548,7 +7548,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -7591,7 +7591,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -7634,7 +7634,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -7677,7 +7677,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -7720,7 +7720,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -7763,7 +7763,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -7806,7 +7806,7 @@ public class EnemyAttack : MonoBehaviour
   //                              JeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -7849,7 +7849,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -7892,7 +7892,7 @@ public class EnemyAttack : MonoBehaviour
   //                              OeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -7935,7 +7935,7 @@ public class EnemyAttack : MonoBehaviour
   //                              LeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -7978,7 +7978,7 @@ public class EnemyAttack : MonoBehaviour
   //                              WeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8021,7 +8021,7 @@ public class EnemyAttack : MonoBehaviour
   //                              HeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8064,7 +8064,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8107,7 +8107,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8150,7 +8150,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8193,7 +8193,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8236,7 +8236,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8279,7 +8279,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8322,7 +8322,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8365,7 +8365,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8408,7 +8408,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8451,7 +8451,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8494,7 +8494,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8537,7 +8537,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8580,7 +8580,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8623,7 +8623,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8666,7 +8666,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8709,7 +8709,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8752,7 +8752,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8795,7 +8795,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8838,7 +8838,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8881,7 +8881,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8924,7 +8924,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -8967,7 +8967,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9010,7 +9010,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9053,7 +9053,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9096,7 +9096,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9139,7 +9139,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9182,7 +9182,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9225,7 +9225,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9268,7 +9268,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9311,7 +9311,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9354,7 +9354,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9397,7 +9397,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9440,7 +9440,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9483,7 +9483,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9526,7 +9526,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9569,7 +9569,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9612,7 +9612,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9655,7 +9655,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9698,7 +9698,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9741,7 +9741,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9784,7 +9784,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9827,7 +9827,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9870,7 +9870,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9913,7 +9913,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9956,7 +9956,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -9999,7 +9999,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -10042,7 +10042,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -10085,7 +10085,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -10128,7 +10128,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -10171,7 +10171,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -10214,7 +10214,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -10257,7 +10257,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -10300,7 +10300,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -10343,7 +10343,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -10386,7 +10386,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSeven");
@@ -10507,7 +10507,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -10550,7 +10550,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -10593,7 +10593,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -10636,7 +10636,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -10679,7 +10679,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -10722,7 +10722,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -10765,7 +10765,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -10808,7 +10808,7 @@ public class EnemyAttack : MonoBehaviour
   //                              JeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -10851,7 +10851,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -10894,7 +10894,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -10937,7 +10937,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -10980,7 +10980,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11023,7 +11023,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11066,7 +11066,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11109,7 +11109,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11152,7 +11152,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11195,7 +11195,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11238,7 +11238,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11281,7 +11281,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11324,7 +11324,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11367,7 +11367,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11410,7 +11410,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11453,7 +11453,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11496,7 +11496,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11539,7 +11539,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11582,7 +11582,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11625,7 +11625,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11668,7 +11668,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11711,7 +11711,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11754,7 +11754,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11797,7 +11797,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11840,7 +11840,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11883,7 +11883,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11926,7 +11926,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -11969,7 +11969,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12012,7 +12012,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12055,7 +12055,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12098,7 +12098,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12141,7 +12141,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12184,7 +12184,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12227,7 +12227,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12270,7 +12270,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12313,7 +12313,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12356,7 +12356,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12399,7 +12399,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12442,7 +12442,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12485,7 +12485,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12528,7 +12528,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12571,7 +12571,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12614,7 +12614,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12657,7 +12657,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12700,7 +12700,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12743,7 +12743,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12786,7 +12786,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12829,7 +12829,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12872,7 +12872,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12915,7 +12915,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -12958,7 +12958,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -13001,7 +13001,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -13044,7 +13044,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -13087,7 +13087,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -13130,7 +13130,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -13173,7 +13173,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -13216,7 +13216,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -13259,7 +13259,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -13302,7 +13302,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -13345,7 +13345,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -13388,7 +13388,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenYellow");
@@ -13509,7 +13509,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -13552,7 +13552,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
 
   //                              if (Random.Range(0, 100) > 35f)
@@ -13596,7 +13596,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -13639,7 +13639,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -13682,7 +13682,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -13725,7 +13725,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -13768,7 +13768,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -13811,7 +13811,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -13854,7 +13854,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -13897,7 +13897,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -13940,7 +13940,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -13983,7 +13983,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14026,7 +14026,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14069,7 +14069,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14112,7 +14112,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14155,7 +14155,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14198,7 +14198,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14241,7 +14241,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14284,7 +14284,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14327,7 +14327,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14370,7 +14370,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14413,7 +14413,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14456,7 +14456,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14499,7 +14499,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14542,7 +14542,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14585,7 +14585,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14628,7 +14628,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14671,7 +14671,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14714,7 +14714,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14757,7 +14757,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14800,7 +14800,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14843,7 +14843,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14886,7 +14886,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14929,7 +14929,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -14972,7 +14972,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15015,7 +15015,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15058,7 +15058,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15101,7 +15101,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15144,7 +15144,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15187,7 +15187,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15230,7 +15230,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15273,7 +15273,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15316,7 +15316,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15359,7 +15359,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15402,7 +15402,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15445,7 +15445,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15488,7 +15488,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15531,7 +15531,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15574,7 +15574,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15617,7 +15617,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15660,7 +15660,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15703,7 +15703,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15746,7 +15746,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15789,7 +15789,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15832,7 +15832,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15875,7 +15875,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15918,7 +15918,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -15961,7 +15961,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -16004,7 +16004,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -16047,7 +16047,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -16090,7 +16090,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -16133,7 +16133,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -16176,7 +16176,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -16219,7 +16219,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -16262,7 +16262,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -16305,7 +16305,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -16348,7 +16348,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -16391,7 +16391,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 35f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenPink");
@@ -16512,7 +16512,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -16555,7 +16555,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
 
   //                              if (Random.Range(0, 100) > 40f)
@@ -16599,7 +16599,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -16642,7 +16642,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -16685,7 +16685,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -16728,7 +16728,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -16771,7 +16771,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -16814,7 +16814,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -16857,7 +16857,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -16900,7 +16900,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -16943,7 +16943,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -16986,7 +16986,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17029,7 +17029,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17072,7 +17072,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17115,7 +17115,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17158,7 +17158,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17201,7 +17201,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17244,7 +17244,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17287,7 +17287,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17330,7 +17330,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17373,7 +17373,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17416,7 +17416,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17459,7 +17459,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17502,7 +17502,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17545,7 +17545,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17588,7 +17588,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17631,7 +17631,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17674,7 +17674,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17717,7 +17717,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17760,7 +17760,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17803,7 +17803,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17846,7 +17846,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17889,7 +17889,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17932,7 +17932,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -17975,7 +17975,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18018,7 +18018,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18061,7 +18061,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18104,7 +18104,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18147,7 +18147,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18190,7 +18190,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18233,7 +18233,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18276,7 +18276,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18319,7 +18319,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18362,7 +18362,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18405,7 +18405,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18448,7 +18448,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18491,7 +18491,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18534,7 +18534,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18577,7 +18577,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18620,7 +18620,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18663,7 +18663,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18706,7 +18706,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18749,7 +18749,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18792,7 +18792,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18835,7 +18835,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18878,7 +18878,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18921,7 +18921,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -18964,7 +18964,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -19007,7 +19007,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -19050,7 +19050,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -19093,7 +19093,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -19136,7 +19136,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -19179,7 +19179,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -19222,7 +19222,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -19265,7 +19265,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -19308,7 +19308,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -19351,7 +19351,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 20f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -19394,7 +19394,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenGreen");
@@ -19515,7 +19515,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -19558,7 +19558,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
 
   //                              if (Random.Range(0, 100) > 40f)
@@ -19602,7 +19602,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -19645,7 +19645,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -19688,7 +19688,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -19731,7 +19731,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -19774,7 +19774,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -19817,7 +19817,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -19860,7 +19860,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -19903,7 +19903,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -19946,7 +19946,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -19989,7 +19989,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20032,7 +20032,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20075,7 +20075,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20118,7 +20118,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20161,7 +20161,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20204,7 +20204,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20247,7 +20247,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20290,7 +20290,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20333,7 +20333,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100) < 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20376,7 +20376,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20419,7 +20419,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20462,7 +20462,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20505,7 +20505,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20548,7 +20548,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20591,7 +20591,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20634,7 +20634,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20677,7 +20677,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20720,7 +20720,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20763,7 +20763,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20806,7 +20806,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20849,7 +20849,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20892,7 +20892,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20935,7 +20935,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -20978,7 +20978,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21021,7 +21021,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21064,7 +21064,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21107,7 +21107,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21150,7 +21150,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21193,7 +21193,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21236,7 +21236,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21279,7 +21279,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21322,7 +21322,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21365,7 +21365,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21408,7 +21408,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21451,7 +21451,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21494,7 +21494,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21537,7 +21537,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21580,7 +21580,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21623,7 +21623,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21666,7 +21666,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21709,7 +21709,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21752,7 +21752,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21795,7 +21795,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21838,7 +21838,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21881,7 +21881,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21924,7 +21924,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -21967,7 +21967,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -22010,7 +22010,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -22053,7 +22053,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -22096,7 +22096,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -22139,7 +22139,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -22182,7 +22182,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -22225,7 +22225,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -22268,7 +22268,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -22311,7 +22311,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -22354,7 +22354,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -22397,7 +22397,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 40f)
   //                                  yield return StartCoroutine("StartAttackSevenAndSevenOrange");
@@ -22621,7 +22621,7 @@ public class EnemyAttack : MonoBehaviour
   //                              ReTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -22664,7 +22664,7 @@ public class EnemyAttack : MonoBehaviour
   //                              BeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -22707,7 +22707,7 @@ public class EnemyAttack : MonoBehaviour
   //                              DeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -22750,7 +22750,7 @@ public class EnemyAttack : MonoBehaviour
   //                              GeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -22793,7 +22793,7 @@ public class EnemyAttack : MonoBehaviour
   //                              TeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -22836,7 +22836,7 @@ public class EnemyAttack : MonoBehaviour
   //                              SeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -22879,7 +22879,7 @@ public class EnemyAttack : MonoBehaviour
   //                              UETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -22922,7 +22922,7 @@ public class EnemyAttack : MonoBehaviour
   //                              JeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -22965,7 +22965,7 @@ public class EnemyAttack : MonoBehaviour
   //                              PETypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23008,7 +23008,7 @@ public class EnemyAttack : MonoBehaviour
   //                              OeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23051,7 +23051,7 @@ public class EnemyAttack : MonoBehaviour
   //                              LeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23094,7 +23094,7 @@ public class EnemyAttack : MonoBehaviour
   //                              WeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23137,7 +23137,7 @@ public class EnemyAttack : MonoBehaviour
   //                              HeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23180,7 +23180,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23223,7 +23223,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23266,7 +23266,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23309,7 +23309,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23352,7 +23352,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23395,7 +23395,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23438,7 +23438,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23481,7 +23481,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23524,7 +23524,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23567,7 +23567,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23610,7 +23610,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23653,7 +23653,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23696,7 +23696,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23739,7 +23739,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23782,7 +23782,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23825,7 +23825,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23868,7 +23868,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23911,7 +23911,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23954,7 +23954,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -23997,7 +23997,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24040,7 +24040,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24083,7 +24083,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24126,7 +24126,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24169,7 +24169,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24212,7 +24212,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24255,7 +24255,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24298,7 +24298,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24341,7 +24341,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24384,7 +24384,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24427,7 +24427,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24470,7 +24470,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24513,7 +24513,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24556,7 +24556,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24599,7 +24599,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24642,7 +24642,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24685,7 +24685,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24728,7 +24728,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24771,7 +24771,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24814,7 +24814,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24857,7 +24857,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24900,7 +24900,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24943,7 +24943,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -24986,7 +24986,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25029,7 +25029,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25072,7 +25072,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25115,7 +25115,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25158,7 +25158,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25201,7 +25201,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25244,7 +25244,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25287,7 +25287,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25330,7 +25330,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25373,7 +25373,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25416,7 +25416,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25459,7 +25459,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25504,7 +25504,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25549,7 +25549,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25594,7 +25594,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25639,7 +25639,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25684,7 +25684,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25729,7 +25729,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25774,7 +25774,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25819,7 +25819,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25864,7 +25864,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25909,7 +25909,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25954,7 +25954,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -25999,7 +25999,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26044,7 +26044,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26089,7 +26089,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26134,7 +26134,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26178,7 +26178,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26222,7 +26222,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26266,7 +26266,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26310,7 +26310,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26354,7 +26354,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26398,7 +26398,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26442,7 +26442,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26486,7 +26486,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26530,7 +26530,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26574,7 +26574,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26618,7 +26618,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26662,7 +26662,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26706,7 +26706,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26750,7 +26750,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26794,7 +26794,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26838,7 +26838,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26882,7 +26882,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26926,7 +26926,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -26970,7 +26970,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27014,7 +27014,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27058,7 +27058,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27102,7 +27102,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27146,7 +27146,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27190,7 +27190,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27234,7 +27234,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27278,7 +27278,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27322,7 +27322,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27366,7 +27366,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27410,7 +27410,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27454,7 +27454,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27498,7 +27498,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27542,7 +27542,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27586,7 +27586,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27630,7 +27630,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27674,7 +27674,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27718,7 +27718,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27762,7 +27762,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27806,7 +27806,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27850,7 +27850,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27894,7 +27894,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27938,7 +27938,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -27982,7 +27982,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28026,7 +28026,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28070,7 +28070,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28114,7 +28114,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28158,7 +28158,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28202,7 +28202,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28246,7 +28246,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28290,7 +28290,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28334,7 +28334,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28378,7 +28378,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28422,7 +28422,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28466,7 +28466,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28510,7 +28510,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28554,7 +28554,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28598,7 +28598,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28642,7 +28642,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28686,7 +28686,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28730,7 +28730,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28774,7 +28774,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28818,7 +28818,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28862,7 +28862,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28906,7 +28906,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28950,7 +28950,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -28994,7 +28994,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29038,7 +29038,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29082,7 +29082,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29126,7 +29126,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29170,7 +29170,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29214,7 +29214,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29258,7 +29258,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29302,7 +29302,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29346,7 +29346,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29390,7 +29390,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29434,7 +29434,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29478,7 +29478,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29522,7 +29522,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29566,7 +29566,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29610,7 +29610,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29654,7 +29654,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29698,7 +29698,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29742,7 +29742,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29786,7 +29786,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29830,7 +29830,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29874,7 +29874,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");
@@ -29918,7 +29918,7 @@ public class EnemyAttack : MonoBehaviour
   //                              QeTypeOfAttack[i].GetComponent<Mortal>().CheckAllSkills();
   //                              if (thePlayer.MyRed != null)
   //                              {
-  //                                  thePlayer.MyRed.GetComponent<Mortal>().CheckCanWhoAttack();
+  //                                  thePlayer.MyRed.GetComponent<Mortal>().Check_Attack_N();
   //                              }
   //                              if (Random.Range(0, 100f) > 30f)
   //                                  yield return StartCoroutine("StartAttackLast");

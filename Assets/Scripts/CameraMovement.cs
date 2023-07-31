@@ -40,7 +40,7 @@ public class CameraMovement : MonoBehaviour
         Speed = 4;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         float MoveX = CnInputManager.GetAxis("Horizontal") * Speed * Time.deltaTime;
         float MoveY = CnInputManager.GetAxis("Vertical") * Speed * Time.deltaTime;

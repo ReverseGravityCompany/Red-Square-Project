@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 using CodeStage.AntiCheat.ObscuredTypes;
 using UnityEngine.Audio;
+using UnityEngine.Networking;
+using static System.Net.WebRequestMethods;
 
 public class LevelManager : MonoBehaviour
 {
@@ -51,6 +53,9 @@ public class LevelManager : MonoBehaviour
     [HideInInspector] public int CurrentLevel;
 
     [HideInInspector] public bool isGeneratingLevel;
+    public int[] GoldForEachLevels;
+
+    private string BazzarAPIURL = "https://minigames-api.cafebazaar.org/score/";
 
     [Header("Learning Properties")]
     public GameObject[] TutorialsLevels;
@@ -95,6 +100,8 @@ public class LevelManager : MonoBehaviour
             {
                 Instantiate(TutorialsLevels[0].gameObject, LevelsParent.transform , false);
                 Instantiate(TutorialsCanvas[0].gameObject);
+
+                StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Learn\": " + 1 + "}"));
 
                 GameObject.FindObjectOfType<SquareSoliderCount>().StartGenerateSolider();
                 tutorialTask = FindObjectOfType<TutorialTask>();
@@ -155,30 +162,6 @@ public class LevelManager : MonoBehaviour
     {
         if (!LearningLevels)
         {
-            CoinText.text = CurrentCoin.ToString();
-            if (ObscuredPrefs.GetInt("MyCoin") >= MaxCoin)
-            {
-                CurrentCoin = MaxCoin;
-                ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
-                CoinText.text = CurrentCoin.ToString();
-            }
-
-            if (!SkillsState)
-            {
-                for (int i = 0; i < SkillsObject.Length; i++)
-                {
-                    SkillsObject[i].SetActive(false);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < SkillsObject.Length; i++)
-                {
-                    SkillsObject[i].SetActive(true);
-                }
-            }
-
-
             // CHECK WHAT ARE CURRENT STATE (WIN OR LOSE)
             if (LoseStatus < AllMortalObjects.Length && WinStatus < AllMortalObjects.Length)
             {
@@ -215,7 +198,7 @@ public class LevelManager : MonoBehaviour
             }
 
             // IF WE LOSE
-            if (LoseStatus >= AllMortalObjects.Length)
+            if (!LoseGame && LoseStatus >= AllMortalObjects.Length)
             {
                 LoseGame = true;
             }
@@ -226,13 +209,9 @@ public class LevelManager : MonoBehaviour
                 Time.timeScale = 0.5f;
                 Lose.SetActive(true);
                 SkillsState = false;
-                for (int i = 0; i < SkillsObject.Length; i++)
-                {
-                    SkillsObject[i].gameObject.SetActive(false);
-                }
+                UpdateSkills();
                 CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(CoinPosX, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
             }
-
 
             // IF WE WIN
             if (WinStatus >= AllMortalObjects.Length && !WinningRewardTaken)
@@ -240,19 +219,36 @@ public class LevelManager : MonoBehaviour
                 WinGame = true;
                 SkillsState = false;
                 FindObjectOfType<MenuSetting>().GameStarted = false;
-                for (int i = 0; i < SkillsObject.Length; i++)
-                {
-                    SkillsObject[i].gameObject.SetActive(false);
-                }
+                UpdateSkills();
+                FindObjectOfType<BackgroundMusic>().UpdateBackgroundMusic();
             }
             if (WinGame && !WinningRewardTaken)
             {
-                Game_AudioMixer.DOSetFloat("Lowpass_Music", 650, 1.55f).SetEase(Ease.Linear).SetUpdate(true);
                 if (PlayerPrefs.HasKey("UnlockLevel"))
                 {
                     if (PlayerPrefs.GetInt("UnlockLevel") == CurrentLevel)
                     {
                         anim.SetTrigger("WinCoin");
+                        CoinWinning = GoldForEachLevels[CurrentLevel - 1];
+                        IsCoinTaken = true;
+                    }
+                    else
+                    {
+                        anim.SetTrigger("WinCoin");
+                        CoinWinning = 0;
+                        EnemySystem.Difficault dif = FindObjectOfType<EnemySystem>().Difficaulty;
+                        switch (dif)
+                        {
+                            case EnemySystem.Difficault.Easy:
+                                CoinWinning = 50;
+                                break;
+                            case EnemySystem.Difficault.Meduim:
+                                CoinWinning = 100;
+                                break;
+                            case EnemySystem.Difficault.Hard:
+                                CoinWinning = 200;
+                                break;
+                        }
                         IsCoinTaken = true;
                     }
                 }
@@ -271,14 +267,17 @@ public class LevelManager : MonoBehaviour
                 {
                     CheckValueOfLevel = check;
                 }
-                if (CheckValueOfLevel >= 100)
+                if (CheckValueOfLevel >= 200)
                 {
-                    CheckValueOfLevel = 100;
+                    CheckValueOfLevel = 200;
                     Unlocknextlevel = CheckValueOfLevel;
                 }
                 PlayerPrefs.SetInt("ValueOfLevels", CheckValueOfLevel);
                 PlayerPrefs.SetInt("MyLevel", Unlocknextlevel);
                 PlayerPrefs.SetInt("UnlockLevel", PlayerPrefs.GetInt("ValueOfLevels"));
+
+                StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Unlock_Level\": " + Unlocknextlevel + "}"));
+                Game_AudioMixer.DOSetFloat("Lowpass_Music", 650, 1.55f).SetEase(Ease.Linear).SetUpdate(true);
 
                 Time.timeScale = 0.5f;
                 Win.SetActive(true);
@@ -286,13 +285,14 @@ public class LevelManager : MonoBehaviour
 
                 if (!CoinRecive)
                 {
-                    int b = CoinWinning < 100 ? CoinWinning - Random.Range(-3, 5) : CoinWinning < 300 ?
-           CoinWinning - Random.Range(-30, 30) : CoinWinning < 1000 ? CoinWinning - Random.Range(-50, 50) : CoinWinning > 1000 ? CoinWinning - Random.Range(-100, 100) : CoinWinning;
+                    int b = CoinWinning < 100 ? CoinWinning - Random.Range(-12, 12) : CoinWinning < 300 ?
+           CoinWinning - Random.Range(-40, 30) : CoinWinning < 1000 ? CoinWinning - Random.Range(-80, 50) : CoinWinning > 1000 ? CoinWinning - Random.Range(-3000, 100) : CoinWinning;
                     CoinWinning = b;
 
                     if (IsCoinTaken)
                     {
                         CurrentCoin += CoinWinning;
+                        UpdateCoin();
                         ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
                     }
                     CoinRecive = true;
@@ -353,9 +353,16 @@ public class LevelManager : MonoBehaviour
                     LearnProcess += 1;
                     PlayerPrefs.SetInt("LearnProcess", LearnProcess);
 
+
+
                     if (LearnProcess == TutorialsLevels.Length + 1)
                     {
                         PlayerPrefs.SetInt("MyLevel", 1);
+                        StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Level\": " + 1 + "}"));
+                    }
+                    else
+                    {
+                        StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Learn\": " + LearnProcess + "}"));
                     }
                 }
                 else
@@ -367,6 +374,28 @@ public class LevelManager : MonoBehaviour
                 tutorialTask.LessonSuccesful();
                 WinSound.Play();
             }
+        }
+    }
+
+    private IEnumerator postRequest(string url , string json)
+    {
+        var uwr = new UnityWebRequest(url, "POST");
+        byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
+        uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+        uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        uwr.SetRequestHeader("Content-Type", "application/json");
+
+        //Send the request then wait here until it returns
+        yield return uwr.SendWebRequest();
+
+        if (uwr.isNetworkError)
+        {
+            Debug.Log("Error While Sending: " + uwr.error);
+        }
+        else
+        {
+            Debug.Log("Received: " + uwr.result);
+            Debug.Log("Received: " + uwr.downloadHandler.text);
         }
     }
 
@@ -396,7 +425,7 @@ public class LevelManager : MonoBehaviour
         CurrentCoin += RewardCount;
         Debug.Log(CurrentCoin);
         ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
-        CoinText.text = CurrentCoin.ToString();
+        UpdateCoin();
     }
 
     private void OnDestroy()
@@ -413,7 +442,36 @@ public class LevelManager : MonoBehaviour
         CurrentCoin += 2000;
         Debug.Log(CurrentCoin);
         ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+        UpdateCoin();
+    }
+
+    public void UpdateCoin()
+    {
         CoinText.text = CurrentCoin.ToString();
+        if (ObscuredPrefs.GetInt("MyCoin") >= MaxCoin)
+        {
+            CurrentCoin = MaxCoin;
+            ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+            CoinText.text = CurrentCoin.ToString();
+        }
+    }
+
+    public void UpdateSkills()
+    {
+        if (!SkillsState)
+        {
+            for (int i = 0; i < SkillsObject.Length; i++)
+            {
+                SkillsObject[i].SetActive(false);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < SkillsObject.Length; i++)
+            {
+                SkillsObject[i].SetActive(true);
+            }
+        }
     }
 
     #endregion

@@ -22,25 +22,25 @@ public class SquareSoliderCount : MonoBehaviour
         StartCoroutine(GeneratingSolider());
     }
 
-    private void Update()
-    {
-        for (int i = 0; i < sqaurs.Length; i++)
-        {
-            sqaurs[i].ShowMortal.text = sqaurs[i].CurrentCount.ToString();
-            if (sqaurs[i].CurrentCount >= 1000)
-            {
-                sqaurs[i].CurrentCount = 1000;
-            }
-            if (sqaurs[i].CurrentCount >= sqaurs[i].MaxSpace)
-            {
-                sqaurs[i].isHaveAnySpace = true;
-            }
-            else
-            {
-                sqaurs[i].isHaveAnySpace = false;
-            }
-        }
-    }
+    //private void Update()
+    //{
+    //    //for (int i = 0; i < sqaurs.Length; i++)
+    //    //{
+    //    //    sqaurs[i].ShowMortal.text = sqaurs[i].CurrentCount.ToString();
+    //    //    if (sqaurs[i].CurrentCount >= 1000)
+    //    //    {
+    //    //        sqaurs[i].CurrentCount = 1000;
+    //    //    }
+    //    //    if (sqaurs[i].CurrentCount >= sqaurs[i].MaxSpace)
+    //    //    {
+    //    //        sqaurs[i].isHaveAnySpace = true;
+    //    //    }
+    //    //    else
+    //    //    {
+    //    //        sqaurs[i].isHaveAnySpace = false;
+    //    //    }
+    //    //}
+    //}
 
     private IEnumerator GeneratingSolider()
     {
@@ -53,6 +53,25 @@ public class SquareSoliderCount : MonoBehaviour
                 {
                     sqaurs[i].CurrentCount += sqaurs[i].AmountIncrease;
                     sqaurs[i].ShowMortal.text = sqaurs[i].CurrentCount.ToString();
+
+                    if (sqaurs[i].CurrentCount >= 1000)
+                    {
+                        sqaurs[i].CurrentCount = 1000;
+                    }
+                    if (sqaurs[i].CurrentCount >= sqaurs[i].MaxSpace)
+                    {
+                        sqaurs[i].isHaveAnySpace = true;
+                    }
+                }
+                else
+                {
+                    if (sqaurs[i].CurrentCount < sqaurs[i].MaxSpace)
+                    {
+                        sqaurs[i].isHaveAnySpace = false;
+
+                        sqaurs[i].CurrentCount += sqaurs[i].AmountIncrease;
+                        sqaurs[i].ShowMortal.text = sqaurs[i].CurrentCount.ToString();
+                    }
                 }
             }
         }

@@ -6,7 +6,7 @@ using CodeStage.AntiCheat.ObscuredTypes;
 public class Skills : MonoBehaviour
 {
     #region Properties
-    [HideInInspector] public bool turbo, copacity, randomChange, allAttack , X2 , MaxSpace;
+   // [HideInInspector] public bool turbo, copacity, randomChange, allAttack , X2 , MaxSpace;
     public GameObject TurboObj, CopacityObj, RandomChangeObj, AllAttackObj, X2Obj, MaxSpaceObj;
     [HideInInspector] public SquareClass SelectedMortal;
 
@@ -53,13 +53,13 @@ public class Skills : MonoBehaviour
             {
                 Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 100;
+                theLevelmanager.UpdateCoin();
                 ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
-                turbo = true;
                 SelectedMortal.TurboMortal = true;
                 TurboObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
-                SelectedMortal.star1.GetComponent<Image>().color = SelectedMortal.MyCountNumberColor;
                 SelectedMortal.star1.SetActive(true);
                 SelectedMortal.GetComponent<IncreaseMortal>().AmountIncrease = 2;
+                SelectedMortal.UpdateSkills();
                 Note.GreenMark();
                 TurboObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
             }
@@ -88,13 +88,15 @@ public class Skills : MonoBehaviour
             {
                 Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 400;
+                theLevelmanager.UpdateCoin();
                 ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
-                copacity = true;
+               // copacity = true;
                 SelectedMortal.CopacityMortal = true;
                 CopacityObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
-                SelectedMortal.star2.GetComponent<Image>().color = SelectedMortal.MyCountNumberColor;
+                //SelectedMortal.star2.GetComponent<Image>().color = SelectedMortal.MyCountNumberColor;
                 SelectedMortal.star2.SetActive(true);
                 SelectedMortal.GetComponent<IncreaseMortal>().MaxSpace = 200;
+                SelectedMortal.GetComponent<SquareClass>().UpdateSkills();
                 Note.GreenMark();
                 CopacityObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
@@ -123,8 +125,9 @@ public class Skills : MonoBehaviour
             {
                 Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 30;
+                theLevelmanager.UpdateCoin();
                 ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
-                randomChange = true;
+             //   randomChange = true;
                 SelectedMortal.RandomChangeMortal = true;
                 RandomChangeObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
 
@@ -133,6 +136,7 @@ public class Skills : MonoBehaviour
                 {
                     SelectedMortal.GetComponent<IncreaseMortal>().CurrentCount = 0;
                 }
+                SelectedMortal.GetComponent<SquareClass>().UpdateSkills();
                 Note.GreenMark();
                 RandomChangeObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
@@ -160,10 +164,11 @@ public class Skills : MonoBehaviour
             {
                 Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 200;
+                theLevelmanager.UpdateCoin();
                 ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
-                allAttack = true;
+               // allAttack = true;
                 SelectedMortal.AllAttackMortal = true;
-                SelectedMortal.star3.GetComponent<Image>().color = SelectedMortal.MyCountNumberColor;
+                //SelectedMortal.star3.GetComponent<Image>().color = SelectedMortal.MyCountNumberColor;
                 AllAttackObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
                 SelectedMortal.star3.SetActive(true);
                 SelectedMortal.GetComponent<StateMortal>().MyTypeOfAttack.Clear();
@@ -171,7 +176,8 @@ public class Skills : MonoBehaviour
                 {
                     SelectedMortal.GetComponent<StateMortal>().MyTypeOfAttack.Add(GameObject.FindObjectsOfType<SquareClass>()[i].gameObject);
                 }
-                SelectedMortal.CheckCanWhoAttack();
+                SelectedMortal.Check_Attack_N();
+                SelectedMortal.GetComponent<SquareClass>().UpdateSkills();
                 Note.GreenMark();
                 AllAttackObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
@@ -188,7 +194,6 @@ public class Skills : MonoBehaviour
         }
 
     }
-
     public void x2()
     {
         if (Time.timeScale == 0)
@@ -201,11 +206,13 @@ public class Skills : MonoBehaviour
             {
                 Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 1000;
+                theLevelmanager.UpdateCoin();
                 ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
-                X2 = true;
+               // X2 = true;
                 SelectedMortal.X2Mortal = true;
                 X2Obj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
                 SelectedMortal.GetComponent<IncreaseMortal>().CurrentCount *= 2;
+                SelectedMortal.GetComponent<SquareClass>().UpdateSkills();
                 Note.GreenMark();
                 X2Obj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
@@ -221,7 +228,6 @@ public class Skills : MonoBehaviour
             Note.RedMark();
         }
     }
-
     public void Maxspace()
     {
         if (Time.timeScale == 0)
@@ -234,13 +240,15 @@ public class Skills : MonoBehaviour
             {
                 Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 2500;
+                theLevelmanager.UpdateCoin();
                 ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
-                MaxSpace = true;
+              //  MaxSpace = true;
                 SelectedMortal.MaxSpaceMortal = true;
                 MaxSpaceObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
                 if (SelectedMortal.GetComponent<IncreaseMortal>().CurrentCount <= SelectedMortal.GetComponent<IncreaseMortal>().MaxSpace)
                     SelectedMortal.GetComponent<IncreaseMortal>().CurrentCount = SelectedMortal.GetComponent<IncreaseMortal>().MaxSpace;
 
+                SelectedMortal.GetComponent<SquareClass>().UpdateSkills();
                 Note.GreenMark();
                 MaxSpaceObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
             }
