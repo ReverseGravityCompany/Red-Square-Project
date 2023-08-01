@@ -16,10 +16,10 @@ public class CameraMovement : MonoBehaviour
 
     [HideInInspector] public bool isDragging;
 
-    [HideInInspector] public Vector2 Target;
-    public float TargetOffset;
-    public float CameraLerpSpeed;
-    [HideInInspector] public bool Focusing;
+    //[HideInInspector] public Vector2 Target;
+    //public float TargetOffset;
+    //public float CameraLerpSpeed;
+    //[HideInInspector] public bool Focusing;
 
     public static CameraMovement _Instance { get; private set; }
 
@@ -38,6 +38,7 @@ public class CameraMovement : MonoBehaviour
     private void Start()
     {
         Speed = 4;
+        Application.targetFrameRate = 31;
     }
 
     private void LateUpdate()
@@ -77,27 +78,27 @@ public class CameraMovement : MonoBehaviour
         {
             if (!isDragging)
             {
-                Focusing = false;
-                Target = Vector2.zero;
+                //Focusing = false;
+                //Target = Vector2.zero;
                 isCameraMoving = true;
                 isCameraMoveingWaitToClickOver = true;
             }
         }
 
-        if (Focusing && !isCameraMoving)
-        {
-            if (Vector2.Distance(transform.position, Target) > 0.1f)
-            {
-                transform.position = Vector2.Lerp(transform.position, Target, CameraLerpSpeed * Time.deltaTime);
-                transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
-            }
-            else
-            {
-                Focusing = false;
-                Target = Vector2.zero;
-            }
+        //if (Focusing && !isCameraMoving)
+        //{
+        //    if (Vector2.Distance(transform.position, Target) > 0.1f)
+        //    {
+        //        transform.position = Vector2.Lerp(transform.position, Target, CameraLerpSpeed * Time.deltaTime);
+        //        transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
+        //    }
+        //    else
+        //    {
+        //        Focusing = false;
+        //        Target = Vector2.zero;
+        //    }
 
-        }
+        //}
 
         zoom(Input.GetAxis("Mouse ScrollWheel"));
     }

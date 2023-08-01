@@ -51,17 +51,14 @@ public class SquareSoliderCount : MonoBehaviour
             {
                 if (!sqaurs[i].isHaveAnySpace)
                 {
-                    sqaurs[i].CurrentCount += sqaurs[i].AmountIncrease;
-                    sqaurs[i].ShowMortal.text = sqaurs[i].CurrentCount.ToString();
-
-                    if (sqaurs[i].CurrentCount >= 1000)
-                    {
-                        sqaurs[i].CurrentCount = 1000;
-                    }
                     if (sqaurs[i].CurrentCount >= sqaurs[i].MaxSpace)
                     {
                         sqaurs[i].isHaveAnySpace = true;
+                        continue;
                     }
+
+                    sqaurs[i].CurrentCount += sqaurs[i].AmountIncrease;
+
                 }
                 else
                 {
@@ -70,7 +67,6 @@ public class SquareSoliderCount : MonoBehaviour
                         sqaurs[i].isHaveAnySpace = false;
 
                         sqaurs[i].CurrentCount += sqaurs[i].AmountIncrease;
-                        sqaurs[i].ShowMortal.text = sqaurs[i].CurrentCount.ToString();
                     }
                 }
             }

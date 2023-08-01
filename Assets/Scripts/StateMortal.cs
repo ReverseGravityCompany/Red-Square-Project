@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class StateMortal : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class StateMortal : MonoBehaviour
     RaycastHit2D raycastHitUp;
     RaycastHit2D raycastHitRight;
     RaycastHit2D raycastHitLeft;
+
+    ParticleSystem ArmyParticle;
+    ParticleSystem.MainModule ArmyMain;
+    ParticleSystem.MinMaxGradient MinMaxGradient;
+    ParticleSystem.EmissionModule ArmyEmmision;
+    ParticleSystem.Burst burst;
 
 
     private void Awake()
@@ -56,6 +63,14 @@ public class StateMortal : MonoBehaviour
     private void Start()
     {
         objectPooler = ObjectPooler._Instance;
+
+
+        ArmyParticle = GameObject.Find("BurnArmyParticleEffect").GetComponent<ParticleSystem>();
+        ArmyMain = ArmyParticle.main;
+        MinMaxGradient = new MinMaxGradient(Color.white, Color.blue);
+        ArmyEmmision = ArmyParticle.emission;
+
+
     }
 
     public void ShowTypeOfAttack()
@@ -162,21 +177,33 @@ public class StateMortal : MonoBehaviour
 
     public void ArmyBurning(GameObject targetMortal, Color mainColor, Color targetColor, int burstCount)
     {
-        ParticleSystem ArmyParticle = objectPooler.SpawnFromPool("ArmyParticle",
-            targetMortal.transform.position, new Vector3(0, 0, 0)).GetComponent<ParticleSystem>();
+        if (burstCount >= 50)
+        {
+            burstCount = 50;
+        }
+        //ParticleSystem ArmyParticle = objectPooler.SpawnFromPool("ArmyParticle",
+        //    targetMortal.transform.position, new Vector3(0, 0, 0)).GetComponent<ParticleSystem>();
 
-        ParticleSystem.MainModule ArmyMain = ArmyParticle.main;
-        ArmyMain.startColor = new ParticleSystem.MinMaxGradient(mainColor, targetColor);
+        //ParticleSystem.MainModule ArmyMain = ArmyParticle.main;
+        //ArmyMain.startColor = new ParticleSystem.MinMaxGradient(mainColor, targetColor);
 
-        ParticleSystem.EmissionModule ArmyEmmision = ArmyParticle.emission;
-        ParticleSystem.Burst burst = new ParticleSystem.Burst();
+        ArmyParticle.transform.position = targetMortal.transform.position;
+
+        MinMaxGradient.colorMin = mainColor;
+        MinMaxGradient.colorMax = targetColor;
+
+        ArmyMain.startColor = MinMaxGradient;
         burst.count = burstCount;
-        burst.time = 0;
-        burst.cycleCount = 1;
-        burst.probability = 1;
         ArmyEmmision.SetBurst(0, burst);
 
-        ArmyParticle.Play();
+        //ParticleSystem.EmissionModule ArmyEmmision = ArmyParticle.emission;
+        //ParticleSystem.Burst burst = new ParticleSystem.Burst();
 
+        //burst.time = 0;
+        //burst.cycleCount = 1;
+        //burst.probability = 1;
+
+
+        ArmyParticle.Play();
     }
 }

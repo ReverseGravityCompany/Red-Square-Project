@@ -73,8 +73,8 @@ public class Player : MonoBehaviour
 
             if (hit.collider != null)
             {
-                CamMove.Focusing = false;
-                CamMove.Target = Vector2.zero;
+                //CamMove.Focusing = false;
+                //CamMove.Target = Vector2.zero;
 
                 GameObject draggingObj = hit.collider.gameObject;
                 if (draggingObj.GetComponent<Identity>().GetIdentity() == Identity.iden.Blue)
@@ -328,11 +328,11 @@ public class Player : MonoBehaviour
 
                 MyBlue.transform.DOScale(0.85f, 0.3f).SetEase(Ease.Linear).From();
 
-                if (Vector2.Distance(CamMove.transform.position, MyBlue.transform.position) > CamMove.TargetOffset)
-                {
-                    CamMove.Focusing = true;
-                    CamMove.Target = MyBlue.transform.position;
-                }
+                //if (Vector2.Distance(CamMove.transform.position, MyBlue.transform.position) > CamMove.TargetOffset)
+                //{
+                //    CamMove.Focusing = true;
+                //    CamMove.Target = MyBlue.transform.position;
+                //}
 
                 #region [AllMorta]
                 GameObject[] ObjectsMortal = new GameObject[FindObjectsOfType<Identity>().Length];
@@ -493,8 +493,8 @@ public class Player : MonoBehaviour
 
                     theLevelManager.AttackNoneColorSound.Play();
                     CamMove.Shake(0.07f, 0.13f, 0.03f, 0.2f);
-                    if (objBurnValue > 12)
-                        MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, NoneColor, objBurnValue / 4);
+
+                    MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, NoneColor, objBurnValue / 2);
 
                     MyBlueStateMortal.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
@@ -593,8 +593,7 @@ public class Player : MonoBehaviour
                     theLevelManager.AttackRedColorSound.Play();
                     CamMove.Shake(0.085f, 0.14f, 0.05f, 0.22f);
 
-                    if (objBurnValue > 12)
-                        MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, RedColor, objBurnValue / 4);
+                    MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, RedColor, objBurnValue / 2);
 
                     MyBlueStateMortal.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
@@ -695,8 +694,7 @@ public class Player : MonoBehaviour
                     theLevelManager.AttackYellowColorSound.Play();
                     CamMove.Shake(0.1f, 0.15f, 0.03f, 0.25f);
 
-                    if (objBurnValue > 12)
-                        MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, YellowColor, objBurnValue / 4);
+                    MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, YellowColor, objBurnValue / 2);
 
                     MyBlueStateMortal.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
@@ -796,8 +794,7 @@ public class Player : MonoBehaviour
                     theLevelManager.AttackSound.Play();
                     CamMove.Shake(0.1f, 0.13f, 0.03f, 0.2f);
 
-                    if (objBurnValue > 12)
-                        MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, PinkColor, objBurnValue / 4);
+                    MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, PinkColor, objBurnValue / 2);
 
                     MyBlueStateMortal.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
@@ -898,8 +895,7 @@ public class Player : MonoBehaviour
                     theLevelManager.AttackSound.Play();
                     CamMove.Shake(0.1f, 0.15f, 0.03f, 0.2f);
 
-                    if (objBurnValue > 12)
-                        MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, GreenColor, objBurnValue / 4);
+                    MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, GreenColor, objBurnValue / 2);
 
                     MyBlueStateMortal.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
@@ -998,8 +994,7 @@ public class Player : MonoBehaviour
                     theLevelManager.AttackYellowColorSound.Play();
                     CamMove.Shake(0.11f, 0.15f, 0.03f, 0.2f);
 
-                    if (objBurnValue > 12)
-                        MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, OrangeColor, objBurnValue / 4);
+                    MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, OrangeColor, objBurnValue / 2);
 
                     MyBlueStateMortal.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
@@ -1100,8 +1095,7 @@ public class Player : MonoBehaviour
                     theLevelManager.AttackSound.Play();
                     CamMove.Shake(0.11f, 0.13f, 0.03f, 0.25f);
 
-                    if (objBurnValue > 12)
-                        MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, LastColor, objBurnValue / 4);
+                    MyBlueStateMortal.ArmyBurning(obj.gameObject, BlueColor, LastColor, objBurnValue / 2);
 
                     MyBlueStateMortal.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 

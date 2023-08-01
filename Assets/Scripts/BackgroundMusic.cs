@@ -10,9 +10,8 @@ public class BackgroundMusic : MonoBehaviour
     public AudioClip[] BackgroundClips;
     public AudioSource MusicAudioSource;
 
-    private int currentMusicIndex;
-    [SerializeField] private int nextMusic;
-    
+    [SerializeField] private bool nextMusic;
+
     private void Awake()
     {
         if (_Instance != null && _Instance != this)
@@ -27,61 +26,33 @@ public class BackgroundMusic : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             int clipIndex = Random.Range(0, BackgroundClips.Length);
-            currentMusicIndex = clipIndex;
-            PlayerPrefs.SetInt("CurrentMusicIndex", currentMusicIndex);
             MusicAudioSource.clip = BackgroundClips[clipIndex];
             MusicAudioSource.Play();
+
+            nextMusic = false;
         }
     }
 
-    public void UpdateBackgroundMusic()
+    public void LateUpdate()
     {
-        if (PlayerPrefs.HasKey("UpdateBGM"))
+        if (MusicAudioSource.isPlaying == false && !nextMusic)
         {
-            nextMusic = PlayerPrefs.GetInt("UpdateBGM");
-            nextMusic++;
-            PlayerPrefs.SetInt("UpdateBGM", nextMusic);
-
-            if(nextMusic >= 10)
+            nextMusic = true;
+            if (Random.Range(0, 100) < 50)
+                Invoke("DetectNextMusic", Random.Range(15, 90));
+            else
             {
-                nextMusic = 0;
-
-                if (PlayerPrefs.HasKey("CurrentMusicIndex"))
-                {
-                    currentMusicIndex = PlayerPrefs.GetInt("CurrentMusicIndex");
-                }
-
-                bool isClipReapeated = true;
-                
-                while(isClipReapeated)
-                {
-                    int clipIndex = Random.Range(0, BackgroundClips.Length);
-                    if(clipIndex != currentMusicIndex)
-                    {
-                        isClipReapeated = false;
-                        currentMusicIndex = clipIndex;
-                        MusicAudioSource.clip = BackgroundClips[clipIndex];
-                        MusicAudioSource.Play();
-                    }
-                }
+                nextMusic = false;
+                MusicAudioSource.Play();
             }
         }
-        else
-        {
-            nextMusic++;
-            PlayerPrefs.SetInt("UpdateBGM", nextMusic);
-        }
     }
 
-    private void OnDestroy()
+    public void DetectNextMusic()
     {
-        PlayerPrefs.DeleteKey("CurrentMusicIndex");
-        PlayerPrefs.DeleteKey("UpdateBGM");
-    }
-
-    private void OnApplicationQuit()
-    {
-        PlayerPrefs.DeleteKey("CurrentMusicIndex");
-        PlayerPrefs.DeleteKey("UpdateBGM");
+        int clipIndex = Random.Range(0, BackgroundClips.Length);
+        MusicAudioSource.clip = BackgroundClips[clipIndex];
+        MusicAudioSource.Play();
+        nextMusic = false;
     }
 }

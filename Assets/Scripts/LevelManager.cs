@@ -1,20 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
-using CodeStage.AntiCheat.ObscuredTypes;
 using UnityEngine.Audio;
-using UnityEngine.Networking;
-using static System.Net.WebRequestMethods;
 
 public class LevelManager : MonoBehaviour
 {
     #region Properties
     public GameObject Win, Lose;
-    [HideInInspector] public ObscuredInt CurrentCoin;
-    private ObscuredInt MaxCoin, MinCoin;
+    [HideInInspector] public int CurrentCoin;
+    private int MaxCoin, MinCoin;
     public Text CoinText;
 
     int Unlocknextlevel;
@@ -70,7 +66,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        Time.timeScale = 0; 
+        Time.timeScale = 0;
         if (_Instance != null && _Instance != this)
         {
             Destroy(this);
@@ -82,7 +78,7 @@ public class LevelManager : MonoBehaviour
 
         LearningLevels = false;
 
-        
+
         if (!PlayerPrefs.HasKey("MyLevel"))
         {
             LearningLevels = true;
@@ -90,7 +86,7 @@ public class LevelManager : MonoBehaviour
             if (PlayerPrefs.HasKey("LearnProcess"))
             {
                 int LearnProcess = PlayerPrefs.GetInt("LearnProcess");
-                Instantiate(TutorialsLevels[LearnProcess - 1].gameObject,LevelsParent.transform , false);
+                Instantiate(TutorialsLevels[LearnProcess - 1].gameObject, LevelsParent.transform, false);
                 Instantiate(TutorialsCanvas[LearnProcess - 1].gameObject);
 
                 GameObject.FindObjectOfType<SquareSoliderCount>().StartGenerateSolider();
@@ -98,10 +94,11 @@ public class LevelManager : MonoBehaviour
             }
             else
             {
-                Instantiate(TutorialsLevels[0].gameObject, LevelsParent.transform , false);
+                Instantiate(TutorialsLevels[0].gameObject, LevelsParent.transform, false);
                 Instantiate(TutorialsCanvas[0].gameObject);
 
-                StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Learn\": " + 1 + "}"));
+                // StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Learn\": " + 1 + "}"));
+
 
                 GameObject.FindObjectOfType<SquareSoliderCount>().StartGenerateSolider();
                 tutorialTask = FindObjectOfType<TutorialTask>();
@@ -122,7 +119,7 @@ public class LevelManager : MonoBehaviour
         {
             level = PlayerPrefs.GetInt("MyLevel");
 
-            GameObject obj = Instantiate(HandCraftedLevels[level - 1].gameObject, LevelsParent.transform,false);
+            GameObject obj = Instantiate(HandCraftedLevels[level - 1].gameObject, LevelsParent.transform, false);
             CurrentLevel = level;
         }
         else
@@ -137,15 +134,15 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        if (ObscuredPrefs.HasKey("MyCoin"))
+        if (PlayerPrefs.HasKey("MyCoin"))
         {
-            CurrentCoin = ObscuredPrefs.GetInt("MyCoin");
-            ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+            CurrentCoin = PlayerPrefs.GetInt("MyCoin");
+            PlayerPrefs.SetInt("MyCoin", CurrentCoin);
             CoinText.text = CurrentCoin.ToString();
         }
         else
         {
-            ObscuredPrefs.SetInt("MyCoin", MinCoin);
+            PlayerPrefs.SetInt("MyCoin", MinCoin);
             CurrentCoin = MinCoin;
             CoinText.text = CurrentCoin.ToString();
         }
@@ -156,6 +153,8 @@ public class LevelManager : MonoBehaviour
         {
             AllMortalObjects[i] = FindObjectsOfType<Identity>()[i];
         }
+
+       // MiniGame.Initialize();
     }
 
     private void Update()
@@ -220,10 +219,17 @@ public class LevelManager : MonoBehaviour
                 SkillsState = false;
                 FindObjectOfType<MenuSetting>().GameStarted = false;
                 UpdateSkills();
-                FindObjectOfType<BackgroundMusic>().UpdateBackgroundMusic();
             }
             if (WinGame && !WinningRewardTaken)
             {
+                //StartCoroutine(
+                //  MiniGame.SendScore(
+                //  score: 4 + CurrentLevel,
+                //  onSuccess: OnSuccess,
+                //  onFail: OnFail
+                //  )
+                //  );
+
                 if (PlayerPrefs.HasKey("UnlockLevel"))
                 {
                     if (PlayerPrefs.GetInt("UnlockLevel") == CurrentLevel)
@@ -276,7 +282,6 @@ public class LevelManager : MonoBehaviour
                 PlayerPrefs.SetInt("MyLevel", Unlocknextlevel);
                 PlayerPrefs.SetInt("UnlockLevel", PlayerPrefs.GetInt("ValueOfLevels"));
 
-                StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Unlock_Level\": " + Unlocknextlevel + "}"));
                 Game_AudioMixer.DOSetFloat("Lowpass_Music", 650, 1.55f).SetEase(Ease.Linear).SetUpdate(true);
 
                 Time.timeScale = 0.5f;
@@ -293,7 +298,7 @@ public class LevelManager : MonoBehaviour
                     {
                         CurrentCoin += CoinWinning;
                         UpdateCoin();
-                        ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+                        PlayerPrefs.SetInt("MyCoin", CurrentCoin);
                     }
                     CoinRecive = true;
                 }
@@ -338,7 +343,6 @@ public class LevelManager : MonoBehaviour
                 }
             }
 
-
             if (WinStatus >= AllMortalObjects.Length && !WinningRewardTaken)
             {
                 WinGame = true;
@@ -358,11 +362,25 @@ public class LevelManager : MonoBehaviour
                     if (LearnProcess == TutorialsLevels.Length + 1)
                     {
                         PlayerPrefs.SetInt("MyLevel", 1);
-                        StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Level\": " + 1 + "}"));
+                  //      StartCoroutine(
+                  //MiniGame.SendScore(
+                  //score: LearnProcess - 1,
+                  //onSuccess: OnSuccess,
+                  //onFail: OnFail
+                  //)
+                  //);
+                        //StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Level\": " + 1 + "}"));
                     }
                     else
                     {
-                        StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Learn\": " + LearnProcess + "}"));
+                        // StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Learn\": " + LearnProcess + "}"));
+                   //     StartCoroutine(
+                   //MiniGame.SendScore(
+                   //score: LearnProcess - 1,
+                   //onSuccess: OnSuccess,
+                   //onFail: OnFail
+                   //)
+                   //);
                     }
                 }
                 else
@@ -377,27 +395,44 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private IEnumerator postRequest(string url , string json)
+    private void OnSuccess()
     {
-        var uwr = new UnityWebRequest(url, "POST");
-        byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
-        uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-        uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        uwr.SetRequestHeader("Content-Type", "application/json");
-
-        //Send the request then wait here until it returns
-        yield return uwr.SendWebRequest();
-
-        if (uwr.isNetworkError)
-        {
-            Debug.Log("Error While Sending: " + uwr.error);
-        }
-        else
-        {
-            Debug.Log("Received: " + uwr.result);
-            Debug.Log("Received: " + uwr.downloadHandler.text);
-        }
+        Debug.Log("Request succeeded.");
     }
+
+    private void OnFail()
+    {
+        Debug.Log("Request failed.");
+    }
+
+    //private IEnumerator postRequest(string url, string json)
+    //{
+    //    var uwr = new UnityWebRequest(url, "POST");
+    //    byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
+    //    uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+    //    uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+
+    //    uwr.SetRequestHeader("Content-Type", "application/json");
+
+    //    //Send the request then wait here until it returns
+    //    uwr.timeout = 3;
+    //    yield return uwr.SendWebRequest();
+
+
+
+    //    if (uwr.result == UnityWebRequest.Result.ConnectionError || uwr.result == UnityWebRequest.Result.DataProcessingError
+    //        || uwr.result == UnityWebRequest.Result.ProtocolError)
+    //    {
+    //        Debug.Log("Error While Sending: " + uwr.error);
+    //    }
+    //    else if (uwr.result == UnityWebRequest.Result.Success)
+    //    {
+    //        Debug.Log("Received: " + uwr.result);
+    //        Debug.Log("Received: " + uwr.downloadHandler.text);
+    //    }
+
+    //    uwr.Dispose();
+    //}
 
     public void AddCoin()
     {
@@ -421,10 +456,10 @@ public class LevelManager : MonoBehaviour
 
     public void RewardGift(int RewardCount)
     {
-        CurrentCoin = ObscuredPrefs.GetInt("MyCoin");
+        CurrentCoin = PlayerPrefs.GetInt("MyCoin");
         CurrentCoin += RewardCount;
         Debug.Log(CurrentCoin);
-        ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+        PlayerPrefs.SetInt("MyCoin", CurrentCoin);
         UpdateCoin();
     }
 
@@ -438,20 +473,20 @@ public class LevelManager : MonoBehaviour
 
     public void GiftDemo()
     {
-        CurrentCoin = ObscuredPrefs.GetInt("MyCoin");
+        CurrentCoin = PlayerPrefs.GetInt("MyCoin");
         CurrentCoin += 2000;
         Debug.Log(CurrentCoin);
-        ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+        PlayerPrefs.SetInt("MyCoin", CurrentCoin);
         UpdateCoin();
     }
 
     public void UpdateCoin()
     {
         CoinText.text = CurrentCoin.ToString();
-        if (ObscuredPrefs.GetInt("MyCoin") >= MaxCoin)
+        if (PlayerPrefs.GetInt("MyCoin") >= MaxCoin)
         {
             CurrentCoin = MaxCoin;
-            ObscuredPrefs.SetInt("MyCoin", CurrentCoin);
+            PlayerPrefs.SetInt("MyCoin", CurrentCoin);
             CoinText.text = CurrentCoin.ToString();
         }
     }

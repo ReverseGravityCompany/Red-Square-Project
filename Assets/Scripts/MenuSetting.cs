@@ -101,7 +101,7 @@ public class MenuSetting : MonoBehaviour
             Helper_Menu.SetActive(true);
         }
 
-        LevelManager._Instance.Game_AudioMixer.DOSetFloat("Lowpass_Music", 1000, 0.5f).SetUpdate(true);
+        LevelManager._Instance.Game_AudioMixer.SetFloat("Lowpass_Music", 1000);
         enemySystem = FindObjectOfType<EnemySystem>();
         camera = Camera.main;
 
@@ -267,6 +267,8 @@ public class MenuSetting : MonoBehaviour
         PauseSound.Play();
         if (PauseStatus)
         {
+
+            LevelManager._Instance.Game_AudioMixer.SetFloat("Lowpass_Music", 1000);
             Time.timeScale = 1f;
             PauseStatus = false;
             Pause.GetComponent<Image>().sprite = PauseOff;
@@ -277,6 +279,7 @@ public class MenuSetting : MonoBehaviour
         }
         else
         {
+            LevelManager._Instance.Game_AudioMixer.SetFloat("Lowpass_Music", 650);
             Time.timeScale = 0f;
             PauseStatus = true;
             Pause.GetComponent<Image>().sprite = PauseOn;

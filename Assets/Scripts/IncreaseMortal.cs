@@ -26,9 +26,14 @@ public class IncreaseMortal : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         ShowMortal.text = CurrentCount.ToString();
+
+        if (CurrentCount >= 1000)
+        {
+            CurrentCount = 1000;
+        }
     }
 
     public void ValidateMortal()

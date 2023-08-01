@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using CodeStage.AntiCheat.ObscuredTypes;
 public class Skills : MonoBehaviour
 {
     #region Properties
@@ -49,12 +48,12 @@ public class Skills : MonoBehaviour
 
         if(SelectedMortal != null && SelectedMortal.TurboMortal == false)
         {
-            if(ObscuredPrefs.GetInt("MyCoin") >= 100)
+            if(PlayerPrefs.GetInt("MyCoin") >= 100)
             {
                 Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 100;
                 theLevelmanager.UpdateCoin();
-                ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
+                PlayerPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
                 SelectedMortal.TurboMortal = true;
                 TurboObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
                 SelectedMortal.star1.SetActive(true);
@@ -84,12 +83,12 @@ public class Skills : MonoBehaviour
         }
         if (SelectedMortal != null && SelectedMortal.CopacityMortal == false)
         {
-            if (ObscuredPrefs.GetInt("MyCoin") >= 400)
+            if (PlayerPrefs.GetInt("MyCoin") >= 400)
             {
                 Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 400;
                 theLevelmanager.UpdateCoin();
-                ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
+                PlayerPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
                // copacity = true;
                 SelectedMortal.CopacityMortal = true;
                 CopacityObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
@@ -121,12 +120,12 @@ public class Skills : MonoBehaviour
         }
         if (SelectedMortal != null && SelectedMortal.RandomChangeMortal == false)
         {
-            if (ObscuredPrefs.GetInt("MyCoin") >= 30)
+            if (PlayerPrefs.GetInt("MyCoin") >= 30)
             {
                 Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 30;
                 theLevelmanager.UpdateCoin();
-                ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
+                PlayerPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
              //   randomChange = true;
                 SelectedMortal.RandomChangeMortal = true;
                 RandomChangeObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
@@ -160,12 +159,12 @@ public class Skills : MonoBehaviour
         }
         if (SelectedMortal != null && SelectedMortal.AllAttackMortal == false)
         {
-            if (ObscuredPrefs.GetInt("MyCoin") >= 200)
+            if (PlayerPrefs.GetInt("MyCoin") >= 200)
             {
                 Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 200;
                 theLevelmanager.UpdateCoin();
-                ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
+                PlayerPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
                // allAttack = true;
                 SelectedMortal.AllAttackMortal = true;
                 //SelectedMortal.star3.GetComponent<Image>().color = SelectedMortal.MyCountNumberColor;
@@ -202,12 +201,12 @@ public class Skills : MonoBehaviour
         }
         if (SelectedMortal != null && SelectedMortal.X2Mortal == false)
         {
-            if (ObscuredPrefs.GetInt("MyCoin") >= 1000)
+            if (PlayerPrefs.GetInt("MyCoin") >= 1000)
             {
                 Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 1000;
                 theLevelmanager.UpdateCoin();
-                ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
+                PlayerPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
                // X2 = true;
                 SelectedMortal.X2Mortal = true;
                 X2Obj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
@@ -236,12 +235,12 @@ public class Skills : MonoBehaviour
         }
         if (SelectedMortal != null && SelectedMortal.MaxSpaceMortal == false)
         {
-            if (ObscuredPrefs.GetInt("MyCoin") >= 2500)
+            if (PlayerPrefs.GetInt("MyCoin") >= 2500)
             {
                 Correct_Sound.Play();
                 theLevelmanager.CurrentCoin -= 2500;
                 theLevelmanager.UpdateCoin();
-                ObscuredPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
+                PlayerPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
               //  MaxSpace = true;
                 SelectedMortal.MaxSpaceMortal = true;
                 MaxSpaceObj.GetComponent<Image>().color = SelectedMortal.WhiteLow;
