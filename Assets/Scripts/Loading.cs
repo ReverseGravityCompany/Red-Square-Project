@@ -6,26 +6,31 @@ using UnityEngine.UI;
 
 public class Loading : MonoBehaviour
 {
-    public Slider slider;
     public float speed;
     public string HandCraftedLevelName;
+    public Image cirsqu;
 
-    private void Awake()
+    public Color PrimiaryColor;
+    public Color SecondaryColor;
+
+    private void Start()
     {
         Time.timeScale = 1f;
+
+        StartCoroutine(NextScene());
     }
 
-    private void LateUpdate()
+    private void Update()
     {
-        slider.value += speed * Time.deltaTime;
-        if (slider.value == slider.maxValue)
-        {
-            NextScene();
-        }
+        var t  = (Mathf.Sin(Time.time * speed) + 1) / 2.0;
+        cirsqu.color = Color.Lerp(PrimiaryColor, SecondaryColor, (float)t);
+
+        cirsqu.pixelsPerUnitMultiplier = Mathf.Clamp((float) t,0.01f,1);
     }
 
-    private void NextScene()
+    private IEnumerator NextScene()
     {
+        yield return new WaitForSecondsRealtime(3.35f);
         SceneManager.LoadScene(HandCraftedLevelName);
     }
 }

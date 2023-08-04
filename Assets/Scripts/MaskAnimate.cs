@@ -18,7 +18,7 @@ public class MaskAnimate : MonoBehaviour
         animate();
     }
 
-    private void animate()
+    public void animate()
     {
         mask.DOAnchorPos(Offset, Speed).SetDelay(Random.Range(MinDelay, MaxDelay)).OnComplete(() =>
         {

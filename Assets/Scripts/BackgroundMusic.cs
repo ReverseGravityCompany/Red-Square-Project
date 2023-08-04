@@ -38,11 +38,12 @@ public class BackgroundMusic : MonoBehaviour
         if (MusicAudioSource.isPlaying == false && !nextMusic)
         {
             nextMusic = true;
-            if (Random.Range(0, 100) < 50)
-                Invoke("DetectNextMusic", Random.Range(15, 90));
+            if (Random.Range(0, 100) < 30)
+                Invoke("DetectNextMusic", Random.Range(15, 75));
             else
             {
                 nextMusic = false;
+                MusicAudioSource.Stop();
                 MusicAudioSource.Play();
             }
         }

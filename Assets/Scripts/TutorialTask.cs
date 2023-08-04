@@ -11,7 +11,7 @@ public class TutorialTask : MonoBehaviour
     public TextMeshProUGUI Task;
     public Color SuccessfulLearning;
 
-    Identity[] AllMortalObjects;
+    StateMortal[] AllMortalObjects;
 
 
     public void LessonSuccesful()
@@ -28,14 +28,14 @@ public class TutorialTask : MonoBehaviour
 
     public void Turbo(Button btn)
     {
-        AllMortalObjects = new Identity[FindObjectsOfType<Identity>().Length];
+        AllMortalObjects = new StateMortal[FindObjectsOfType<StateMortal>().Length];
         for (int i = 0; i < AllMortalObjects.Length; i++)
         {
-            AllMortalObjects[i] = FindObjectsOfType<Identity>()[i];
-            if(AllMortalObjects[i].GetIdentity() == Identity.iden.Blue)
+            AllMortalObjects[i] = FindObjectsOfType<StateMortal>()[i];
+            if(AllMortalObjects[i].GetIdentity() == StateMortal.iden.Blue)
             {
-                AllMortalObjects[i].GetComponent<IncreaseMortal>().AmountIncrease = 2;
-                AllMortalObjects[i].GetComponent<SquareClass>().TurboMortal = true;
+                AllMortalObjects[i].GetComponent<StateMortal>().AmountIncrease = 2;
+                AllMortalObjects[i].GetComponent<StateMortal>().TurboMortal = true;
             }
         }
         btn.interactable = false;
@@ -43,14 +43,14 @@ public class TutorialTask : MonoBehaviour
 
     public void Copacity(Button btn)
     {
-        AllMortalObjects = new Identity[FindObjectsOfType<Identity>().Length];
+        AllMortalObjects = new StateMortal[FindObjectsOfType<StateMortal>().Length];
         for (int i = 0; i < AllMortalObjects.Length; i++)
         {
-            AllMortalObjects[i] = FindObjectsOfType<Identity>()[i];
-            if (AllMortalObjects[i].GetIdentity() == Identity.iden.Blue)
+            AllMortalObjects[i] = FindObjectsOfType<StateMortal>()[i];
+            if (AllMortalObjects[i].GetIdentity() == StateMortal.iden.Blue)
             {
-                AllMortalObjects[i].GetComponent<IncreaseMortal>().MaxSpace = 200;
-                AllMortalObjects[i].GetComponent<SquareClass>().CopacityMortal = true;
+                AllMortalObjects[i].GetComponent<StateMortal>().MaxSpace = 200;
+                AllMortalObjects[i].GetComponent<StateMortal>().CopacityMortal = true;
             }
         }
         btn.interactable = false;

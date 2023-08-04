@@ -9,17 +9,17 @@ using DG.Tweening;
 public class MenuSetting : MonoBehaviour
 {
     #region Properties
-    [SerializeField] Image SoundSetting;
+    [SerializeField] public Image SoundSetting;
     [SerializeField] Color SoundSetting_OffColor, SoundSetting_OnColor;
-    [SerializeField] GameObject ButtonStart, DecreaseLevel, IncreaseLevel, LevelNameSelection;
-    [SerializeField] GameObject Pause, Home, RestartLevel;
-    [SerializeField] Sprite PauseOff, PauseOn;
+    [SerializeField] public GameObject ButtonStart, DecreaseLevel, IncreaseLevel, LevelNameSelection;
+    [SerializeField] public GameObject Pause, Home, RestartLevel;
+    [SerializeField] public Sprite PauseOff, PauseOn;
 
     [Space(20)]
-    [SerializeField] Image MarkDifficaulty;
-    [SerializeField] GameObject CoverMenu;
-    [SerializeField] GameObject NoteHelperPanel;
-    [SerializeField] Button NoteHelperButton;
+    [SerializeField] public Image MarkDifficaulty;
+    [SerializeField] public GameObject CoverMenu;
+    [SerializeField] public GameObject NoteHelperPanel;
+    [SerializeField] public Button NoteHelperButton;
     public GameObject RewardButton;
     private EnemySystem enemySystem;
 
@@ -41,17 +41,23 @@ public class MenuSetting : MonoBehaviour
     public GameObject Helper_Menu, Hand;
 
     // Light/Dark Mode
-    public Color NightColor, DayColor;
-    public Sprite DaySprite, NightSprite;
-    public Image daynightImage;
+    public Image BG_UI;
+    public Image ColorPicker_UI;
+    public Color BlackColor;
+    public Sprite[] BG;
+    public Sprite[] ColorPicker;
     private Camera camera;
 
-    private bool PauseStatus;
+    [HideInInspector] public bool PauseStatus;
     private int frameCount;
 
     public Sprite EasyImage, NormalImage, HardImage;
 
+    public GameObject MenuPanel;
 
+    public Sprite persian, english;
+    public GameObject[] persianNote;
+    public GameObject[] englishNote;
     #endregion
 
     #region Functions
@@ -93,7 +99,34 @@ public class MenuSetting : MonoBehaviour
 
     private void Start()
     {
-        GameStarted = false;
+        camera = Camera.main;
+
+        if (PlayerPrefs.HasKey("BG"))
+        {
+            int currentBG = PlayerPrefs.GetInt("BG");
+
+            if (currentBG != 1)
+            {
+                BG_UI.sprite = BG[currentBG - 2];
+                BG_UI.gameObject.SetActive(true);
+                ColorPicker_UI.sprite = ColorPicker[currentBG - 1];
+            }
+            else
+            {
+                camera.backgroundColor = BlackColor;
+                BG_UI.gameObject.SetActive(false);
+                ColorPicker_UI.sprite = ColorPicker[0];
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("BG", 1);
+
+            camera.backgroundColor = BlackColor;
+            BG_UI.gameObject.SetActive(false);
+            ColorPicker_UI.sprite = ColorPicker[0];
+        }
+
         if (!PlayerPrefs.HasKey("NotesRemainder") && CurrentLevel == 4)
         {
             PlayerPrefs.SetInt("NotesRemainder", 1);
@@ -103,7 +136,6 @@ public class MenuSetting : MonoBehaviour
 
         LevelManager._Instance.Game_AudioMixer.SetFloat("Lowpass_Music", 1000);
         enemySystem = FindObjectOfType<EnemySystem>();
-        camera = Camera.main;
 
 
         if (enemySystem.Difficaulty == EnemySystem.Difficault.Easy)
@@ -120,73 +152,95 @@ public class MenuSetting : MonoBehaviour
         }
 
 
-        if (PlayerPrefs.HasKey("FastRun"))
-        {
-            if (PlayerPrefs.GetInt("FastRun") == 1)
-            {
-                StartGame();
-                PlayerPrefs.SetInt("FastRun", 0);
-            }
-        }
-        if (!PlayerPrefs.HasKey("DayAndNight"))
-        {
-            daynightImage.sprite = NightSprite;
-            PlayerPrefs.SetInt("DayAndNight", 0);
-            camera.backgroundColor = NightColor;
+        //if (PlayerPrefs.HasKey("FastRun"))
+        //{
+        //    if (PlayerPrefs.GetInt("FastRun") == 1)
+        //    {
+        //        StartGame();
+        //        PlayerPrefs.SetInt("FastRun", 0);
+        //    }
+        //}
+    }
 
-            LevelShowInLevel.color = DayColor;
-            Pause.gameObject.GetComponent<Image>().color = DayColor;
-            Home.gameObject.GetComponent<Image>().color = DayColor;
-            RestartLevel.gameObject.GetComponent<Image>().color = DayColor;
+    public void ResetSpecialData()
+    {
+        if (PlayerPrefs.HasKey("MyLevel"))
+        {
+            CurrentLevel = PlayerPrefs.GetInt("MyLevel");
+
+            LevelMenu_Text.text = "Level " + CurrentLevel.ToString();
+            LevelGame_Text.text = "Level " + CurrentLevel.ToString();
+            LevelNameSelection.GetComponent<Text>().text = CurrentLevel.ToString();
         }
         else
         {
-            if (PlayerPrefs.GetInt("DayAndNight") == 1) // 1 Day, 0 Night
-            {
-                daynightImage.sprite = DaySprite;
-                camera.backgroundColor = DayColor;
-
-                LevelShowInLevel.color = NightColor;
-                Pause.gameObject.GetComponent<Image>().color = NightColor;
-                Home.gameObject.GetComponent<Image>().color = NightColor;
-                RestartLevel.gameObject.GetComponent<Image>().color = NightColor;
-            }
-            else if (PlayerPrefs.GetInt("DayAndNight") == 0) // 1 Day, 0 Night
-            {
-                daynightImage.sprite = NightSprite;
-                camera.backgroundColor = NightColor;
-
-                LevelShowInLevel.color = DayColor;
-                Pause.gameObject.GetComponent<Image>().color = DayColor;
-                Home.gameObject.GetComponent<Image>().color = DayColor;
-                RestartLevel.gameObject.GetComponent<Image>().color = DayColor;
-            }
+            CurrentLevel = 1;
+            LevelMenu_Text.text = "Level " + CurrentLevel.ToString();
+            LevelGame_Text.text = "Level " + CurrentLevel.ToString();
+            LevelNameSelection.GetComponent<Text>().text = CurrentLevel.ToString();
         }
+
+        if (!PlayerPrefs.HasKey("NotesRemainder") && CurrentLevel == 4)
+        {
+            PlayerPrefs.SetInt("NotesRemainder", 1);
+            Hand.SetActive(true);
+            Helper_Menu.SetActive(true);
+        }
+
+        LevelManager._Instance.Game_AudioMixer.SetFloat("Lowpass_Music", 1000);
+
+        enemySystem = FindObjectOfType<EnemySystem>();
+
+        if (enemySystem.Difficaulty == EnemySystem.Difficault.Easy)
+        {
+            MarkDifficaulty.sprite = EasyImage;
+        }
+        else if (enemySystem.Difficaulty == EnemySystem.Difficault.Meduim)
+        {
+            MarkDifficaulty.sprite = NormalImage;
+        }
+        else if (enemySystem.Difficaulty == EnemySystem.Difficault.Hard)
+        {
+            MarkDifficaulty.sprite = HardImage;
+        }
+
+
+        //if (PlayerPrefs.HasKey("FastRun"))
+        //{
+        //    if (PlayerPrefs.GetInt("FastRun") == 1)
+        //    {
+        //        StartGame();
+        //        PlayerPrefs.SetInt("FastRun", 0);
+        //    }
+        //}
+
     }
 
     public void StartGame()
     {
         LevelManager._Instance.Game_AudioMixer.DOSetFloat("Lowpass_Music", 5000, 1.65f).SetUpdate(true);
-        PlaySound.Play();
         SoundSetting.gameObject.SetActive(false);
+        ColorPicker_UI.gameObject.SetActive(false);
+        PlaySound.Play();
+        MenuPanel.SetActive(false);
         ButtonStart.SetActive(false);
-        LevelMenu_Text.gameObject.SetActive(false);
-        DecreaseLevel.gameObject.SetActive(false);
-        IncreaseLevel.SetActive(false);
         Pause.SetActive(true);
-        LevelNameSelection.SetActive(false);
         Time.timeScale = 1f;
         TouchScreen.SetActive(true);
         LevelShowInLevel.gameObject.SetActive(true);
-        MarkDifficaulty.gameObject.SetActive(false);
-        RewardButton.SetActive(false);
-        daynightImage.gameObject.SetActive(false);
+
+        if (LevelManager._Instance.DailyRewardCorotiune != null)
+            StopCoroutine(LevelManager._Instance.DailyRewardCorotiune);
+
+        if (CameraMovement._Instance.cam.orthographicSize == LevelManager._Instance.mainMenuCameraOrthgraphicSize[CurrentLevel - 1])
+            CameraMovement._Instance.cam.orthographicSize = LevelManager._Instance.inGameCameraOrthgraphicSize[CurrentLevel - 1];
+
         GameStarted = true;
         enemySystem.GenerateEnemy();
-        GameObject.FindObjectOfType<SquareSoliderCount>().StartGenerateSolider();
+
+        LevelManager._Instance.StartGenerateSolider();
+
         CoverMenu.SetActive(false);
-        NoteHelperButton.gameObject.SetActive(false);
-        NoteHelperPanel.gameObject.SetActive(false);
     }
 
     public void SoundChecking()
@@ -213,9 +267,9 @@ public class MenuSetting : MonoBehaviour
         LevelChangeSound.Play();
         if (PlayerPrefs.HasKey("MyLevel"))
         {
-            if (CurrentLevel >= 100)
+            if (CurrentLevel >= 200)
             {
-                CurrentLevel = 100;
+                CurrentLevel = 200;
                 LevelMenu_Text.text = "Level " + CurrentLevel.ToString();
                 return;
             }
@@ -224,7 +278,7 @@ public class MenuSetting : MonoBehaviour
             if (CurrentLevel <= PlayerPrefs.GetInt("UnlockLevel"))
             {
                 PlayerPrefs.SetInt("MyLevel", CurrentLevel);
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                LevelManager._Instance.ResetGameData();
             }
             else
             {
@@ -246,7 +300,7 @@ public class MenuSetting : MonoBehaviour
             }
             CurrentLevel -= 1;
             PlayerPrefs.SetInt("MyLevel", CurrentLevel);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            LevelManager._Instance.ResetGameData();
         }
 
     }
@@ -254,12 +308,8 @@ public class MenuSetting : MonoBehaviour
     public void Menu()
     {
         PauseSound.Play();
-        //if (Random.Range(0, 100) < 40)
-        //{
-        //    FindObjectOfType<InitialazeAdsMonitize>().ShowAd();
-        //}
         PlayerPrefs.SetInt("MyLevel", CurrentLevel);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LevelManager._Instance.ResetGameData();
     }
 
     public void PauseBut()
@@ -275,7 +325,7 @@ public class MenuSetting : MonoBehaviour
             Home.SetActive(false);
             RestartLevel.SetActive(false);
             SoundSetting.gameObject.SetActive(false);
-            daynightImage.gameObject.SetActive(false);
+            ColorPicker_UI.gameObject.SetActive(false);
         }
         else
         {
@@ -286,7 +336,7 @@ public class MenuSetting : MonoBehaviour
             Home.SetActive(true);
             RestartLevel.SetActive(true);
             SoundSetting.gameObject.SetActive(true);
-            daynightImage.gameObject.SetActive(true);
+            ColorPicker_UI.gameObject.SetActive(true);
         }
     }
 
@@ -294,9 +344,10 @@ public class MenuSetting : MonoBehaviour
     {
         PauseSound.Play();
 
-        PlayerPrefs.SetInt("FastRun", 1);
+        //PlayerPrefs.SetInt("FastRun", 1);
         PlayerPrefs.SetInt("MyLevel", CurrentLevel);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        LevelManager._Instance.ResetGameData();
     }
 
     public void NoteHelperButtonListener()
@@ -315,30 +366,55 @@ public class MenuSetting : MonoBehaviour
         NoteHelperPanel.SetActive(false);
     }
 
-    public void DayAndNight()
+    public void BackgroundPicker()
     {
         LevelChangeSound.Play();
-        if (PlayerPrefs.GetInt("DayAndNight") == 1) // 1 Day, 0 Night
+        if (PlayerPrefs.HasKey("BG"))
         {
-            daynightImage.sprite = NightSprite;
-            PlayerPrefs.SetInt("DayAndNight", 0);
-            camera.backgroundColor = NightColor;
+            int currentBG = PlayerPrefs.GetInt("BG");
 
-            LevelShowInLevel.color = DayColor;
-            Pause.gameObject.GetComponent<Image>().color = DayColor;
-            Home.gameObject.GetComponent<Image>().color = DayColor;
-            RestartLevel.gameObject.GetComponent<Image>().color = DayColor;
+            currentBG++;
+
+            if (currentBG > 5)
+            {
+                BG_UI.gameObject.SetActive(false);
+                ColorPicker_UI.sprite = ColorPicker[0];
+                PlayerPrefs.SetInt("BG", 1);
+                return;
+            }
+
+            BG_UI.gameObject.SetActive(true);
+            BG_UI.sprite = BG[currentBG - 2];
+            ColorPicker_UI.sprite = ColorPicker[currentBG - 1];
+            PlayerPrefs.SetInt("BG", currentBG);
         }
-        else if (PlayerPrefs.GetInt("DayAndNight") == 0) // 1 Day, 0 Night
-        {
-            daynightImage.sprite = DaySprite;
-            PlayerPrefs.SetInt("DayAndNight", 1);
-            camera.backgroundColor = DayColor;
+    }
 
-            LevelShowInLevel.color = NightColor;
-            Pause.gameObject.GetComponent<Image>().color = NightColor;
-            Home.gameObject.GetComponent<Image>().color = NightColor;
-            RestartLevel.gameObject.GetComponent<Image>().color = NightColor;
+    public void GuideLangauage(Image img)
+    {
+        if(img.sprite == persian)
+        {
+            img.sprite = english;
+            foreach(var obj in persianNote)
+            {
+                obj.SetActive(false);
+            }
+            foreach(var obj in englishNote)
+            {
+                obj.SetActive(true);
+            }
+        }
+        else if(img.sprite == english)
+        {
+            img.sprite = persian;
+            foreach (var obj in englishNote)
+            {
+                obj.SetActive(false);
+            }
+            foreach (var obj in persianNote)
+            {
+                obj.SetActive(true);
+            }
         }
     }
 
