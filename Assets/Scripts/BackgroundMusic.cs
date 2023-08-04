@@ -10,8 +10,6 @@ public class BackgroundMusic : MonoBehaviour
     public AudioClip[] BackgroundClips;
     public AudioSource MusicAudioSource;
 
-    [SerializeField] private bool nextMusic;
-
     private void Awake()
     {
         if (_Instance != null && _Instance != this)
@@ -29,23 +27,20 @@ public class BackgroundMusic : MonoBehaviour
             MusicAudioSource.clip = BackgroundClips[clipIndex];
             MusicAudioSource.Play();
 
-            nextMusic = false;
+            StartCoroutine(NextMusic(MusicAudioSource.clip.length));
         }
     }
 
-    public void LateUpdate()
+    private IEnumerator NextMusic(float time)
     {
-        if (MusicAudioSource.isPlaying == false && !nextMusic)
+        yield return new WaitForSeconds(time);
+        if (Random.Range(0, 100) < 30)
+            Invoke("DetectNextMusic", Random.Range(15, 75));
+        else
         {
-            nextMusic = true;
-            if (Random.Range(0, 100) < 30)
-                Invoke("DetectNextMusic", Random.Range(15, 75));
-            else
-            {
-                nextMusic = false;
-                MusicAudioSource.Stop();
-                MusicAudioSource.Play();
-            }
+            MusicAudioSource.Stop();
+            MusicAudioSource.Play();
+            StartCoroutine(NextMusic(MusicAudioSource.clip.length));
         }
     }
 
@@ -54,6 +49,6 @@ public class BackgroundMusic : MonoBehaviour
         int clipIndex = Random.Range(0, BackgroundClips.Length);
         MusicAudioSource.clip = BackgroundClips[clipIndex];
         MusicAudioSource.Play();
-        nextMusic = false;
+        StartCoroutine(NextMusic(MusicAudioSource.clip.length));
     }
 }

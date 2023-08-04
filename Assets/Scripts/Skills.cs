@@ -6,7 +6,7 @@ public class Skills : MonoBehaviour
     public Image TurboObj, CopacityObj, RandomChangeObj, AllAttackObj, X2Obj, MaxSpaceObj;
     [HideInInspector] public StateMortal SelectedMortal;
 
-    public AudioSource Correct_Sound;
+    public AudioSource AbilityPicked;
     public AudioSource Error_Sound;
 
     private TextHelperNote Note;
@@ -46,7 +46,7 @@ public class Skills : MonoBehaviour
         {
             if(PlayerPrefs.GetInt("MyCoin") >= 100)
             {
-                Correct_Sound.Play();
+                AbilityPicked.Play();
                 theLevelmanager.CurrentCoin -= 100;
                 theLevelmanager.UpdateCoin();
                 PlayerPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
@@ -81,7 +81,7 @@ public class Skills : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("MyCoin") >= 400)
             {
-                Correct_Sound.Play();
+                AbilityPicked.Play();
                 theLevelmanager.CurrentCoin -= 400;
                 theLevelmanager.UpdateCoin();
                 PlayerPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
@@ -116,7 +116,7 @@ public class Skills : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("MyCoin") >= 30)
             {
-                Correct_Sound.Play();
+                AbilityPicked.Play();
                 theLevelmanager.CurrentCoin -= 30;
                 theLevelmanager.UpdateCoin();
                 PlayerPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
@@ -155,7 +155,7 @@ public class Skills : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("MyCoin") >= 200)
             {
-                Correct_Sound.Play();
+                AbilityPicked.Play();
                 theLevelmanager.CurrentCoin -= 200;
                 theLevelmanager.UpdateCoin();
                 PlayerPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
@@ -194,7 +194,7 @@ public class Skills : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("MyCoin") >= 1000)
             {
-                Correct_Sound.Play();
+                AbilityPicked.Play();
                 theLevelmanager.CurrentCoin -= 1000;
                 theLevelmanager.UpdateCoin();
                 PlayerPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
@@ -227,7 +227,7 @@ public class Skills : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("MyCoin") >= 2500)
             {
-                Correct_Sound.Play();
+                AbilityPicked.Play();
                 theLevelmanager.CurrentCoin -= 2500;
                 theLevelmanager.UpdateCoin();
                 PlayerPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);

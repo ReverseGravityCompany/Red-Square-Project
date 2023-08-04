@@ -58,6 +58,8 @@ public class MenuSetting : MonoBehaviour
     public Sprite persian, english;
     public GameObject[] persianNote;
     public GameObject[] englishNote;
+
+    private Animator anim;
     #endregion
 
     #region Functions
@@ -100,6 +102,7 @@ public class MenuSetting : MonoBehaviour
     private void Start()
     {
         camera = Camera.main;
+        anim = GetComponent<Animator>();
 
         if (PlayerPrefs.HasKey("BG"))
         {
@@ -421,6 +424,7 @@ public class MenuSetting : MonoBehaviour
     #region Animation Events
     public void RunAddCoinAnimationEvent()
     {
+        anim.SetBool("Coin", false);
         LevelManager._Instance.AddCoin();
     }
     #endregion

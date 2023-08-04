@@ -171,6 +171,7 @@ public class EnemySystem : MonoBehaviour
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
                                 if (isAttackDone) continue;
+                                if (TypeOfAttack[i].isUnderAttack) continue;
 
                                 StateMortal tempTypeOfAttackIncreaseMortal = TypeOfAttack[i];
                                 StateMortal tempRedSquareIncreaseMortal = RedSquare[randomRed];
@@ -179,6 +180,7 @@ public class EnemySystem : MonoBehaviour
                                 #region Add Enemy Square To Itself
                                 if (TypeOfAttack[i].GetIdentity() == StateMortal.iden.Red && Random.Range(0, 100) < 15)
                                 {
+                                    TypeOfAttack[i].isUnderAttack = true;
                                     int AttackDamage = tempRedSquareIncreaseMortal.CurrentCount;
                                     int CountOfattacking = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                     if ((AttackDamage += CountOfattacking) < 1000)
@@ -192,6 +194,7 @@ public class EnemySystem : MonoBehaviour
 
                                         isAttackDone = true;
                                     }
+                                    TypeOfAttack[i].isUnderAttack = false;
                                 }
                                 #endregion
                                 #region Attack To Others
@@ -199,7 +202,7 @@ public class EnemySystem : MonoBehaviour
                                 {
                                     if (tempRedSquareIncreaseMortal.CurrentCount > tempTypeOfAttackIncreaseMortal.CurrentCount || Random.Range(0, 100) < 40)
                                     {
-
+                                        TypeOfAttack[i].isUnderAttack = true; 
                                         int AttackDamage = tempRedSquareIncreaseMortal.CurrentCount;
 
                                         int maxDamage = AttackDamage;
@@ -230,6 +233,7 @@ public class EnemySystem : MonoBehaviour
                                             TypeOfAttack[i].ResetAllSkills();
                                             isAttackDone = true;
                                         }
+                                        TypeOfAttack[i].isUnderAttack = false;
                                     }
                                     #endregion
                                 }
@@ -310,12 +314,14 @@ public class EnemySystem : MonoBehaviour
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
                                 if (isAttackDone) continue;
+                                if (TypeOfAttack[i].isUnderAttack) continue;
 
                                 StateMortal tempTypeOfAttackIncreaseMortal = TypeOfAttack[i];
                                 StateMortal tempSquareIncreaseMortal = yellowSquare[randomsquare];
 
                                 if (TypeOfAttack[i].GetIdentity() == StateMortal.iden.Yellow && Random.Range(0, 100) < 10)
                                 {
+                                    TypeOfAttack[i].isUnderAttack = true;
                                     int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
                                     int CountOfattacking = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                     if ((AttackDamage += CountOfattacking) < 1000)
@@ -329,11 +335,13 @@ public class EnemySystem : MonoBehaviour
 
                                         isAttackDone = true;
                                     }
+                                    TypeOfAttack[i].isUnderAttack = false;
                                 }
                                 if (TypeOfAttack[i].GetIdentity() != StateMortal.iden.Yellow)
                                 {
                                     if (tempSquareIncreaseMortal.CurrentCount > tempTypeOfAttackIncreaseMortal.CurrentCount || Random.Range(0, 100) < 40)
                                     {
+                                        TypeOfAttack[i].isUnderAttack = true;
                                         int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
 
                                         int maxDamage = AttackDamage;
@@ -364,6 +372,7 @@ public class EnemySystem : MonoBehaviour
                                             TypeOfAttack[i].ResetAllSkills();
                                             isAttackDone = true;
                                         }
+                                        TypeOfAttack[i].isUnderAttack = false;
                                     }
                                 }
                             }
@@ -445,12 +454,14 @@ public class EnemySystem : MonoBehaviour
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
                                 if (isAttackDone) continue;
+                                if (TypeOfAttack[i].isUnderAttack) continue;
 
                                 StateMortal tempTypeOfAttackIncreaseMortal = TypeOfAttack[i];
                                 StateMortal tempSquareIncreaseMortal = pinkSquare[randomsquare];
 
                                 if (TypeOfAttack[i].GetIdentity() == StateMortal.iden.Pink && Random.Range(0, 100) < 10)
                                 {
+                                    TypeOfAttack[i].isUnderAttack = true;
                                     int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
                                     int CountOfattacking = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                     if ((AttackDamage += CountOfattacking) < 1000)
@@ -464,11 +475,13 @@ public class EnemySystem : MonoBehaviour
 
                                         isAttackDone = true;
                                     }
+                                    TypeOfAttack[i].isUnderAttack = false;
                                 }
                                 if (TypeOfAttack[i].GetIdentity() != StateMortal.iden.Pink)
                                 {
                                     if (tempSquareIncreaseMortal.CurrentCount > tempTypeOfAttackIncreaseMortal.CurrentCount || Random.Range(0, 100) < 40)
                                     {
+                                        TypeOfAttack[i].isUnderAttack = true;
                                         int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
 
                                         int maxDamage = AttackDamage;
@@ -501,6 +514,7 @@ public class EnemySystem : MonoBehaviour
                                             TypeOfAttack[i].ResetAllSkills();
                                             isAttackDone = true;
                                         }
+                                        TypeOfAttack[i].isUnderAttack = false;
                                     }
                                 }
                             }
@@ -583,13 +597,14 @@ public class EnemySystem : MonoBehaviour
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
                                 if (isAttackDone) continue;
+                                if (TypeOfAttack[i].isUnderAttack) continue;
 
                                 StateMortal tempTypeOfAttackIncreaseMortal = TypeOfAttack[i];
                                 StateMortal tempSquareIncreaseMortal = greenSquare[randomsquare];
 
                                 if (TypeOfAttack[i].GetIdentity() == StateMortal.iden.Green && Random.Range(0, 100) < 10)
                                 {
-
+                                    TypeOfAttack[i].isUnderAttack = true;
                                     int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
                                     int CountOfattacking = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                     if ((AttackDamage += CountOfattacking) < 1000)
@@ -603,12 +618,13 @@ public class EnemySystem : MonoBehaviour
 
                                         isAttackDone = true;
                                     }
+                                    TypeOfAttack[i].isUnderAttack = false;
                                 }
                                 if (TypeOfAttack[i].GetIdentity() != StateMortal.iden.Green)
                                 {
                                     if (tempSquareIncreaseMortal.CurrentCount > tempTypeOfAttackIncreaseMortal.CurrentCount || Random.Range(0, 100) < 40)
                                     {
-
+                                        TypeOfAttack[i].isUnderAttack = true;
                                         int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
 
                                         int maxDamage = AttackDamage;
@@ -641,6 +657,7 @@ public class EnemySystem : MonoBehaviour
                                             TypeOfAttack[i].ResetAllSkills();
                                             isAttackDone = true;
                                         }
+                                        TypeOfAttack[i].isUnderAttack = false;
                                     }
                                 }
                             }
@@ -723,13 +740,14 @@ public class EnemySystem : MonoBehaviour
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
                                 if (isAttackDone) continue;
+                                if (TypeOfAttack[i].isUnderAttack) continue;
 
                                 StateMortal tempTypeOfAttackIncreaseMortal = TypeOfAttack[i];
                                 StateMortal tempSquareIncreaseMortal = OrangeSquare[randomsquare];
 
                                 if (TypeOfAttack[i].GetIdentity() == StateMortal.iden.Orange && Random.Range(0, 100) < 10)
                                 {
-
+                                    TypeOfAttack[i].isUnderAttack = true;
                                     int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
                                     int CountOfattacking = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                     if ((AttackDamage += CountOfattacking) < 1000)
@@ -743,12 +761,13 @@ public class EnemySystem : MonoBehaviour
 
                                         isAttackDone = true;
                                     }
+                                    TypeOfAttack[i].isUnderAttack = false;
                                 }
                                 if (TypeOfAttack[i].GetIdentity() != StateMortal.iden.Orange)
                                 {
                                     if (tempSquareIncreaseMortal.CurrentCount > tempTypeOfAttackIncreaseMortal.CurrentCount || Random.Range(0, 100) < 40)
                                     {
-
+                                        TypeOfAttack[i].isUnderAttack = true;
                                         int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
 
                                         int maxDamage = AttackDamage;
@@ -780,6 +799,7 @@ public class EnemySystem : MonoBehaviour
                                             TypeOfAttack[i].ResetAllSkills();
                                             isAttackDone = true;
                                         }
+                                        TypeOfAttack[i].isUnderAttack = false;
                                     }
                                 }
                             }
@@ -859,12 +879,15 @@ public class EnemySystem : MonoBehaviour
                             List<StateMortal> TypeOfAttack = purpleSquare[randomsquare].MyTypeOfAttack;
                             for (int i = 0; i < TypeOfAttack.Count; i++)
                             {
+                                if (isAttackDone) continue;
+                                if (TypeOfAttack[i].isUnderAttack) continue;
+
                                 StateMortal tempTypeOfAttackIncreaseMortal = TypeOfAttack[i];
                                 StateMortal tempSquareIncreaseMortal = purpleSquare[randomsquare];
 
                                 if (TypeOfAttack[i].GetIdentity() == StateMortal.iden.LastColor && Random.Range(0, 100) < 10)
                                 {
-
+                                    TypeOfAttack[i].isUnderAttack = true;
                                     int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
                                     int CountOfattacking = tempTypeOfAttackIncreaseMortal.CurrentCount;
                                     if ((AttackDamage += CountOfattacking) < 1000)
@@ -878,11 +901,14 @@ public class EnemySystem : MonoBehaviour
 
                                         isAttackDone = true;
                                     }
+                                    TypeOfAttack[i].isUnderAttack = false;
                                 }
                                 if (TypeOfAttack[i].GetIdentity() != StateMortal.iden.LastColor)
                                 {
                                     if (tempSquareIncreaseMortal.CurrentCount > tempTypeOfAttackIncreaseMortal.CurrentCount || Random.Range(0, 100) < 40)
                                     {
+                                        TypeOfAttack[i].isUnderAttack = true;
+
                                         int AttackDamage = tempSquareIncreaseMortal.CurrentCount;
 
                                         int maxDamage = AttackDamage;
@@ -903,7 +929,6 @@ public class EnemySystem : MonoBehaviour
                                         purpleSquare[randomsquare].ArmyBurning(TypeOfAttack[i].gameObject,
                                         thePlayer.LastColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
 
-                                        isAttackDone = true;
                                         if (tempTypeOfAttackIncreaseMortal.CurrentCount <= 0)
                                         {
                                             TypeOfAttack[i].ResetTypeOfAttackData();
@@ -915,6 +940,8 @@ public class EnemySystem : MonoBehaviour
                                             TypeOfAttack[i].ResetAllSkills();
                                             isAttackDone = true;
                                         }
+                                        isAttackDone = true;
+                                        TypeOfAttack[i].isUnderAttack = false;
                                     }
                                 }
                             }

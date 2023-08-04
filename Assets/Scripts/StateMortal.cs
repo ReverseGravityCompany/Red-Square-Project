@@ -39,6 +39,7 @@ public class StateMortal : MonoBehaviour
     #region Properties SquareClass
     [HideInInspector] public bool CanPush = false;
     [HideInInspector] public bool CanAttack = false;
+    [HideInInspector] public bool isUnderAttack = false;
     private Player thePlayer;
 
     [HideInInspector] public bool TurboMortal, CopacityMortal, RandomChangeMortal, AllAttackMortal, X2Mortal, MaxSpaceMortal;
@@ -48,6 +49,9 @@ public class StateMortal : MonoBehaviour
     private Skills skills;
 
     [HideInInspector] public Image star1, star2, star3;
+
+    private int targetFrame;
+    private int frameCount;
 
     #endregion
 
@@ -82,7 +86,7 @@ public class StateMortal : MonoBehaviour
     {
         theLevelManager = LevelManager._Instance;
         objectPooler = ObjectPooler._Instance;
-        
+
 
         #region Raycast To Detect Attack Directions
         boxCollider2d = GetComponent<BoxCollider2D>();
@@ -146,6 +150,8 @@ public class StateMortal : MonoBehaviour
         {
             AmountIncrease = 0;
         }
+
+        targetFrame = Random.Range(10, 30);
     }
 
     private void Update()
@@ -162,6 +168,65 @@ public class StateMortal : MonoBehaviour
         {
             if (StateMortalText.fontSize != 70)
                 StateMortalText.fontSize = 70;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        frameCount++;
+        if (frameCount % targetFrame == 0)
+        {
+            if (StateMortalImage.color == thePlayer.BlueColor)
+            {
+                if(GetIdentity() != iden.Blue)
+                {
+                    SetMortalColors(thePlayer.BlueColor, thePlayer.BlueColorText);
+                }
+            }
+            else if(StateMortalImage.color == thePlayer.RedColor)
+            {
+                if (GetIdentity() != iden.Red)
+                {
+                    SetMortalColors(thePlayer.RedColor, thePlayer.RedColorText);
+                }
+            }
+            else if (StateMortalImage.color == thePlayer.YellowColor)
+            {
+                if (GetIdentity() != iden.Yellow)
+                {
+                    SetMortalColors(thePlayer.YellowColor, thePlayer.YellowColorText);
+                }
+            }
+            else if (StateMortalImage.color == thePlayer.PinkColor)
+            {
+                if (GetIdentity() != iden.Pink)
+                {
+                    SetMortalColors(thePlayer.PinkColor, thePlayer.PinkColorText);
+                }
+            }
+            else if (StateMortalImage.color == thePlayer.GreenColor)
+            {
+                if (GetIdentity() != iden.Green)
+                {
+                    SetMortalColors(thePlayer.GreenColor, thePlayer.GreenColorText);
+                }
+            }
+            else if (StateMortalImage.color == thePlayer.OrangeColor)
+            {
+                if (GetIdentity() != iden.Orange)
+                {
+                    SetMortalColors(thePlayer.OrangeColor, thePlayer.OrangeColorText);
+                }
+            }
+            else if (StateMortalImage.color == thePlayer.LastColor)
+            {
+                if (GetIdentity() != iden.LastColor)
+                {
+                    SetMortalColors(thePlayer.LastColor, thePlayer.LastColorText);
+                }
+            }
+
+            frameCount = 0;
         }
     }
 
@@ -419,9 +484,9 @@ public class StateMortal : MonoBehaviour
 
     public void ArmyBurning(GameObject targetMortal, Color mainColor, Color targetColor, int burstCount)
     {
-        if (burstCount >= 50)
+        if (burstCount >= 100)
         {
-            burstCount = 50;
+            burstCount = 100;
         }
 
         ArmyParticle.transform.position = targetMortal.transform.position;

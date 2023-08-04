@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
     [HideInInspector] public bool SkillsState;
     public GameObject[] SkillsObject;
 
-    public int CoinWinning;
+    private int CoinWinning;
     public Text CoinWiningText;
     public Animator anim;
 
@@ -35,7 +35,6 @@ public class LevelManager : MonoBehaviour
     public AudioMixer Game_AudioMixer;
 
 
-    private bool CoinRecive;
     public float CoinPosX = -180f;
     private int WinStatus;
     private int LoseStatus;
@@ -272,9 +271,8 @@ public class LevelManager : MonoBehaviour
                     {
                         if (PlayerPrefs.GetInt("UnlockLevel") == CurrentLevel)
                         {
-                            anim.SetTrigger("WinCoin");
-                            CoinWinning = GoldForEachLevels[CurrentLevel - 1] / 2;
-                            IsCoinTaken = true;
+                            anim.SetBool("Coin", true);
+                            CoinWinning = (int)Math.Round(GoldForEachLevels[CurrentLevel - 1] * 0.85f);
                         }
                         else
                         {
@@ -292,14 +290,12 @@ public class LevelManager : MonoBehaviour
                                     CoinWinning = 200;
                                     break;
                             }
-                            anim.SetTrigger("WinCoin");
-                            IsCoinTaken = true;
+                            anim.SetBool("Coin", true);
                         }
                     }
                     else
                     {
-                        anim.SetTrigger("WinCoin");
-                        IsCoinTaken = true;
+                        anim.SetBool("Coin", true);
                     }
                     if (PlayerPrefs.HasKey("ValueOfLevels"))
                     {
@@ -326,19 +322,14 @@ public class LevelManager : MonoBehaviour
                     Win.SetActive(true);
                     WinSound.Play();
 
-                    if (!CoinRecive)
-                    {
-                        int b = CoinWinning < 100 ? CoinWinning - Random.Range(-5, 5) : CoinWinning < 300 ?
-               CoinWinning - Random.Range(-20, 20) : CoinWinning < 1000 ? CoinWinning - Random.Range(-50, 50) : CoinWinning > 1000 ? CoinWinning - Random.Range(-100, 100) : CoinWinning;
-                        CoinWinning = b;
+                    int b = CoinWinning < 100 ? CoinWinning - Random.Range(-5, 5) : CoinWinning < 300 ?
+           CoinWinning - Random.Range(-20, 20) : CoinWinning < 1000 ? CoinWinning - Random.Range(-50, 50) : CoinWinning > 1000 ? CoinWinning - Random.Range(-100, 100) : CoinWinning;
 
-                        if (IsCoinTaken)
-                        {
-                            CurrentCoin += CoinWinning;
-                            UpdateCoin();
-                        }
-                        CoinRecive = true;
-                    }
+                    CoinWinning = b;
+
+                    CurrentCoin += CoinWinning;
+                    UpdateCoin();
+
                     CoinWiningText.text = CoinWinning.ToString();
                     CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(CoinPosX, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
                     WinningRewardTaken = true;
@@ -401,12 +392,12 @@ public class LevelManager : MonoBehaviour
                     {
                         PlayerPrefs.SetInt("MyLevel", 1);
                         StartCoroutine(
-                  MiniGame.SendScore(
-                  score: LearnProcess - 1,
-                  onSuccess: OnSuccess,
-                  onFail: OnFail
-                  )
-                  );
+                        MiniGame.SendScore(
+                        score: LearnProcess - 1,
+                        onSuccess: OnSuccess,
+                        onFail: OnFail
+                        )
+                        );
                         //StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Level\": " + 1 + "}"));
                     }
                     else
@@ -559,17 +550,7 @@ public class LevelManager : MonoBehaviour
 
             TimeSpan difference = currentTime.Subtract(lastTimeClicked);
 
-            if (difference.TotalSeconds >= 600)
-            {
-                PlayerPrefs.SetString("Last Time Clicked", DateTime.UtcNow.ToString());
-                CurrentCoin = PlayerPrefs.GetInt("MyCoin");
-                CurrentCoin += 2000;
-                RewardExImage.gameObject.SetActive(true);
-                MoneySound.Play();
-                PlayerPrefs.SetInt("MyCoin", CurrentCoin);
-                UpdateCoin();
-            }
-            else // THIS SHOULD BE DELETED BUT ONLY FOR TESTING
+            if (difference.TotalSeconds >= 300)
             {
                 PlayerPrefs.SetString("Last Time Clicked", DateTime.UtcNow.ToString());
                 CurrentCoin = PlayerPrefs.GetInt("MyCoin");
@@ -596,6 +577,7 @@ public class LevelManager : MonoBehaviour
     public void UpdateCoin()
     {
         CoinText.text = CurrentCoin.ToString();
+        PlayerPrefs.SetInt("MyCoin", CurrentCoin);
         if (PlayerPrefs.GetInt("MyCoin") >= MaxCoin)
         {
             CurrentCoin = MaxCoin;
@@ -657,9 +639,9 @@ public class LevelManager : MonoBehaviour
 
                 float currentProgress = (float)difference.TotalSeconds;
 
-                if (currentProgress >= 600)
+                if (currentProgress >= 300)
                 {
-                    currentProgress = 600;
+                    currentProgress = 300;
 
                     RewardExImage.gameObject.SetActive(false);
                     DailyRewardText.text = "";
@@ -667,13 +649,13 @@ public class LevelManager : MonoBehaviour
                     continue;
                 }
 
-                float TimeSpend = scaleValue(0, 600, 0, 1, currentProgress);
+                float TimeSpend = scaleValue(0, 300, 0, 1, currentProgress);
 
                 float revFill = 1 - TimeSpend;
 
                 DailyRewardImage.fillAmount = revFill;
 
-                float RevProgress = 600 - currentProgress;
+                float RevProgress = 300 - currentProgress;
 
                 var ts = TimeSpan.FromSeconds(RevProgress);
 
@@ -710,7 +692,6 @@ public class LevelManager : MonoBehaviour
         LoseGame = false;
         WinStatus = 0;
         LoseStatus = 0;
-        WinningRewardTaken = false;
         SkillsState = false;
         UpdateSkills();
         UpdateCoin();
@@ -718,6 +699,8 @@ public class LevelManager : MonoBehaviour
         Lose.SetActive(false);
         Win.SetActive(false);
         IsCoinTaken = false;
+        WinningRewardTaken = false;
+        DG.Tweening.DOTween.KillAll();
         BurnArmy.Clear();
         CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(-100, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
         #endregion
@@ -737,13 +720,13 @@ public class LevelManager : MonoBehaviour
         UI_Canvas.LevelShowInLevel.gameObject.SetActive(false);
         #endregion
 
+        System.GC.Collect();
+        Resources.UnloadUnusedAssets();
+
         foreach (var item in SkillsObject)
         {
             item.transform.GetChild(0).GetComponent<MaskAnimate>().animate();
         }
-
-        System.GC.Collect();
-        Resources.UnloadUnusedAssets();
 
         if (!PlayerPrefs.HasKey("MyLevel"))
         {
@@ -803,6 +786,8 @@ public class LevelManager : MonoBehaviour
         }
 
         thePlayer = FindObjectOfType<Player>();
+
+        CameraMovement._Instance.cam.transform.position = new Vector3(0, 0, -10);
 
         if (!LearningLevels)
             CameraMovement._Instance.cam.orthographicSize = mainMenuCameraOrthgraphicSize[CurrentLevel - 1];

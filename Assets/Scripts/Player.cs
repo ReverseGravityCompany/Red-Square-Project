@@ -100,9 +100,9 @@ public class Player : MonoBehaviour
                 // IF YOU DRAG TO ATTACK
                 if (CanUseDrag && !MyBlue)
                 {
-                    if (SelectedObject != hitObjectStats)
+                    if (SelectedObject != hitObjectStats && SelectedObject.GetIdentity() == StateMortal.iden.Blue)
                     {
-                        PickUp = !PickUp;
+                        PickUp = false;
 
                         MyBlue = SelectedObject;
 
@@ -110,8 +110,15 @@ public class Player : MonoBehaviour
                         MyBlue.CanAttack = true;
                         MyBlue.SetMortalColors(BlueColorPick, BlueColorPickText);
 
-                        theLevelManager.InitializeAttack(MyBlue);
+                        MyBlue.transform.DOScale(0.85f, 0.3f).SetEase(Ease.Linear).From();
 
+                        theLevelManager.InitializeAttack(MyBlue);
+                    }
+                    else
+                    {
+                        SelectedObject = null;
+                        CanUseDrag = false;
+                        CamMove.isDragging = false;
                     }
                 }
 
@@ -242,14 +249,14 @@ public class Player : MonoBehaviour
         if (StateMortal.iden.Blue == obj.GetIdentity())
         {
             theLevelManager.SelectMortalSound.Play();
-            if (MyBlue != null && MyBlue != null)
+            if (MyBlue != null)
             {
                 MyBlue.SetMortalColors(BlueColor, BlueColorText);
             }
             if (PickUp)
             {
                 // Set My Blue
-                PickUp = !PickUp;
+                PickUp = false;
                 MyBlue = obj;
 
                 MyBlue.CanPush = true;
@@ -269,7 +276,8 @@ public class Player : MonoBehaviour
             }
             else
             {
-                PickUp = !PickUp;
+                PickUp = true;
+
                 if (MyBlue != null)
                 {
                     MyBlue.CanPush = false;
@@ -293,14 +301,16 @@ public class Player : MonoBehaviour
     #region BLUE TO BLUE
     private void AddBlueToBlue(StateMortal obj)
     {
-        if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack)
+        if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack && !obj.isUnderAttack)
         {
+            obj.isUnderAttack = true;
             int AttackDamage = MyBlue.CurrentCount;
             MyBlue.CurrentCount = 0;
             obj.CurrentCount += AttackDamage;
-            PickUp = !PickUp;
+            PickUp = true;
             theLevelManager.SelectMortalSound.Play();
             MyBlue.CanPush = false;
+            MyBlue.CanAttack = false;
             MyBlue.SetMortalColors(BlueColor, BlueColorText);
             theLevelManager.SkillsState = false;
             theLevelManager.UpdateSkills();
@@ -313,12 +323,13 @@ public class Player : MonoBehaviour
             theLevelManager.DeserilaizeAttack();
 
             BlueStop = false;
+            obj.isUnderAttack = false;
             return;
         }
         else
         {
-            theLevelManager.SelectMortalSound.Play();
-            PickUp = !PickUp;
+            PickUp = true;
+
             if (MyBlue != null)
             {
                 MyBlue.CanPush = false;
@@ -341,8 +352,9 @@ public class Player : MonoBehaviour
     {
         if (StateMortal.iden.None == obj.GetIdentity())
         {
-            if (MyBlue != null && obj.gameObject != null && MyBlue.CanPush && obj.CanAttack)
+            if (MyBlue != null && obj.gameObject != null && MyBlue.CanPush && obj.CanAttack && !obj.isUnderAttack)
             {
+                obj.isUnderAttack = true;
                 int AttackDamage = MyBlue.CurrentCount;
                 MyBlue.CurrentCount = 0;
 
@@ -369,8 +381,9 @@ public class Player : MonoBehaviour
                     obj.ValidateMortal();
                 }
 
-                PickUp = !PickUp;
+                PickUp = true;
                 MyBlue.CanPush = false;
+                MyBlue.CanAttack = false;
                 MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
@@ -387,14 +400,12 @@ public class Player : MonoBehaviour
                 theLevelManager.DeserilaizeAttack();
 
                 BlueStop = false;
+                obj.isUnderAttack = false;
                 return;
             }
             else
             {
-                theLevelManager.SelectMortalSound.Play();
-
-                if (!PickUp)
-                    PickUp = true;
+                PickUp = true;
 
                 if (MyBlue != null)
                 {
@@ -420,8 +431,9 @@ public class Player : MonoBehaviour
     {
         if (StateMortal.iden.Red == obj.GetIdentity())
         {
-            if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack)
+            if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack && !obj.isUnderAttack)
             {
+                obj.isUnderAttack = true;
                 int AttackDamage = MyBlue.CurrentCount;
                 MyBlue.CurrentCount = 0;
 
@@ -448,8 +460,9 @@ public class Player : MonoBehaviour
                     obj.ResetEnemyTurbo();
                 }
 
-                PickUp = !PickUp;
+                PickUp = true;
                 MyBlue.CanPush = false;
+                MyBlue.CanAttack = false;
                 MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
@@ -464,14 +477,14 @@ public class Player : MonoBehaviour
                 MyBlue = null;
                 theLevelManager.DeserilaizeAttack();
                 BlueStop = false;
+                obj.isUnderAttack = false;
                 return;
 
             }
             else
             {
-                theLevelManager.SelectMortalSound.Play();
-                if (!PickUp)
-                    PickUp = true;
+                PickUp = true;
+
                 if (MyBlue != null)
                 {
                     MyBlue.CanPush = false;
@@ -495,8 +508,9 @@ public class Player : MonoBehaviour
     {
         if (StateMortal.iden.Yellow == obj.GetIdentity())
         {
-            if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack)
+            if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack && !obj.isUnderAttack)
             {
+                obj.isUnderAttack = true;
                 int AttackDamage = MyBlue.CurrentCount;
                 MyBlue.CurrentCount = 0;
 
@@ -524,8 +538,9 @@ public class Player : MonoBehaviour
                     obj.ResetEnemyTurbo();
                 }
 
-                PickUp = !PickUp;
+                PickUp = true;
                 MyBlue.CanPush = false;
+                MyBlue.CanAttack = false;
                 MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
@@ -540,13 +555,13 @@ public class Player : MonoBehaviour
                 MyBlue = null;
                 theLevelManager.DeserilaizeAttack();
                 BlueStop = false;
+                obj.isUnderAttack = false;
                 return;
             }
             else
             {
-                theLevelManager.SelectMortalSound.Play();
-                if (!PickUp)
-                    PickUp = true;
+                PickUp = true;
+
                 if (MyBlue != null)
                 {
                     MyBlue.CanPush = false;
@@ -570,8 +585,9 @@ public class Player : MonoBehaviour
     {
         if (StateMortal.iden.Pink == obj.GetIdentity())
         {
-            if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack)
+            if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack && !obj.isUnderAttack)
             {
+                obj.isUnderAttack = true;
                 int AttackDamage = MyBlue.CurrentCount;
                 MyBlue.CurrentCount = 0;
 
@@ -597,7 +613,7 @@ public class Player : MonoBehaviour
                     obj.ResetEnemyTurbo();
                 }
 
-                PickUp = !PickUp;
+                PickUp = true;
                 MyBlue.CanPush = false;
                 MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 theLevelManager.SkillsState = false;
@@ -615,14 +631,13 @@ public class Player : MonoBehaviour
                 MyBlue = null;
                 theLevelManager.DeserilaizeAttack();
                 BlueStop = false;
+                obj.isUnderAttack = false;
                 return;
 
             }
             else
             {
-                theLevelManager.SelectMortalSound.Play();
-                if (!PickUp)
-                    PickUp = true;
+                PickUp = true;
                 if (MyBlue != null)
                 {
                     MyBlue.CanPush = false;
@@ -645,8 +660,9 @@ public class Player : MonoBehaviour
     {
         if (StateMortal.iden.Green == obj.GetIdentity())
         {
-            if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack)
+            if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack && !obj.isUnderAttack)
             {
+                obj.isUnderAttack = true;
                 int AttackDamage = MyBlue.CurrentCount;
                 MyBlue.CurrentCount = 0;
 
@@ -673,8 +689,9 @@ public class Player : MonoBehaviour
                     obj.ResetEnemyTurbo();
                 }
 
-                PickUp = !PickUp;
+                PickUp = true;
                 MyBlue.CanPush = false;
+                MyBlue.CanAttack = false;
                 MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
@@ -689,13 +706,12 @@ public class Player : MonoBehaviour
                 MyBlue = null;
                 theLevelManager.DeserilaizeAttack();
                 BlueStop = false;
+                obj.isUnderAttack = false;
                 return;
             }
             else
             {
-                theLevelManager.SelectMortalSound.Play();
-                if (!PickUp)
-                    PickUp = true;
+                PickUp = true;
                 if (MyBlue != null)
                 {
                     MyBlue.CanPush = false;
@@ -718,8 +734,9 @@ public class Player : MonoBehaviour
     {
         if (StateMortal.iden.Orange == obj.GetIdentity())
         {
-            if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack)
+            if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack && !obj.isUnderAttack)
             {
+                obj.isUnderAttack = true;
                 int AttackDamage = MyBlue.CurrentCount;
                 MyBlue.CurrentCount = 0;
 
@@ -745,8 +762,9 @@ public class Player : MonoBehaviour
                     obj.ResetEnemyTurbo();
                 }
 
-                PickUp = !PickUp;
+                PickUp = true;
                 MyBlue.CanPush = false;
+                MyBlue.CanAttack = false;
                 MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
@@ -761,13 +779,12 @@ public class Player : MonoBehaviour
                 MyBlue = null;
                 theLevelManager.DeserilaizeAttack();
                 BlueStop = false;
+                obj.isUnderAttack = false;
                 return;
             }
             else
             {
-                theLevelManager.SelectMortalSound.Play();
-                if (!PickUp)
-                    PickUp = true;
+                PickUp = true;
                 if (MyBlue != null)
                 {
                     MyBlue.CanPush = false;
@@ -790,8 +807,9 @@ public class Player : MonoBehaviour
     {
         if (StateMortal.iden.LastColor == obj.GetIdentity())
         {
-            if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack)
+            if (MyBlue != null && obj != null && MyBlue.CanPush && obj.CanAttack && !obj.isUnderAttack)
             {
+                obj.isUnderAttack = true;
                 int AttackDamage = MyBlue.CurrentCount;
                 MyBlue.CurrentCount = 0;
 
@@ -819,13 +837,14 @@ public class Player : MonoBehaviour
                     obj.ResetEnemyTurbo();
                 }
 
-                PickUp = !PickUp;
+                PickUp = true;
                 MyBlue.CanPush = false;
+                MyBlue.CanAttack = false;
                 MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
 
-                theLevelManager.AttackSound.Play();
+                theLevelManager.AttackYellowColorSound.Play();
                 CamMove.Shake(0.1f, 0.12f, 0.03f, 0.25f);
 
                 MyBlue.ArmyBurning(obj.gameObject, BlueColor, LastColor, objBurnValue / 2);
@@ -839,9 +858,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                theLevelManager.SelectMortalSound.Play();
-                if (!PickUp)
-                    PickUp = true;
+                PickUp = true;
                 if (MyBlue != null)
                 {
                     MyBlue.CanPush = false;
@@ -852,6 +869,7 @@ public class Player : MonoBehaviour
                 MyBlue = null;
                 theLevelManager.DeserilaizeAttack();
                 BlueStop = false;
+                obj.isUnderAttack = false;
                 return;
             }
         }
