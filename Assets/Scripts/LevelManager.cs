@@ -272,7 +272,7 @@ public class LevelManager : MonoBehaviour
                         if (PlayerPrefs.GetInt("UnlockLevel") == CurrentLevel)
                         {
                             anim.SetBool("Coin", true);
-                            CoinWinning = (int)Math.Round(GoldForEachLevels[CurrentLevel - 1] * 0.85f);
+                            CoinWinning = GoldForEachLevels[CurrentLevel - 1];
                         }
                         else
                         {
@@ -322,8 +322,18 @@ public class LevelManager : MonoBehaviour
                     Win.SetActive(true);
                     WinSound.Play();
 
-                    int b = CoinWinning < 100 ? CoinWinning - Random.Range(-5, 5) : CoinWinning < 300 ?
-           CoinWinning - Random.Range(-20, 20) : CoinWinning < 1000 ? CoinWinning - Random.Range(-50, 50) : CoinWinning > 1000 ? CoinWinning - Random.Range(-100, 100) : CoinWinning;
+                    int b = CoinWinning < 100 ? CoinWinning + Random.Range(0, 5) : CoinWinning < 300 ?
+           CoinWinning + Random.Range(-10, 20) : CoinWinning < 1000 ? CoinWinning + Random.Range(-50, 50) : CoinWinning > 1000 ? CoinWinning + Random.Range(-100, 100) : CoinWinning;
+                    
+                    if(b < 0)
+                    {
+                        b = Math.Abs(b);
+                    }
+
+                    if(b == 0)
+                    {
+                        b = 50;
+                    }
 
                     CoinWinning = b;
 
