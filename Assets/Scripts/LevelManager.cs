@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 using TMPro;
 
 using Cafebazaar;
+using UnityEngine.Networking;
 
 public class LevelManager : MonoBehaviour
 {
@@ -86,6 +87,11 @@ public class LevelManager : MonoBehaviour
     public float[] mainMenuCameraOrthgraphicSize;
     public float[] inGameCameraOrthgraphicSize;
 
+    public Button winButton;
+    public GameObject ErrorScoreSendingPanel;
+
+    public GameObject Loading_dataToServer;
+    public GameObject Info_dataToServer;
     #endregion
 
     #region Functions
@@ -253,20 +259,16 @@ public class LevelManager : MonoBehaviour
                 if (WinStatus >= AllMortalObjects.Count && !WinningRewardTaken)
                 {
                     WinGame = true;
+                    winButton.interactable = false;
                     SkillsState = false;
                     UI_Canvas.GameStarted = false;
                     UpdateSkills();
                 }
                 if (WinGame && !WinningRewardTaken)
                 {
-                    StartCoroutine(
-                      MiniGame.SendScore(
-                      score: 4 + CurrentLevel,
-                      onSuccess: OnSuccess,
-                      onFail: OnFail
-                      )
-                      );
+                    SendScoreDataToServer();
 
+                   // StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Level\": " + CurrentLevel + "}"));
                     if (PlayerPrefs.HasKey("UnlockLevel"))
                     {
                         if (PlayerPrefs.GetInt("UnlockLevel") == CurrentLevel)
@@ -401,26 +403,26 @@ public class LevelManager : MonoBehaviour
                     if (LearnProcess == TutorialsLevels.Length + 1)
                     {
                         PlayerPrefs.SetInt("MyLevel", 1);
-                        StartCoroutine(
-                        MiniGame.SendScore(
-                        score: LearnProcess - 1,
-                        onSuccess: OnSuccess,
-                        onFail: OnFail
-                        )
-                        );
+                        //StartCoroutine(
+                        //MiniGame.SendScore(
+                        //score: LearnProcess - 1,
+                        //onSuccess: OnSuccess,
+                        //onFail: OnFail
+                        //)
+                        //);
                         //StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Level\": " + 1 + "}"));
                     }
-                    else
-                    {
-                        // StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Learn\": " + LearnProcess + "}"));
-                        StartCoroutine(
-                   MiniGame.SendScore(
-                   score: LearnProcess - 1,
-                   onSuccess: OnSuccess,
-                   onFail: OnFail
-                   )
-                   );
-                    }
+                   // else
+                   // {
+                   //     // StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Learn\": " + LearnProcess + "}"));
+                   //     StartCoroutine(
+                   //MiniGame.SendScore(
+                   //score: LearnProcess - 1,
+                   //onSuccess: OnSuccess,
+                   //onFail: OnFail
+                   //)
+                   //);
+                   // }
                 }
                 else
                 {
@@ -434,13 +436,37 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void SendScoreDataToServer()
+    {
+        ErrorScoreSendingPanel.SetActive(false);
+        Loading_dataToServer.SetActive(true);
+        Info_dataToServer.SetActive(true);
+
+        StartCoroutine(
+                      MiniGame.SendScore(
+                      score: CurrentLevel * 10,
+                      onSuccess: OnSuccess,
+                      onFail: OnFail
+                      )
+                      );
+    }
+
     private void OnSuccess()
     {
+        ErrorScoreSendingPanel.SetActive(false);
+        Loading_dataToServer.SetActive(false);
+        Info_dataToServer.SetActive(false);
+        winButton.interactable = true;
         Debug.Log("Request succeeded.");
     }
 
     private void OnFail()
     {
+        MiniGame.Initialize();
+        Loading_dataToServer.SetActive(false);
+        Info_dataToServer.SetActive(false);
+        ErrorScoreSendingPanel.SetActive(true);
+        winButton.interactable = false;
         Debug.Log("Request failed.");
     }
 
@@ -454,7 +480,7 @@ public class LevelManager : MonoBehaviour
     //    uwr.SetRequestHeader("Content-Type", "application/json");
 
     //    //Send the request then wait here until it returns
-    //    uwr.timeout = 3;
+    //    uwr.timeout = 10;
     //    yield return uwr.SendWebRequest();
 
 
@@ -463,11 +489,13 @@ public class LevelManager : MonoBehaviour
     //        || uwr.result == UnityWebRequest.Result.ProtocolError)
     //    {
     //        Debug.Log("Error While Sending: " + uwr.error);
+    //        OnFail();
     //    }
     //    else if (uwr.result == UnityWebRequest.Result.Success)
     //    {
     //        Debug.Log("Received: " + uwr.result);
     //        Debug.Log("Received: " + uwr.downloadHandler.text);
+    //        OnSuccess();
     //    }
 
     //    uwr.Dispose();

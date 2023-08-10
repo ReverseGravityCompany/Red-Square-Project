@@ -13,10 +13,10 @@ namespace Cafebazaar
 
     public static class MiniGame
     {
-        private const string SCORE_URL = "https://minigames-api.cafebazaar.org/score";
+        private const string SCORE_URL = "https://minigames-api.cafebazaar.org/score/";
         private static GameData gameData;
 
-        #if UNITY_WEBGL && !UNITY_EDITOR
+#if UNITY_WEBGL && !UNITY_EDITOR
 
         public static void Initialize()
         {
@@ -42,16 +42,20 @@ namespace Cafebazaar
             if (!IsGameDataFetched())
             {
                 Logger.LogError("Error in fetching process => The URL parameters are not correct.");
+                onFail.Invoke();
                 yield break;
             }
 
             UnityWebRequest request = new UnityWebRequest(url: SCORE_URL, method: "POST");
+            request.timeout = 10;
             request.SetRequestHeader("Content-Type", "application/json");
+            request.SetRequestHeader("Access-Control-Allow-Origin", "*");
+            
             request.uploadHandler = (UploadHandler)new UploadHandlerRaw(
                 data: Encoding.UTF8.GetBytes(
-                    "{\"game_slug\":\"" + gameData.Slug + 
-                    "\", \"uid\":\"" + gameData.Uid + 
-                    "\", \"score:\":" + score + 
+                    "{\"game_slug\":\"" + gameData.Slug.Replace("\"", "") + 
+                    "\", \"uid\":\"" + gameData.Uid.Replace("\"", "") + 
+                    "\", \"score\":" + score + 
                     "}"
                 )
             );
@@ -59,12 +63,13 @@ namespace Cafebazaar
 
             yield return request.SendWebRequest();
 
-            if (request.isNetworkError)
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.DataProcessingError
+               || request.result == UnityWebRequest.Result.ProtocolError)
             {
                 Logger.LogError($"Error in sending data to the server => {request.error}");
                 onFail.Invoke();
             }
-            else
+            else if (request.result == UnityWebRequest.Result.Success)
             {
                 onSuccess.Invoke();
             }
@@ -72,7 +77,7 @@ namespace Cafebazaar
 
         private static bool IsGameDataFetched() => gameData != null && gameData.Uid != null && gameData.Slug != null;
 
-        #else
+#else
 
         public static void Initialize()
         {
