@@ -18,6 +18,10 @@ public class CameraMovement : MonoBehaviour
 
     CameraShaker cameraShaker;
 
+    public int PressCount;
+
+    public bool LockCamera;
+
     public static CameraMovement _Instance { get; private set; }
 
     private void Awake()
@@ -43,6 +47,11 @@ public class CameraMovement : MonoBehaviour
 
     private void LateUpdate()
     {
+        if(PressCount >= 3)
+        {
+            PressCount = 0;
+            ResetCameraPosition();
+        }
         float MoveX = CnInputManager.GetAxis("Horizontal");
         float MoveY = CnInputManager.GetAxis("Vertical");
 
@@ -74,13 +83,17 @@ public class CameraMovement : MonoBehaviour
 
         Vector3 Move = Vector3.zero;
 
-        if (Mathf.Abs(MoveX) > 0.7f || Mathf.Abs(MoveY) > 0.7f)
+        if ((Mathf.Abs(MoveX) > 0.5f || Mathf.Abs(MoveY) > 0.5f) && !LockCamera)
             Move = new Vector3(MoveX * Speed * Time.deltaTime, MoveY * Speed * Time.deltaTime, 0f);
         else
             Move = Vector3.zero;
 
         if (!isDragging && Move != Vector3.zero)
+        {
+            PressCount = 0;
             cam.transform.Translate(Move);
+        }
+           
 
         if (MoveX == 0 && MoveY == 0)
         {
@@ -99,6 +112,14 @@ public class CameraMovement : MonoBehaviour
     void zoom(float increment)
     {
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize + increment, zoomOutMin, zoomOutMax);
+    }
+
+    public void ResetCameraPosition()
+    {
+        PressCount = 0;
+        if (LockCamera) return;
+
+        cam.transform.position = new Vector3(0, 0, -10);
     }
 
     public void Shake(float magnitude, float roughness, float fadeInTime, float fadeOutTime)

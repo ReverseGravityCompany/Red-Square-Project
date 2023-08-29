@@ -33,12 +33,13 @@ public class BackgroundMusic : MonoBehaviour
 
     private IEnumerator NextMusic(float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
         if (Random.Range(0, 100) < 30)
-            Invoke("DetectNextMusic", Random.Range(15, 75));
+            Invoke("DetectNextMusic", Random.Range(5, 12));
         else
         {
             MusicAudioSource.Stop();
+            MusicAudioSource.time = 0;
             MusicAudioSource.Play();
             StartCoroutine(NextMusic(MusicAudioSource.clip.length));
         }
@@ -48,6 +49,7 @@ public class BackgroundMusic : MonoBehaviour
     {
         int clipIndex = Random.Range(0, BackgroundClips.Length);
         MusicAudioSource.clip = BackgroundClips[clipIndex];
+        MusicAudioSource.time = 0;
         MusicAudioSource.Play();
         StartCoroutine(NextMusic(MusicAudioSource.clip.length));
     }

@@ -219,7 +219,7 @@ public class EnemySystem : MonoBehaviour
                                         RedSquare[randomRed]
                                             .LineConnections(TypeOfAttack[i].gameObject, RedSquare[randomRed].transform.position, thePlayer.RedColor);
 
-                                        RedSquare[randomRed].ArmyBurning(TypeOfAttack[i].gameObject, thePlayer.RedColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
+                                        RedSquare[randomRed].ArmyBurning(TypeOfAttack[i].gameObject, thePlayer.RedColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue);
 
                                         isAttackDone = true;
                                         if (tempTypeOfAttackIncreaseMortal.CurrentCount <= 0)
@@ -358,7 +358,7 @@ public class EnemySystem : MonoBehaviour
                                         yellowSquare[randomsquare]
                                             .LineConnections(TypeOfAttack[i].gameObject, yellowSquare[randomsquare].transform.position, thePlayer.YellowColor);
 
-                                        yellowSquare[randomsquare].ArmyBurning(TypeOfAttack[i].gameObject, thePlayer.YellowColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
+                                        yellowSquare[randomsquare].ArmyBurning(TypeOfAttack[i].gameObject, thePlayer.YellowColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue);
 
                                         isAttackDone = true;
                                         if (tempTypeOfAttackIncreaseMortal.CurrentCount <= 0)
@@ -500,7 +500,7 @@ public class EnemySystem : MonoBehaviour
 
 
                                         pinkSquare[randomsquare].ArmyBurning(TypeOfAttack[i].gameObject,
-                                          thePlayer.PinkColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
+                                          thePlayer.PinkColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue);
 
                                         isAttackDone = true;
                                         if (tempTypeOfAttackIncreaseMortal.CurrentCount <= 0)
@@ -642,7 +642,7 @@ public class EnemySystem : MonoBehaviour
                                             .LineConnections(TypeOfAttack[i].gameObject, greenSquare[randomsquare].transform.position, thePlayer.GreenColor);
 
                                         greenSquare[randomsquare].ArmyBurning(TypeOfAttack[i].gameObject,
-                                        thePlayer.GreenColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
+                                        thePlayer.GreenColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue);
 
 
                                         isAttackDone = true;
@@ -785,7 +785,7 @@ public class EnemySystem : MonoBehaviour
                                             .LineConnections(TypeOfAttack[i].gameObject, OrangeSquare[randomsquare].transform.position, thePlayer.OrangeColor);
 
                                         OrangeSquare[randomsquare].ArmyBurning(TypeOfAttack[i].gameObject,
-                                        thePlayer.OrangeColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
+                                        thePlayer.OrangeColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue);
 
                                         isAttackDone = true;
                                         if (tempTypeOfAttackIncreaseMortal.CurrentCount <= 0)
@@ -927,7 +927,7 @@ public class EnemySystem : MonoBehaviour
 
 
                                         purpleSquare[randomsquare].ArmyBurning(TypeOfAttack[i].gameObject,
-                                        thePlayer.LastColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue / 4);
+                                        thePlayer.LastColor, TypeOfAttack[i].GetComponent<Image>().color, objBurnValue);
 
                                         if (tempTypeOfAttackIncreaseMortal.CurrentCount <= 0)
                                         {

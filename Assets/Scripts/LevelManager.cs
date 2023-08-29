@@ -5,11 +5,9 @@ using DG.Tweening;
 using UnityEngine.Audio;
 using System;
 using System.Collections.Generic;
-using Random = UnityEngine.Random;
 using TMPro;
-
-using Cafebazaar;
-using UnityEngine.Networking;
+//using Cafebazaar;
+using System.Linq;
 
 public class LevelManager : MonoBehaviour
 {
@@ -65,15 +63,14 @@ public class LevelManager : MonoBehaviour
     public MenuSetting UI_Canvas;
     private TutorialTask tutorialTask;
 
-    public Color OutlineColor;
+    //[ColorUsage(true, true)]
+    //public Color OutlineColor;
 
-    public Vector3 OutlineSize;
+    //public Vector3 OutlineSize;
 
-    private bool CanReciveGift;
     private DateTime currentTime;
     private DateTime lastTimeClicked;
 
-    public GameObject RewardExImage;
     public Image DailyRewardImage;
     public TextMeshProUGUI DailyRewardText;
     public Coroutine DailyRewardCorotiune;
@@ -92,6 +89,31 @@ public class LevelManager : MonoBehaviour
 
     public GameObject Loading_dataToServer;
     public GameObject Info_dataToServer;
+
+    private WaitForSeconds scoreDelay;
+
+    public Image WhiteScore, BlueScore, RedScore, YellowScore, PinkScore, GreenScore, OrangeScore, PurpleScore, OutlineScore;
+    private EnemySystem enemySystem;
+
+    private Dictionary<string, float> ColorsPercentage;
+    int total;
+
+
+    public Color LineEffectCMColor, LineEffectMissColor;
+
+    private LineRenderer lr;
+
+    public GameObject OutOutlinePrefab;
+    public Sprite Status_Frame_Light;
+
+    public RectTransform WinningCoin;
+
+    public GameObject ControlArea;
+
+    public HandOperation handOperaion;
+
+    public bool AllowVibration;
+
     #endregion
 
     #region Functions
@@ -151,10 +173,10 @@ public class LevelManager : MonoBehaviour
         {
             level = PlayerPrefs.GetInt("MyLevel");
 
-            GameObject obj = Instantiate(HandCraftedLevels[level - 1].gameObject, LevelsParent.transform, false);
+            Instantiate(HandCraftedLevels[level - 1].gameObject, LevelsParent.transform, false);
             CurrentLevel = level;
         }
-        else
+        else if (!PlayerPrefs.HasKey("MyLevel") && PlayerPrefs.GetInt("LearnProcess") >= 2)
         {
             PlayerPrefs.SetInt("MyLevel", level);
 
@@ -183,19 +205,42 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < StateMortalLength; i++)
         {
             AllMortalObjects.Add(FindObjectsOfType<StateMortal>()[i]);
-            AllMortalObjects[i].Out.SetActive(false);
-            AllMortalObjects[i].Out.GetComponent<SpriteRenderer>().color = OutlineColor;
-            AllMortalObjects[i].Out.GetComponent<SpriteRenderer>().sortingOrder = -50;
-            AllMortalObjects[i].Out.transform.localScale = OutlineSize;
+
+            //AllMortalObjects[i].Out.SetActive(false);
+            // AllMortalObjects[i].Out.GetComponent<SpriteRenderer>().color = OutlineColor;
+            //AllMortalObjects[i].Out.GetComponent<SpriteRenderer>().sortingOrder = -50;
+           // AllMortalObjects[i].Fx.GetComponent<Image>().color = new Color32(0, 0, 0, 200);
+            //AllMortalObjects[i].Out.transform.localScale = OutlineSize;
         }
 
         thePlayer = FindObjectOfType<Player>();
 
+        Game_AudioMixer.DOSetFloat("Lowpass_Music", 300, 0).SetEase(Ease.Linear).SetUpdate(true);
+
+        float ExtraOrthSize = 0.5f;
+
+        if (AllMortalObjects.Count < 8)
+            ExtraOrthSize = 0;
+
         if (!LearningLevels)
-            CameraMovement._Instance.cam.orthographicSize = mainMenuCameraOrthgraphicSize[CurrentLevel - 1];
+            CameraMovement._Instance.cam.orthographicSize = mainMenuCameraOrthgraphicSize[CurrentLevel - 1] + ExtraOrthSize;
+        else
+        {
+            CameraMovement._Instance.cam.orthographicSize = 4;
+        }
 
         DailyRewardCorotiune = StartCoroutine(DailyRewardStatus());
-        MiniGame.Initialize();
+        //MiniGame.Initialize();
+        enemySystem = FindObjectOfType<EnemySystem>();
+        scoreDelay = new WaitForSeconds(0.25f);
+        ColorsPercentage = new Dictionary<string, float>();
+        lr = GameObject.FindWithTag("LineRenderer").GetComponent<LineRenderer>();
+
+        handOperaion = FindObjectOfType<HandOperation>();
+        if (handOperaion != null)
+        {
+            handOperaion.gameObject.SetActive(false);
+        }
     }
 
     private void Update()
@@ -246,13 +291,11 @@ public class LevelManager : MonoBehaviour
                 }
                 if (LoseGame && !Lose.activeSelf)
                 {
-                    LoseSound.Play();
-                    Game_AudioMixer.DOSetFloat("Lowpass_Music", 650, 1.8f).SetEase(Ease.Linear).SetUpdate(true);
+                    Game_AudioMixer.DOSetFloat("Lowpass_Music", 300, 1.8f).SetEase(Ease.Linear).SetUpdate(true);
                     Time.timeScale = 0.5f;
-                    Lose.SetActive(true);
+                    StartCoroutine(OpenPanel(Lose,false));
                     SkillsState = false;
                     UpdateSkills();
-                    CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(CoinPosX, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
                 }
 
                 // IF WE WIN
@@ -268,13 +311,15 @@ public class LevelManager : MonoBehaviour
                 {
                     SendScoreDataToServer();
 
-                   // StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Level\": " + CurrentLevel + "}"));
+                    // StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Level\": " + CurrentLevel + "}"));
                     if (PlayerPrefs.HasKey("UnlockLevel"))
                     {
                         if (PlayerPrefs.GetInt("UnlockLevel") == CurrentLevel)
                         {
-                            anim.SetBool("Coin", true);
-                            CoinWinning = GoldForEachLevels[CurrentLevel - 1];
+                            //anim.SetBool("Coin", true);
+                            int b = CurrentLevel - 1;
+                            if (b <= 0) b = 0;
+                            CoinWinning = GoldForEachLevels[b];
                         }
                         else
                         {
@@ -292,12 +337,15 @@ public class LevelManager : MonoBehaviour
                                     CoinWinning = 200;
                                     break;
                             }
-                            anim.SetBool("Coin", true);
+                            //anim.SetBool("Coin", true);
                         }
                     }
                     else
                     {
-                        anim.SetBool("Coin", true);
+                        int b = CurrentLevel - 1;
+                        if (b <= 0) b = 0;
+                        CoinWinning = GoldForEachLevels[b];
+                        //anim.SetBool("Coin", true);
                     }
                     if (PlayerPrefs.HasKey("ValueOfLevels"))
                     {
@@ -318,32 +366,15 @@ public class LevelManager : MonoBehaviour
                     PlayerPrefs.SetInt("MyLevel", Unlocknextlevel);
                     PlayerPrefs.SetInt("UnlockLevel", PlayerPrefs.GetInt("ValueOfLevels"));
 
-                    Game_AudioMixer.DOSetFloat("Lowpass_Music", 650, 1.55f).SetEase(Ease.Linear).SetUpdate(true);
+                    Game_AudioMixer.DOSetFloat("Lowpass_Music", 300, 1.55f).SetEase(Ease.Linear).SetUpdate(true);
 
                     Time.timeScale = 0.5f;
-                    Win.SetActive(true);
-                    WinSound.Play();
-
-                    int b = CoinWinning < 100 ? CoinWinning + Random.Range(0, 5) : CoinWinning < 300 ?
-           CoinWinning + Random.Range(-10, 20) : CoinWinning < 1000 ? CoinWinning + Random.Range(-50, 50) : CoinWinning > 1000 ? CoinWinning + Random.Range(-100, 100) : CoinWinning;
                     
-                    if(b < 0)
-                    {
-                        b = Math.Abs(b);
-                    }
+                    StartCoroutine(OpenPanel(Win,true));
 
-                    if(b == 0)
-                    {
-                        b = 50;
-                    }
+                    
 
-                    CoinWinning = b;
-
-                    CurrentCoin += CoinWinning;
-                    UpdateCoin();
-
-                    CoinWiningText.text = CoinWinning.ToString();
-                    CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(CoinPosX, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
+                    CoinWiningText.text = "+" + CoinWinning.ToString();
                     WinningRewardTaken = true;
                 }
             }
@@ -412,17 +443,17 @@ public class LevelManager : MonoBehaviour
                         //);
                         //StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Level\": " + 1 + "}"));
                     }
-                   // else
-                   // {
-                   //     // StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Learn\": " + LearnProcess + "}"));
-                   //     StartCoroutine(
-                   //MiniGame.SendScore(
-                   //score: LearnProcess - 1,
-                   //onSuccess: OnSuccess,
-                   //onFail: OnFail
-                   //)
-                   //);
-                   // }
+                    // else
+                    // {
+                    //     // StartCoroutine(postRequest(BazzarAPIURL, "{\r\n    \"game_slug\": \"SharifGame-Block-Brawl-Fast-Reaction\",\r\n    \"uid\": \"ec96a9add993bcb8422e85dc5c2b57581a60c329\",\r\n    \"Learn\": " + LearnProcess + "}"));
+                    //     StartCoroutine(
+                    //MiniGame.SendScore(
+                    //score: LearnProcess - 1,
+                    //onSuccess: OnSuccess,
+                    //onFail: OnFail
+                    //)
+                    //);
+                    // }
                 }
                 else
                 {
@@ -442,13 +473,13 @@ public class LevelManager : MonoBehaviour
         Loading_dataToServer.SetActive(true);
         Info_dataToServer.SetActive(true);
 
-        StartCoroutine(
-                      MiniGame.SendScore(
-                      score: CurrentLevel * 10,
-                      onSuccess: OnSuccess,
-                      onFail: OnFail
-                      )
-                      );
+        //StartCoroutine(
+        //              MiniGame.SendScore(
+        //              score: CurrentLevel * 10,
+        //              onSuccess: OnSuccess,
+        //              onFail: OnFail
+        //              )
+        //              );
     }
 
     private void OnSuccess()
@@ -462,7 +493,7 @@ public class LevelManager : MonoBehaviour
 
     private void OnFail()
     {
-        MiniGame.Initialize();
+        //MiniGame.Initialize();
         Loading_dataToServer.SetActive(false);
         Info_dataToServer.SetActive(false);
         ErrorScoreSendingPanel.SetActive(true);
@@ -547,7 +578,6 @@ public class LevelManager : MonoBehaviour
     {
         DG.Tweening.DOTween.KillAll();
 
-        //PlayerPrefs.SetInt("FastRun", 1);
         PlayerPrefs.SetInt("MyLevel", CurrentLevel);
 
         ResetGameData();
@@ -578,6 +608,23 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private IEnumerator OpenPanel(GameObject obj, bool gameResult)
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
+        if (gameResult)
+        {
+            WinSound.Play();
+            CurrentCoin += CoinWinning;
+            UpdateCoin();
+        }
+        else
+        {
+            LoseSound.Play();
+        }
+        obj.SetActive(true);
+        obj.transform.GetChild(1).DOScale(1, 0.25f).SetEase(Ease.Linear);
+    }
+
     public void GiftDemo()
     {
         if (PlayerPrefs.HasKey("Last Time Clicked"))
@@ -592,9 +639,16 @@ public class LevelManager : MonoBehaviour
             {
                 PlayerPrefs.SetString("Last Time Clicked", DateTime.UtcNow.ToString());
                 CurrentCoin = PlayerPrefs.GetInt("MyCoin");
+                WinningCoin.gameObject.SetActive(true);
                 CurrentCoin += 2000;
-                RewardExImage.gameObject.SetActive(true);
                 MoneySound.Play();
+                WinningCoin.DOScale(1.2f, 1).SetEase(Ease.Linear).SetUpdate(true).SetDelay(0.75f);
+                WinningCoin.DOAnchorPosY(700f, 1).SetEase(Ease.Flash).SetUpdate(true).SetDelay(1f).OnComplete(() =>
+                {
+                    WinningCoin.gameObject.SetActive(false);
+                    WinningCoin.DOAnchorPosY(-202, 0f).SetEase(Ease.Linear).SetUpdate(true);
+                    WinningCoin.DOScale(1, 0).SetEase(Ease.Linear).SetUpdate(true);
+                });
                 PlayerPrefs.SetInt("MyCoin", CurrentCoin);
                 UpdateCoin();
             }
@@ -604,9 +658,15 @@ public class LevelManager : MonoBehaviour
             PlayerPrefs.SetString("Last Time Clicked", DateTime.UtcNow.ToString());
             CurrentCoin = PlayerPrefs.GetInt("MyCoin");
             CurrentCoin += 2000;
-            Debug.Log(CurrentCoin);
-            RewardExImage.gameObject.SetActive(true);
             MoneySound.Play();
+            WinningCoin.gameObject.SetActive(true);
+            WinningCoin.DOScale(1.2f, 1).SetEase(Ease.Linear).SetUpdate(true).SetDelay(0.75f);
+            WinningCoin.DOAnchorPosY(700f, 1).SetEase(Ease.Flash).SetUpdate(true).SetDelay(1f).OnComplete(() =>
+            {
+                WinningCoin.gameObject.SetActive(false);
+                WinningCoin.DOAnchorPosY(-202f, 0).SetEase(Ease.Linear).SetUpdate(true);
+                WinningCoin.DOScale(1, 0).SetEase(Ease.Linear).SetUpdate(true);
+            });
             PlayerPrefs.SetInt("MyCoin", CurrentCoin);
             UpdateCoin();
         }
@@ -614,7 +674,7 @@ public class LevelManager : MonoBehaviour
 
     public void UpdateCoin()
     {
-        CoinText.text = CurrentCoin.ToString();
+        CoinText.DOText(CurrentCoin.ToString(), 1f, true,ScrambleMode.Numerals).SetUpdate(true);
         PlayerPrefs.SetInt("MyCoin", CurrentCoin);
         if (PlayerPrefs.GetInt("MyCoin") >= MaxCoin)
         {
@@ -639,6 +699,14 @@ public class LevelManager : MonoBehaviour
             {
                 SkillsObject[i].SetActive(true);
             }
+        }
+    }
+
+    public void UpdateColors()
+    {
+        for(int i = 0; i < AllMortalObjects.Count; i++)
+        {
+            AllMortalObjects[i].CheckColorOrder();
         }
     }
 
@@ -681,7 +749,6 @@ public class LevelManager : MonoBehaviour
                 {
                     currentProgress = 300;
 
-                    RewardExImage.gameObject.SetActive(false);
                     DailyRewardText.text = "";
                     DailyRewardImage.fillAmount = 0;
                     continue;
@@ -701,7 +768,6 @@ public class LevelManager : MonoBehaviour
             }
             else
             {
-                RewardExImage.gameObject.SetActive(false);
                 DailyRewardImage.fillAmount = 0;
                 DailyRewardText.text = "";
             }
@@ -716,6 +782,302 @@ public class LevelManager : MonoBehaviour
         float NewValue = (((OldValue - OldMin) * NewRange) / OldRange) + NewMin;
 
         return (NewValue);
+    }
+
+    public IEnumerator MultiSliderScore()
+    {
+        float blueCount;
+        float whiteCount;
+        float redCount;
+        float yellowCount;
+        float pinkCount;
+        float greenCount;
+        float orangeCount;
+        float purpleCount;
+
+        total = AllMortalObjects.Count;
+
+        float totalPercentageFilled = 0;
+        int layerIndex = 0;
+        float Temp = 0;
+        string key = null;
+
+
+        BlueScore.gameObject.SetActive(true);
+        OutlineScore.gameObject.SetActive(true);
+
+        for (int i = 0; i < AllMortalObjects.Count; i++)
+        {
+            if (AllMortalObjects[i].GetIdentity() == StateMortal.iden.None)
+            {
+                WhiteScore.gameObject.SetActive(true);
+                break;
+            }
+        }
+
+        if (enemySystem.Red)
+        {
+            RedScore.gameObject.SetActive(true);
+        }
+        if (enemySystem.Yellow)
+        {
+            YellowScore.gameObject.SetActive(true);
+        }
+        if (enemySystem.Pink)
+        {
+            PinkScore.gameObject.SetActive(true);
+        }
+        if (enemySystem.Green)
+        {
+            GreenScore.gameObject.SetActive(true);
+        }
+        if (enemySystem.Orange)
+        {
+            OrangeScore.gameObject.SetActive(true);
+        }
+        if (enemySystem.Purple)
+        {
+            PurpleScore.gameObject.SetActive(true);
+        }
+
+        while (true)
+        {
+            yield return scoreDelay;
+
+            #region What We Have Here?
+
+            ColorsPercentage.Clear();
+            blueCount = 0;
+            whiteCount = 0;
+            redCount = 0;
+            yellowCount = 0;
+            pinkCount = 0;
+            greenCount = 0;
+            orangeCount = 0;
+            purpleCount = 0;
+
+            totalPercentageFilled = 0;
+            for (int i = 0; i < AllMortalObjects.Count; i++)
+            {
+                if (AllMortalObjects[i].GetIdentity() == StateMortal.iden.Blue)
+                {
+                    blueCount++;
+                }
+                else if (AllMortalObjects[i].GetIdentity() == StateMortal.iden.None)
+                {
+                    whiteCount++;
+                }
+                else if (AllMortalObjects[i].GetIdentity() == StateMortal.iden.Red)
+                {
+                    redCount++;
+                }
+                else if (AllMortalObjects[i].GetIdentity() == StateMortal.iden.Yellow)
+                {
+                    yellowCount++;
+                }
+                else if (AllMortalObjects[i].GetIdentity() == StateMortal.iden.Pink)
+                {
+                    pinkCount++;
+                }
+                else if (AllMortalObjects[i].GetIdentity() == StateMortal.iden.Green)
+                {
+                    greenCount++;
+                }
+                else if (AllMortalObjects[i].GetIdentity() == StateMortal.iden.Orange)
+                {
+                    orangeCount++;
+                }
+                else if (AllMortalObjects[i].GetIdentity() == StateMortal.iden.LastColor)
+                {
+                    purpleCount++;
+                }
+            }
+
+            //print("=========");
+            //print("Blue : " + blueCount);
+            //print("White : " + whiteCount);
+            //print("Yellow : " + yellowCount);
+            //print("Red : " + redCount);
+            //print("=========");
+
+            if (blueCount == 0)
+            {
+                BlueScore.gameObject.SetActive(false);
+            }
+            else
+            {
+                ColorsPercentage.Add("Blue", blueCount / total * 100); // 0% ~ 100%
+            }
+            if (whiteCount == 0)
+            {
+                WhiteScore.gameObject.SetActive(false);
+            }
+            else
+            {
+                ColorsPercentage.Add("White", whiteCount / total * 100);
+            }
+            if (redCount == 0)
+            {
+                RedScore.gameObject.SetActive(false);
+            }
+            else
+            {
+                ColorsPercentage.Add("Red", redCount / total * 100);
+            }
+            if (yellowCount == 0)
+            {
+                YellowScore.gameObject.SetActive(false);
+            }
+            else
+            {
+                ColorsPercentage.Add("Yellow", yellowCount / total * 100);
+            }
+            if (pinkCount == 0)
+            {
+                PinkScore.gameObject.SetActive(false);
+            }
+            else
+            {
+                ColorsPercentage.Add("Pink", pinkCount / total * 100);
+            }
+            if (greenCount == 0)
+            {
+                GreenScore.gameObject.SetActive(false);
+            }
+            else
+            {
+                ColorsPercentage.Add("Green", greenCount / total * 100);
+            }
+            if (orangeCount == 0)
+            {
+                OrangeScore.gameObject.SetActive(false);
+            }
+            else
+            {
+                ColorsPercentage.Add("Orange", orangeCount / total * 100);
+            }
+            if (purpleCount == 0)
+            {
+                PurpleScore.gameObject.SetActive(false);
+            }
+            else
+            {
+                ColorsPercentage.Add("Purple", purpleCount / total * 100);
+            }
+            #endregion
+
+            layerIndex = 0;
+
+            while (ColorsPercentage.Count > 0)
+            {
+                Temp = 0;
+                key = null;
+
+                Temp = Mathf.Max(ColorsPercentage.Values.ToArray());
+
+                foreach (var item in ColorsPercentage)
+                {
+                    if (item.Value == Temp)
+                    {
+                        key = item.Key;
+                    }
+                }
+
+                totalPercentageFilled += Temp / 100;
+
+                if (totalPercentageFilled >= 1)
+                {
+                    totalPercentageFilled = 1;
+                }
+
+                layerIndex++;
+
+
+                //print("--------------------");
+                //print("Key: " + key);
+                //print("temp: " + Temp);
+                //print("TotalPercentage: " + totalPercentageFilled);
+                //print("ColorsPercentage Count: " + ColorsPercentage.Count);
+                //print("Total : " + total);
+
+
+                switch (key)
+                {
+                    case "Blue":
+                        BlueScore.fillAmount = totalPercentageFilled;
+                        BlueScore.GetComponent<Canvas>().sortingOrder = (int)Temp - layerIndex;
+                        if (BlueScore.GetComponent<Canvas>().sortingOrder <= 0)
+                        {
+                            BlueScore.GetComponent<Canvas>().sortingOrder = 0;
+                        }
+                        ColorsPercentage.Remove(key);
+                        break;
+                    case "White":
+                        WhiteScore.fillAmount = totalPercentageFilled;
+                        WhiteScore.GetComponent<Canvas>().sortingOrder = (int)Temp - layerIndex;
+                        if (WhiteScore.GetComponent<Canvas>().sortingOrder < 0)
+                        {
+                            WhiteScore.GetComponent<Canvas>().sortingOrder = 0;
+                        }
+                        ColorsPercentage.Remove(key);
+                        break;
+                    case "Red":
+                        RedScore.fillAmount = totalPercentageFilled;
+                        RedScore.GetComponent<Canvas>().sortingOrder = (int)Temp - layerIndex;
+                        if (RedScore.GetComponent<Canvas>().sortingOrder < 0)
+                        {
+                            RedScore.GetComponent<Canvas>().sortingOrder = 0;
+                        }
+                        ColorsPercentage.Remove(key);
+                        break;
+                    case "Yellow":
+                        YellowScore.fillAmount = totalPercentageFilled;
+                        YellowScore.GetComponent<Canvas>().sortingOrder = (int)Temp - layerIndex;
+                        if (YellowScore.GetComponent<Canvas>().sortingOrder < 0)
+                        {
+                            YellowScore.GetComponent<Canvas>().sortingOrder = 0;
+                        }
+                        ColorsPercentage.Remove(key);
+                        break;
+                    case "Pink":
+                        PinkScore.fillAmount = totalPercentageFilled;
+                        PinkScore.GetComponent<Canvas>().sortingOrder = (int)Temp - layerIndex;
+                        if (PinkScore.GetComponent<Canvas>().sortingOrder < 0)
+                        {
+                            PinkScore.GetComponent<Canvas>().sortingOrder = 0;
+                        }
+                        ColorsPercentage.Remove(key);
+                        break;
+                    case "Green":
+                        GreenScore.fillAmount = totalPercentageFilled;
+                        GreenScore.GetComponent<Canvas>().sortingOrder = (int)Temp - layerIndex;
+                        if (GreenScore.GetComponent<Canvas>().sortingOrder < 0)
+                        {
+                            GreenScore.GetComponent<Canvas>().sortingOrder = 0;
+                        }
+                        ColorsPercentage.Remove(key);
+                        break;
+                    case "Orange":
+                        OrangeScore.fillAmount = totalPercentageFilled;
+                        OrangeScore.GetComponent<Canvas>().sortingOrder = (int)Temp - layerIndex;
+                        if (OrangeScore.GetComponent<Canvas>().sortingOrder < 0)
+                        {
+                            OrangeScore.GetComponent<Canvas>().sortingOrder = 0;
+                        }
+                        ColorsPercentage.Remove(key);
+                        break;
+                    case "Purple":
+                        PurpleScore.fillAmount = totalPercentageFilled;
+                        PurpleScore.GetComponent<Canvas>().sortingOrder = (int)Temp - layerIndex;
+                        if (PurpleScore.GetComponent<Canvas>().sortingOrder < 0)
+                        {
+                            PurpleScore.GetComponent<Canvas>().sortingOrder = 0;
+                        }
+                        ColorsPercentage.Remove(key);
+                        break;
+                }
+            }
+        }
     }
 
     public void ResetGameData()
@@ -739,32 +1101,35 @@ public class LevelManager : MonoBehaviour
         IsCoinTaken = false;
         WinningRewardTaken = false;
         DG.Tweening.DOTween.KillAll();
+        lr.positionCount = 0;
         BurnArmy.Clear();
-        CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector2(-100, CoinText.transform.parent.GetComponent<RectTransform>().anchoredPosition.y);
+
+
+        WhiteScore.gameObject.SetActive(false);
+        BlueScore.gameObject.SetActive(false);
+        RedScore.gameObject.SetActive(false);
+        YellowScore.gameObject.SetActive(false);
+        OutlineScore.gameObject.SetActive(false);
+
+
         #endregion
 
         #region Reset UI
         UI_Canvas.CoverMenu.SetActive(true);
         UI_Canvas.SoundSetting.gameObject.SetActive(true);
-        UI_Canvas.ColorPicker_UI.gameObject.SetActive(true);
         UI_Canvas.MenuPanel.SetActive(true);
         UI_Canvas.ButtonStart.SetActive(true);
-        UI_Canvas.Pause.SetActive(false);
-        UI_Canvas.RestartLevel.SetActive(false);
-        UI_Canvas.Home.SetActive(false);
-        UI_Canvas.Pause.GetComponent<Image>().sprite = UI_Canvas.PauseOff;
         UI_Canvas.TouchScreen.SetActive(false);
+        UI_Canvas.backButton.SetActive(false);
+        UI_Canvas.BackPanel.SetActive(false);
+        UI_Canvas.CameraLockImage.gameObject.SetActive(false);
         UI_Canvas.PauseStatus = false;
-        UI_Canvas.LevelShowInLevel.gameObject.SetActive(false);
+
+        UI_Canvas.ScoreCorotuine = null;
         #endregion
 
         System.GC.Collect();
         Resources.UnloadUnusedAssets();
-
-        foreach (var item in SkillsObject)
-        {
-            item.transform.GetChild(0).GetComponent<MaskAnimate>().animate();
-        }
 
         if (!PlayerPrefs.HasKey("MyLevel"))
         {
@@ -804,7 +1169,7 @@ public class LevelManager : MonoBehaviour
             GameObject obj = Instantiate(HandCraftedLevels[level - 1].gameObject, LevelsParent.transform, false);
             CurrentLevel = level;
         }
-        else
+        else if(!PlayerPrefs.HasKey("MyLevel") && PlayerPrefs.GetInt("LearnProcess") >= 2)
         {
             PlayerPrefs.SetInt("MyLevel", level);
 
@@ -817,22 +1182,38 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < StateMortalLength; i++)
         {
             AllMortalObjects.Add(FindObjectsOfType<StateMortal>()[i]);
-            AllMortalObjects[i].Out.SetActive(false);
-            AllMortalObjects[i].Out.GetComponent<SpriteRenderer>().color = OutlineColor;
-            AllMortalObjects[i].Out.GetComponent<SpriteRenderer>().sortingOrder = -50;
-            AllMortalObjects[i].Out.transform.localScale = OutlineSize;
+
+           // Image outline = Instantiate(OutOutlinePrefab, AllMortalObjects[i].transform).GetComponent<Image>();
+           // outline.pixelsPerUnitMultiplier = AllMortalObjects[i].GetComponent<Image>().pixelsPerUnitMultiplier;
+
+            //AllMortalObjects[i].Out.SetActive(false);
+            // AllMortalObjects[i].Out.GetComponent<SpriteRenderer>().color = OutlineColor;
+            // AllMortalObjects[i].Out.GetComponent<SpriteRenderer>().sortingOrder = -50;
+           // AllMortalObjects[i].Fx.GetComponent<Image>().color = new Color32(0, 0, 0, 200);
+            //AllMortalObjects[i].Out.transform.localScale = OutlineSize;
         }
 
-        thePlayer = FindObjectOfType<Player>();
+        thePlayer = FindObjectOfType<Player>();   
 
         CameraMovement._Instance.cam.transform.position = new Vector3(0, 0, -10);
 
         if (!LearningLevels)
             CameraMovement._Instance.cam.orthographicSize = mainMenuCameraOrthgraphicSize[CurrentLevel - 1];
 
-        DailyRewardCorotiune = StartCoroutine(DailyRewardStatus());
+        Game_AudioMixer.DOSetFloat("Lowpass_Music", 300, 0).SetEase(Ease.Linear).SetUpdate(true);
 
+        DailyRewardCorotiune = StartCoroutine(DailyRewardStatus());
+        enemySystem = FindObjectOfType<EnemySystem>();
         UI_Canvas.ResetSpecialData();
+
+        int currentColor = PlayerPrefs.GetInt("Color_Pick");
+        ColorPicker._Instance.SetColor(currentColor);
+
+        handOperaion = FindObjectOfType<HandOperation>();
+        if (handOperaion != null)
+        {
+            handOperaion.gameObject.SetActive(false);
+        }
     }
 
     #endregion

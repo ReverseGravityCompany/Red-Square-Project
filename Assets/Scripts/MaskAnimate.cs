@@ -12,7 +12,7 @@ public class MaskAnimate : MonoBehaviour
     public float MinDelay, MaxDelay;
     public Color invisible;
 
-    void Start()
+    void OnEnable()
     {
         mask.DOAnchorPos(truePlace, 0);
         animate();
@@ -20,9 +20,10 @@ public class MaskAnimate : MonoBehaviour
 
     public void animate()
     {
-        mask.DOAnchorPos(Offset, Speed).SetDelay(Random.Range(MinDelay, MaxDelay)).OnComplete(() =>
+        mask.DOAnchorPos(Offset, Speed).SetDelay(Random.Range(MinDelay, MaxDelay), true).SetUpdate(true).OnComplete(() =>
         {
             mask.DOAnchorPos(truePlace, 0);
+            animate();
         });
     }
 

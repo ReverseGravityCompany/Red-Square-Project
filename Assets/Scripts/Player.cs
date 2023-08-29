@@ -43,6 +43,21 @@ public class Player : MonoBehaviour
 
     private Camera camera;
 
+    private LineRenderer lineRenderer;
+    private bool LineEffectVisibiltiy;
+
+    private StateMortal temporaryObject;
+    private bool temprorayBool;
+
+    private Tween blueTween;
+    private Tween objectTween;
+
+    private Tween L2T;
+
+    ColorPicker ColorPicker;
+
+    public bool LockCamera = true;
+
     #endregion
 
     private void Start()
@@ -52,28 +67,84 @@ public class Player : MonoBehaviour
         theLevelManager = FindObjectOfType<LevelManager>();
         skills = FindObjectOfType<Skills>();
         enemySystem = FindObjectOfType<EnemySystem>();
+        lineRenderer = GameObject.FindWithTag("LineRenderer").GetComponent<LineRenderer>();
+        ColorPicker = ColorPicker._Instance;
         PickUp = true;
 
+        CamMove.LockCamera = LockCamera;
+        if (menuSetting != null)
+            menuSetting.CheckCameraState();
+
         camera = Camera.main;
+
+        if (!PlayerPrefs.HasKey("Level14_CamerTut") && theLevelManager.CurrentLevel == 14)
+        {
+            StartCoroutine(CameraTutCoroutine());
+            PlayerPrefs.SetInt("Level14_CamerTut", 1);
+        }
+
+        if (theLevelManager.LearningLevels)
+        {
+            int learnProcess = PlayerPrefs.GetInt("LearnProcess");
+
+            if (learnProcess == 1)
+            {
+                gameObject.transform.Find("Mortal(BE)").Find("Hand").DOScale(1.2f, 1f).SetEase(Ease.Flash).SetLoops(-1, LoopType.Yoyo);
+            }
+            if (learnProcess == 2)
+            {
+                L2T = gameObject.transform.Find("Mortal(BE) (1)").Find("Hand").gameObject.GetComponent<RectTransform>().DOAnchorPosY(100, 1f).SetEase(Ease.Flash).SetLoops(-1, LoopType.Restart);
+            }
+        }
+        else
+        {
+            if (theLevelManager.CurrentLevel == 1)
+            {
+                gameObject.transform.Find("Mortal(DE)").Find("Hand").gameObject.GetComponent<RectTransform>().DOAnchorPosY(-207, 1f).SetEase(Ease.Flash).SetLoops(-1, LoopType.Restart);
+            }
+            else if (theLevelManager.CurrentLevel == 2)
+            {
+                gameObject.transform.Find("Mortal(RE)").Find("Hand").gameObject.GetComponent<RectTransform>().DOAnchorPosY(162, 1f).SetEase(Ease.Flash).SetLoops(-1, LoopType.Restart);
+            }
+            else if (theLevelManager.CurrentLevel == 3)
+            {
+                gameObject.transform.Find("Mortal(GE)").Find("Hand").gameObject.GetComponent<RectTransform>().DOAnchorPosY(144, 1f).SetEase(Ease.Flash).SetLoops(-1, LoopType.Restart);
+            }
+        }
     }
 
     private void Update()
     {
+        if (ColorPicker.StopGame) return;
+
         hit = Physics2D.Raycast(camera.ScreenToWorldPoint(Input.mousePosition), Vector3.zero);
         hit2 = Physics2D.Raycast(Input.mousePosition, Vector3.zero);
 
         if (Input.GetMouseButtonDown(0))
         {
             CamMove.isCameraMoveingWaitToClickOver = false;
-
+            theLevelManager.ControlArea.SetActive(false);
             if (hit.collider != null)
             {
-                GameObject draggingObj = hit.collider.gameObject;
-                if (draggingObj.GetComponent<StateMortal>().GetIdentity() == StateMortal.iden.Blue)
+                if (theLevelManager.LearningLevels || menuSetting.GameStarted)
                 {
-                    SelectedObject = draggingObj.GetComponent<StateMortal>();
-                    CanUseDrag = true;
-                    CamMove.isDragging = true;
+                    GameObject draggingObj = hit.collider.gameObject;
+                    if (draggingObj.GetComponent<StateMortal>().GetIdentity() == StateMortal.iden.Blue)
+                    {
+                        SelectedObject = draggingObj.GetComponent<StateMortal>();
+                        CanUseDrag = true;
+                        CamMove.isDragging = true;
+
+                        lineRenderer.positionCount = 2;
+                        LineEffectVisibiltiy = true;
+                        lineRenderer.SetPosition(0, SelectedObject.transform.position);
+                    }
+                    else
+                    {
+                        SelectedObject = null;
+                        CanUseDrag = false;
+                        CamMove.isDragging = false;
+                    }
                 }
                 else
                 {
@@ -82,15 +153,66 @@ public class Player : MonoBehaviour
                     CamMove.isDragging = false;
                 }
             }
-            else
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            if (LineEffectVisibiltiy)
             {
-                SelectedObject = null;
-                CanUseDrag = false;
-                CamMove.isDragging = false;
+                if (theLevelManager.LearningLevels || menuSetting.GameStarted)
+                {
+                    if (hit.collider != null && SelectedObject != null)
+                    {
+                        if (hit.collider != SelectedObject)
+                        {
+                            if(temporaryObject != null)
+                            {
+                                temporaryObject.Out.GetComponent<Image>().color = Color.white;
+                                temporaryObject.Out.SetActive(false);
+                            }
+
+                            temporaryObject = hit.collider.GetComponent<StateMortal>();
+                            if (temporaryObject == null) return;
+                            lineRenderer.SetPosition(1, temporaryObject.transform.position);
+
+                            bool temprorayBool = SelectedObject.MyTypeOfAttack.Contains(temporaryObject);
+
+                            if (temprorayBool)
+                            {
+                                lineRenderer.startColor = theLevelManager.LineEffectCMColor;
+                                lineRenderer.endColor = theLevelManager.LineEffectCMColor;
+                                temporaryObject.Out.GetComponent<Image>().color = theLevelManager.LineEffectCMColor;
+                                temporaryObject.Out.SetActive(true);
+                            }
+                            else
+                            {
+                                lineRenderer.startColor = theLevelManager.LineEffectMissColor;
+                                lineRenderer.endColor = theLevelManager.LineEffectMissColor;
+                                if (temporaryObject != SelectedObject)
+                                {
+                                    temporaryObject.Out.GetComponent<Image>().color = theLevelManager.LineEffectMissColor;
+                                    temporaryObject.Out.SetActive(true);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
+
         if ((Input.GetMouseButtonUp(0) && theLevelManager.LearningLevels) || Input.GetMouseButtonUp(0) && menuSetting.GameStarted && Time.timeScale > 0)
         {
+            if (LineEffectVisibiltiy)
+            {
+                LineEffectVisibiltiy = false;
+                lineRenderer.positionCount = 0;
+                if (temporaryObject != null)
+                {
+                    temporaryObject.Out.GetComponent<Image>().color = Color.white;
+                    temporaryObject.Out.SetActive(false);
+                }
+            }
+
             if (hit.collider != null && !BlueStop && hit2.collider == null && !CamMove.isCameraMoving && !CamMove.isCameraMoveingWaitToClickOver)
             {
                 hitObjectStats = hit.collider.gameObject.GetComponent<StateMortal>();
@@ -108,11 +230,47 @@ public class Player : MonoBehaviour
 
                         MyBlue.CanPush = true;
                         MyBlue.CanAttack = true;
-                        MyBlue.SetMortalColors(BlueColorPick, BlueColorPickText);
 
-                        MyBlue.transform.DOScale(0.85f, 0.3f).SetEase(Ease.Linear).From();
+                        //MyBlue.transform.DOScale(0.85f, 0.3f).SetEase(Ease.Linear).From().SetUpdate(true);
+
+                        MyBlue.DoScaleMortal();
 
                         theLevelManager.InitializeAttack(MyBlue);
+
+
+                        if (theLevelManager.LearningLevels)
+                        {
+                            int learnProcess = PlayerPrefs.GetInt("LearnProcess");
+
+                            if (learnProcess == 1)
+                            {
+                                gameObject.transform.Find("Mortal(BE)").Find("Hand").gameObject.SetActive(false);
+
+                                gameObject.transform.Find("Mortal(DE)").Find("Hand").DOScale(1.2f, 1).SetEase(Ease.Flash).SetLoops(-1, LoopType.Yoyo);
+                            }
+                        }
+                        else
+                        {
+                            if (theLevelManager.CurrentLevel == 1)
+                            {
+                                gameObject.transform.Find("Mortal(DE)").Find("Hand").gameObject.SetActive(false);
+                            }
+                            else if (theLevelManager.CurrentLevel == 2)
+                            {
+                                gameObject.transform.Find("Mortal(RE)").Find("Hand").gameObject.SetActive(false);
+                            }
+                            else if (theLevelManager.CurrentLevel == 3)
+                            {
+                                gameObject.transform.Find("Mortal(GE)").Find("Hand").gameObject.SetActive(false);
+                            }
+                        }
+
+                        if (theLevelManager.handOperaion != null && theLevelManager.handOperaion.gameObject.activeSelf)
+                        {
+                            theLevelManager.handOperaion.gameObject.SetActive(false);
+                        }
+                        CamMove.isDragging = false;
+
                     }
                     else
                     {
@@ -121,6 +279,10 @@ public class Player : MonoBehaviour
                         CamMove.isDragging = false;
                     }
                 }
+
+                SelectedObject = null;
+                CanUseDrag = false;
+                CamMove.isDragging = false;
 
                 // IF YOU HIT THE SQUARE THAT YOU HAVE NOT ALLOWED TO ATTACK
                 if (MyBlue != null)
@@ -199,6 +361,7 @@ public class Player : MonoBehaviour
             }
             else if (hit.collider == null && hit2.collider == null && !CamMove.isCameraMoving && !CamMove.isCameraMoveingWaitToClickOver)
             {
+                CamMove.PressCount++;
                 if (MyBlue != null)
                 {
                     MyBlue.SetMortalColors(BlueColor, BlueColorText);
@@ -243,6 +406,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    public IEnumerator CameraTutCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        menuSetting.ShowCameraTut();
+    }
+
     #region Blue
     private void BlueCheck(StateMortal obj)
     {
@@ -268,7 +437,49 @@ public class Player : MonoBehaviour
 
                 skills.SelectedMortal = MyBlue;
 
-                MyBlue.transform.DOScale(0.85f, 0.3f).SetEase(Ease.Linear).From();
+                MyBlue.Out.SetActive(true);
+                MyBlue.Out.GetComponent<Image>().color = Color.white;
+
+                if (theLevelManager.handOperaion != null && theLevelManager.handOperaion.gameObject.activeSelf)
+                {
+                    theLevelManager.handOperaion.gameObject.SetActive(false);
+                }
+
+                if (theLevelManager.LearningLevels)
+                {
+                    int learnProcess = PlayerPrefs.GetInt("LearnProcess");
+
+                    if (learnProcess == 1)
+                    {
+                        gameObject.transform.Find("Mortal(BE)").Find("Hand").gameObject.SetActive(false);
+                        gameObject.transform.Find("Mortal(DE)").Find("Hand").gameObject.SetActive(true);
+
+                        gameObject.transform.Find("Mortal(DE)").Find("Hand").DOScale(1.2f, 1f).SetEase(Ease.Flash).SetLoops(-1, LoopType.Yoyo);
+                    }
+                }
+                else
+                {
+                    if (theLevelManager.CurrentLevel == 1)
+                    {
+                        gameObject.transform.Find("Mortal(DE)").Find("Hand").gameObject.SetActive(false);
+                    }
+                    else if (theLevelManager.CurrentLevel == 2)
+                    {
+                        gameObject.transform.Find("Mortal(RE)").Find("Hand").gameObject.SetActive(false);
+                    }
+                    else if (theLevelManager.CurrentLevel == 3)
+                    {
+                        gameObject.transform.Find("Mortal(GE)").Find("Hand").gameObject.SetActive(false);
+                    }
+                }
+
+                //if (theLevelManager.AllowVibration)
+                //    Vibration.Vibrate(45, 4, true);
+
+                theLevelManager.ControlArea.SetActive(true);
+
+
+                MyBlue.DoScaleMortal();
 
                 theLevelManager.InitializeAttack(MyBlue);
 
@@ -318,6 +529,29 @@ public class Player : MonoBehaviour
 
             MyBlue.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
+            //if (theLevelManager.AllowVibration)
+            //    Vibration.Vibrate(40, 5, true);
+
+            MyBlue.Out.SetActive(false);
+
+            obj.DoShakeMortal();
+
+            if (theLevelManager.LearningLevels)
+            {
+                int learnProcess = PlayerPrefs.GetInt("LearnProcess");
+
+                if (learnProcess == 2)
+                {
+                    if (L2T != null)
+                    {
+                        L2T.Kill(true);
+
+                        gameObject.transform.Find("Mortal(BE) (1)").Find("Hand").gameObject.GetComponent<RectTransform>().DOAnchorPosY(100, 0);
+                        gameObject.transform.Find("Mortal(BE) (1)").Find("Hand").gameObject.GetComponent<RectTransform>().DOAnchorPosX(190, 1f).SetEase(Ease.Flash).SetLoops(-1, LoopType.Restart);
+                    }
+                }
+            }
+
             MyBlue = null;
 
             theLevelManager.DeserilaizeAttack();
@@ -334,6 +568,7 @@ public class Player : MonoBehaviour
             {
                 MyBlue.CanPush = false;
                 MyBlue.CanAttack = false;
+                MyBlue.SetMortalColors(BlueColor, BlueColorText);
             }
             theLevelManager.SkillsState = false;
             theLevelManager.UpdateSkills();
@@ -388,10 +623,19 @@ public class Player : MonoBehaviour
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
 
-                theLevelManager.AttackNoneColorSound.Play();
-                CamMove.Shake(0.07f, 0.13f, 0.03f, 0.2f);
+                MyBlue.Out.SetActive(false);
 
-                MyBlue.ArmyBurning(obj.gameObject, BlueColor, NoneColor, objBurnValue / 2);
+                //if (theLevelManager.AllowVibration)
+                //    Vibration.Vibrate(45, 5, true);
+
+                obj.DoShakeMortal();
+
+                theLevelManager.AttackNoneColorSound.Play();
+
+
+                CamMove.Shake(0.11f, 0.15f, 0.05f, 0.25f);
+
+                MyBlue.ArmyBurning(obj.gameObject, BlueColor, NoneColor, objBurnValue);
 
                 MyBlue.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
@@ -411,6 +655,7 @@ public class Player : MonoBehaviour
                 {
                     MyBlue.CanPush = false;
                     MyBlue.CanAttack = false;
+                    MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 }
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
@@ -467,10 +712,36 @@ public class Player : MonoBehaviour
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
 
-                theLevelManager.AttackRedColorSound.Play();
-                CamMove.Shake(0.086f, 0.15f, 0.05f, 0.1f);
+                MyBlue.Out.SetActive(false);
 
-                MyBlue.ArmyBurning(obj.gameObject, BlueColor, RedColor, objBurnValue / 2);
+                //if (theLevelManager.AllowVibration)
+                //    Vibration.Vibrate(45, 5, true);
+
+                obj.DoShakeMortal();
+
+                if (theLevelManager.LearningLevels)
+                {
+                    int learnProcess = PlayerPrefs.GetInt("LearnProcess");
+
+                    if (learnProcess == 1)
+                    {
+                        if (gameObject.transform.Find("Mortal(DE)").Find("Hand").gameObject.activeSelf == true)
+                        {
+                            gameObject.transform.Find("Mortal(DE)").Find("Hand").gameObject.SetActive(false);
+                        }
+                    }
+
+                    if (learnProcess == 2)
+                    {
+                        gameObject.transform.Find("Mortal(BE) (1)").Find("Hand").gameObject.SetActive(false);
+                    }
+                }
+
+
+                theLevelManager.AttackRedColorSound.Play();
+                CamMove.Shake(0.11f, 0.15f, 0.05f, 0.25f);
+
+                MyBlue.ArmyBurning(obj.gameObject, BlueColor, RedColor, objBurnValue);
 
                 MyBlue.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
@@ -489,6 +760,7 @@ public class Player : MonoBehaviour
                 {
                     MyBlue.CanPush = false;
                     MyBlue.CanAttack = false;
+                    MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 }
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
@@ -546,9 +818,16 @@ public class Player : MonoBehaviour
                 theLevelManager.UpdateSkills();
 
                 theLevelManager.AttackYellowColorSound.Play();
-                CamMove.Shake(0.09f, 0.14f, 0.03f, 0.25f);
+                CamMove.Shake(0.11f, 0.15f, 0.05f, 0.25f);
 
-                MyBlue.ArmyBurning(obj.gameObject, BlueColor, YellowColor, objBurnValue / 2);
+                //if (theLevelManager.AllowVibration)
+                //    Vibration.Vibrate(45, 5, true);
+
+                MyBlue.Out.SetActive(false);
+
+                obj.DoShakeMortal();
+
+                MyBlue.ArmyBurning(obj.gameObject, BlueColor, YellowColor, objBurnValue);
 
                 MyBlue.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
@@ -566,6 +845,7 @@ public class Player : MonoBehaviour
                 {
                     MyBlue.CanPush = false;
                     MyBlue.CanAttack = false;
+                    MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 }
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
@@ -619,11 +899,17 @@ public class Player : MonoBehaviour
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
 
+                MyBlue.Out.SetActive(false);
+
+                //if (theLevelManager.AllowVibration)
+                //    Vibration.Vibrate(45, 5, true);
+
+                obj.DoShakeMortal();
 
                 theLevelManager.AttackSound.Play();
-                CamMove.Shake(0.08f, 0.13f, 0.03f, 0.2f);
+                CamMove.Shake(0.11f, 0.15f, 0.05f, 0.25f);
 
-                MyBlue.ArmyBurning(obj.gameObject, BlueColor, PinkColor, objBurnValue / 2);
+                MyBlue.ArmyBurning(obj.gameObject, BlueColor, PinkColor, objBurnValue);
 
                 MyBlue.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
@@ -642,6 +928,7 @@ public class Player : MonoBehaviour
                 {
                     MyBlue.CanPush = false;
                     MyBlue.CanAttack = false;
+                    MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 }
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
@@ -696,10 +983,18 @@ public class Player : MonoBehaviour
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
 
-                theLevelManager.AttackSound.Play();
-                CamMove.Shake(0.085f, 0.125f, 0.03f, 0.2f);
+                MyBlue.Out.SetActive(false);
 
-                MyBlue.ArmyBurning(obj.gameObject, BlueColor, GreenColor, objBurnValue / 2);
+                //if (theLevelManager.AllowVibration)
+                //    Vibration.Vibrate(45, 5, true);
+
+                obj.DoShakeMortal();
+
+
+                theLevelManager.AttackSound.Play();
+                CamMove.Shake(0.11f, 0.15f, 0.05f, 0.25f);
+
+                MyBlue.ArmyBurning(obj.gameObject, BlueColor, GreenColor, objBurnValue);
 
                 MyBlue.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
@@ -716,6 +1011,7 @@ public class Player : MonoBehaviour
                 {
                     MyBlue.CanPush = false;
                     MyBlue.CanAttack = false;
+                    MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 }
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
@@ -769,10 +1065,18 @@ public class Player : MonoBehaviour
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
 
-                theLevelManager.AttackYellowColorSound.Play();
-                CamMove.Shake(0.09f, 0.15f, 0.03f, 0.2f);
+                //if (theLevelManager.AllowVibration)
+                //    Vibration.Vibrate(45, 5, true);
 
-                MyBlue.ArmyBurning(obj.gameObject, BlueColor, OrangeColor, objBurnValue / 2);
+                MyBlue.Out.SetActive(false);
+
+                obj.DoShakeMortal();
+
+
+                theLevelManager.AttackYellowColorSound.Play();
+                CamMove.Shake(0.11f, 0.15f, 0.05f, 0.25f);
+
+                MyBlue.ArmyBurning(obj.gameObject, BlueColor, OrangeColor, objBurnValue);
 
                 MyBlue.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
@@ -789,6 +1093,7 @@ public class Player : MonoBehaviour
                 {
                     MyBlue.CanPush = false;
                     MyBlue.CanAttack = false;
+                    MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 }
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
@@ -844,10 +1149,17 @@ public class Player : MonoBehaviour
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();
 
-                theLevelManager.AttackYellowColorSound.Play();
-                CamMove.Shake(0.1f, 0.12f, 0.03f, 0.25f);
+                MyBlue.Out.SetActive(false);
 
-                MyBlue.ArmyBurning(obj.gameObject, BlueColor, LastColor, objBurnValue / 2);
+                //if (theLevelManager.AllowVibration)
+                //    Vibration.Vibrate(45, 5, true);
+
+                obj.DoShakeMortal();
+
+                theLevelManager.AttackYellowColorSound.Play();
+                CamMove.Shake(0.11f, 0.15f, 0.05f, 0.25f);
+
+                MyBlue.ArmyBurning(obj.gameObject, BlueColor, LastColor, objBurnValue);
 
                 MyBlue.LineConnections(obj.gameObject, MyBlue.transform.position, BlueColor);
 
@@ -863,6 +1175,7 @@ public class Player : MonoBehaviour
                 {
                     MyBlue.CanPush = false;
                     MyBlue.CanAttack = false;
+                    MyBlue.SetMortalColors(BlueColor, BlueColorText);
                 }
                 theLevelManager.SkillsState = false;
                 theLevelManager.UpdateSkills();

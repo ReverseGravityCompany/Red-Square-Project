@@ -9,10 +9,9 @@ public class Skills : MonoBehaviour
     public AudioSource AbilityPicked;
     public AudioSource Error_Sound;
 
-    private TextHelperNote Note;
     private LevelManager theLevelmanager;
 
-    public static Skills _Instance { get;private set; }
+    public static Skills _Instance { get; private set; }
 
     private void Awake()
     {
@@ -31,20 +30,19 @@ public class Skills : MonoBehaviour
     private void Start()
     {
         theLevelmanager = LevelManager._Instance;
-        Note = FindObjectOfType<TextHelperNote>();
     }
 
     #region Abilities Functions
     public void Turbo()
     {
-        if(Time.timeScale == 0)
+        if (Time.timeScale == 0)
         {
             return;
         }
 
-        if(SelectedMortal != null && SelectedMortal.TurboMortal == false)
+        if (SelectedMortal != null && SelectedMortal.TurboMortal == false)
         {
-            if(PlayerPrefs.GetInt("MyCoin") >= 100)
+            if (PlayerPrefs.GetInt("MyCoin") >= 100)
             {
                 AbilityPicked.Play();
                 theLevelmanager.CurrentCoin -= 100;
@@ -55,21 +53,13 @@ public class Skills : MonoBehaviour
                 SelectedMortal.star1.gameObject.SetActive(true);
                 SelectedMortal.AmountIncrease = 2;
                 SelectedMortal.UpdateSkills();
-                Note.GreenMark();
                 TurboObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
             }
             else
             {
                 Error_Sound.Play();
-                Note.RedMark();
             }
         }
-        else if (SelectedMortal.TurboMortal)
-        {
-            Note.RedMark();
-        }
-        
-
     }
     public void Copacity()
     {
@@ -90,21 +80,14 @@ public class Skills : MonoBehaviour
                 SelectedMortal.star2.gameObject.SetActive(true);
                 SelectedMortal.MaxSpace = 200;
                 SelectedMortal.UpdateSkills();
-                Note.GreenMark();
                 CopacityObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
             }
             else
             {
                 Error_Sound.Play();
-                Note.RedMark();
             }
         }
-        else if (SelectedMortal.CopacityMortal)
-        {
-            Note.RedMark();
-        }
-
     }
     public void RandomChange()
     {
@@ -120,7 +103,7 @@ public class Skills : MonoBehaviour
                 theLevelmanager.CurrentCoin -= 30;
                 theLevelmanager.UpdateCoin();
                 PlayerPrefs.SetInt("MyCoin", theLevelmanager.CurrentCoin);
-             //   randomChange = true;
+                //   randomChange = true;
                 SelectedMortal.RandomChangeMortal = true;
                 RandomChangeObj.color = SelectedMortal.WhiteLow;
 
@@ -130,19 +113,13 @@ public class Skills : MonoBehaviour
                     SelectedMortal.CurrentCount = 0;
                 }
                 SelectedMortal.UpdateSkills();
-                Note.GreenMark();
                 RandomChangeObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
             }
             else
             {
                 Error_Sound.Play();
-                Note.RedMark();
             }
-        }
-        else if (SelectedMortal.RandomChangeMortal)
-        {
-            Note.RedMark();
         }
     }
     public void AllAttack()
@@ -168,21 +145,14 @@ public class Skills : MonoBehaviour
                 //
                 SelectedMortal.ResetInitializeAttack(SelectedMortal);
                 SelectedMortal.UpdateSkills();
-                Note.GreenMark(); 
                 AllAttackObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
             }
             else
             {
                 Error_Sound.Play();
-                Note.RedMark();
             }
         }
-        else if (SelectedMortal.AllAttackMortal)
-        {
-            Note.RedMark();
-        }
-
     }
     public void x2()
     {
@@ -202,19 +172,13 @@ public class Skills : MonoBehaviour
                 X2Obj.color = SelectedMortal.WhiteLow;
                 SelectedMortal.CurrentCount *= 2;
                 SelectedMortal.UpdateSkills();
-                Note.GreenMark();
                 X2Obj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
             }
             else
             {
                 Error_Sound.Play();
-                Note.RedMark();
             }
-        }
-        else if (SelectedMortal.X2Mortal)
-        {
-            Note.RedMark();
         }
     }
     public void Maxspace()
@@ -237,18 +201,12 @@ public class Skills : MonoBehaviour
                     SelectedMortal.CurrentCount = SelectedMortal.MaxSpace;
 
                 SelectedMortal.UpdateSkills();
-                Note.GreenMark();
                 MaxSpaceObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
             }
             else
             {
                 Error_Sound.Play();
-                Note.RedMark();
             }
-        }
-        else if (SelectedMortal.MaxSpaceMortal)
-        {
-            Note.RedMark();
         }
     }
 

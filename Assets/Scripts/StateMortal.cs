@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class StateMortal : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class StateMortal : MonoBehaviour
     ParticleSystem.MinMaxGradient MinMaxGradient;
     ParticleSystem.EmissionModule ArmyEmmision;
     ParticleSystem.Burst burst;
+    //Material DefaultParticleMaterial;
 
     [HideInInspector] public GameObject Out; // transform.Find("Out").gameObject
     [HideInInspector] public GameObject Fx; // transform.Find("Fx").gameObject
@@ -53,6 +55,8 @@ public class StateMortal : MonoBehaviour
     private int targetFrame;
     private int frameCount;
 
+    private Tween MortalTween;
+
     #endregion
 
     #region Propreties IncreaseMortal
@@ -76,8 +80,6 @@ public class StateMortal : MonoBehaviour
 
     private void Awake()
     {
-        Out = transform.Find("Out").gameObject;
-        Fx = transform.Find("Fx").gameObject;
         StateMortalImage = GetComponent<Image>();
         StateMortalText = transform.Find("CountMortal").GetComponent<Text>();
     }
@@ -86,7 +88,18 @@ public class StateMortal : MonoBehaviour
     {
         theLevelManager = LevelManager._Instance;
         objectPooler = ObjectPooler._Instance;
+        thePlayer = FindObjectOfType<Player>();
 
+        StateMortalImage.sprite = theLevelManager.Status_Frame_Light;
+        StateMortalImage.type = Image.Type.Sliced;
+        if (Random.Range(0, 100) < 50)
+        {
+            StateMortalImage.pixelsPerUnitMultiplier = 0.01f;
+        }
+        else
+        {
+            StateMortalImage.pixelsPerUnitMultiplier = 0.6f;
+        }
 
         #region Raycast To Detect Attack Directions
         boxCollider2d = GetComponent<BoxCollider2D>();
@@ -124,9 +137,10 @@ public class StateMortal : MonoBehaviour
         ArmyMain = ArmyParticle.main;
         MinMaxGradient = new MinMaxGradient(Color.white, Color.blue);
         ArmyEmmision = ArmyParticle.emission;
+        //ParticleSystemRenderer psr = ArmyParticle.gameObject.GetComponent<ParticleSystemRenderer>();
+        //DefaultParticleMaterial = psr.material;
 
         // SQUARE CLASS
-        thePlayer = FindObjectOfType<Player>();
         skills = Skills._Instance;
 
         star1 = transform.Find("Star1").GetComponent<Image>();
@@ -151,10 +165,21 @@ public class StateMortal : MonoBehaviour
             AmountIncrease = 0;
         }
 
-        targetFrame = Random.Range(10, 30);
+        targetFrame = Random.Range(15, 45);
+
+        Out = Instantiate(theLevelManager.OutOutlinePrefab.gameObject, transform).gameObject;
+        Out.GetComponent<Image>().pixelsPerUnitMultiplier = StateMortalImage.pixelsPerUnitMultiplier;
+
+        Fx = transform.Find("Fx").gameObject;
+        Fx.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+        Fx.GetComponent<Image>().sprite = theLevelManager.Status_Frame_Light;
+        Fx.GetComponent<Image>().color = new Color32(0, 0, 0, 215);
+        Fx.GetComponent<Image>().type = Image.Type.Sliced;
+        Fx.GetComponent<Image>().pixelsPerUnitMultiplier = StateMortalImage.pixelsPerUnitMultiplier;
+
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         ShowMortal.text = CurrentCount.ToString();
 
@@ -169,58 +194,57 @@ public class StateMortal : MonoBehaviour
             if (StateMortalText.fontSize != 70)
                 StateMortalText.fontSize = 70;
         }
-    }
 
-    private void LateUpdate()
-    {
         frameCount++;
-        if (frameCount % targetFrame == 0)
+        if (frameCount % targetFrame <= 0)
         {
-            if (StateMortalImage.color == thePlayer.BlueColor)
+            if (GetIdentity() == iden.Blue)
             {
-                if(GetIdentity() != iden.Blue)
+                if (StateMortalImage.color == thePlayer.BlueColorPick) return;
+
+                if (StateMortalImage.color != thePlayer.BlueColor)
                 {
                     SetMortalColors(thePlayer.BlueColor, thePlayer.BlueColorText);
                 }
             }
-            else if(StateMortalImage.color == thePlayer.RedColor)
+            else if (GetIdentity() == iden.Red)
             {
-                if (GetIdentity() != iden.Red)
+                if (StateMortalImage.color != thePlayer.RedColor)
                 {
                     SetMortalColors(thePlayer.RedColor, thePlayer.RedColorText);
                 }
             }
-            else if (StateMortalImage.color == thePlayer.YellowColor)
+            else if (GetIdentity() == iden.Yellow)
             {
-                if (GetIdentity() != iden.Yellow)
+                if (StateMortalImage.color != thePlayer.YellowColor)
                 {
                     SetMortalColors(thePlayer.YellowColor, thePlayer.YellowColorText);
                 }
             }
-            else if (StateMortalImage.color == thePlayer.PinkColor)
+            else if (GetIdentity() == iden.Pink)
             {
-                if (GetIdentity() != iden.Pink)
+                if (StateMortalImage.color != thePlayer.PinkColor)
                 {
                     SetMortalColors(thePlayer.PinkColor, thePlayer.PinkColorText);
                 }
             }
-            else if (StateMortalImage.color == thePlayer.GreenColor)
+            else if (GetIdentity() == iden.Green)
             {
-                if (GetIdentity() != iden.Green)
+                if (StateMortalImage.color != thePlayer.GreenColor)
                 {
                     SetMortalColors(thePlayer.GreenColor, thePlayer.GreenColorText);
                 }
             }
-            else if (StateMortalImage.color == thePlayer.OrangeColor)
+            else if (GetIdentity() == iden.Orange)
             {
-                if (GetIdentity() != iden.Orange)
+                if (StateMortalImage.color != thePlayer.OrangeColor)
                 {
                     SetMortalColors(thePlayer.OrangeColor, thePlayer.OrangeColorText);
                 }
             }
-            else if (StateMortalImage.color == thePlayer.LastColor)
+            else if (GetIdentity() == iden.LastColor)
             {
-                if (GetIdentity() != iden.LastColor)
+                if (StateMortalImage.color != thePlayer.LastColor)
                 {
                     SetMortalColors(thePlayer.LastColor, thePlayer.LastColorText);
                 }
@@ -233,6 +257,60 @@ public class StateMortal : MonoBehaviour
     public void ValidateMortal()
     {
         AmountIncrease = 1;
+    }
+
+    public void CheckColorOrder()
+    {
+        thePlayer = FindObjectOfType<Player>();
+        if (GetIdentity() == iden.Blue)
+        {
+            if (StateMortalImage.color != thePlayer.BlueColor)
+            {
+                SetMortalColors(thePlayer.BlueColor, thePlayer.BlueColorText);
+            }
+        }
+        else if (GetIdentity() == iden.Red)
+        {
+            if (StateMortalImage.color != thePlayer.RedColor)
+            {
+                SetMortalColors(thePlayer.RedColor, thePlayer.RedColorText);
+            }
+        }
+        else if (GetIdentity() == iden.Yellow)
+        {
+            if (StateMortalImage.color != thePlayer.YellowColor)
+            {
+                SetMortalColors(thePlayer.YellowColor, thePlayer.YellowColorText);
+            }
+        }
+        else if (GetIdentity() == iden.Pink)
+        {
+            if (StateMortalImage.color != thePlayer.PinkColor)
+            {
+                SetMortalColors(thePlayer.PinkColor, thePlayer.PinkColorText);
+            }
+        }
+        else if (GetIdentity() == iden.Green)
+        {
+            if (StateMortalImage.color != thePlayer.GreenColor)
+            {
+                SetMortalColors(thePlayer.GreenColor, thePlayer.GreenColorText);
+            }
+        }
+        else if (GetIdentity() == iden.Orange)
+        {
+            if (StateMortalImage.color != thePlayer.OrangeColor)
+            {
+                SetMortalColors(thePlayer.OrangeColor, thePlayer.OrangeColorText);
+            }
+        }
+        else if (GetIdentity() == iden.LastColor)
+        {
+            if (StateMortalImage.color != thePlayer.LastColor)
+            {
+                SetMortalColors(thePlayer.LastColor, thePlayer.LastColorText);
+            }
+        }
     }
 
     public void UpdateDoubleX()
@@ -269,7 +347,7 @@ public class StateMortal : MonoBehaviour
     {
         for (int i = 0; i < MyTypeOfAttack.Count; i++)
         {
-            MyTypeOfAttack[i].Out.SetActive(true);
+            //MyTypeOfAttack[i].Out.SetActive(true);
             MyTypeOfAttack[i].GetComponent<StateMortal>().CanAttack = true;
         }
     }
@@ -343,6 +421,7 @@ public class StateMortal : MonoBehaviour
             else
             {
                 star1.gameObject.SetActive(true);
+                star1.color = thePlayer.BlueColorPickText;
                 skills.TurboObj.color = WhiteLow;
                 skills.TurboObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
             }
@@ -351,6 +430,7 @@ public class StateMortal : MonoBehaviour
             {
                 skills.CopacityObj.color = Color.white;
                 star2.gameObject.SetActive(false);
+                star2.color = thePlayer.BlueColorPickText;
                 MaxSpace = 100;
                 skills.CopacityObj.transform.GetChild(0).GetComponent<MaskAnimate>().EnableMask();
             }
@@ -385,6 +465,7 @@ public class StateMortal : MonoBehaviour
             {
                 skills.AllAttackObj.color = WhiteLow;
                 star3.gameObject.SetActive(true);
+                star3.color = thePlayer.BlueColorPickText;
                 skills.AllAttackObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
 
             }
@@ -412,6 +493,24 @@ public class StateMortal : MonoBehaviour
                 skills.MaxSpaceObj.transform.GetChild(0).GetComponent<MaskAnimate>().disableMask();
             }
         }
+    }
+
+    public void DoScaleMortal()
+    {
+        if (MortalTween == null)
+            MortalTween = gameObject.transform.DOScale(0.777f, 0.27f).SetEase(Ease.Linear).From().SetUpdate(true).OnComplete(() =>
+            {
+                MortalTween = null;
+            });
+    }
+
+    public void DoShakeMortal()
+    {
+        if (MortalTween == null)
+            MortalTween = gameObject.transform.DOShakeScale(0.23f, 0.33f).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
+            {
+                MortalTween = null;
+            });
     }
 
     public void ResetEnemyTurbo()
@@ -491,10 +590,12 @@ public class StateMortal : MonoBehaviour
 
         ArmyParticle.transform.position = targetMortal.transform.position;
 
+
         MinMaxGradient.colorMin = mainColor;
         MinMaxGradient.colorMax = targetColor;
 
         ArmyMain.startColor = MinMaxGradient;
+
         burst.count = burstCount;
         ArmyEmmision.SetBurst(0, burst);
 

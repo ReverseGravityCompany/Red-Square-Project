@@ -9,10 +9,9 @@ using DG.Tweening;
 public class MenuSetting : MonoBehaviour
 {
     #region Properties
-    [SerializeField] public Image SoundSetting;
-    [SerializeField] Color SoundSetting_OffColor, SoundSetting_OnColor;
+    [SerializeField] public Image SoundSetting, MusicSetting, VibrationSetting;
+    [SerializeField] Color SoundSetting_OffColor, SoundSetting_OnColor, MusicSetting_OnColor, Vibration_OnColor;
     [SerializeField] public GameObject ButtonStart, DecreaseLevel, IncreaseLevel, LevelNameSelection;
-    [SerializeField] public GameObject Pause, Home, RestartLevel;
     [SerializeField] public Sprite PauseOff, PauseOn;
 
     [Space(20)]
@@ -25,27 +24,20 @@ public class MenuSetting : MonoBehaviour
 
     private int CurrentLevel;
     [SerializeField] Text LevelMenu_Text;
-    [SerializeField] Text LevelGame_Text;
 
     [Header("Sounds")]
     public AudioSource LevelChangeSound;
     public AudioSource PlaySound;
     public AudioSource PauseSound;
+    public AudioSource BackSound;
 
     [Space(15)]
     public GameObject TouchScreen;
-    public Text LevelShowInLevel;
     [HideInInspector] public bool GameStarted = false;
 
     // Level 4 Helper
     public GameObject Helper_Menu, Hand;
 
-    // Light/Dark Mode
-    public Image BG_UI;
-    public Image ColorPicker_UI;
-    public Color BlackColor;
-    public Sprite[] BG;
-    public Sprite[] ColorPicker;
     private Camera camera;
 
     [HideInInspector] public bool PauseStatus;
@@ -60,6 +52,18 @@ public class MenuSetting : MonoBehaviour
     public GameObject[] englishNote;
 
     private Animator anim;
+
+    public Coroutine ScoreCorotuine;
+
+    public GameObject BackPanel;
+    public GameObject backButton;
+
+    public GameObject SettingsPanel;
+
+    public Image CameraLockImage;
+    public Sprite LockCameraSprite, UnlockCameraSprite;
+
+    public GameObject CameraTutPanel;
     #endregion
 
     #region Functions
@@ -71,31 +75,13 @@ public class MenuSetting : MonoBehaviour
             CurrentLevel = PlayerPrefs.GetInt("MyLevel");
 
             LevelMenu_Text.text = "Level " + CurrentLevel.ToString();
-            LevelGame_Text.text = "Level " + CurrentLevel.ToString();
             LevelNameSelection.GetComponent<Text>().text = CurrentLevel.ToString();
         }
         else
         {
             CurrentLevel = 1;
             LevelMenu_Text.text = "Level " + CurrentLevel.ToString();
-            LevelGame_Text.text = "Level " + CurrentLevel.ToString();
             LevelNameSelection.GetComponent<Text>().text = CurrentLevel.ToString();
-        }
-
-        if (PlayerPrefs.HasKey("SaveSound"))
-        {
-            if (PlayerPrefs.GetInt("SaveSound") == 0)
-            {
-                SoundSetting.color = SoundSetting_OffColor;
-                AudioListener.pause = true;
-                AudioListener.volume = 0;
-            }
-            else if (PlayerPrefs.GetInt("SaveSound") == 1)
-            {
-                SoundSetting.color = SoundSetting_OnColor;
-                AudioListener.pause = false;
-                AudioListener.volume = 1;
-            }
         }
     }
 
@@ -104,31 +90,46 @@ public class MenuSetting : MonoBehaviour
         camera = Camera.main;
         anim = GetComponent<Animator>();
 
-        if (PlayerPrefs.HasKey("BG"))
+        if (PlayerPrefs.HasKey("SaveMusic"))
         {
-            int currentBG = PlayerPrefs.GetInt("BG");
+            int res = PlayerPrefs.GetInt("SaveMusic");
 
-            if (currentBG != 1)
+            if (res == 0)
             {
-                BG_UI.sprite = BG[currentBG - 2];
-                BG_UI.gameObject.SetActive(true);
-                ColorPicker_UI.sprite = ColorPicker[currentBG - 1];
+                MusicSetting.color = SoundSetting_OffColor;
+                PlayerPrefs.SetInt("SaveMusic", 0);
+                LevelManager._Instance.Game_AudioMixer.DOSetFloat("MusicVolume", -80, 0).SetEase(Ease.Linear).SetUpdate(true);
             }
             else
             {
-                camera.backgroundColor = BlackColor;
-                BG_UI.gameObject.SetActive(false);
-                ColorPicker_UI.sprite = ColorPicker[0];
+                MusicSetting.color = MusicSetting_OnColor;
+                PlayerPrefs.SetInt("SaveMusic", 1);
+                LevelManager._Instance.Game_AudioMixer.DOSetFloat("MusicVolume", 0, 0).SetEase(Ease.Linear).SetUpdate(true);
+            }
+        }
+
+        if (PlayerPrefs.HasKey("Vibration"))
+        {
+            int vib = PlayerPrefs.GetInt("Vibration");
+
+            if (vib == 0)
+            {
+                VibrationSetting.color = SoundSetting_OffColor;
+                LevelManager._Instance.AllowVibration = false;
+            }
+            else
+            {
+                VibrationSetting.color = Vibration_OnColor;
+                LevelManager._Instance.AllowVibration = true;
             }
         }
         else
         {
-            PlayerPrefs.SetInt("BG", 1);
-
-            camera.backgroundColor = BlackColor;
-            BG_UI.gameObject.SetActive(false);
-            ColorPicker_UI.sprite = ColorPicker[0];
+            VibrationSetting.color = Vibration_OnColor;
+            PlayerPrefs.SetInt("Vibration", 1);
+            LevelManager._Instance.AllowVibration = true;
         }
+
 
         if (!PlayerPrefs.HasKey("NotesRemainder") && CurrentLevel == 4)
         {
@@ -153,16 +154,6 @@ public class MenuSetting : MonoBehaviour
         {
             MarkDifficaulty.sprite = HardImage;
         }
-
-
-        //if (PlayerPrefs.HasKey("FastRun"))
-        //{
-        //    if (PlayerPrefs.GetInt("FastRun") == 1)
-        //    {
-        //        StartGame();
-        //        PlayerPrefs.SetInt("FastRun", 0);
-        //    }
-        //}
     }
 
     public void ResetSpecialData()
@@ -172,14 +163,12 @@ public class MenuSetting : MonoBehaviour
             CurrentLevel = PlayerPrefs.GetInt("MyLevel");
 
             LevelMenu_Text.text = "Level " + CurrentLevel.ToString();
-            LevelGame_Text.text = "Level " + CurrentLevel.ToString();
             LevelNameSelection.GetComponent<Text>().text = CurrentLevel.ToString();
         }
         else
         {
             CurrentLevel = 1;
             LevelMenu_Text.text = "Level " + CurrentLevel.ToString();
-            LevelGame_Text.text = "Level " + CurrentLevel.ToString();
             LevelNameSelection.GetComponent<Text>().text = CurrentLevel.ToString();
         }
 
@@ -206,42 +195,55 @@ public class MenuSetting : MonoBehaviour
         {
             MarkDifficaulty.sprite = HardImage;
         }
-
-
-        //if (PlayerPrefs.HasKey("FastRun"))
-        //{
-        //    if (PlayerPrefs.GetInt("FastRun") == 1)
-        //    {
-        //        StartGame();
-        //        PlayerPrefs.SetInt("FastRun", 0);
-        //    }
-        //}
-
     }
 
     public void StartGame()
     {
-        LevelManager._Instance.Game_AudioMixer.DOSetFloat("Lowpass_Music", 5000, 1.65f).SetUpdate(true);
+        LevelManager._Instance.Game_AudioMixer.DOSetFloat("Lowpass_Music", 1000, 1.65f).SetUpdate(true);
         SoundSetting.gameObject.SetActive(false);
-        ColorPicker_UI.gameObject.SetActive(false);
         PlaySound.Play();
         MenuPanel.SetActive(false);
         ButtonStart.SetActive(false);
-        Pause.SetActive(true);
+        backButton.SetActive(true);
+        BackPanel.SetActive(false);
+        CameraLockImage.gameObject.SetActive(true);
+        if (LevelManager._Instance.handOperaion != null)
+        {
+            LevelManager._Instance.handOperaion.gameObject.SetActive(true);
+        }
+
         Time.timeScale = 1f;
         TouchScreen.SetActive(true);
-        LevelShowInLevel.gameObject.SetActive(true);
+
+        if (LevelManager._Instance.CurrentLevel == 1)
+        {
+            FindAnyObjectByType<Player>().gameObject.transform.Find("Mortal(DE)").Find("Hand").gameObject.SetActive(true);
+        }
+        else if (LevelManager._Instance.CurrentLevel == 2)
+        {
+            FindAnyObjectByType<Player>().gameObject.transform.Find("Mortal(RE)").Find("Hand").gameObject.SetActive(true);
+        }
+        else if (LevelManager._Instance.CurrentLevel == 3)
+        {
+            FindAnyObjectByType<Player>().gameObject.transform.Find("Mortal(GE)").Find("Hand").gameObject.SetActive(true);
+        }
 
         if (LevelManager._Instance.DailyRewardCorotiune != null)
             StopCoroutine(LevelManager._Instance.DailyRewardCorotiune);
 
-        if (CameraMovement._Instance.cam.orthographicSize == LevelManager._Instance.mainMenuCameraOrthgraphicSize[CurrentLevel - 1])
-            CameraMovement._Instance.cam.orthographicSize = LevelManager._Instance.inGameCameraOrthgraphicSize[CurrentLevel - 1];
+        float ExtraOrthSize = 0.5f;
+
+        if (LevelManager._Instance.AllMortalObjects.Count < 8)
+            ExtraOrthSize = 0;
+
+        if (CameraMovement._Instance.cam.orthographicSize == LevelManager._Instance.mainMenuCameraOrthgraphicSize[CurrentLevel - 1] + ExtraOrthSize)
+            CameraMovement._Instance.cam.orthographicSize = LevelManager._Instance.inGameCameraOrthgraphicSize[CurrentLevel - 1] + ExtraOrthSize;
 
         GameStarted = true;
         enemySystem.GenerateEnemy();
 
         LevelManager._Instance.StartGenerateSolider();
+        ScoreCorotuine = StartCoroutine(LevelManager._Instance.MultiSliderScore());
 
         CoverMenu.SetActive(false);
     }
@@ -262,6 +264,102 @@ public class MenuSetting : MonoBehaviour
             AudioListener.pause = true;
             AudioListener.volume = 0;
             PlayerPrefs.SetInt("SaveSound", 0);
+        }
+    }
+
+    public void MusicChecking()
+    {
+        LevelChangeSound.Play();
+        if (PlayerPrefs.HasKey("SaveMusic"))
+        {
+            int res = PlayerPrefs.GetInt("SaveMusic");
+
+            if (res == 0)
+            {
+                MusicSetting.color = MusicSetting_OnColor;
+                PlayerPrefs.SetInt("SaveMusic", 1);
+                LevelManager._Instance.Game_AudioMixer.DOSetFloat("MusicVolume", 0, 0).SetEase(Ease.Linear).SetUpdate(true);
+            }
+            else
+            {
+                MusicSetting.color = SoundSetting_OffColor;
+                PlayerPrefs.SetInt("SaveMusic", 0);
+                LevelManager._Instance.Game_AudioMixer.DOSetFloat("MusicVolume", -80f, 0).SetEase(Ease.Linear).SetUpdate(true);
+            }
+        }
+        else
+        {
+            MusicSetting.color = SoundSetting_OffColor;
+            PlayerPrefs.SetInt("SaveMusic", 0);
+            LevelManager._Instance.Game_AudioMixer.DOSetFloat("MusicVolume", -80f, 0).SetEase(Ease.Linear).SetUpdate(true);
+        }
+    }
+
+    public void SetCameraLockState()
+    {
+        if (!PlayerPrefs.HasKey("SetCameraLock_Tut"))
+        {
+            CameraTutPanel.gameObject.SetActive(true);
+            Time.timeScale = 0;
+            LevelManager._Instance.Game_AudioMixer.DOSetFloat("Lowpass_Music", 300, 0).SetEase(Ease.Linear).SetUpdate(true);
+            PlayerPrefs.SetInt("SetCameraLock_Tut", 1);
+        }
+
+        if (CameraMovement._Instance.LockCamera == false)
+        {
+            CameraLockImage.sprite = LockCameraSprite;
+            CameraMovement._Instance.LockCamera = true;
+            CameraMovement._Instance.PressCount = 0;
+        }
+        else
+        {
+            CameraLockImage.sprite = UnlockCameraSprite;
+            CameraMovement._Instance.LockCamera = false;
+            CameraMovement._Instance.PressCount = 0;
+        }
+    }
+
+    public void ShowCameraTut()
+    {
+        CameraTutPanel.gameObject.SetActive(true);
+        Time.timeScale = 0;
+        LevelManager._Instance.Game_AudioMixer.DOSetFloat("Lowpass_Music", 300, 0).SetEase(Ease.Linear).SetUpdate(true);
+    }
+
+    public void DisableCameraTutPanel()
+    {
+        Time.timeScale = 1;
+        LevelManager._Instance.Game_AudioMixer.DOSetFloat("Lowpass_Music", 1000, 1.65f).SetUpdate(true);
+        CameraTutPanel.gameObject.SetActive(false);
+    }
+
+    public void CheckCameraState()
+    {
+        if (CameraMovement._Instance.LockCamera == false)
+        {
+            CameraLockImage.sprite = UnlockCameraSprite;
+        }
+        else
+        {
+            CameraLockImage.sprite = LockCameraSprite;
+        }
+    }
+
+    public void VibrationChecking()
+    {
+        int vib = PlayerPrefs.GetInt("Vibration");
+
+        if (vib == 0)
+        {
+            VibrationSetting.color = Vibration_OnColor;
+            LevelManager._Instance.AllowVibration = true;
+            PlayerPrefs.SetInt("Vibration", 1);
+        }
+        else
+        {
+            VibrationSetting.color = SoundSetting_OffColor;
+            LevelManager._Instance.AllowVibration = false;
+            PlayerPrefs.SetInt("Vibration", 0);
         }
     }
 
@@ -310,37 +408,41 @@ public class MenuSetting : MonoBehaviour
 
     public void Menu()
     {
-        PauseSound.Play();
+        BackSound.Play();
+        BackPanel.SetActive(false);
+        backButton.SetActive(false);
         PlayerPrefs.SetInt("MyLevel", CurrentLevel);
         LevelManager._Instance.ResetGameData();
     }
 
     public void PauseBut()
     {
-        PauseSound.Play();
+        BackSound.Play();
         if (PauseStatus)
         {
-
             LevelManager._Instance.Game_AudioMixer.SetFloat("Lowpass_Music", 1000);
             Time.timeScale = 1f;
             PauseStatus = false;
-            Pause.GetComponent<Image>().sprite = PauseOff;
-            Home.SetActive(false);
-            RestartLevel.SetActive(false);
-            SoundSetting.gameObject.SetActive(false);
-            ColorPicker_UI.gameObject.SetActive(false);
+            BackPanel.SetActive(false);
         }
         else
         {
-            LevelManager._Instance.Game_AudioMixer.SetFloat("Lowpass_Music", 650);
+            LevelManager._Instance.Game_AudioMixer.SetFloat("Lowpass_Music", 300);
             Time.timeScale = 0f;
             PauseStatus = true;
-            Pause.GetComponent<Image>().sprite = PauseOn;
-            Home.SetActive(true);
-            RestartLevel.SetActive(true);
-            SoundSetting.gameObject.SetActive(true);
-            ColorPicker_UI.gameObject.SetActive(true);
+            BackPanel.SetActive(true);
         }
+    }
+
+    public void OpenSettingPanel()
+    {
+        BackSound.Play();
+        SettingsPanel.SetActive(true);
+    }
+
+    public void CloseSettingPanel()
+    {
+        SettingsPanel.SetActive(false);
     }
 
     public void ResetartLevel()
@@ -372,42 +474,23 @@ public class MenuSetting : MonoBehaviour
     public void BackgroundPicker()
     {
         LevelChangeSound.Play();
-        if (PlayerPrefs.HasKey("BG"))
-        {
-            int currentBG = PlayerPrefs.GetInt("BG");
-
-            currentBG++;
-
-            if (currentBG > 5)
-            {
-                BG_UI.gameObject.SetActive(false);
-                ColorPicker_UI.sprite = ColorPicker[0];
-                PlayerPrefs.SetInt("BG", 1);
-                return;
-            }
-
-            BG_UI.gameObject.SetActive(true);
-            BG_UI.sprite = BG[currentBG - 2];
-            ColorPicker_UI.sprite = ColorPicker[currentBG - 1];
-            PlayerPrefs.SetInt("BG", currentBG);
-        }
     }
 
     public void GuideLangauage(Image img)
     {
-        if(img.sprite == persian)
+        if (img.sprite == persian)
         {
             img.sprite = english;
-            foreach(var obj in persianNote)
+            foreach (var obj in persianNote)
             {
                 obj.SetActive(false);
             }
-            foreach(var obj in englishNote)
+            foreach (var obj in englishNote)
             {
                 obj.SetActive(true);
             }
         }
-        else if(img.sprite == english)
+        else if (img.sprite == english)
         {
             img.sprite = persian;
             foreach (var obj in englishNote)
